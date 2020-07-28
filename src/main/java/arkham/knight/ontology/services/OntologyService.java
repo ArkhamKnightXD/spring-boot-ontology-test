@@ -21,8 +21,7 @@ public class OntologyService {
 
             FileReader reader = new FileReader(file);
 
-            OntModel model = ModelFactory
-                    .createOntologyModel(OntModelSpec.OWL_DL_MEM);
+            OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
             model.read(reader,null);
 
             return model;
