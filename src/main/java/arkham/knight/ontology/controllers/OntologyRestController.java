@@ -6,13 +6,13 @@ import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.StmtIterator;
 import org.json.simple.JSONObject;
 import org.apache.jena.ontology.Ontology;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -33,20 +33,79 @@ public class OntologyRestController {
 
         String individualURI = ontologyURI.concat(individualName);
 
-        Individual individual = ontologyService.readOntologyFileAndReturn().getIndividual(individualURI);
+        Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
 
-        Iterator properties = individual.listProperties();
+        String definitionURI = ontologyURI.concat("definicion");
 
-        while (properties.hasNext()) {
+        String wordURI = ontologyURI.concat("lema");
 
-            //Aqui es que falla intento castear de statement a property
-            Property property = (Property) properties.next();
+        String grammarMarkURI = ontologyURI.concat("marca_gramatical");
+
+        String markSocialCulturalURI = ontologyURI.concat("marca_nivel_sociocultural");
+
+        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+
+        Property wordProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(wordURI);
+
+        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+
+        Property markSocialCulturalProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(markSocialCulturalURI);
+
+        RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
+
+        RDFNode wordPropertyValue = individual.getPropertyValue(wordProperty);
+
+        RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
+
+        RDFNode markSocialCulturalPropertyValue = individual.getPropertyValue(markSocialCulturalProperty);
+
+
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("definicion", definitionPropertyValue.toString());
+        jsonObject.put("lema", wordPropertyValue.toString());
+        jsonObject.put("marca_gramatical", grammarMarkPropertyValue.toString());
+
+        if (markSocialCulturalPropertyValue!= null)
+            jsonObject.put("marca_nivel_sociocultural", markSocialCulturalPropertyValue.toString());
+
+        list.add(jsonObject);
+
+        return list;
+    }
+
+
+    @RequestMapping("/createInstance")
+    public String createInstance(@RequestParam("className") String className, @RequestParam("individualName") String individualName) throws IOException {
+
+        String classURI = ontologyURI.concat(className);
+
+        String individualURI = ontologyURI.concat(individualName);
+
+        OntClass ontClass = ontologyService.readOntologyFileAndReturnTheModel().getOntClass(classURI);
+
+        Individual individualToCreate = ontClass.createIndividual(individualURI);
+
+       // ontologyService.saveOntologyFile(ontologyService.readOntologyFileAndReturnTheModel(), individualToCreate);
+
+        return individualToCreate.getURI();
+    }
+
+
+    @RequestMapping("/individuals")
+    public List<JSONObject> getIndividuals() {
+
+        List<JSONObject> list = new ArrayList<>();
+
+        Iterator<Individual> individualsIterator = ontologyService.readOntologyFileAndReturnTheModel().listIndividuals();
+
+
+        while (individualsIterator.hasNext()) {
+
+            Individual individual = individualsIterator.next();
             JSONObject jsonObject = new JSONObject();
 
-            RDFNode value = individual.getPropertyValue(property);
-
-            jsonObject.put("name", property.getLocalName());
-            jsonObject.put("uri", property.getURI());
+            jsonObject.put("name", individual.getLocalName());
 
             list.add(jsonObject);
         }
@@ -54,12 +113,13 @@ public class OntologyRestController {
         return list;
     }
 
+
     @RequestMapping("/ontology")
     public List<JSONObject> getOntology() {
 
         List<JSONObject> list = new ArrayList<>();
 
-        Iterator<Ontology> ontologyIterator = ontologyService.readOntologyFileAndReturn().listOntologies();
+        Iterator<Ontology> ontologyIterator = ontologyService.readOntologyFileAndReturnTheModel().listOntologies();
 
 
         while (ontologyIterator.hasNext()) {
@@ -83,7 +143,7 @@ public class OntologyRestController {
 
         List<JSONObject> list = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturn().listClasses();
+        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
 
 
         while (classesIterator.hasNext()) {
@@ -101,40 +161,18 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/individuals")
-    public List<JSONObject> getIndividuals() {
-
-        List<JSONObject> list = new ArrayList<>();
-
-        Iterator<Individual> individualsIterator = ontologyService.readOntologyFileAndReturn().listIndividuals();
-
-
-        while (individualsIterator.hasNext()) {
-
-            Individual individual = individualsIterator.next();
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("name", individual.getLocalName());
-            jsonObject.put("uri", individual.getURI());
-
-            list.add(jsonObject);
-        }
-
-        return list;
-    }
-
-
     @RequestMapping("/datatype")
     public List<JSONObject> getAllDatatypeProperties() {
 
         List<JSONObject> list = new ArrayList<>();
 
-        Iterator<DatatypeProperty> propertyIterator = ontologyService.readOntologyFileAndReturn().listDatatypeProperties();
+        Iterator<DatatypeProperty> propertyIterator = ontologyService.readOntologyFileAndReturnTheModel().listDatatypeProperties();
 
 
         while (propertyIterator.hasNext()) {
 
             DatatypeProperty nextProperty = propertyIterator.next();
+
             JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("domain", nextProperty.getDomain().getLocalName());

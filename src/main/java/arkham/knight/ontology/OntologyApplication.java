@@ -18,7 +18,7 @@ public class OntologyApplication {
     public CommandLineRunner run(OntologyService ontologyService) {
         return args -> {
 
-           // ontologyService.readOntologyFileAndReturn().write(System.out,"RDF/XML-ABBREV");
+            //ontologyService.readOntologyFileAndReturn().write(System.out,"RDF/XML-ABBREV");
         };
     }
 
