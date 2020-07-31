@@ -15,9 +15,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    compile group: 'org.apache.jena', name: 'jena-core', version: '3.13.1'
+    compile group: 'org.apache.jena', name: 'jena-core', version: '3.13.1'\
+
+    compile group: 'org.apache.jena', name: 'jena-tdb', version: '3.13.1'
 
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+
+    implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'

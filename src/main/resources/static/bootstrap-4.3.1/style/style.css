@@ -1,0 +1,82 @@
+*{
+
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+
+  height: 100%;
+}
+
+
+.container {
+
+  min-height: 65%;
+}
+
+
+
+.album {
+
+  padding-top: 5%;
+  min-height: 100%;
+}
+
+.footer-container{
+
+  border: 2px solid black ;
+  position: relative;
+  top: 40%;
+  background: #303036;
+  color: white;
+  height: 15%;
+  clear: both;
+}
+
+
+.footer-container-1{
+
+  border: 2px solid black ;
+  position: relative;
+  top: 3%;
+  background: #303036;
+  color: white;
+  height: 15%;
+  clear: both;
+}
+
+
+.cover-videogame{
+
+  position: relative;
+  left: 100px;
+  width: 400px;
+  height: 300px;
+}
+
+.card-videogame-developer{
+
+  position: relative;
+  left: 520px;
+  bottom: 233px;
+  height: 300px;
+}
+
+
+.cover-console{
+
+    position: relative;
+    left: 100px;
+    width: 400px;
+    height: 300px;
+    top: 200px;
+}
+
+.card-console-developer{
+
+    position: relative;
+    left: 520px;
+    bottom: 200px;
+    height: 300px;
+}

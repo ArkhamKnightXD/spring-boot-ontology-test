@@ -10,12 +10,10 @@ import java.io.*;
 @Service
 public class OntologyService {
 
-    final String ontologyFileName = "Lemas.owl";
+    final String ontologyFileName = "Diccionario_Prueba.owl";
 
 
-    public OntModel readOntologyFileAndReturnTheModel(){
-
-        try {
+    public OntModel readOntologyFileAndReturnTheModel() throws FileNotFoundException {
 
             File file = new File(ontologyFileName);
 
@@ -25,29 +23,21 @@ public class OntologyService {
             model.read(reader,null);
 
             return model;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
 
     public void saveOntologyFile(OntModel ontologyModel, Individual individualToSave) throws IOException {
 
-      //  File file = new File(ontologyFileName);
+        File file = new File(ontologyFileName);
 
-       // FileWriter fileWriter = new  FileWriter(file);
+        FileWriter fileWriter = new  FileWriter(file);
 
-        //fileWriter.write(String.valueOf(individualToSave));
+        fileWriter.write(String.valueOf(individualToSave));
 
-        OutputStream out = new FileOutputStream((File) individualToSave);
-
-        ontologyModel.write(out);
+        ontologyModel.write(fileWriter);
 
         ontologyModel.close();
 
-        //fileWriter.close();
+        fileWriter.close();
     }
 }

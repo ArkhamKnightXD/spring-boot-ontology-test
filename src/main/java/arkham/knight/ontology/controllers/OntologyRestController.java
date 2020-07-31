@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,11 +24,13 @@ public class OntologyRestController {
     @Autowired
     private OntologyService ontologyService;
 
-    private final String ontologyURI = "http://www.semanticweb.org/karvi/ontologies/2020/6/untitled-ontology-3#";
+    //private final String ontologyURI = "http://www.semanticweb.org/karvi/ontologies/2020/6/untitled-ontology-3#";
+
+    private final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
 
 
     @RequestMapping("/properties")
-    public List<JSONObject> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) {
+    public List<JSONObject> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -37,15 +40,15 @@ public class OntologyRestController {
 
         String definitionURI = ontologyURI.concat("definicion");
 
-        String wordURI = ontologyURI.concat("lema");
+        String exampleURI = ontologyURI.concat("ejemplo");
 
         String grammarMarkURI = ontologyURI.concat("marca_gramatical");
 
-        String markSocialCulturalURI = ontologyURI.concat("marca_nivel_sociocultural");
+        String markSocialCulturalURI = ontologyURI.concat("marca_gramatical");
 
         Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
 
-        Property wordProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(wordURI);
+        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
 
         Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
 
@@ -53,7 +56,7 @@ public class OntologyRestController {
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
 
-        RDFNode wordPropertyValue = individual.getPropertyValue(wordProperty);
+        RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
 
         RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
 
@@ -63,11 +66,15 @@ public class OntologyRestController {
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("definicion", definitionPropertyValue.toString());
-        jsonObject.put("lema", wordPropertyValue.toString());
+
+        if (grammarMarkPropertyValue != null)
         jsonObject.put("marca_gramatical", grammarMarkPropertyValue.toString());
 
-        if (markSocialCulturalPropertyValue!= null)
-            jsonObject.put("marca_nivel_sociocultural", markSocialCulturalPropertyValue.toString());
+        if (examplePropertyValue != null)
+            jsonObject.put("ejemplo", examplePropertyValue.toString());
+
+        /*if (markSocialCulturalPropertyValue!= null)
+            jsonObject.put("ejemplo", markSocialCulturalPropertyValue.toString());*/
 
         list.add(jsonObject);
 
@@ -93,7 +100,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/individuals")
-    public List<JSONObject> getIndividuals() {
+    public List<JSONObject> getIndividuals() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -115,7 +122,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/ontology")
-    public List<JSONObject> getOntology() {
+    public List<JSONObject> getOntology() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -139,7 +146,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/classes")
-    public List<JSONObject> getClasses() {
+    public List<JSONObject> getClasses() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -162,7 +169,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/datatype")
-    public List<JSONObject> getAllDatatypeProperties() {
+    public List<JSONObject> getAllDatatypeProperties() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -175,9 +182,9 @@ public class OntologyRestController {
 
             JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("domain", nextProperty.getDomain().getLocalName());
+//            jsonObject.put("domain", nextProperty.getDomain().getLocalName());
             jsonObject.put("property", nextProperty.getLocalName());
-            jsonObject.put("datatype", nextProperty.getRange().getLocalName());
+//            jsonObject.put("datatype", nextProperty.getRange().getLocalName());
 
             list.add(jsonObject);
         }
