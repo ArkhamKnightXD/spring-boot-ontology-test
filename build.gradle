@@ -23,6 +23,8 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 
+    compile group: 'net.sourceforge.owlapi', name: 'owlapi-distribution', version: '4.2.8'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }

@@ -8,12 +8,13 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.json.simple.JSONObject;
 import org.apache.jena.ontology.Ontology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -23,8 +24,6 @@ public class OntologyRestController {
 
     @Autowired
     private OntologyService ontologyService;
-
-    //private final String ontologyURI = "http://www.semanticweb.org/karvi/ontologies/2020/6/untitled-ontology-3#";
 
     private final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
 
@@ -82,20 +81,21 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/createInstance")
-    public String createInstance(@RequestParam("className") String className, @RequestParam("individualName") String individualName) throws IOException {
+    @RequestMapping("/createClass")
+    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
 
-        String classURI = ontologyURI.concat(className);
+        ontologyService.saveClasses(className, className2);
 
-        String individualURI = ontologyURI.concat(individualName);
+        return "classes Saved";
+    }
 
-        OntClass ontClass = ontologyService.readOntologyFileAndReturnTheModel().getOntClass(classURI);
 
-        Individual individualToCreate = ontClass.createIndividual(individualURI);
+    @RequestMapping("/createIndividual")
+    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
 
-       // ontologyService.saveOntologyFile(ontologyService.readOntologyFileAndReturnTheModel(), individualToCreate);
+        ontologyService.saveIndividual(individualName, fatherClassName);
 
-        return individualToCreate.getURI();
+        return "individual Saved";
     }
 
 
@@ -146,7 +146,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/classes")
-    public List<JSONObject> getClasses() throws FileNotFoundException {
+    public List<JSONObject> getClasses() throws FileNotFoundException, OWLOntologyCreationException, OWLOntologyStorageException {
 
         List<JSONObject> list = new ArrayList<>();
 

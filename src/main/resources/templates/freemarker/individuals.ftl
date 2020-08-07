@@ -17,9 +17,9 @@
 </head>
 
 <body>
-<form action="/words/">
+<form action="/find/">
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard/">words</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/words/">words</a>
     <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Search..." aria-label="Search">
     <ul class="navbar-nav px-1">
       <li class="nav-item text-nowrap">
@@ -47,9 +47,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="/words/individuals">
+            <a class="nav-link text-light" href="/dashboard/recovered">
               <span data-feather="layers"></span>
-              All individuals
+              New Recovered Cases
             </a>
           </li>
 
@@ -91,27 +91,21 @@
         <table class="table table-striped table-sm">
           <thead class="thead-dark">
           <tr>
-            <#if marca_gramatical??>
-              <th>Marca gramatical</th>
-            </#if>
-            <th>Definicion</th>
+            <th>Lema</th>
+            <th>Options</th>
 
-            <#if ejemplo??>
-              <th>Ejemplo</th>
-            </#if>
           </tr>
           </thead>
             <tbody>
-            <tr>
-              <#if marca_gramatical??>
-                <td>${marca_gramatical}</td>
-              </#if>
-              <td>${definicion}</td>
+            <#list individuals as individual>
+              <tr>
+                <td>${individual}</td>
 
-              <#if ejemplo??>
-                <td>${ejemplo}</td>
-              </#if>
-            </tr>
+                <td>
+                  <a class="btn btn-outline-dark my-2 my-sm-0" href="/words/delete?individualName=${individual}" role="button">Eliminar</a>
+                </td>
+              </tr>
+            </#list>
 
             </tbody>
         </table>
