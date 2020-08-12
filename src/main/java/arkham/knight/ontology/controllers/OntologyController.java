@@ -114,6 +114,49 @@ public class OntologyController {
     }
 
 
+    @RequestMapping("/edition")
+    public String getIndividualByName(Model model, @RequestParam("individualName") String individualName) throws FileNotFoundException {
+
+        String individualURI = ontologyURI.concat(individualName);
+
+        Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+
+        String definitionURI = ontologyURI.concat("definicion");
+
+        String exampleURI = ontologyURI.concat("ejemplo");
+
+        String grammarMarkURI = ontologyURI.concat("marca_gramatical");
+
+
+        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+
+        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+
+        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+
+
+        RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
+
+        RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
+
+        RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
+
+
+        model.addAttribute("lema", individual.getLocalName());
+
+        model.addAttribute("definicion", definitionPropertyValue.toString());
+
+        if (grammarMarkPropertyValue != null)
+            model.addAttribute("marca_gramatical", grammarMarkPropertyValue.toString());
+
+        if (examplePropertyValue != null)
+            model.addAttribute("ejemplo", examplePropertyValue.toString());
+
+
+        return "/freemarker/editIndividual";
+    }
+
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
 
@@ -123,9 +166,17 @@ public class OntologyController {
     }
 
 
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String edit(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
+
+        ontologyService.saveIndividual(individualName, fatherClassName);
+
+        return "redirect:/words/";
+    }
+
+
     @RequestMapping("/delete")
     public String deleteIndividual(@RequestParam(name = "individualName") String individualName) throws OWLOntologyCreationException, OWLOntologyStorageException {
-
 
         ontologyService.deleteIndividual(individualName);
 

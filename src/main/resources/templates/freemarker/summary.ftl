@@ -19,7 +19,7 @@
 <body>
 <form action="/words/">
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/dashboard/">words</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">words</a>
     <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Search..." aria-label="Search">
     <ul class="navbar-nav px-1">
       <li class="nav-item text-nowrap">
@@ -49,7 +49,7 @@
           <li class="nav-item">
             <a class="nav-link text-light" href="/words/individuals">
               <span data-feather="layers"></span>
-              All individuals
+              All Individuals
             </a>
           </li>
 

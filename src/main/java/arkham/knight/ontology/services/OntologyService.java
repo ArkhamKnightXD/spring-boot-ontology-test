@@ -1,5 +1,6 @@
 package arkham.knight.ontology.services;
 
+import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
@@ -68,6 +69,11 @@ public class OntologyService {
         OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + "#" + individualName));
 
         OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + "#" + fatherClassName));
+
+        /*OWLDataPropertyExpression dataPropertyExpression = dataFactory.getOWLDataProperty()
+
+        OWLDataPropertyAssertionAxiom axiom1 = dataFactory.getOWLDataPropertyAssertionAxiom(individual,1);*/
+
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
         ontologyManager.addAxiom(ontology, axiom);
@@ -85,8 +91,6 @@ public class OntologyService {
         OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
 
         IRI individualIRI = IRI.create(ontologyIRI + "#" + individualName);
-
-        OWLIndividual individualToDelete = dataFactory.getOWLNamedIndividual(individualIRI);
 
         OWLEntityRemover remover = new OWLEntityRemover(Collections.singleton(ontology));
 

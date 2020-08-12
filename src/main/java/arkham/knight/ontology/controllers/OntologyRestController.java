@@ -43,7 +43,6 @@ public class OntologyRestController {
 
         String grammarMarkURI = ontologyURI.concat("marca_gramatical");
 
-        String markSocialCulturalURI = ontologyURI.concat("marca_gramatical");
 
         Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
 
@@ -51,7 +50,6 @@ public class OntologyRestController {
 
         Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
 
-        Property markSocialCulturalProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(markSocialCulturalURI);
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
 
@@ -59,7 +57,6 @@ public class OntologyRestController {
 
         RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
 
-        RDFNode markSocialCulturalPropertyValue = individual.getPropertyValue(markSocialCulturalProperty);
 
 
         JSONObject jsonObject = new JSONObject();
@@ -72,8 +69,6 @@ public class OntologyRestController {
         if (examplePropertyValue != null)
             jsonObject.put("ejemplo", examplePropertyValue.toString());
 
-        /*if (markSocialCulturalPropertyValue!= null)
-            jsonObject.put("ejemplo", markSocialCulturalPropertyValue.toString());*/
 
         list.add(jsonObject);
 

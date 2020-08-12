@@ -99,11 +99,25 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Complejo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Complejo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Persona -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Persona">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Animal"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     
 
 

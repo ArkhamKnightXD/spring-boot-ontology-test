@@ -47,9 +47,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-light" href="/dashboard/recovered">
+            <a class="nav-link text-light" href="#">
               <span data-feather="layers"></span>
-              New Recovered Cases
+              All Individuals
             </a>
           </li>
 
@@ -102,7 +102,8 @@
                 <td>${individual}</td>
 
                 <td>
-                  <a class="btn btn-outline-dark my-2 my-sm-0" href="/words/delete?individualName=${individual}" role="button">Eliminar</a>
+                  <a class="btn btn-outline-dark my-2 my-sm-0" href="/words/edition?individualName=${individual}" role="button">Editar</a>
+                  <a class="btn btn-outline-danger my-2 my-sm-0" href="/words/delete?individualName=${individual}" role="button">Eliminar</a>
                 </td>
               </tr>
             </#list>
