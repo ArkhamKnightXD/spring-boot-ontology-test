@@ -29,11 +29,21 @@ public class OntologyController {
 
 
     @RequestMapping("/")
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName) throws FileNotFoundException {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "Despues que le di morirsoñando a fulana me di cuenta que ella es una robamaridos porque ella no se digno a siquiera ser una lavaplatos para asi ser una rompehuelgas y no ser una entretiempo") String individualName) throws FileNotFoundException {
 
-        String individualURI = ontologyURI.concat(individualName);
+        List<String> lemaList = new ArrayList<>();
 
-        Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+        List<String> definitionsList = new ArrayList<>();
+
+        List<String> examplesList = new ArrayList<>();
+
+        List<String> grammarMarkList = new ArrayList<>();
+
+      //  String individualURI = ontologyURI.concat(individualName);
+
+        //Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName));
 
         String definitionURI = ontologyURI.concat("definicion");
 
@@ -49,21 +59,34 @@ public class OntologyController {
         Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
 
 
-        RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
+        for (Individual individual: individualList) {
 
-        RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
+            lemaList.add(individual.getLocalName());
 
-        RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
+            RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
+
+            definitionsList.add(definitionPropertyValue.toString());
+
+            //RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
+
+            //examplesList.add(examplePropertyValue.toString());
+
+            //RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
+
+            //grammarMarkList.add(grammarMarkPropertyValue.toString());
+        }
 
 
 
-        model.addAttribute("definicion", definitionPropertyValue.toString());
+        model.addAttribute("lemas", lemaList);
 
-        if (grammarMarkPropertyValue != null)
-            model.addAttribute("marca_gramatical", grammarMarkPropertyValue.toString());
+        model.addAttribute("definitions", definitionsList);
 
-        if (examplePropertyValue != null)
-            model.addAttribute("ejemplo", examplePropertyValue.toString());
+       // if (grammarMarkPropertyValue != null)
+          //  model.addAttribute("marca_gramaticales", grammarMarkList);
+
+       // if (examplePropertyValue != null)
+          //  model.addAttribute("examples", examplesList);
 
 
         return "/freemarker/summary";

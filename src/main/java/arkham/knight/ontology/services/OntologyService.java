@@ -4,12 +4,13 @@ import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.json.simple.JSONObject;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
 import org.springframework.stereotype.Service;
 import java.io.*;
-import java.util.Collections;
+import java.util.*;
 
 @Service
 public class OntologyService {
@@ -107,5 +108,45 @@ public class OntologyService {
         ontologyManager.saveOntology(ontology, ontologySaveIRI);
 
         ontologyManager.removeOntology(ontology);
+    }
+
+
+    public List<String> getAllWordsFromTheSentence(String sentence){
+
+        String [] tokens = sentence.split("[\\s']");
+
+        List<String> words = new ArrayList<>(Arrays.asList(tokens));
+
+        /*for (String word: words) {
+
+            System.out.println(word);
+        }*/
+
+        return words;
+    }
+
+
+    public List<Individual> findAllIndividualByName(List<String> sentenceByWords) throws FileNotFoundException {
+
+        List<Individual> individualList = new ArrayList<>();
+
+        Iterator<Individual> individualsIterator = readOntologyFileAndReturnTheModel().listIndividuals();
+
+        Individual individual;
+
+        while (individualsIterator.hasNext()) {
+
+            individual = individualsIterator.next();
+
+            for (String word: sentenceByWords) {
+
+                if (word.equalsIgnoreCase(individual.getLocalName())){
+                    individualList.add(individual);
+                }
+            }
+
+        }
+
+        return individualList;
     }
 }

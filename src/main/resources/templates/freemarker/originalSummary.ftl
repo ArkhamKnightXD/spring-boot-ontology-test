@@ -90,44 +90,30 @@
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead class="thead-dark">
-
           <tr>
-            <th>Lema</th>
-
-          </tr>
-          </thead>
-
-            <tbody>
-            <#list lemas as lema >
-              <tr>
-                <td>${lema}</td>
-              </tr>
-            </#list>
-
-            </tbody>
-
-        </table>
-
-        <table class="table table-striped table-sm">
-          <thead class="thead-dark">
-
-          <tr>
+            <#if marca_gramatical??>
+              <th>Marca gramatical</th>
+            </#if>
             <th>Definicion</th>
 
-
+            <#if ejemplo??>
+              <th>Ejemplo</th>
+            </#if>
           </tr>
           </thead>
-
-          <tbody>
-
-          <#list definitions as definition >
+            <tbody>
             <tr>
-              <td>${definition}</td>
+              <#if marca_gramatical??>
+                <td>${marca_gramatical}</td>
+              </#if>
+              <td>${definicion}</td>
+
+              <#if ejemplo??>
+                <td>${ejemplo}</td>
+              </#if>
             </tr>
-          </#list>
 
-          </tbody>
-
+            </tbody>
         </table>
 
       </div>
