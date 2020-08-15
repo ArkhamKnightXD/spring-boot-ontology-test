@@ -1,5 +1,6 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
@@ -27,29 +28,19 @@ public class OntologyController {
 
     private final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
 
+    private final String definitionURI = ontologyURI.concat("definicion");
+
+    private final String exampleURI = ontologyURI.concat("ejemplo");
+
+    private final String grammarMarkURI = ontologyURI.concat("marca_gramatical");
+
 
     @RequestMapping("/")
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "Despues que le di morirsoñando a fulana me di cuenta que ella es una robamaridos porque ella no se digno a siquiera ser una lavaplatos para asi ser una rompehuelgas y no ser una entretiempo") String individualName) throws FileNotFoundException {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "Despues que le di morirsOñando a fulana me di cuenta que ella es una ROBAMARIDOS porque ella no se digno a siquiera ser una lavAplatos para asi ser una ROmpehuelgas y no ser una Entretiempo ni tampoco tiene que ser una SALTAcharcos") String individualName) throws FileNotFoundException {
 
-        List<String> lemaList = new ArrayList<>();
-
-        List<String> definitionsList = new ArrayList<>();
-
-        List<String> examplesList = new ArrayList<>();
-
-        List<String> grammarMarkList = new ArrayList<>();
-
-      //  String individualURI = ontologyURI.concat(individualName);
-
-        //Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+        List<Word> wordList;
 
         List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName));
-
-        String definitionURI = ontologyURI.concat("definicion");
-
-        String exampleURI = ontologyURI.concat("ejemplo");
-
-        String grammarMarkURI = ontologyURI.concat("marca_gramatical");
 
 
         Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
@@ -59,35 +50,9 @@ public class OntologyController {
         Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
 
 
-        for (Individual individual: individualList) {
+        wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList,definitionProperty,exampleProperty,grammarMarkProperty);
 
-            lemaList.add(individual.getLocalName());
-
-            RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
-
-            definitionsList.add(definitionPropertyValue.toString());
-
-            //RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
-
-            //examplesList.add(examplePropertyValue.toString());
-
-            //RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
-
-            //grammarMarkList.add(grammarMarkPropertyValue.toString());
-        }
-
-
-
-        model.addAttribute("lemas", lemaList);
-
-        model.addAttribute("definitions", definitionsList);
-
-       // if (grammarMarkPropertyValue != null)
-          //  model.addAttribute("marca_gramaticales", grammarMarkList);
-
-       // if (examplePropertyValue != null)
-          //  model.addAttribute("examples", examplesList);
-
+        model.addAttribute("words", wordList);
 
         return "/freemarker/summary";
     }
@@ -143,12 +108,6 @@ public class OntologyController {
         String individualURI = ontologyURI.concat(individualName);
 
         Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
-
-        String definitionURI = ontologyURI.concat("definicion");
-
-        String exampleURI = ontologyURI.concat("ejemplo");
-
-        String grammarMarkURI = ontologyURI.concat("marca_gramatical");
 
 
         Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);

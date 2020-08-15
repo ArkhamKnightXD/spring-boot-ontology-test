@@ -93,14 +93,30 @@
 
           <tr>
             <th>Lema</th>
+            <th>Definicion</th>
+            <th>Ejemplo</th>
+            <th>Marca Gramatical</th>
 
           </tr>
           </thead>
 
             <tbody>
-            <#list lemas as lema >
+            <#list words as word >
               <tr>
-                <td>${lema}</td>
+                <td><b>${word.lema}</b></td>
+                <td>${word.definition}</td>
+
+                <#if word.example??>
+                    <td>${word.example}</td>
+                  <#else>
+                  <td>N/A</td>
+                </#if>
+
+                <#if word.grammarMark??>
+                  <td>${word.grammarMark}</td>
+                  <#else>
+                    <td>N/A</td>
+                </#if>
               </tr>
             </#list>
 
@@ -108,27 +124,6 @@
 
         </table>
 
-        <table class="table table-striped table-sm">
-          <thead class="thead-dark">
-
-          <tr>
-            <th>Definicion</th>
-
-
-          </tr>
-          </thead>
-
-          <tbody>
-
-          <#list definitions as definition >
-            <tr>
-              <td>${definition}</td>
-            </tr>
-          </#list>
-
-          </tbody>
-
-        </table>
 
       </div>
     </main>

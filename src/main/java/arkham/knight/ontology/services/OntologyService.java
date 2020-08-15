@@ -1,10 +1,12 @@
 package arkham.knight.ontology.services;
 
+import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.rdf.model.ModelFactory;
-import org.json.simple.JSONObject;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
@@ -71,10 +73,6 @@ public class OntologyService {
 
         OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + "#" + fatherClassName));
 
-        /*OWLDataPropertyExpression dataPropertyExpression = dataFactory.getOWLDataProperty()
-
-        OWLDataPropertyAssertionAxiom axiom1 = dataFactory.getOWLDataPropertyAssertionAxiom(individual,1);*/
-
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
         ontologyManager.addAxiom(ontology, axiom);
@@ -117,11 +115,6 @@ public class OntologyService {
 
         List<String> words = new ArrayList<>(Arrays.asList(tokens));
 
-        /*for (String word: words) {
-
-            System.out.println(word);
-        }*/
-
         return words;
     }
 
@@ -134,6 +127,7 @@ public class OntologyService {
 
         Individual individual;
 
+
         while (individualsIterator.hasNext()) {
 
             individual = individualsIterator.next();
@@ -144,9 +138,39 @@ public class OntologyService {
                     individualList.add(individual);
                 }
             }
-
         }
 
         return individualList;
+    }
+
+
+    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definitionProperty, Property exampleProperty, Property grammarMarkProperty){
+
+        List<Word> wordList = new ArrayList<>();
+
+        for (Individual individual: individualList) {
+
+            Word wordToSave = new Word();
+
+            wordToSave.setLema(individual.getLocalName());
+
+            RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
+
+            wordToSave.setDefinition(definitionPropertyValue.toString());
+
+            RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
+
+            if (examplePropertyValue!= null)
+                wordToSave.setExample(examplePropertyValue.toString());
+
+            RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
+
+            if (grammarMarkPropertyValue!= null)
+                wordToSave.setGrammarMark(grammarMarkPropertyValue.toString());
+
+            wordList.add(wordToSave);
+        }
+
+        return wordList;
     }
 }

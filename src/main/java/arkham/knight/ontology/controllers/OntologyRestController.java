@@ -77,7 +77,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/createClass")
-    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
+    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) throws OWLOntologyCreationException, OWLOntologyStorageException {
 
         ontologyService.saveClasses(className, className2);
 
@@ -86,7 +86,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/createIndividual")
-    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
+    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 
@@ -141,7 +141,7 @@ public class OntologyRestController {
 
 
     @RequestMapping("/classes")
-    public List<JSONObject> getClasses() throws FileNotFoundException, OWLOntologyCreationException, OWLOntologyStorageException {
+    public List<JSONObject> getClasses() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
 
