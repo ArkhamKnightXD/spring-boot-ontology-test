@@ -34,6 +34,14 @@ public class OntologyController {
 
     private final String grammarMarkURI = ontologyURI.concat("marca_gramatical");
 
+    private final String marcaNivelSocioCulturalURI = ontologyURI.concat("marca_nivel_sociocultural");
+
+    private final String marcaVariacionEstilisticaURI = ontologyURI.concat("marca_variacion_estilistica");
+
+    private final String locutionURI = ontologyURI.concat("locucion");
+
+    private final String locutionTypeURI = ontologyURI.concat("tipo_locucion");
+
 
     @RequestMapping("/")
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "Despues que le di morirsOñando a fulana me di cuenta que ella es una ROBAMARIDOS porque ella no se digno a siquiera ser una lavAplatos para asi ser una ROmpehuelgas y no ser una Entretiempo ni tampoco tiene que ser una SALTAcharcos") String individualName) throws FileNotFoundException {
