@@ -111,11 +111,9 @@ public class OntologyService {
 
     public List<String> getAllWordsFromTheSentence(String sentence){
 
-        String [] tokens = sentence.split("[\\s']");
+        String [] tokens = sentence.split("[\\s'.,:;]");
 
-        List<String> words = new ArrayList<>(Arrays.asList(tokens));
-
-        return words;
+        return new ArrayList<>(Arrays.asList(tokens));
     }
 
 
@@ -134,7 +132,7 @@ public class OntologyService {
 
             for (String word: sentenceByWords) {
 
-                if (word.equalsIgnoreCase(individual.getLocalName())){
+                if (individual.getLocalName().equalsIgnoreCase(word)){
                     individualList.add(individual);
                 }
             }

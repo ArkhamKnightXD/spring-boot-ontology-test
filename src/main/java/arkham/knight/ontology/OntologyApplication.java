@@ -22,7 +22,7 @@ public class OntologyApplication {
 
            // ontologyService.readOntologyFileAndReturnTheModel().write(System.out,"RDF/XML-ABBREV");
 
-           /* final String textExample = "Despues que le di morirsOñando a fulana me di cuenta que ella es una ROBAMARIDOS porque ella no se digno a siquiera ser una lavAplatos para asi ser una ROmpehuelgas y no ser una Entretiempo ni tampoco tiene que ser una SALTAcharcos";
+            /*final String textExample = ",:echadías;.";
 
             List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(textExample));
 
@@ -30,7 +30,6 @@ public class OntologyApplication {
 
                 System.out.println(individual.getLocalName());
             }*/
-
         };
     }
 }
