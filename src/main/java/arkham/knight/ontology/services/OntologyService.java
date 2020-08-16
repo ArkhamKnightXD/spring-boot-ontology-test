@@ -128,12 +128,16 @@ public class OntologyService {
 
         while (individualsIterator.hasNext()) {
 
+            int avoidRepeatIndividualCount = 0;
+
             individual = individualsIterator.next();
 
             for (String word: sentenceByWords) {
 
-                if (individual.getLocalName().equalsIgnoreCase(word)){
+                if (individual.getLocalName().equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0){
                     individualList.add(individual);
+
+                    avoidRepeatIndividualCount++;
                 }
             }
         }
@@ -142,7 +146,7 @@ public class OntologyService {
     }
 
 
-    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definitionProperty, Property exampleProperty, Property grammarMarkProperty){
+    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definition, Property example, Property grammarMark, Property marcaNivelSocioCultural, Property marcaVariacionEstilistica, Property locution, Property locutionType){
 
         List<Word> wordList = new ArrayList<>();
 
@@ -152,19 +156,34 @@ public class OntologyService {
 
             wordToSave.setLema(individual.getLocalName());
 
-            RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
+            RDFNode definitionPropertyValue = individual.getPropertyValue(definition);
 
             wordToSave.setDefinition(definitionPropertyValue.toString());
 
-            RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
+            RDFNode examplePropertyValue = individual.getPropertyValue(example);
 
             if (examplePropertyValue!= null)
                 wordToSave.setExample(examplePropertyValue.toString());
 
-            RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
+            RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMark);
 
             if (grammarMarkPropertyValue!= null)
                 wordToSave.setGrammarMark(grammarMarkPropertyValue.toString());
+
+            RDFNode marcaNivelSocioCulturalValue = individual.getPropertyValue(marcaNivelSocioCultural);
+
+            if (marcaNivelSocioCulturalValue!= null)
+                wordToSave.setMarcaNivelSocioCultural(marcaNivelSocioCulturalValue.toString());
+
+            RDFNode marcaVariacionEstilisticaValue = individual.getPropertyValue(marcaVariacionEstilistica);
+
+            if (marcaVariacionEstilisticaValue!= null)
+                wordToSave.setMarcaVariacionEstilistica(marcaVariacionEstilisticaValue.toString());
+
+            RDFNode locutionValue = individual.getPropertyValue(locution);
+
+            if (locutionValue!= null)
+                wordToSave.setLocution(locutionValue.toString());
 
             wordList.add(wordToSave);
         }

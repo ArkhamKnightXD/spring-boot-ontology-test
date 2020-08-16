@@ -44,21 +44,29 @@ public class OntologyController {
 
 
     @RequestMapping("/")
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "Despues que le di morirsOñando a fulana me di cuenta que ella es una ROBAMARIDOS porque ella no se digno a siquiera ser una lavAplatos para asi ser una ROmpehuelgas y no ser una Entretiempo ni tampoco tiene que ser una SALTAcharcos") String individualName) throws FileNotFoundException {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName) throws FileNotFoundException {
 
         List<Word> wordList;
 
         List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName));
 
 
-        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
 
-        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
 
-        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+
+        Property marcaNivelSocioCultural = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaNivelSocioCulturalURI);
+
+        Property marcaVariacionEstilistica = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaVariacionEstilisticaURI);
+
+        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionURI);
+
+        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionTypeURI);
 
 
-        wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList,definitionProperty,exampleProperty,grammarMarkProperty);
+        wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, marcaNivelSocioCultural, marcaVariacionEstilistica, locution, locutionType);
 
         model.addAttribute("words", wordList);
 
@@ -148,7 +156,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
+    public String create(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 
@@ -157,7 +165,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException, FileNotFoundException {
+    public String edit(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 

@@ -19,7 +19,7 @@
 <body>
 <form action="/find/">
   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/words/">words</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/words/">home</a>
     <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Search..." aria-label="Search">
     <ul class="navbar-nav px-1">
       <li class="nav-item text-nowrap">
@@ -37,7 +37,7 @@
           <li class="nav-item">
             <a class="nav-link active" href="#">
               <span data-feather="home"></span>
-              Total Death Cases <span class="sr-only">(current)</span>
+              Test <span class="sr-only">(current)</span>
             </a>
           </li>
           <li class="nav-item">
@@ -55,28 +55,6 @@
 
         </ul>
 
-        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-          <span class="text-light">text </span>
-          <a class="d-flex align-items-center text-muted text-light" href="#">
-            <span data-feather="plus-circle"></span>
-          </a>
-        </h6>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/dashboard/worldwide">
-              <span data-feather="file-text"></span>
-              Total cases report
-            </a>
-          </li>
-        </ul>
-        <ul class="nav flex-column mb-2">
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/dashboard/new">
-              <span data-feather="file-text"></span>
-              New cases report
-            </a>
-          </li>
-        </ul>
       </div>
     </nav>
 
@@ -86,7 +64,7 @@
       </div>
 
 
-      <h2>Words</h2>
+      <h2>Palabras</h2>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead class="thead-dark">

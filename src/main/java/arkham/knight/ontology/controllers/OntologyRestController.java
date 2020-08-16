@@ -1,5 +1,6 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
@@ -11,6 +12,7 @@ import org.apache.jena.ontology.Ontology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,8 +29,49 @@ public class OntologyRestController {
 
     private final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
 
+    private final String definitionURI = ontologyURI.concat("definicion");
 
-    @RequestMapping("/properties")
+    private final String exampleURI = ontologyURI.concat("ejemplo");
+
+    private final String grammarMarkURI = ontologyURI.concat("marca_gramatical");
+
+    private final String marcaNivelSocioCulturalURI = ontologyURI.concat("marca_nivel_sociocultural");
+
+    private final String marcaVariacionEstilisticaURI = ontologyURI.concat("marca_variacion_estilistica");
+
+    private final String locutionURI = ontologyURI.concat("locucion");
+
+    private final String locutionTypeURI = ontologyURI.concat("tipo_locucion");
+
+
+    @GetMapping("/find")
+    public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet) throws FileNotFoundException {
+
+        List<Word> wordList;
+
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(tweet));
+
+        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+
+        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+
+        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+
+        Property marcaNivelSocioCultural = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaNivelSocioCulturalURI);
+
+        Property marcaVariacionEstilistica = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaVariacionEstilisticaURI);
+
+        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionURI);
+
+        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionTypeURI);
+
+        wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, marcaNivelSocioCultural, marcaVariacionEstilistica, locution, locutionType);
+
+        return wordList;
+    }
+
+
+    @GetMapping("/properties")
     public List<JSONObject> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
@@ -116,7 +159,7 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/ontology")
+    @GetMapping("/ontology")
     public List<JSONObject> getOntology() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
@@ -140,7 +183,7 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/classes")
+    @GetMapping("/classes")
     public List<JSONObject> getClasses() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();
@@ -163,7 +206,7 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/datatype")
+    @GetMapping("/datatype")
     public List<JSONObject> getAllDatatypeProperties() throws FileNotFoundException {
 
         List<JSONObject> list = new ArrayList<>();

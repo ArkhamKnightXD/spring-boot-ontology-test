@@ -275,6 +275,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#clavo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#clavo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Actividad, libro o película de mala calidad y aburrida.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#coro -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#coro">

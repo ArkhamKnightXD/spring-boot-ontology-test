@@ -7,21 +7,17 @@ public class Word {
     private String definition;
     private String example;
     private String grammarMark;
+    private String marcaNivelSocioCultural;
+    private String marcaVariacionEstilistica;
+    private String locution;
+    private String locutionType;
+
 
     public Word() {
     }
 
-    public Word(String lema, String definition, String example, String grammarMark) {
-        this.lema = lema;
-        this.definition = definition;
-        this.example = example;
-        this.grammarMark = grammarMark;
-    }
 
-
-    public String getLema() {
-        return lema;
-    }
+    public String getLema() { return lema; }
 
     public void setLema(String lema) {
         this.lema = lema;
@@ -49,5 +45,33 @@ public class Word {
 
     public void setGrammarMark(String grammarMark) {
         this.grammarMark = grammarMark;
+    }
+
+    public String getMarcaNivelSocioCultural() {
+        return marcaNivelSocioCultural;
+    }
+
+    public void setMarcaNivelSocioCultural(String marcaNivelSocioCultural) { this.marcaNivelSocioCultural = marcaNivelSocioCultural; }
+
+    public String getMarcaVariacionEstilistica() {
+        return marcaVariacionEstilistica;
+    }
+
+    public void setMarcaVariacionEstilistica(String marcaVariacionEstilistica) { this.marcaVariacionEstilistica = marcaVariacionEstilistica; }
+
+    public String getLocution() {
+        return locution;
+    }
+
+    public void setLocution(String locution) {
+        this.locution = locution;
+    }
+
+    public String getLocutionType() {
+        return locutionType;
+    }
+
+    public void setLocutionType(String locutionType) {
+        this.locutionType = locutionType;
     }
 }
