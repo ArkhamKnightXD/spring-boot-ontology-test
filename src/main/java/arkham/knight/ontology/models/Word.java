@@ -4,13 +4,13 @@ public class Word {
 
     private String lema;
 
-    private String definition;
-    private String example;
-    private String grammarMark;
+    private String definicion;
+    private String ejemplo;
+    private String marcaGramatical;
     private String marcaNivelSocioCultural;
     private String marcaVariacionEstilistica;
-    private String locution;
-    private String locutionType;
+    private String locucion;
+    private String tipoLocution;
 
 
     public Word() {
@@ -23,28 +23,28 @@ public class Word {
         this.lema = lema;
     }
 
-    public String getDefinition() {
-        return definition;
+    public String getDefinicion() {
+        return definicion;
     }
 
-    public void setDefinition(String definition) {
-        this.definition = definition;
+    public void setDefinicion(String definicion) {
+        this.definicion = definicion;
     }
 
-    public String getExample() {
-        return example;
+    public String getEjemplo() {
+        return ejemplo;
     }
 
-    public void setExample(String example) {
-        this.example = example;
+    public void setEjemplo(String ejemplo) {
+        this.ejemplo = ejemplo;
     }
 
-    public String getGrammarMark() {
-        return grammarMark;
+    public String getMarcaGramatical() {
+        return marcaGramatical;
     }
 
-    public void setGrammarMark(String grammarMark) {
-        this.grammarMark = grammarMark;
+    public void setMarcaGramatical(String marcaGramatical) {
+        this.marcaGramatical = marcaGramatical;
     }
 
     public String getMarcaNivelSocioCultural() {
@@ -59,19 +59,19 @@ public class Word {
 
     public void setMarcaVariacionEstilistica(String marcaVariacionEstilistica) { this.marcaVariacionEstilistica = marcaVariacionEstilistica; }
 
-    public String getLocution() {
-        return locution;
+    public String getLocucion() {
+        return locucion;
     }
 
-    public void setLocution(String locution) {
-        this.locution = locution;
+    public void setLocucion(String locucion) {
+        this.locucion = locucion;
     }
 
-    public String getLocutionType() {
-        return locutionType;
+    public String getTipoLocution() {
+        return tipoLocution;
     }
 
-    public void setLocutionType(String locutionType) {
-        this.locutionType = locutionType;
+    public void setTipoLocution(String tipoLocution) {
+        this.tipoLocution = tipoLocution;
     }
 }

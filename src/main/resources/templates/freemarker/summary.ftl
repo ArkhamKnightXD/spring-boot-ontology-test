@@ -85,22 +85,22 @@
             <#list words as word >
               <tr>
                 <td><b>${word.lema}</b></td>
-                <td>${word.definition}</td>
+                <td>${word.definicion}</td>
 
-                <#if word.example??>
-                    <td>${word.example}</td>
+                <#if word.ejemplo??>
+                    <td>${word.ejemplo}</td>
                   <#else>
                   <td>N/A</td>
                 </#if>
 
-                <#if word.locution??>
-                  <td>${word.locution}</td>
+                <#if word.locucion??>
+                  <td>${word.locucion}</td>
                 <#else>
                   <td>N/A</td>
                 </#if>
 
-                <#if word.grammarMark??>
-                  <td>${word.grammarMark}</td>
+                <#if word.marcaGramatical??>
+                  <td>${word.marcaGramatical}</td>
                   <#else>
                     <td>N/A</td>
                 </#if>

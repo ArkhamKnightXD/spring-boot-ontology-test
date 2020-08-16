@@ -73,6 +73,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#frase_proverbial -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#frase_proverbial">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#locucion -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#locucion">
@@ -103,6 +112,15 @@
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_variacion_estilistica">
         <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexia"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tipo_frase_proverbial -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tipo_frase_proverbial">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -152,6 +170,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas">
@@ -169,6 +193,14 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+    </owl:Class>
     
 
 
@@ -217,14 +249,39 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#agua -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#agua">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adverbiales"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A gusto en una circunstancia concreta.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">en sus aguas</untitled-ontology-2:locucion>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. adverbial.</untitled-ontology-2:tipo_locucion>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#atracar -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#atracar">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Apurar una persona a alguien para que haga algo.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Despues de mucho ATRACARLE logre que me pagara lo que me debia.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Después de mucho ATRACARLE logré que me pagara lo que me debia.</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bagazo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bagazo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expresa el consejo o la intención de restar importancia a lo que dice o hace una persona a quien se menosprecia.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a un bagazo, poco caso</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:tipo_frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">frase. proverbial.</untitled-ontology-2:tipo_frase_proverbial>
     </owl:NamedIndividual>
     
 
@@ -243,8 +300,19 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#botada">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expulsion de alguien de un sitio.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expulsión de alguien de un sitio.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#campo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#campo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zona rural habitada.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guzmán Memorias de un abogado 9 Fueron a vivir a Jayabo, el CAMPO donde nació toda mi familia.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
     </owl:NamedIndividual>
     
 
@@ -254,7 +322,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#chin">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Poca cantidad de algo.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pereyra El crimen verde 175 Con el chin de fuerzas que me quedaban di un brinco que pegue casi al techo.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pereyra El crimen verde 175 Con el chin de fuerzas que me quedaban di un brinco que pegué casi al techo.</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
     </owl:NamedIndividual>
@@ -265,9 +333,9 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#china">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbales"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obligar a alguien a resolver una situacion dificil.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Obligar a alguien a resolver una situación difícil.</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Con lo que me planteas me la pones en CHINA.</untitled-ontology-2:ejemplo>
-        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ponersela a alguien en China.</untitled-ontology-2:locucion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ponérsela a alguien en China.</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
         <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">loc. verb.</untitled-ontology-2:tipo_locucion>
@@ -291,7 +359,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#coro">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbales"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Prestar atencion a alguien.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Prestar atención a alguien.</untitled-ontology-2:definicion>
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hacer coro.</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
         <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">loc. verb.</untitled-ontology-2:tipo_locucion>
@@ -352,12 +420,51 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fina -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fina">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Persona que se cree muy importante, elegante o atractiva.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruta fina</untitled-ontology-2:locucion>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pol.</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. sustantiva.</untitled-ontology-2:tipo_locucion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fino -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fino">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Persona que se cree muy importante, elegante o atractiva.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruta fina</untitled-ontology-2:locucion>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. sustantiva.</untitled-ontology-2:tipo_locucion>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hartura -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hartura">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hartazgo, sensacion de haber comido demasiado.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hartazgo, sensación de haber comido demasiado.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hinchado -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hinchado">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Referido a una persona, molesta, fastidiada.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">con un lado hinchado</untitled-ontology-2:locucion>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. adjetiva.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -467,6 +574,19 @@
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Valdez palomos 39 Ya Dj Nelson iba a darme paso desde el celular para que rapeara una TIRADERA.</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#ñeñe -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#ñeñe">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expresa rechazo hacia alguien o algo que se ha dicho.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ay ñeñe</untitled-ontology-2:locucion>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. interjectiva.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
 </rdf:RDF>
 

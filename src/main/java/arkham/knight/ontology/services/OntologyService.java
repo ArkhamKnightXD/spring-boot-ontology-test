@@ -158,17 +158,17 @@ public class OntologyService {
 
             RDFNode definitionPropertyValue = individual.getPropertyValue(definition);
 
-            wordToSave.setDefinition(definitionPropertyValue.toString());
+            wordToSave.setDefinicion(definitionPropertyValue.toString());
 
             RDFNode examplePropertyValue = individual.getPropertyValue(example);
 
             if (examplePropertyValue!= null)
-                wordToSave.setExample(examplePropertyValue.toString());
+                wordToSave.setEjemplo(examplePropertyValue.toString());
 
             RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMark);
 
             if (grammarMarkPropertyValue!= null)
-                wordToSave.setGrammarMark(grammarMarkPropertyValue.toString());
+                wordToSave.setMarcaGramatical(grammarMarkPropertyValue.toString());
 
             RDFNode marcaNivelSocioCulturalValue = individual.getPropertyValue(marcaNivelSocioCultural);
 
@@ -183,7 +183,7 @@ public class OntologyService {
             RDFNode locutionValue = individual.getPropertyValue(locution);
 
             if (locutionValue!= null)
-                wordToSave.setLocution(locutionValue.toString());
+                wordToSave.setLocucion(locutionValue.toString());
 
             wordList.add(wordToSave);
         }
