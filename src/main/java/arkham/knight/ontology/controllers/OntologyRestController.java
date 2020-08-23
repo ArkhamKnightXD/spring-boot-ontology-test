@@ -2,13 +2,13 @@ package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.URIService;
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.json.simple.JSONObject;
-import org.apache.jena.ontology.Ontology;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,47 +27,31 @@ public class OntologyRestController {
     @Autowired
     private OntologyService ontologyService;
 
-    private final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
-
-    private final String definitionURI = ontologyURI.concat("definicion");
-
-    private final String exampleURI = ontologyURI.concat("ejemplo");
-
-    private final String grammarMarkURI = ontologyURI.concat("marca_gramatical");
-
-    private final String marcaNivelSocioCulturalURI = ontologyURI.concat("marca_nivel_sociocultural");
-
-    private final String marcaVariacionEstilisticaURI = ontologyURI.concat("marca_variacion_estilistica");
-
-    private final String locutionURI = ontologyURI.concat("locucion");
-
-    private final String locutionTypeURI = ontologyURI.concat("tipo_locucion");
+    @Autowired
+    private URIService uriService;
 
 
     @GetMapping("/find")
     public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet) throws FileNotFoundException {
 
-        List<Word> wordList;
-
         List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(tweet));
 
-        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
 
-        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
 
-        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
 
-        Property marcaNivelSocioCultural = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaNivelSocioCulturalURI);
+        Property marcaNivelSocioCultural = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.marcaNivelSocioCulturalURI);
 
-        Property marcaVariacionEstilistica = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaVariacionEstilisticaURI);
+        Property marcaVariacionEstilistica = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.marcaVariacionEstilisticaURI);
 
-        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionURI);
+        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionURI);
 
-        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionTypeURI);
+        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionTypeURI);
 
-        wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, marcaNivelSocioCultural, marcaVariacionEstilistica, locution, locutionType);
 
-        return wordList;
+        return ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, marcaNivelSocioCultural, marcaVariacionEstilistica, locution, locutionType);
     }
 
 
@@ -76,22 +60,16 @@ public class OntologyRestController {
 
         List<JSONObject> list = new ArrayList<>();
 
-        String individualURI = ontologyURI.concat(individualName);
+        String individualURI = uriService.ontologyURI.concat(individualName);
 
         Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
 
-        String definitionURI = ontologyURI.concat("definicion");
 
-        String exampleURI = ontologyURI.concat("ejemplo");
+        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
 
-        String grammarMarkURI = ontologyURI.concat("marca_gramatical");
+        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
 
-
-        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
-
-        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
-
-        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
 
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
@@ -151,30 +129,6 @@ public class OntologyRestController {
             JSONObject jsonObject = new JSONObject();
 
             jsonObject.put("name", individual.getLocalName());
-
-            list.add(jsonObject);
-        }
-
-        return list;
-    }
-
-
-    @GetMapping("/ontology")
-    public List<JSONObject> getOntology() throws FileNotFoundException {
-
-        List<JSONObject> list = new ArrayList<>();
-
-        Iterator<Ontology> ontologyIterator = ontologyService.readOntologyFileAndReturnTheModel().listOntologies();
-
-
-        while (ontologyIterator.hasNext()) {
-
-            Ontology ontology = ontologyIterator.next();
-
-            JSONObject jsonObject = new JSONObject();
-
-            jsonObject.put("name",ontology.getLocalName());
-            jsonObject.put("uri",ontology.getURI());
 
             list.add(jsonObject);
         }

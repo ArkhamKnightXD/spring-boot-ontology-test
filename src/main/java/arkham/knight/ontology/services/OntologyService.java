@@ -75,6 +75,7 @@ public class OntologyService {
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
+
         ontologyManager.addAxiom(ontology, axiom);
 
         ontologyManager.saveOntology(ontology, ontologySaveIRI);
@@ -100,7 +101,6 @@ public class OntologyService {
             individual.accept(remover);
         }
 
-        // Now apply the changes
         ontologyManager.applyChanges(remover.getChanges());
 
         ontologyManager.saveOntology(ontology, ontologySaveIRI);
@@ -149,6 +149,7 @@ public class OntologyService {
     public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definition, Property example, Property grammarMark, Property marcaNivelSocioCultural, Property marcaVariacionEstilistica, Property locution, Property locutionType){
 
         List<Word> wordList = new ArrayList<>();
+
 
         for (Individual individual: individualList) {
 

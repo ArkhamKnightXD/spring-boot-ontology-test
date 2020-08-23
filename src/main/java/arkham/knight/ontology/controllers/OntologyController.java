@@ -2,6 +2,7 @@ package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.URIService;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
@@ -26,21 +27,8 @@ public class OntologyController {
     @Autowired
     private OntologyService ontologyService;
 
-    private final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
-
-    private final String definitionURI = ontologyURI.concat("definicion");
-
-    private final String exampleURI = ontologyURI.concat("ejemplo");
-
-    private final String grammarMarkURI = ontologyURI.concat("marca_gramatical");
-
-    private final String marcaNivelSocioCulturalURI = ontologyURI.concat("marca_nivel_sociocultural");
-
-    private final String marcaVariacionEstilisticaURI = ontologyURI.concat("marca_variacion_estilistica");
-
-    private final String locutionURI = ontologyURI.concat("locucion");
-
-    private final String locutionTypeURI = ontologyURI.concat("tipo_locucion");
+    @Autowired
+    private URIService uriService;
 
 
     @RequestMapping("/")
@@ -51,49 +39,26 @@ public class OntologyController {
         List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName));
 
 
-        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
 
-        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
 
-        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
 
-        Property marcaNivelSocioCultural = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaNivelSocioCulturalURI);
+        Property marcaNivelSocioCultural = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.marcaNivelSocioCulturalURI);
 
-        Property marcaVariacionEstilistica = ontologyService.readOntologyFileAndReturnTheModel().getProperty(marcaVariacionEstilisticaURI);
+        Property marcaVariacionEstilistica = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.marcaVariacionEstilisticaURI);
 
-        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionURI);
+        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionURI);
 
-        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(locutionTypeURI);
-
+        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionTypeURI);
 
         wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, marcaNivelSocioCultural, marcaVariacionEstilistica, locution, locutionType);
+
 
         model.addAttribute("words", wordList);
 
         return "/freemarker/summary";
-    }
-
-
-    @RequestMapping("/creation")
-    public String creationPage(Model model) throws FileNotFoundException {
-
-        List<String> classListNames = new ArrayList<>();
-
-        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
-
-
-        while (classesIterator.hasNext()) {
-
-            OntClass nextClass = classesIterator.next();
-
-            classListNames.add(nextClass.getLocalName());
-        }
-
-        model.addAttribute("classes", classListNames);
-        model.addAttribute("title","Welcome");
-
-
-        return "/freemarker/createIndividual";
     }
 
 
@@ -118,19 +83,50 @@ public class OntologyController {
     }
 
 
+    @RequestMapping("/creation")
+    public String creationPage(Model model) throws FileNotFoundException {
+
+        List<String> classListNames = new ArrayList<>();
+
+        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
+
+
+        while (classesIterator.hasNext()) {
+
+            OntClass nextClass = classesIterator.next();
+
+            classListNames.add(nextClass.getLocalName());
+        }
+
+        model.addAttribute("classes", classListNames);
+        model.addAttribute("title","Welcome");
+
+        return "/freemarker/createIndividual";
+    }
+
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String create(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
+
+        ontologyService.saveIndividual(individualName, fatherClassName);
+
+        return "redirect:/words/";
+    }
+
+
     @RequestMapping("/edition")
     public String getIndividualByName(Model model, @RequestParam("individualName") String individualName) throws FileNotFoundException {
 
-        String individualURI = ontologyURI.concat(individualName);
+        String individualURI = uriService.ontologyURI.concat(individualName);
 
         Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
 
 
-        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
 
-        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
 
-        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(grammarMarkURI);
+        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
 
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
@@ -141,7 +137,6 @@ public class OntologyController {
 
 
         model.addAttribute("lema", individual.getLocalName());
-
         model.addAttribute("definicion", definitionPropertyValue.toString());
 
         if (grammarMarkPropertyValue != null)
@@ -150,17 +145,7 @@ public class OntologyController {
         if (examplePropertyValue != null)
             model.addAttribute("ejemplo", examplePropertyValue.toString());
 
-
         return "/freemarker/editIndividual";
-    }
-
-
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
-
-        ontologyService.saveIndividual(individualName, fatherClassName);
-
-        return "redirect:/words/";
     }
 
 
