@@ -26,11 +26,17 @@ public class OntologyService {
     final File ontologyFile = new File("diccionario.owl");
 
 
-    public OntModel readOntologyFileAndReturnTheModel() throws FileNotFoundException {
+    public OntModel readOntologyFileAndReturnTheModel() {
 
-            FileReader reader = new FileReader(ontologyFile);
+        FileReader reader = null;
 
-            OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        try {
+            reader = new FileReader(ontologyFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
             model.read(reader,null);
 
             return model;
@@ -117,7 +123,7 @@ public class OntologyService {
     }
 
 
-    public List<Individual> findAllIndividualByName(List<String> sentenceByWords) throws FileNotFoundException {
+    public List<Individual> findAllIndividualByName(List<String> sentenceByWords) {
 
         List<Individual> individualList = new ArrayList<>();
 

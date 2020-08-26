@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +31,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/find")
-    public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet) throws FileNotFoundException {
+    public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet) {
 
         List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(tweet));
 
@@ -56,7 +55,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/properties")
-    public List<JSONObject> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) throws FileNotFoundException {
+    public List<JSONObject> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -115,8 +114,8 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/individuals")
-    public List<JSONObject> getIndividuals() throws FileNotFoundException {
+    @GetMapping("/individuals")
+    public List<JSONObject> getIndividuals() {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -138,7 +137,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/classes")
-    public List<JSONObject> getClasses() throws FileNotFoundException {
+    public List<JSONObject> getClasses() {
 
         List<JSONObject> list = new ArrayList<>();
 
@@ -161,7 +160,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/datatype")
-    public List<JSONObject> getAllDatatypeProperties() throws FileNotFoundException {
+    public List<JSONObject> getAllDatatypeProperties() {
 
         List<JSONObject> list = new ArrayList<>();
 

@@ -15,7 +15,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -32,7 +31,7 @@ public class OntologyController {
 
 
     @RequestMapping("/")
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName) throws FileNotFoundException {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName) {
 
         List<Word> wordList;
 
@@ -63,7 +62,7 @@ public class OntologyController {
 
 
     @RequestMapping("/individuals")
-    public String showAllIndividuals(Model model) throws FileNotFoundException {
+    public String showAllIndividuals(Model model) {
 
         List<String> individualListNames = new ArrayList<>();
 
@@ -84,7 +83,7 @@ public class OntologyController {
 
 
     @RequestMapping("/creation")
-    public String creationPage(Model model) throws FileNotFoundException {
+    public String creationPage(Model model) {
 
         List<String> classListNames = new ArrayList<>();
 
@@ -115,7 +114,7 @@ public class OntologyController {
 
 
     @RequestMapping("/edition")
-    public String getIndividualByName(Model model, @RequestParam("individualName") String individualName) throws FileNotFoundException {
+    public String getIndividualByName(Model model, @RequestParam("individualName") String individualName) {
 
         String individualURI = uriService.ontologyURI.concat(individualName);
 
