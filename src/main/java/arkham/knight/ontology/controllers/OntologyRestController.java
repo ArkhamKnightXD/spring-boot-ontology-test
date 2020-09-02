@@ -10,12 +10,9 @@ import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.json.simple.JSONObject;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -96,8 +93,8 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/createClass")
-    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) throws OWLOntologyCreationException, OWLOntologyStorageException {
+    @PostMapping("/createClass")
+    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) throws OWLOntologyCreationException {
 
         ontologyService.saveClasses(className, className2);
 
@@ -105,8 +102,8 @@ public class OntologyRestController {
     }
 
 
-    @RequestMapping("/createIndividual")
-    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
+    @PostMapping("/createIndividual")
+    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 

@@ -43,9 +43,35 @@ public class OntologyService {
     }
 
 
-    public void saveClasses(String className1, String className2) throws OWLOntologyCreationException, OWLOntologyStorageException {
+    public OWLOntology loadTheOntologyOwlAPI(){
+
+        try {
+            return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
+        } catch (OWLOntologyCreationException e) {
+            e.printStackTrace();
+        }
+        //aqui
+        return null;
+    }
+
+
+    public void saveOntologyFile(OWLOntology ontology){
 
         IRI ontologySaveIRI = IRI.create(ontologyFile);
+
+        try {
+            // save in RDF/XML
+            ontologyManager.saveOntology(ontology, ontologySaveIRI);
+        } catch (OWLOntologyStorageException e) {
+            e.printStackTrace();
+        }
+
+        // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
+        ontologyManager.removeOntology(ontology);
+    }
+
+
+    public void saveClasses(String className1, String className2) throws OWLOntologyCreationException {
 
         OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
 
@@ -61,17 +87,11 @@ public class OntologyService {
         // We now use the manager to apply the change
         ontologyManager.applyChange(addAxiom);
 
-        // save in RDF/XML
-        ontologyManager.saveOntology(ontology, ontologySaveIRI);
-
-        // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
-        ontologyManager.removeOntology(ontology);
+        saveOntologyFile(ontology);
     }
 
 
-    public void saveIndividual(String individualName, String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
-
-        IRI ontologySaveIRI = IRI.create(ontologyFile);
+    public void saveIndividual(String individualName, String fatherClassName) throws OWLOntologyCreationException {
 
         OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
 
@@ -84,15 +104,11 @@ public class OntologyService {
 
         ontologyManager.addAxiom(ontology, axiom);
 
-        ontologyManager.saveOntology(ontology, ontologySaveIRI);
-
-        ontologyManager.removeOntology(ontology);
+        saveOntologyFile(ontology);
     }
 
 
-    public void deleteIndividual(String individualName) throws OWLOntologyCreationException, OWLOntologyStorageException {
-
-        IRI ontologySaveIRI = IRI.create(ontologyFile);
+    public void deleteIndividual(String individualName) throws OWLOntologyCreationException {
 
         OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
 
@@ -109,9 +125,7 @@ public class OntologyService {
 
         ontologyManager.applyChanges(remover.getChanges());
 
-        ontologyManager.saveOntology(ontology, ontologySaveIRI);
-
-        ontologyManager.removeOntology(ontology);
+        saveOntologyFile(ontology);
     }
 
 

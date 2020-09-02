@@ -8,7 +8,6 @@ import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -105,7 +104,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
+    public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 
@@ -114,7 +113,7 @@ public class OntologyController {
 
 
     @RequestMapping("/edition")
-    public String getIndividualByName(Model model, @RequestParam("individualName") String individualName) {
+    public String getIndividualByName(Model model, @RequestParam("individualName") String individualName)  {
 
         String individualURI = uriService.ontologyURI.concat(individualName);
 
@@ -149,7 +148,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam(name = "individualName") String individualName, @RequestParam(name = "fatherClassName") String fatherClassName) throws OWLOntologyCreationException, OWLOntologyStorageException {
+    public String edit(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 
@@ -158,7 +157,7 @@ public class OntologyController {
 
 
     @RequestMapping("/delete")
-    public String deleteIndividual(@RequestParam(name = "individualName") String individualName) throws OWLOntologyCreationException, OWLOntologyStorageException {
+    public String deleteIndividual(@RequestParam("individualName") String individualName) throws OWLOntologyCreationException {
 
         ontologyService.deleteIndividual(individualName);
 
