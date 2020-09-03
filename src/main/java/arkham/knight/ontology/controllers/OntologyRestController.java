@@ -9,10 +9,8 @@ import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.json.simple.JSONObject;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -94,7 +92,7 @@ public class OntologyRestController {
 
 
     @PostMapping("/createClass")
-    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) throws OWLOntologyCreationException {
+    public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) {
 
         ontologyService.saveClasses(className, className2);
 
@@ -103,7 +101,7 @@ public class OntologyRestController {
 
 
     @PostMapping("/createIndividual")
-    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException {
+    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 

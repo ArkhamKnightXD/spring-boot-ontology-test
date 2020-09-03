@@ -4,10 +4,29 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:diccionario1="http://www.semanticweb.org/luis_/ontologies/2020/6/diccionario.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:untitled-ontology-2="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:diccionario="diccionario.owl#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/diccionario.owl#definicion -->
+
+    <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/diccionario.owl#definicion"/>
     
 
 
@@ -52,6 +71,24 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- diccionario.owl#ejemplo -->
+
+    <owl:DatatypeProperty rdf:about="diccionario.owl#ejemplo"/>
+    
+
+
+    <!-- diccionario.owl#marca_gramatical -->
+
+    <owl:DatatypeProperty rdf:about="diccionario.owl#marca_gramatical"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/diccionario.owl#definicion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/diccionario.owl#definicion"/>
     
 
 
@@ -236,6 +273,15 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Pez -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Pez">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivas"/>
+        <diccionario:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Prueba</diccionario:definicion>
+    </owl:NamedIndividual>
     
 
 
@@ -508,6 +554,17 @@
         <untitled-ontology-2:definicion>Transportar pasajeros en motocicleta a cambio de dinero.</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo>Ciudad mojada 315 Dejó la familia para hacerse un destino y lo más cerca que había llegado de la capital era ese paraje inhóspito donde MOTOCONCHABA para que él y los suyos apenas sobrevivieran.</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">verb</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#nueva -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#nueva">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <diccionario:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Voy a definir esto de forma clara</diccionario:definicion>
+        <diccionario:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Esto es un ejemplo</diccionario:ejemplo>
+        <diccionario:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</diccionario:marca_gramatical>
     </owl:NamedIndividual>
     
 

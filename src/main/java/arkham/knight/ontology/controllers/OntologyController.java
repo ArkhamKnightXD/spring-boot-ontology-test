@@ -7,7 +7,6 @@ import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -104,9 +103,10 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException {
+    public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
+        ontologyService.saveIndividualProperties(individualName);
 
         return "redirect:/words/";
     }
@@ -148,7 +148,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) throws OWLOntologyCreationException {
+    public String edit(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) {
 
         ontologyService.saveIndividual(individualName, fatherClassName);
 
@@ -157,7 +157,7 @@ public class OntologyController {
 
 
     @RequestMapping("/delete")
-    public String deleteIndividual(@RequestParam("individualName") String individualName) throws OWLOntologyCreationException {
+    public String deleteIndividual(@RequestParam("individualName") String individualName) {
 
         ontologyService.deleteIndividual(individualName);
 

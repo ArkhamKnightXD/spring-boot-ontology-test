@@ -50,7 +50,6 @@ public class OntologyService {
         } catch (OWLOntologyCreationException e) {
             e.printStackTrace();
         }
-        //aqui
         return null;
     }
 
@@ -71,9 +70,9 @@ public class OntologyService {
     }
 
 
-    public void saveClasses(String className1, String className2) throws OWLOntologyCreationException {
+    public void saveClasses(String className1, String className2) {
 
-        OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
+        OWLOntology ontology = loadTheOntologyOwlAPI();
 
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
         OWLClass classA = dataFactory.getOWLClass(IRI.create(ontologyIRI + "#" + className1));
@@ -91,9 +90,9 @@ public class OntologyService {
     }
 
 
-    public void saveIndividual(String individualName, String fatherClassName) throws OWLOntologyCreationException {
+    public void saveIndividual(String individualName, String fatherClassName) {
 
-        OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
+        OWLOntology ontology = loadTheOntologyOwlAPI();
 
         OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + "#" + individualName));
 
@@ -101,16 +100,51 @@ public class OntologyService {
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
+        ontologyManager.addAxiom(ontology, axiom);
+
+
+        saveOntologyFile(ontology);
+    }
+
+    public void saveIndividualProperties(String individualName) {
+
+        IRI propertyIRI = IRI.create(ontologyFile+ "#" + "definicion");
+
+        IRI examplePropertyIRI = IRI.create(ontologyFile+ "#" + "ejemplo");
+
+        IRI markPropertyIRI = IRI.create(ontologyFile+ "#" + "marca_gramatical");
+
+
+        OWLOntology ontology = loadTheOntologyOwlAPI();
+
+        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + "#" + individualName));
+
+        OWLDataPropertyExpression dataPropertyExpression = dataFactory.getOWLDataProperty(propertyIRI);
+
+        OWLDataPropertyExpression dataPropertyExpression1 = dataFactory.getOWLDataProperty(examplePropertyIRI);
+
+        OWLDataPropertyExpression dataPropertyExpression2 = dataFactory.getOWLDataProperty(markPropertyIRI);
+
+        OWLPropertyAssertionAxiom axiom = dataFactory.getOWLDataPropertyAssertionAxiom(dataPropertyExpression,individual, "Voy a definir esto de forma clara");
+
+        OWLPropertyAssertionAxiom axiom1 = dataFactory.getOWLDataPropertyAssertionAxiom(dataPropertyExpression1,individual, "Esto es un ejemplo");
+
+        OWLPropertyAssertionAxiom axiom2 = dataFactory.getOWLDataPropertyAssertionAxiom(dataPropertyExpression2,individual, "m");
 
         ontologyManager.addAxiom(ontology, axiom);
+
+        ontologyManager.addAxiom(ontology, axiom1);
+
+        ontologyManager.addAxiom(ontology, axiom2);
+
 
         saveOntologyFile(ontology);
     }
 
 
-    public void deleteIndividual(String individualName) throws OWLOntologyCreationException {
+    public void deleteIndividual(String individualName) {
 
-        OWLOntology ontology = ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
+        OWLOntology ontology = loadTheOntologyOwlAPI();
 
         IRI individualIRI = IRI.create(ontologyIRI + "#" + individualName);
 
