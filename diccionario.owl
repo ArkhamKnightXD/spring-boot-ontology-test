@@ -177,6 +177,10 @@
     
 
 
+
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas">
@@ -194,6 +198,9 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones"/>
+    
+
+
     
 
 
@@ -270,17 +277,6 @@
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Después de mucho ATRACARLE logré que me pagara lo que me debia.</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#avena -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#avena">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adverbiales"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definicion</untitled-ontology-2:definicion>
-        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ejemplo</untitled-ontology-2:ejemplo>
-        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">marca</untitled-ontology-2:marca_gramatical>
     </owl:NamedIndividual>
     
 

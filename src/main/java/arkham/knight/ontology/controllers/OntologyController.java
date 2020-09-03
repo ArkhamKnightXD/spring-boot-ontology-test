@@ -115,6 +115,18 @@ public class OntologyController {
     @RequestMapping("/edition")
     public String getIndividualByName(Model model, @RequestParam("individualName") String individualName)  {
 
+        List<String> classListNames = new ArrayList<>();
+
+        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
+
+
+        while (classesIterator.hasNext()) {
+
+            OntClass nextClass = classesIterator.next();
+
+            classListNames.add(nextClass.getLocalName());
+        }
+
         String individualURI = uriService.ontologyURI.concat(individualName);
 
         Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
@@ -134,6 +146,8 @@ public class OntologyController {
         RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
 
 
+        model.addAttribute("fatherClass", individual.getOntClass().getLocalName());
+        model.addAttribute("classes", classListNames);
         model.addAttribute("lema", individual.getLocalName());
         model.addAttribute("definicion", definitionPropertyValue.toString());
 
@@ -148,10 +162,10 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("individualName") String individualName, @RequestParam("definition") String definition  /*@RequestParam("fatherClassName") String fatherClassName,*/) {
+    public String edit(@RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark,  @RequestParam("fatherClassName") String fatherClassName) {
 
-       // ontologyService.saveIndividual(individualName, fatherClassName);
-      //  ontologyService.saveIndividualProperties(individualName, definition);
+        ontologyService.saveIndividual(individualName, fatherClassName);
+        ontologyService.saveIndividualProperties(individualName, definition, example, mark);
 
         return "redirect:/words/individuals";
     }

@@ -45,20 +45,33 @@
 
                         </div>
 
-                            <#if marca_gramatical??>
-                                <div class="col-md-12 mb-3">
-                                <label for="marca_gramatical">Marca gramatical</label>
-                                <input type="text" class="form-control" value="${marca_gramatical}" id="name" name="marca_gramatical" placeholder="Marca..."  required>
-                            </div>
-                            </#if>
-
-
                     <#if ejemplo??>
                         <div class="col-md-12 mb-3">
                             <label for="ejemplo">Ejemplo</label>
-                            <input type="text" class="form-control" value="${ejemplo}" id="name" name="ejemplo" placeholder="Ejemplo..."  required>
+                            <input type="text" class="form-control" value="${ejemplo}" id="name" name="example" placeholder="Ejemplo..."  required>
                         </div>
                     </#if>
+
+                            <#if marca_gramatical??>
+                                <div class="col-md-12 mb-3">
+                                <label for="marca_gramatical">Marca gramatical</label>
+                                <input type="text" class="form-control" value="${marca_gramatical}" id="name" name="mark" placeholder="Marca..."  required>
+                            </div>
+                            </#if>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="fatherClassName">Clase a la que pertenece</label>
+
+                        <div class="input-group">
+                            <select class="form-control" name="fatherClassName">
+                                <option value="${fatherClass}">${fatherClass}</option>
+                                <#list classes as class>
+                                    <option value="${class}">${class}</option>
+                                </#list>
+                            </select>
+                        </div>
+                    </div>
+
 
                 </div>
 

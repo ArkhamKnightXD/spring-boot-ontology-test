@@ -80,11 +80,9 @@ public class OntologyService {
 
         OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(classA, classB);
 
-        // add the axiom to the ontology the axioms are the classes.
-        AddAxiom addAxiom = new AddAxiom(ontology, axiom);
+        //OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA,classB);
 
-        // We now use the manager to apply the change
-        ontologyManager.applyChange(addAxiom);
+        ontologyManager.addAxiom(ontology,axiom);
 
         saveOntologyFile(ontology);
     }
@@ -132,7 +130,6 @@ public class OntologyService {
 
         OWLDataPropertyAssertionAxiom axiomMark = dataFactory.getOWLDataPropertyAssertionAxiom(markDataProperty, individual, mark);
 
-      //  ontologyManager.removeAxiom(ontology, axiom);
 
         ontologyManager.addAxiom(ontology, axiom);
 
