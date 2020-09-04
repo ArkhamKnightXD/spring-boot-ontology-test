@@ -105,8 +105,7 @@ public class OntologyController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName);
-        ontologyService.saveIndividualProperties(individualName, definition, example, mark);
+        ontologyService.saveIndividual(individualName, fatherClassName, definition, example, mark);
 
         return "redirect:/words/";
     }
@@ -164,8 +163,7 @@ public class OntologyController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark,  @RequestParam("fatherClassName") String fatherClassName) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName);
-        ontologyService.saveIndividualProperties(individualName, definition, example, mark);
+        ontologyService.saveIndividual(individualName, fatherClassName, definition, example, mark);
 
         return "redirect:/words/individuals";
     }

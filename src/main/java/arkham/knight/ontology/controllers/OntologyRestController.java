@@ -8,10 +8,10 @@ import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,9 +50,9 @@ public class OntologyRestController {
 
 
     @GetMapping("/properties")
-    public List<JSONObject> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) {
+    public List<HashMap<String, String>> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) {
 
-        List<JSONObject> list = new ArrayList<>();
+        List<HashMap<String, String>> individualList = new ArrayList<>();
 
         String individualURI = uriService.ontologyURI.concat(individualName);
 
@@ -73,21 +73,20 @@ public class OntologyRestController {
         RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
 
 
+        HashMap<String, String> propertyToSave = new HashMap<>();
 
-        JSONObject jsonObject = new JSONObject();
-
-        jsonObject.put("definicion", definitionPropertyValue.toString());
+        propertyToSave.put("definicion", definitionPropertyValue.toString());
 
         if (grammarMarkPropertyValue != null)
-        jsonObject.put("marca_gramatical", grammarMarkPropertyValue.toString());
+            propertyToSave.put("marca_gramatical", grammarMarkPropertyValue.toString());
 
         if (examplePropertyValue != null)
-            jsonObject.put("ejemplo", examplePropertyValue.toString());
+            propertyToSave.put("ejemplo", examplePropertyValue.toString());
 
 
-        list.add(jsonObject);
+        individualList.add(propertyToSave);
 
-        return list;
+        return individualList;
     }
 
 
@@ -101,18 +100,18 @@ public class OntologyRestController {
 
 
     @PostMapping("/createIndividual")
-    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName) {
+    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName);
+        ontologyService.saveIndividual(individualName, fatherClassName, definition, example, mark);
 
         return "individual Saved";
     }
 
 
     @GetMapping("/individuals")
-    public List<JSONObject> getIndividuals() {
+    public List<HashMap<String, String>> getIndividuals() {
 
-        List<JSONObject> list = new ArrayList<>();
+        List<HashMap<String, String>> individualList = new ArrayList<>();
 
         Iterator<Individual> individualsIterator = ontologyService.readOntologyFileAndReturnTheModel().listIndividuals();
 
@@ -120,21 +119,22 @@ public class OntologyRestController {
         while (individualsIterator.hasNext()) {
 
             Individual individual = individualsIterator.next();
-            JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("name", individual.getLocalName());
+            HashMap<String, String> individualToSave = new HashMap<>();
 
-            list.add(jsonObject);
+            individualToSave.put("name", individual.getLocalName());
+
+            individualList.add(individualToSave);
         }
 
-        return list;
+        return individualList;
     }
 
 
     @GetMapping("/classes")
-    public List<JSONObject> getClasses() {
+    public List<HashMap<String, String>> getClasses() {
 
-        List<JSONObject> list = new ArrayList<>();
+        List<HashMap<String, String>> classList = new ArrayList<>();
 
         Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
 
@@ -142,22 +142,23 @@ public class OntologyRestController {
         while (classesIterator.hasNext()) {
 
             OntClass nextClass = classesIterator.next();
-            JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("name", nextClass.getLocalName());
-            jsonObject.put("uri", nextClass.getURI());
+            HashMap<String, String> classToSave = new HashMap<>();
 
-            list.add(jsonObject);
+            classToSave.put("name", nextClass.getLocalName());
+            classToSave.put("uri", nextClass.getURI());
+
+            classList.add(classToSave);
         }
 
-        return list;
+        return classList;
     }
 
 
     @GetMapping("/datatype")
-    public List<JSONObject> getAllDatatypeProperties() {
+    public List<HashMap<String, String>> getAllDatatypeProperties() {
 
-        List<JSONObject> list = new ArrayList<>();
+        List<HashMap<String, String>> propertyList = new ArrayList<>();
 
         Iterator<DatatypeProperty> propertyIterator = ontologyService.readOntologyFileAndReturnTheModel().listDatatypeProperties();
 
@@ -166,15 +167,15 @@ public class OntologyRestController {
 
             DatatypeProperty nextProperty = propertyIterator.next();
 
-            JSONObject jsonObject = new JSONObject();
+            HashMap<String, String> propertyToSave = new HashMap<>();
 
-//            jsonObject.put("domain", nextProperty.getDomain().getLocalName());
-            jsonObject.put("property", nextProperty.getLocalName());
-//            jsonObject.put("datatype", nextProperty.getRange().getLocalName());
+            propertyToSave.put("domain", nextProperty.getDomain().getLocalName());
+            propertyToSave.put("property", nextProperty.getLocalName());
+          //  propertyToSave.put("datatype", nextProperty.getRange().getLocalName());
 
-            list.add(jsonObject);
+            propertyList.add(propertyToSave);
         }
 
-        return list;
+        return propertyList;
     }
 }

@@ -22,7 +22,6 @@ public class OntologyApplication {
 
            /* final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar";
 
-
             for (Individual individual: ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(textExample))) {
 
                 System.out.println(individual.getLocalName());

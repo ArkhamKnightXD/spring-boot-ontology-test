@@ -37,9 +37,9 @@ public class OntologyService {
         }
 
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
-            model.read(reader,null);
+        model.read(reader,null);
 
-            return model;
+        return model;
     }
 
 
@@ -88,7 +88,7 @@ public class OntologyService {
     }
 
 
-    public void saveIndividual(String individualName, String fatherClassName) {
+    public void saveIndividual(String individualName, String fatherClassName, String definition, String example, String mark) {
 
         OWLOntology ontology = loadTheOntologyOwlAPI();
 
@@ -100,12 +100,14 @@ public class OntologyService {
 
         ontologyManager.addAxiom(ontology, axiom);
 
+        saveIndividualProperties(ontology, individual, definition, example, mark);
+
 
         saveOntologyFile(ontology);
     }
 
 
-    public void saveIndividualProperties(String individualName, String definition, String example, String mark) {
+    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example, String mark) {
 
         IRI dataTypePropertyIRI = IRI.create(ontologyIRI +"definicion");
 
@@ -113,10 +115,6 @@ public class OntologyService {
 
         IRI dataTypePropertyMarkIRI = IRI.create(ontologyIRI +"marca_gramatical");
 
-
-        OWLOntology ontology = loadTheOntologyOwlAPI();
-
-        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + individualName));
 
         OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(dataTypePropertyIRI);
 
@@ -136,9 +134,6 @@ public class OntologyService {
         ontologyManager.addAxiom(ontology, axiomExample);
 
         ontologyManager.addAxiom(ontology, axiomMark);
-
-
-        saveOntologyFile(ontology);
     }
 
 
