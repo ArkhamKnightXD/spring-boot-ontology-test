@@ -93,11 +93,7 @@
                   <td>N/A</td>
                 </#if>
 
-                <#if word.locucion??>
-                  <td>${word.locucion}</td>
-                <#else>
                   <td>N/A</td>
-                </#if>
 
                 <#if word.marcaGramatical??>
                   <td>${word.marcaGramatical}</td>

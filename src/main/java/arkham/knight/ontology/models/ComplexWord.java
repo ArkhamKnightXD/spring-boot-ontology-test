@@ -1,10 +1,11 @@
 package arkham.knight.ontology.models;
 
-public class Word {
+public class ComplexWord {
 
     private String lema;
     private String definicion;
     private String ejemplo;
+    private String numeroAcepcion;
     private String marcaGramatical;
     private String marcaGeografica;
     private String marcaNivelSocioCultural;
@@ -15,9 +16,13 @@ public class Word {
     private String marcaConnotacion;
     private String pronunciacionHabitual;
     private String vigenciaUso;
+    private String locucion;
+    private String tipoLocucion;
+    private String fraseProverbial;
+    private String tipoFraseProverbial;
 
 
-    public Word() {
+    public ComplexWord() {
     }
 
 
@@ -43,6 +48,14 @@ public class Word {
 
     public void setEjemplo(String ejemplo) {
         this.ejemplo = ejemplo;
+    }
+
+    public String getNumeroAcepcion() {
+        return numeroAcepcion;
+    }
+
+    public void setNumeroAcepcion(String numeroAcepcion) {
+        this.numeroAcepcion = numeroAcepcion;
     }
 
     public String getMarcaGramatical() {
@@ -123,5 +136,37 @@ public class Word {
 
     public void setVigenciaUso(String vigenciaUso) {
         this.vigenciaUso = vigenciaUso;
+    }
+
+    public String getLocucion() {
+        return locucion;
+    }
+
+    public void setLocucion(String locucion) {
+        this.locucion = locucion;
+    }
+
+    public String getTipoLocucion() {
+        return tipoLocucion;
+    }
+
+    public void setTipoLocucion(String tipoLocucion) {
+        this.tipoLocucion = tipoLocucion;
+    }
+
+    public String getFraseProverbial() {
+        return fraseProverbial;
+    }
+
+    public void setFraseProverbial(String fraseProverbial) {
+        this.fraseProverbial = fraseProverbial;
+    }
+
+    public String getTipoFraseProverbial() {
+        return tipoFraseProverbial;
+    }
+
+    public void setTipoFraseProverbial(String tipoFraseProverbial) {
+        this.tipoFraseProverbial = tipoFraseProverbial;
     }
 }

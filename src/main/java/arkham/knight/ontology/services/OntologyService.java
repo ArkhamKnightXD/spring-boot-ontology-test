@@ -230,10 +230,8 @@ public class OntologyService {
             if (marcaVariacionEstilisticaValue!= null)
                 wordToSave.setMarcaVariacionEstilistica(marcaVariacionEstilisticaValue.toString());
 
-            RDFNode locutionValue = individual.getPropertyValue(locution);
-
-            if (locutionValue!= null)
-                wordToSave.setLocucion(locutionValue.toString());
+            //RDFNode locutionValue = individual.getPropertyValue(locution);
+            //if (locutionValue!= null)
 
             wordList.add(wordToSave);
         }
