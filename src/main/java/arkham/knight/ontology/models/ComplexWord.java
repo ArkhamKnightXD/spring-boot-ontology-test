@@ -17,9 +17,9 @@ public class ComplexWord {
     private String pronunciacionHabitual;
     private String vigenciaUso;
     private String locucion;
-    private String tipoLocucion;
     private String fraseProverbial;
-    private String tipoFraseProverbial;
+    private String idiomaOrigen;
+    private String lexiaCompleja;
 
 
     public ComplexWord() {
@@ -38,9 +38,7 @@ public class ComplexWord {
         return definicion;
     }
 
-    public void setDefinicion(String definicion) {
-        this.definicion = definicion;
-    }
+    public void setDefinicion(String definicion) { this.definicion = definicion; }
 
     public String getEjemplo() {
         return ejemplo;
@@ -50,13 +48,9 @@ public class ComplexWord {
         this.ejemplo = ejemplo;
     }
 
-    public String getNumeroAcepcion() {
-        return numeroAcepcion;
-    }
+    public String getNumeroAcepcion() { return numeroAcepcion; }
 
-    public void setNumeroAcepcion(String numeroAcepcion) {
-        this.numeroAcepcion = numeroAcepcion;
-    }
+    public void setNumeroAcepcion(String numeroAcepcion) { this.numeroAcepcion = numeroAcepcion; }
 
     public String getMarcaGramatical() {
         return marcaGramatical;
@@ -78,25 +72,19 @@ public class ComplexWord {
         return marcaNivelSocioCultural;
     }
 
-    public void setMarcaNivelSocioCultural(String marcaNivelSocioCultural) {
-        this.marcaNivelSocioCultural = marcaNivelSocioCultural;
-    }
+    public void setMarcaNivelSocioCultural(String marcaNivelSocioCultural) { this.marcaNivelSocioCultural = marcaNivelSocioCultural; }
 
     public String getMarcaVariacionEstilistica() {
         return marcaVariacionEstilistica;
     }
 
-    public void setMarcaVariacionEstilistica(String marcaVariacionEstilistica) {
-        this.marcaVariacionEstilistica = marcaVariacionEstilistica;
-    }
+    public void setMarcaVariacionEstilistica(String marcaVariacionEstilistica) { this.marcaVariacionEstilistica = marcaVariacionEstilistica; }
 
     public String getMarcaValoracionSocial() {
         return marcaValoracionSocial;
     }
 
-    public void setMarcaValoracionSocial(String marcaValoracionSocial) {
-        this.marcaValoracionSocial = marcaValoracionSocial;
-    }
+    public void setMarcaValoracionSocial(String marcaValoracionSocial) { this.marcaValoracionSocial = marcaValoracionSocial; }
 
     public String getMarcaRegistrada() {
         return marcaRegistrada;
@@ -126,9 +114,7 @@ public class ComplexWord {
         return pronunciacionHabitual;
     }
 
-    public void setPronunciacionHabitual(String pronunciacionHabitual) {
-        this.pronunciacionHabitual = pronunciacionHabitual;
-    }
+    public void setPronunciacionHabitual(String pronunciacionHabitual) { this.pronunciacionHabitual = pronunciacionHabitual; }
 
     public String getVigenciaUso() {
         return vigenciaUso;
@@ -146,14 +132,6 @@ public class ComplexWord {
         this.locucion = locucion;
     }
 
-    public String getTipoLocucion() {
-        return tipoLocucion;
-    }
-
-    public void setTipoLocucion(String tipoLocucion) {
-        this.tipoLocucion = tipoLocucion;
-    }
-
     public String getFraseProverbial() {
         return fraseProverbial;
     }
@@ -162,11 +140,19 @@ public class ComplexWord {
         this.fraseProverbial = fraseProverbial;
     }
 
-    public String getTipoFraseProverbial() {
-        return tipoFraseProverbial;
+    public String getIdiomaOrigen() {
+        return idiomaOrigen;
     }
 
-    public void setTipoFraseProverbial(String tipoFraseProverbial) {
-        this.tipoFraseProverbial = tipoFraseProverbial;
+    public void setIdiomaOrigen(String idiomaOrigen) {
+        this.idiomaOrigen = idiomaOrigen;
+    }
+
+    public String getLexiaCompleja() {
+        return lexiaCompleja;
+    }
+
+    public void setLexiaCompleja(String lexiaCompleja) {
+        this.lexiaCompleja = lexiaCompleja;
     }
 }

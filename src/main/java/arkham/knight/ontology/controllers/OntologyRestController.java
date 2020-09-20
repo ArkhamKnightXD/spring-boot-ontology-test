@@ -36,16 +36,15 @@ public class OntologyRestController {
 
         Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
 
-        Property markCulturalLevel = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markCulturalLevelURI);
+        Property markCulturalLevel = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markSocialCulturalLevelURI);
 
-        Property markStyleValue = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markStyleValueURI);
+        Property markStyleValue = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markStyleVariationURI);
 
         Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionURI);
 
-        Property locutionType = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionTypeURI);
 
 
-        return ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, markCulturalLevel, markStyleValue, locution, locutionType);
+        return ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, markCulturalLevel, markStyleValue, locution);
     }
 
 

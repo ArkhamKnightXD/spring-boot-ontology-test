@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"
      xml:base="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:diccionario1="http://www.semanticweb.org/luis_/ontologies/2020/6/#"
-     xmlns:untitled-ontology-2="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#">
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:untitled-ontology-2="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"/>
     
 
@@ -77,7 +77,25 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#frase_proverbial -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#frase_proverbial">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#idioma_origen -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#idioma_origen">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#lexia_compleja -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#lexia_compleja">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compleja"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
     
@@ -95,6 +113,15 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_connotacion -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_connotacion">
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_de_registro -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_de_registro">
         <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
@@ -137,15 +164,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_registro -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_registro">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_valoracion_social -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#marca_valoracion_social">
@@ -182,24 +200,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tipo_frase_proverbial -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tipo_frase_proverbial">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tipo_locucion -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tipo_locucion">
-        <rdfs:domain rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#vigencia_uso -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#vigencia_uso">
@@ -228,6 +228,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adverbiales -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adverbiales">
@@ -236,10 +252,32 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Advervios -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Advervios"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Ambiguos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Ambiguos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Ambiguos_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Ambiguos_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compleja -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compleja">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexia"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexias"/>
     </owl:Class>
     
 
@@ -247,7 +285,71 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexia"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexias"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Comunes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Comunes">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Comunes_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Comunes_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Conjuntivas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Conjuntivas">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Distincion_masculino_femenino -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Distincion_masculino_femenino">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Distincion_masculino_femenino_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Distincion_masculino_femenino_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Doble_categoria -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Doble_categoria">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos_Compuesto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos_Compuesto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos"/>
     </owl:Class>
     
 
@@ -270,6 +372,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjecciones -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjecciones"/>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas">
@@ -278,9 +386,57 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexia -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexia"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_no_pronominales -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_no_pronominales">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_no_pronominales_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_no_pronominales_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_pronominales -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_pronominales">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_pronominales_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_pronominales_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexias -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexias"/>
     
 
 
@@ -290,18 +446,38 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Onomatopeyas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Onomatopeyas"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Preposiciones -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Preposiciones"/>
     
 
 
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexia"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexias"/>
     </owl:Class>
     
 
@@ -312,10 +488,90 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivas -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivas">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Locuciones"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo_Compuesto -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo_Compuesto">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_pronominales -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_pronominales">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_pronominales_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_pronominales_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Utilizados_en_plural -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Utilizados_en_plural">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Utilizados_en_plural_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Utilizados_en_plural_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos_Compuestos"/>
     </owl:Class>
     
 
@@ -330,7 +586,17 @@
 
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos_Compuestos">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta"/>
+    </owl:Class>
     
 
 
@@ -362,7 +628,6 @@
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A gusto en una circunstancia concreta.</untitled-ontology-2:definicion>
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">en sus aguas</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. adverbial.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -382,12 +647,11 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bagazo -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bagazo">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Proverbiales"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expresa el consejo o la intención de restar importancia a lo que dice o hace una persona a quien se menosprecia.</untitled-ontology-2:definicion>
         <untitled-ontology-2:frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a un bagazo, poco caso</untitled-ontology-2:frase_proverbial>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">frase. proverbial.</untitled-ontology-2:tipo_frase_proverbial>
     </owl:NamedIndividual>
     
 
@@ -444,7 +708,6 @@
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ponérsela a alguien en China.</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">loc. verb.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -468,7 +731,6 @@
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Prestar atención a alguien.</untitled-ontology-2:definicion>
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hacer coro.</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">loc. verb.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -534,7 +796,6 @@
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruta fina</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pol.</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. sustantiva.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -547,7 +808,6 @@
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fruta fina</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. sustantiva.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -570,7 +830,6 @@
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">con un lado hinchado</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. adjetiva.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
     
 
@@ -692,11 +951,10 @@
         <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ay ñeñe</untitled-ontology-2:locucion>
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
-        <untitled-ontology-2:tipo_locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">locucion. interjectiva.</untitled-ontology-2:tipo_locucion>
     </owl:NamedIndividual>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
 

@@ -15,6 +15,7 @@ public class Word {
     private String marcaConnotacion;
     private String pronunciacionHabitual;
     private String vigenciaUso;
+    private String idiomaOrigen;
 
 
     public Word() {

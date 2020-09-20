@@ -195,7 +195,7 @@ public class OntologyService {
     }
 
 
-    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definition, Property example, Property grammarMark, Property marcaNivelSocioCultural, Property marcaVariacionEstilistica, Property locution, Property locutionType){
+    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definition, Property example, Property grammarMark, Property markSocialCulturalLevel, Property markStyleVariation, Property locution){
 
         List<Word> wordList = new ArrayList<>();
 
@@ -220,12 +220,12 @@ public class OntologyService {
             if (grammarMarkPropertyValue!= null)
                 wordToSave.setMarcaGramatical(grammarMarkPropertyValue.toString());
 
-            RDFNode marcaNivelSocioCulturalValue = individual.getPropertyValue(marcaNivelSocioCultural);
+            RDFNode marcaNivelSocioCulturalValue = individual.getPropertyValue(markSocialCulturalLevel);
 
             if (marcaNivelSocioCulturalValue!= null)
                 wordToSave.setMarcaNivelSocioCultural(marcaNivelSocioCulturalValue.toString());
 
-            RDFNode marcaVariacionEstilisticaValue = individual.getPropertyValue(marcaVariacionEstilistica);
+            RDFNode marcaVariacionEstilisticaValue = individual.getPropertyValue(markStyleVariation);
 
             if (marcaVariacionEstilisticaValue!= null)
                 wordToSave.setMarcaVariacionEstilistica(marcaVariacionEstilisticaValue.toString());
