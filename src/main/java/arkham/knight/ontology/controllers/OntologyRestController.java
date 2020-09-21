@@ -43,49 +43,7 @@ public class OntologyRestController {
         Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionURI);
 
 
-
         return ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, markCulturalLevel, markStyleValue, locution);
-    }
-
-
-    @GetMapping("/properties")
-    public List<HashMap<String, String>> getIndividualPropertiesAndValues(@RequestParam("individualName") String individualName) {
-
-        List<HashMap<String, String>> individualList = new ArrayList<>();
-
-        String individualURI = uriService.ontologyURI.concat(individualName);
-
-        Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
-
-
-        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
-
-        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
-
-        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
-
-
-        RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
-
-        RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
-
-        RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
-
-
-        HashMap<String, String> propertyToSave = new HashMap<>();
-
-        propertyToSave.put("definicion", definitionPropertyValue.toString());
-
-        if (grammarMarkPropertyValue != null)
-            propertyToSave.put("marca_gramatical", grammarMarkPropertyValue.toString());
-
-        if (examplePropertyValue != null)
-            propertyToSave.put("ejemplo", examplePropertyValue.toString());
-
-
-        individualList.add(propertyToSave);
-
-        return individualList;
     }
 
 
@@ -121,6 +79,7 @@ public class OntologyRestController {
 
             HashMap<String, String> individualToSave = new HashMap<>();
 
+            individualToSave.put("domain", individual.getOntClass().getLocalName());
             individualToSave.put("name", individual.getLocalName());
 
             individualList.add(individualToSave);

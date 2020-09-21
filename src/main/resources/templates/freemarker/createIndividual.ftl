@@ -45,13 +45,13 @@
 
                     <div class="col-md-12 mb-3">
                         <label for="example">Ejemplo</label>
-                        <input type="text" class="form-control" id="definition" name="example" placeholder="Ejemplo..."  required>
+                        <input type="text" class="form-control" id="definition" name="example" placeholder="Ejemplo..." >
 
                     </div>
 
                     <div class="col-md-12 mb-3">
                         <label for="marca_gramatical">Marca gramatical</label>
-                        <input type="text" class="form-control" id="definition" name="mark" placeholder="Marca gramatical..."  required>
+                        <input type="text" class="form-control" id="definition" name="mark" placeholder="Marca gramatical...">
 
                     </div>
 

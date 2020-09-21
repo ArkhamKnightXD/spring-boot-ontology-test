@@ -60,7 +60,7 @@ public class OntologyController {
     @RequestMapping("/individuals")
     public String showAllIndividuals(Model model) {
 
-        List<String> individualListNames = new ArrayList<>();
+        List<Individual> individualList = new ArrayList<>();
 
         Iterator<Individual> individualsIterator = ontologyService.readOntologyFileAndReturnTheModel().listIndividuals();
 
@@ -69,10 +69,10 @@ public class OntologyController {
 
             Individual individual = individualsIterator.next();
 
-            individualListNames.add(individual.getLocalName());
+            individualList.add(individual);
         }
 
-        model.addAttribute("individuals", individualListNames);
+        model.addAttribute("individuals", individualList);
 
         return "/freemarker/individuals";
     }

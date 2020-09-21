@@ -69,19 +69,21 @@
         <table class="table table-striped table-sm">
           <thead class="thead-dark">
           <tr>
+            <th>Clase</th>
             <th>Lema</th>
             <th>Options</th>
 
           </tr>
           </thead>
             <tbody>
+
             <#list individuals as individual>
               <tr>
-                <td>${individual}</td>
-
+                <td>${individual.getOntClass().getLocalName()}</td>
+                <td>${individual.getLocalName()}</td>
                 <td>
-                  <a class="btn btn-outline-dark my-2 my-sm-0" href="/words/edition?individualName=${individual}" role="button">Editar</a>
-                  <a class="btn btn-outline-danger my-2 my-sm-0" href="/words/delete?individualName=${individual}" role="button">Eliminar</a>
+                  <a class="btn btn-outline-dark my-2 my-sm-0" href="/words/edition?individualName=${individual.getLocalName()}" role="button">Editar</a>
+                  <a class="btn btn-outline-danger my-2 my-sm-0" href="/words/delete?individualName=${individual.getLocalName()}" role="button">Eliminar</a>
                 </td>
               </tr>
             </#list>
