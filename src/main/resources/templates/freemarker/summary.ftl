@@ -1,143 +1,259 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html lang="en">
-
+<html lang="eng">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>titulo</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-  <title>diccionario</title>
-
-  <link href="../../bootstrap-4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="../../bootstrap-4.3.1/style/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/skins/_all-skins.min.css">
 
 </head>
 
-<body>
-<form action="/words/">
-  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">home</a>
-    <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Search..." aria-label="Search">
-    <ul class="navbar-nav px-1">
-      <li class="nav-item text-nowrap">
-        <input type="submit" value="Search" class="btn btn-dark"/>
-      </li>
-    </ul>
-  </nav>
-</form>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
 
-<div class="container-fluid">
-  <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">
-              <span data-feather="home"></span>
-              Test <span class="sr-only">(current)</span>
+    <!-- Main Header -->
+    <header class="main-header">
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+            <!-- mini logo for sidebar mini 50x50 pixels -->
+            <span class="logo-mini"><b>A</b>PI</span>
+            <!-- logo for regular state and mobile devices -->
+            <span class="logo-lg"><b>Diccionario</b>API</span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/words/creation">
-              <span data-feather="layers"></span>
-              Add New Word
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-light" href="/words/individuals">
-              <span data-feather="layers"></span>
-              All Individuals
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-    </nav>
-
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-
-      </div>
 
 
-      <h2>Resultados</h2>
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-          <thead class="thead-dark">
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
 
-          <tr>
-            <th>Lema</th>
-            <th>Marca Gramatical</th>
-            <th>Definicion</th>
-            <th>Ejemplo</th>
-            <th>Locucion</th>
-            <th>Marca Nivel Sociocultural</th>
-            <th>Marca Variacion Estilistica</th>
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
 
-          </tr>
-          </thead>
+                    <!-- User Account Menu -->
+                    <li class="dropdown user user-menu">
 
-            <tbody>
-            <#list words as word >
-              <tr>
-                <td><b>${word.lema}</b></td>
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                <#if word.marcaGramatical??>
-                  <td>${word.marcaGramatical}</td>
-                <#else>
-                  <td>N/A</td>
-                </#if>
+                                <p>
+                                     <!--Aqui agrego el nombre del usuario logueado -->
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+                                <div class="row">
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Followers</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Sales</a>
+                                    </div>
+                                    <div class="col-xs-4 text-center">
+                                        <a href="#">Friends</a>
+                                    </div>
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-primary">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-danger">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Control Sidebar Toggle Button -->
 
-                <td>${word.definicion}</td>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
 
-                <#if word.ejemplo??>
-                    <td>${word.ejemplo}</td>
-                  <#else>
-                  <td>N/A</td>
-                </#if>
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
 
-                  <td>N/A</td>
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <!--Aqui pongo el nombre del usuario tambien -->
+                    <p>user</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
 
-                <#if word.marcaNivelSocioCultural??>
-                  <td>${word.marcaNivelSocioCultural}</td>
-                <#else>
-                  <td>N/A</td>
-                </#if>
+            <!-- search form (Optional) -->
 
-                <#if word.marcaVariacionEstilistica??>
-                  <td>${word.marcaVariacionEstilistica}</td>
-                <#else>
-                  <td>N/A</td>
-                </#if>
-              </tr>
-            </#list>
+            <!-- /.search form -->
 
-            </tbody>
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree">
+                <!-- Optionally, you can add icons to the links -->
+                <li><a href="#"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
 
-        </table>
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/words/individuals"><i class="active fa fa-info"></i> <span>All Individuals</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <form action="/words/">
+            <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Search..." aria-label="Search">
+        </form>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1 class="text-center">
+
+                <strong>Resultados</strong>
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content container-fluid">
+
+            <!--------------------------
+              | Your Page Content Here |
+              -------------------------->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-condensed table-hover">
+                            <thead class="thead-dark">
+
+                            <th>Lema</th>
+                            <th>Marca Gramatical</th>
+                            <th>Definicion</th>
+                            <th>Ejemplo</th>
+                            <th>Locucion</th>
+                            <th>Marca Nivel Sociocultural</th>
+                            <th>Marca Variacion Estilistica</th>
+                            </thead>
+
+                            <tbody>
+                            <#list words as word >
+                                <tr>
+                                    <td><b>${word.lema}</b></td>
+
+                                    <#if word.marcaGramatical??>
+                                        <td>${word.marcaGramatical}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
+                                    <td>${word.definicion}</td>
+
+                                    <#if word.ejemplo??>
+                                        <td>${word.ejemplo}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
+                                    <td>N/A</td>
+
+                                    <#if word.marcaNivelSocioCultural??>
+                                        <td>${word.marcaNivelSocioCultural}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
+                                    <#if word.marcaVariacionEstilistica??>
+                                        <td>${word.marcaVariacionEstilistica}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+                                </tr>
+                            </#list>
+                            </tbody>
 
 
-      </div>
-    </main>
-  </div>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2020 <a href="#">Words</a>.</strong> All rights reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+     <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+    immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
 </div>
+<!-- ./wrapper -->
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script>window.jQuery || document.write('<script src="../../bootstrap-4.3.1/dist/js/jquery-3.2.1.slim.min.js"><\/script>')</script>
-<script src="../../bootstrap-4.3.1/assets/js/vendor/popper.min.js"></script>
-<script src="../../bootstrap-4.3.1/dist/js/bootstrap.min.js"></script>
+<!-- REQUIRED JS SCRIPTS -->
 
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-  feather.replace()
-</script>
+<!-- jQuery 3 -->
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
 </body>
 </html>

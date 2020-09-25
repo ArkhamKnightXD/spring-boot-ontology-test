@@ -125,4 +125,12 @@ public class Word {
     public void setVigenciaUso(String vigenciaUso) {
         this.vigenciaUso = vigenciaUso;
     }
+
+    public String getIdiomaOrigen() {
+        return idiomaOrigen;
+    }
+
+    public void setIdiomaOrigen(String idiomaOrigen) {
+        this.idiomaOrigen = idiomaOrigen;
+    }
 }

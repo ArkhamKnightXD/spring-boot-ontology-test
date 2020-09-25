@@ -74,7 +74,7 @@ public class OntologyController {
 
         model.addAttribute("individuals", individualList);
 
-        return "/freemarker/user";
+        return "/freemarker/individuals";
     }
 
 
