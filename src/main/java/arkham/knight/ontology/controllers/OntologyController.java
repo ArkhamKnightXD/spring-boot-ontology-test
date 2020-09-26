@@ -94,7 +94,6 @@ public class OntologyController {
         }
 
         model.addAttribute("classes", classListNames);
-        model.addAttribute("title","Welcome");
 
         return "/freemarker/createIndividual";
     }

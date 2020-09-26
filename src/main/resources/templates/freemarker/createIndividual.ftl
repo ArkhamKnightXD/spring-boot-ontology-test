@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>${title}</title>
+    <title>Diccionario API</title>
 
     <link href="../../bootstrap-4.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -17,7 +17,7 @@
 <body class="bg-light">
 <div class="container">
     <div class="py-5 text-center">
-        <h1>Individual Form</h1>
+        <h1>Agregar lema</h1>
     </div>
 
 
@@ -27,7 +27,7 @@
     <div class="row">
 
         <div class="col-md-8 order-md-1">
-            <h4 class="mb-3">Write the information of the instance</h4>
+            <h5 class="mb-3 head-text">Digite la informacion del lema</h5>
 
             <form method="post" action="/words/create" class="needs-validation"  novalidate>
                 <div class="row">
@@ -68,21 +68,20 @@
                     </div>
                 </div>
 
-
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit">Save word</button>
-                <hr class="mb-4">
-                <a class="btn btn-danger btn-lg btn-block" href="/words/" role="button">Cancel</a>
+                <button class="btn btn-primary btn-lg btn-block my-buttons" type="submit">Guardar</button>
+                <a class="btn btn-danger btn-lg btn-block my-buttons" href="/words/individuals" role="button">Cancelar</a>
+                </div>
             </form>
-        </div>
     </div>
   </div>
 
 
 </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script>window.jQuery || document.write('<script src="../../bootstrap-4.3.1/dist/js/jquery-3.2.1.slim.min.js"><\/script>')</script><script src="../../bootstrap-4.3.1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../bootstrap-4.3.1/dist/js/form-validation.js"></script></body>
+<script src="../../bootstrap-4.3.1/dist/js/form-validation.js"></script>
+</body>
 
 </html>

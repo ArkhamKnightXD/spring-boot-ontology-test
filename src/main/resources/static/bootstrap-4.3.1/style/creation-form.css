@@ -9,3 +9,31 @@
 }
 
 .lh-condensed { line-height: 1.25; }
+
+.my-buttons{
+    width: 94%;
+    position: relative;
+    left: 3%;
+
+}
+
+/*En esta parte me encargo de hacer la pagina mobile friendly, aqui indico que mientras la pagina no llegue a 767px de width a los elementos que estan dentro de la clase row aplicamele los sigtes estilos
+Elegi 767px pues cuando analice a que resolucion se dañaban los elementos mediante firefox me di cuenta que el formulario se daña a una resolucion menor a 768px en widht*/
+@media screen and (max-width: 767px) {
+     .row {
+         width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+         position: absolute;
+         right: 13%;
+    }
+
+    .my-buttons{
+        width: 92%;
+        position: relative;
+        left: 4%;
+    }
+
+    .head-text{
+        position: relative;
+        right: 10%;
+    }
+}

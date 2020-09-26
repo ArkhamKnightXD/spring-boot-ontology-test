@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>titulo</title>
+    <title>Diccionario API</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
@@ -67,17 +67,6 @@
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
-                                <div class="row">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </div>
                                 <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
@@ -149,7 +138,7 @@
 
                 <strong>Listado de Lemas</strong>
             </h1>
-            <a class="btn btn-primary" href="/words/creation" role="button">Add new word</a>
+            <a class="btn btn-primary" href="/words/creation" role="button">Agregar un nuevo lema</a>
         </section>
 
         <!-- Main content -->
@@ -161,7 +150,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered table-condensed table-hover">
+                        <table class="table table-striped table-condensed table-hover">
                             <thead>
 
                             <th>Clase</th>
