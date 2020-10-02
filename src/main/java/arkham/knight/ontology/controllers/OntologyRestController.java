@@ -25,9 +25,9 @@ public class OntologyRestController {
 
 
     @GetMapping("/find")
-    public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet) {
+    public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(tweet));
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(tweet), searchType);
 
 
         Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);

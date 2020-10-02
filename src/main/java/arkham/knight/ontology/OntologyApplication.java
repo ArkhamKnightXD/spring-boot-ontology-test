@@ -22,11 +22,23 @@ public class OntologyApplication {
 
            // ontologyService.readOntologyFileAndReturnTheModel().write(System.out,"RDF/XML-ABBREV");
 
-            /*final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
+           /* final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
 
             for (Individual individual: ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(textExample))) {
 
                 System.out.println(individual.getLocalName());
+            }
+
+            String string = "pancakes";
+
+            // Esta la implementacion en java del metodo like de sql
+            //En este caso al string se le debe de agregar .* que es el equivalente a % esto quiere decir que no importa las palabras demas que haya
+            String string2 = ".*panca.*";
+
+            //y con el metodo matches aqui hago las comparaciones
+            if (string.matches(string2)){
+
+                System.out.println(string);
             }*/
         };
     }

@@ -181,9 +181,7 @@ public class OntologyService {
     }
 
 
-    public List<Individual> findAllIndividualByName(List<String> sentenceByWords) {
-
-        List<String> cleanSentenceByWords = new ArrayList<>(removeAllAccentsFromTheSentence(sentenceByWords));
+    public List<Individual> findAllIndividualByName(List<String> sentenceByWords, String searchType) {
 
         List<Individual> individualList = new ArrayList<>();
 
@@ -198,19 +196,27 @@ public class OntologyService {
 
             individual = individualsIterator.next();
 
-            String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
-
-            for (String word: cleanSentenceByWords) {
-
-                if (cleanIndividual.equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0){
-                    individualList.add(individual);
-
-                    avoidRepeatIndividualCount++;
-                }
-            }
+            cleanAndCompareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, individualList,avoidRepeatIndividualCount, individual);
         }
 
         return individualList;
+    }
+
+
+    public void cleanAndCompareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
+
+        List<String> cleanSentenceByWords = new ArrayList<>(removeAllAccentsFromTheSentence(sentenceByWords));
+
+        String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
+
+        for (String word: cleanSentenceByWords) {
+
+            if (cleanIndividual.equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0 || searchType.equals("word-search") & cleanIndividual.matches(".*"+word.toLowerCase()+".*") && avoidRepeatIndividualCount == 0){
+                individualList.add(individual);
+
+                avoidRepeatIndividualCount++;
+            }
+        }
     }
 
 
@@ -223,10 +229,12 @@ public class OntologyService {
 
             Word wordToSave = new Word();
 
+            if (individual.getLocalName()!= null)
             wordToSave.setLema(individual.getLocalName());
 
             RDFNode definitionPropertyValue = individual.getPropertyValue(definition);
 
+            if (definitionPropertyValue!= null)
             wordToSave.setDefinicion(definitionPropertyValue.toString());
 
             RDFNode examplePropertyValue = individual.getPropertyValue(example);

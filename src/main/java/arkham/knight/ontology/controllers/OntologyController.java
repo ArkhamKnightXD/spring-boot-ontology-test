@@ -29,11 +29,11 @@ public class OntologyController {
 
 
     @RequestMapping("/")
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName) {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
         List<Word> wordList;
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName));
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName), searchType);
 
 
         Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
