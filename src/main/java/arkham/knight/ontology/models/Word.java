@@ -30,9 +30,7 @@ public class Word {
         this.lema = lema;
     }
 
-    public String getDefinicion() {
-        return definicion;
-    }
+    public String getDefinicion() { return definicion; }
 
     public void setDefinicion(String definicion) {
         this.definicion = definicion;
@@ -66,25 +64,19 @@ public class Word {
         return marcaNivelSocioCultural;
     }
 
-    public void setMarcaNivelSocioCultural(String marcaNivelSocioCultural) {
-        this.marcaNivelSocioCultural = marcaNivelSocioCultural;
-    }
+    public void setMarcaNivelSocioCultural(String marcaNivelSocioCultural) { this.marcaNivelSocioCultural = marcaNivelSocioCultural; }
 
     public String getMarcaVariacionEstilistica() {
         return marcaVariacionEstilistica;
     }
 
-    public void setMarcaVariacionEstilistica(String marcaVariacionEstilistica) {
-        this.marcaVariacionEstilistica = marcaVariacionEstilistica;
-    }
+    public void setMarcaVariacionEstilistica(String marcaVariacionEstilistica) { this.marcaVariacionEstilistica = marcaVariacionEstilistica; }
 
     public String getMarcaValoracionSocial() {
         return marcaValoracionSocial;
     }
 
-    public void setMarcaValoracionSocial(String marcaValoracionSocial) {
-        this.marcaValoracionSocial = marcaValoracionSocial;
-    }
+    public void setMarcaValoracionSocial(String marcaValoracionSocial) { this.marcaValoracionSocial = marcaValoracionSocial; }
 
     public String getMarcaRegistrada() {
         return marcaRegistrada;
@@ -114,9 +106,7 @@ public class Word {
         return pronunciacionHabitual;
     }
 
-    public void setPronunciacionHabitual(String pronunciacionHabitual) {
-        this.pronunciacionHabitual = pronunciacionHabitual;
-    }
+    public void setPronunciacionHabitual(String pronunciacionHabitual) { this.pronunciacionHabitual = pronunciacionHabitual; }
 
     public String getVigenciaUso() {
         return vigenciaUso;
@@ -126,11 +116,7 @@ public class Word {
         this.vigenciaUso = vigenciaUso;
     }
 
-    public String getIdiomaOrigen() {
-        return idiomaOrigen;
-    }
+    public String getIdiomaOrigen() { return idiomaOrigen; }
 
-    public void setIdiomaOrigen(String idiomaOrigen) {
-        this.idiomaOrigen = idiomaOrigen;
-    }
+    public void setIdiomaOrigen(String idiomaOrigen) { this.idiomaOrigen = idiomaOrigen; }
 }

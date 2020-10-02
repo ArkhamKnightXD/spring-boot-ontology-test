@@ -62,7 +62,7 @@
                                 <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                     <!--Aqui agrego el nombre del usuario logueado -->
+                                    user <!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
                             <!-- Menu Body -->

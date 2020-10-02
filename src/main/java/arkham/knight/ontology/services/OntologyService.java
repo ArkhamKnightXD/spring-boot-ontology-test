@@ -1,6 +1,7 @@
 package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.Word;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
@@ -166,7 +167,23 @@ public class OntologyService {
     }
 
 
+    public List<String> removeAllAccentsFromTheSentence(List<String> sentence){
+
+        List<String> listOfWordsWithoutAccents = new ArrayList<>();
+
+        for (String word: sentence) {
+
+            //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
+            listOfWordsWithoutAccents.add(StringUtils.stripAccents(word));
+        }
+
+        return listOfWordsWithoutAccents;
+    }
+
+
     public List<Individual> findAllIndividualByName(List<String> sentenceByWords) {
+
+        List<String> cleanSentenceByWords = new ArrayList<>(removeAllAccentsFromTheSentence(sentenceByWords));
 
         List<Individual> individualList = new ArrayList<>();
 
@@ -181,9 +198,11 @@ public class OntologyService {
 
             individual = individualsIterator.next();
 
-            for (String word: sentenceByWords) {
+            String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 
-                if (individual.getLocalName().equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0){
+            for (String word: cleanSentenceByWords) {
+
+                if (cleanIndividual.equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0){
                     individualList.add(individual);
 
                     avoidRepeatIndividualCount++;

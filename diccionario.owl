@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <rdf:RDF xmlns="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"
      xml:base="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
-     xmlns:diccionario1="http://www.semanticweb.org/luis_/ontologies/2020/6/#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:untitled-ontology-2="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:diccionario1="http://www.semanticweb.org/luis_/ontologies/2020/6/#"
+     xmlns:untitled-ontology-2="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#">
     <owl:Ontology rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2"/>
     
 
@@ -515,15 +515,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo_Compuesto -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivo_Adjetivo_Compuesto">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Lexias"/>
     </owl:Class>
     
 
@@ -632,6 +624,17 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#aprender -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#aprender">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion>Indica que es difícil para aprender cosas nuevas con la edad.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial>loro viejo no aprende a hablar</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#atracar -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#atracar">
@@ -672,6 +675,26 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expulsión de alguien de un sitio.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bye -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bye">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion>Adiós.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:idioma_origen>inglés</untitled-ontology-2:idioma_origen>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#cadena -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#cadena">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Referido a una retransmisión radial o televisiva, en conexión obligatoria de todas las emisoras de radio y televisión.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">en cadena</untitled-ontology-2:locucion>
     </owl:NamedIndividual>
     
 
@@ -724,6 +747,16 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#conchoprimo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#conchoprimo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Época de las revoluciones montoneras.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tiempos de conchoprimo</untitled-ontology-2:locucion>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#coro -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#coro">
@@ -763,6 +796,18 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Compuesta"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jornalero, trabajador por días.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#entenderse -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#entenderse">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion>Indica que personas semejantes se entienden y es mejor no intervenir en sus asuntos.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial>ellos son blancos y se entienden</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural>pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
     </owl:NamedIndividual>
     
 
@@ -812,12 +857,57 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#gallinero -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#gallinero">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion>Indica que cada quien manda solo donde le corresponde.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial>cada gallo en su gallinero</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural>pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#globito -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#globito">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion>Se usa para celebrar algo bien dicho o hecho.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial>coge ese globito</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural>pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#gustazo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#gustazo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion>Se usa para indicar que se satisface un deseo a sabiendas de que luego vendrán sus efectos desagradables.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial>un gustazo un trancazo</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hartura -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hartura">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hartazgo, sensación de haber comido demasiado.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hello -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hello">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se usa como saludo.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:idioma_origen rdf:datatype="http://www.w3.org/2001/XMLSchema#string">inglés</untitled-ontology-2:idioma_origen>
     </owl:NamedIndividual>
     
 
@@ -855,6 +945,44 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#mamá -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#mamá">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjectivas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expresa autoafirmación o autosuficiencia.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antigua 9 Iris y otros malditos cuentos 17 Los hijos de Doña Delisa son tranquilos pero esa Nievecita, ¡ay mamá!, ahí fue donde comenzaron a llover macos.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:locucion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">¡ay mamá!</untitled-ontology-2:locucion>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#man -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#man">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se usa para dirigirse a un compañero de confianza.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Julián Mujer que llamo Laura 93 Y todos nosotros soñando juntos con él, viéndonos con los aplausos, las jevitas, el tire, la fama, man, la fama.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:idioma_origen rdf:datatype="http://www.w3.org/2001/XMLSchema#string">inglés</untitled-ontology-2:idioma_origen>
+        <untitled-ontology-2:marca_de_registro rdf:datatype="http://www.w3.org/2001/XMLSchema#string">juv</untitled-ontology-2:marca_de_registro>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#manguera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#manguera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indica que dos personas con los mismos intereses no se perjudican entre sí.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">entre bomberos no se pisan la manguera</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#morirsoñando -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#morirsoñando">
@@ -877,6 +1005,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#novillo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#novillo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indica que no deben tenerse preferencias por nadie.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">todos toros o todos novillos</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#ombe -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#ombe">
@@ -889,6 +1029,50 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#oveja -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#oveja">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Indica que con paciencia se puede llegar a alcanzar lo que se quiere.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial rdf:datatype="http://www.w3.org/2001/XMLSchema#string">oveja mansa se mama su leche [teta] y la ajena</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#padecer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#padecer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+        <untitled-ontology-2:definicion>Se usa para expresar contrariedad por la aparición de un inconveniente o un revés.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:frase_proverbial>ya empezó Cristo a padecer</untitled-ontology-2:frase_proverbial>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pago -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pago">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion>Expresa la aceptación de una apuesta por parte de un gallero.</untitled-ontology-2:definicion>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#papachón -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#papachón">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion>Se usa para dirigirse una mujer a un hombre de confianza de forma cariñosa.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo>Vergés Solo cenizas hallarás 169 Le pedí que se pusieran dizque a tener amores, ella decía que no, que de eso nada, papachón, y se iba rapidito a contar sus ahorros.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:marca_connotacion>afec</untitled-ontology-2:marca_connotacion>
+        <untitled-ontology-2:marca_nivel_sociocultural>pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pasacantando -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pasacantando">
@@ -896,6 +1080,17 @@
         <untitled-ontology-2:definicion>1. Vendedor callejero.
 2. Persona sin ocupación o sin trabajo.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#que -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#que">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion>Se usa para saludar a una persona de confianza.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:marca_nivel_sociocultural>pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
     </owl:NamedIndividual>
     
 
@@ -931,6 +1126,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#siempre -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#siempre">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion>Se usa como respuesta a una expresión de agradecimiento.</untitled-ontology-2:definicion>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tiradera -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#tiradera">
@@ -952,9 +1156,30 @@
         <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop.</untitled-ontology-2:marca_nivel_sociocultural>
         <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col.</untitled-ontology-2:marca_variacion_estilistica>
     </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#mano_2,_na -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#mano_2,_na">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se usa como tratamiento entre dos personas que tiene mucha confianza.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Vergés Solo cenizas hallarás 49 Y le decían: manita, cuando en tu gloria estés acuérdate de nosotras, y acababan riéndose todo el grupete juntas.</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:marca_nivel_sociocultural rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pop</untitled-ontology-2:marca_nivel_sociocultural>
+        <untitled-ontology-2:marca_variacion_estilistica rdf:datatype="http://www.w3.org/2001/XMLSchema#string">col</untitled-ontology-2:marca_variacion_estilistica>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#olvidar(se) -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#olvidar(se)">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Despreocúpate, déjalo.</untitled-ontology-2:definicion>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
 

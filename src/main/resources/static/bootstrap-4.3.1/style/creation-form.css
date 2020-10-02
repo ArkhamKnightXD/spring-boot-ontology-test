@@ -11,9 +11,9 @@
 .lh-condensed { line-height: 1.25; }
 
 .my-buttons{
-    width: 94%;
+    width: 95.5%;
     position: relative;
-    left: 3%;
+    left: 2.5%;
 
 }
 
@@ -21,7 +21,7 @@
 Elegi 767px pues cuando analice a que resolucion se dañaban los elementos mediante firefox me di cuenta que el formulario se daña a una resolucion menor a 768px en widht*/
 @media screen and (max-width: 767px) {
      .row {
-         width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+         width: 100%; /* The width is 100%, when the viewport is 767px or smaller */
          position: absolute;
          right: 13%;
     }
