@@ -1,11 +1,8 @@
-.container {
-    max-width: 960px;
-}
 
 .center-container{
-
     position: relative;
-    left: 18%;
+    left: 24%;
+    width: 79%;
 }
 
 .lh-condensed { line-height: 1.25; }
@@ -22,8 +19,8 @@ Elegi 767px pues cuando analice a que resolucion se dañaban los elementos media
 @media screen and (max-width: 767px) {
      .row {
          width: 100%; /* The width is 100%, when the viewport is 767px or smaller */
-         position: absolute;
-         right: 13%;
+         position: relative;
+         right: 1.5%;
     }
 
     .my-buttons{
@@ -34,6 +31,12 @@ Elegi 767px pues cuando analice a que resolucion se dañaban los elementos media
 
     .head-text{
         position: relative;
-        right: 10%;
+        right: 2%;
+    }
+
+    /*Si se puede hacer scroll lateral en la aplicacion desde el mobile se debe de reducir el width hasta que ya no se pueda hacer scroll, esto sirve tanto para mobile o pc*/
+    .center-container{
+        width: 80%;
+        position: relative;
     }
 }
