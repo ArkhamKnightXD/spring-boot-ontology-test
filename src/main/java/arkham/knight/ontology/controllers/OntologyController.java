@@ -24,31 +24,13 @@ public class OntologyController {
     @Autowired
     private OntologyService ontologyService;
 
-    @Autowired
-    private URIService uriService;
-
 
     @RequestMapping("/")
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
-        List<Word> wordList;
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.cleanTheSentenceAndSaveInArrayList(individualName), searchType);
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(individualName), searchType);
-
-
-        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
-
-        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
-
-        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
-
-        Property markCulturalLevel = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markSocialCulturalLevelURI);
-
-        Property markStyleValue = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markStyleVariationURI);
-
-        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionURI);
-
-        wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, markCulturalLevel, markStyleValue, locution);
+        List<Word> wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList);
 
 
         model.addAttribute("words", wordList);
@@ -123,16 +105,16 @@ public class OntologyController {
             classListNames.add(nextClass.getLocalName());
         }
 
-        String individualURI = uriService.ontologyURI.concat(individualName);
+        String individualURI = URIService.ontologyURI.concat(individualName);
 
         Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
 
 
-        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
+        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(URIService.definitionURI);
 
-        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
+        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(URIService.exampleURI);
 
-        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
+        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(URIService.grammarMarkURI);
 
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);

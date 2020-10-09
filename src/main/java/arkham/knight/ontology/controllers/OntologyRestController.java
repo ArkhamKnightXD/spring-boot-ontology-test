@@ -2,11 +2,9 @@ package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.URIService;
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
-import org.apache.jena.rdf.model.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
@@ -20,30 +18,13 @@ public class OntologyRestController {
     @Autowired
     private OntologyService ontologyService;
 
-    @Autowired
-    private URIService uriService;
-
 
     @GetMapping("/find")
     public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String tweet, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(tweet), searchType);
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.cleanTheSentenceAndSaveInArrayList(tweet), searchType);
 
-
-        Property definition = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.definitionURI);
-
-        Property example = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.exampleURI);
-
-        Property grammarMark = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.grammarMarkURI);
-
-        Property markCulturalLevel = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markSocialCulturalLevelURI);
-
-        Property markStyleValue = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.markStyleVariationURI);
-
-        Property locution = ontologyService.readOntologyFileAndReturnTheModel().getProperty(uriService.locutionURI);
-
-
-        return ontologyService.saveAllPropertiesValueInAWordList(individualList, definition, example, grammarMark, markCulturalLevel, markStyleValue, locution);
+        return ontologyService.saveAllPropertiesValueInAWordList(individualList);
     }
 
 

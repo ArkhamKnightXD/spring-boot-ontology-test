@@ -22,8 +22,6 @@ public class OntologyService {
 
     final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
-    final IRI ontologyIRI = IRI.create("http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#");
-
     final File ontologyFile = new File("diccionario.owl");
 
 
@@ -76,8 +74,8 @@ public class OntologyService {
         OWLOntology ontology = loadTheOntologyOwlAPI();
 
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
-        OWLClass classA = dataFactory.getOWLClass(IRI.create(ontologyIRI + className1));
-        OWLClass classB = dataFactory.getOWLClass(IRI.create(ontologyIRI + className2));
+        OWLClass classA = dataFactory.getOWLClass(IRI.create(URIService.ontologyIRI + className1));
+        OWLClass classB = dataFactory.getOWLClass(IRI.create(URIService.ontologyIRI + className2));
 
         OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(classA, classB);
 
@@ -93,9 +91,9 @@ public class OntologyService {
 
         OWLOntology ontology = loadTheOntologyOwlAPI();
 
-        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + individualName));
+        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(URIService.ontologyIRI + individualName));
 
-        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + fatherClassName));
+        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(URIService.ontologyIRI + fatherClassName));
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
@@ -110,11 +108,11 @@ public class OntologyService {
 
     public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example, String mark) {
 
-        IRI dataTypePropertyIRI = IRI.create(ontologyIRI +"definicion");
+        IRI dataTypePropertyIRI = IRI.create(URIService.ontologyIRI +"definicion");
 
-        IRI dataTypePropertyExampleIRI = IRI.create(ontologyIRI +"ejemplo");
+        IRI dataTypePropertyExampleIRI = IRI.create(URIService.ontologyIRI +"ejemplo");
 
-        IRI dataTypePropertyMarkIRI = IRI.create(ontologyIRI +"marca_gramatical");
+        IRI dataTypePropertyMarkIRI = IRI.create(URIService.ontologyIRI +"marca_gramatical");
 
 
         OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(dataTypePropertyIRI);
@@ -142,7 +140,7 @@ public class OntologyService {
 
         OWLOntology ontology = loadTheOntologyOwlAPI();
 
-        IRI individualIRI = IRI.create(ontologyIRI + individualName);
+        IRI individualIRI = IRI.create(URIService.ontologyIRI + individualName);
 
         OWLEntityRemover remover = new OWLEntityRemover(Collections.singleton(ontology));
 
@@ -159,25 +157,21 @@ public class OntologyService {
     }
 
 
-    public List<String> getAllWordsFromTheSentence(String sentence){
+    public List<String> cleanTheSentenceAndSaveInArrayList(String sentence){
+
+        List<String> listOfCleanWords = new ArrayList<>();
 
         String [] tokens = sentence.split("[\\s'.,:;]");
 
-        return new ArrayList<>(Arrays.asList(tokens));
-    }
+        List<String> wordList = new ArrayList<>(Arrays.asList(tokens));
 
-
-    public List<String> removeAllAccentsFromTheSentence(List<String> sentence){
-
-        List<String> listOfWordsWithoutAccents = new ArrayList<>();
-
-        for (String word: sentence) {
+        for (String word: wordList) {
 
             //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
-            listOfWordsWithoutAccents.add(StringUtils.stripAccents(word));
+            listOfCleanWords.add(StringUtils.stripAccents(word));
         }
 
-        return listOfWordsWithoutAccents;
+        return listOfCleanWords;
     }
 
 
@@ -196,20 +190,18 @@ public class OntologyService {
 
             individual = individualsIterator.next();
 
-            cleanAndCompareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, individualList,avoidRepeatIndividualCount, individual);
+            CompareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, individualList,avoidRepeatIndividualCount, individual);
         }
 
         return individualList;
     }
 
 
-    public void cleanAndCompareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
-
-        List<String> cleanSentenceByWords = new ArrayList<>(removeAllAccentsFromTheSentence(sentenceByWords));
+    public void CompareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
 
         String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 
-        for (String word: cleanSentenceByWords) {
+        for (String word: sentenceByWords) {
 
             if (cleanIndividual.equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0 || searchType.equals("word-search") & cleanIndividual.matches(".*"+word.toLowerCase()+".*") && avoidRepeatIndividualCount == 0){
                 individualList.add(individual);
@@ -220,9 +212,19 @@ public class OntologyService {
     }
 
 
-    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList, Property definition, Property example, Property grammarMark, Property markSocialCulturalLevel, Property markStyleVariation, Property locution){
+    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList){
 
         List<Word> wordList = new ArrayList<>();
+
+        Property definition = readOntologyFileAndReturnTheModel().getProperty(URIService.definitionURI);
+
+        Property example = readOntologyFileAndReturnTheModel().getProperty(URIService.exampleURI);
+
+        Property grammarMark = readOntologyFileAndReturnTheModel().getProperty(URIService.grammarMarkURI);
+
+        Property markSocialCulturalLevel = readOntologyFileAndReturnTheModel().getProperty(URIService.markSocialCulturalLevelURI);
+
+        Property markStyleVariation= readOntologyFileAndReturnTheModel().getProperty(URIService.markStyleVariationURI);
 
 
         for (Individual individual: individualList) {
@@ -257,8 +259,6 @@ public class OntologyService {
             if (marcaVariacionEstilisticaValue!= null)
                 wordToSave.setMarcaVariacionEstilistica(marcaVariacionEstilisticaValue.toString());
 
-            //RDFNode locutionValue = individual.getPropertyValue(locution);
-            //if (locutionValue!= null)
 
             wordList.add(wordToSave);
         }
