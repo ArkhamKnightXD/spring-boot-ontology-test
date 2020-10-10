@@ -3,144 +3,90 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.Word;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.io.*;
 import java.util.*;
 
 @Service
 public class OntologyService {
 
-    final OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
+    @Autowired
+    private OntologyConnectionService ontologyConnectionService;
 
-    final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
+    private final OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
 
-    final File ontologyFile = new File("diccionario.owl");
-
-
-    public OntModel readOntologyFileAndReturnTheModel() {
-
-        FileReader reader = null;
-
-        try {
-            reader = new FileReader(ontologyFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
-        model.read(reader,null);
-
-        return model;
-    }
-
-
-    public OWLOntology loadTheOntologyOwlAPI(){
-
-        try {
-            return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
-        } catch (OWLOntologyCreationException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
-    public void saveOntologyFile(OWLOntology ontology){
-
-        IRI ontologySaveIRI = IRI.create(ontologyFile);
-
-        try {
-            // save in RDF/XML
-            ontologyManager.saveOntology(ontology, ontologySaveIRI);
-        } catch (OWLOntologyStorageException e) {
-            e.printStackTrace();
-        }
-
-        // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
-        ontologyManager.removeOntology(ontology);
-    }
+    private final IRI ontologyIRI = IRI.create("http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#");
 
 
     public void saveClasses(String className1, String className2) {
 
-        OWLOntology ontology = loadTheOntologyOwlAPI();
+        OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
-        OWLClass classA = dataFactory.getOWLClass(IRI.create(URIService.ontologyIRI + className1));
-        OWLClass classB = dataFactory.getOWLClass(IRI.create(URIService.ontologyIRI + className2));
+        OWLClass classA = dataFactory.getOWLClass(IRI.create(ontologyIRI + className1));
+        OWLClass classB = dataFactory.getOWLClass(IRI.create(ontologyIRI + className2));
 
         OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(classA, classB);
 
         //OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA,classB);
 
-        ontologyManager.addAxiom(ontology,axiom);
+        ontologyConnectionService.ontologyManager.addAxiom(ontology,axiom);
 
-        saveOntologyFile(ontology);
+        ontologyConnectionService.saveOntologyFile(ontology);
     }
 
 
-    public void saveIndividual(String individualName, String fatherClassName, String definition, String example, String mark) {
+    public void saveIndividual(String individualName, String fatherClassName, String definition, String example) {
 
-        OWLOntology ontology = loadTheOntologyOwlAPI();
+        OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(URIService.ontologyIRI + individualName));
+        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + individualName));
 
-        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(URIService.ontologyIRI + fatherClassName));
+        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + fatherClassName));
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
-        ontologyManager.addAxiom(ontology, axiom);
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
-        saveIndividualProperties(ontology, individual, definition, example, mark);
+        saveIndividualProperties(ontology, individual, definition, example);
 
 
-        saveOntologyFile(ontology);
+        ontologyConnectionService.saveOntologyFile(ontology);
     }
 
 
-    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example, String mark) {
+    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example) {
 
-        IRI dataTypePropertyIRI = IRI.create(URIService.ontologyIRI +"definicion");
+        IRI dataTypePropertyIRI = IRI.create(ontologyIRI +"definicion");
 
-        IRI dataTypePropertyExampleIRI = IRI.create(URIService.ontologyIRI +"ejemplo");
-
-        IRI dataTypePropertyMarkIRI = IRI.create(URIService.ontologyIRI +"marca_gramatical");
+        IRI dataTypePropertyExampleIRI = IRI.create(ontologyIRI +"ejemplo");
 
 
         OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(dataTypePropertyIRI);
 
         OWLDataProperty exampleDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyExampleIRI);
 
-        OWLDataProperty markDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyMarkIRI);
-
         OWLDataPropertyAssertionAxiom axiom = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, definition);
 
         OWLDataPropertyAssertionAxiom axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, example);
 
-        OWLDataPropertyAssertionAxiom axiomMark = dataFactory.getOWLDataPropertyAssertionAxiom(markDataProperty, individual, mark);
 
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
-        ontologyManager.addAxiom(ontology, axiom);
-
-        ontologyManager.addAxiom(ontology, axiomExample);
-
-        ontologyManager.addAxiom(ontology, axiomMark);
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomExample);
     }
 
 
     public void deleteIndividual(String individualName) {
 
-        OWLOntology ontology = loadTheOntologyOwlAPI();
+        OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        IRI individualIRI = IRI.create(URIService.ontologyIRI + individualName);
+        IRI individualIRI = IRI.create(ontologyIRI + individualName);
 
         OWLEntityRemover remover = new OWLEntityRemover(Collections.singleton(ontology));
 
@@ -151,9 +97,9 @@ public class OntologyService {
             individual.accept(remover);
         }
 
-        ontologyManager.applyChanges(remover.getChanges());
+        ontologyConnectionService.ontologyManager.applyChanges(remover.getChanges());
 
-        saveOntologyFile(ontology);
+        ontologyConnectionService.saveOntologyFile(ontology);
     }
 
 
@@ -179,7 +125,7 @@ public class OntologyService {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = readOntologyFileAndReturnTheModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
 
         Individual individual;
 
@@ -190,14 +136,14 @@ public class OntologyService {
 
             individual = individualsIterator.next();
 
-            CompareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, individualList,avoidRepeatIndividualCount, individual);
+            compareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, individualList,avoidRepeatIndividualCount, individual);
         }
 
         return individualList;
     }
 
 
-    public void CompareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
+    public void compareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
 
         String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 
@@ -216,15 +162,9 @@ public class OntologyService {
 
         List<Word> wordList = new ArrayList<>();
 
-        Property definition = readOntologyFileAndReturnTheModel().getProperty(URIService.definitionURI);
+        Property definition = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.definitionURI);
 
-        Property example = readOntologyFileAndReturnTheModel().getProperty(URIService.exampleURI);
-
-        Property grammarMark = readOntologyFileAndReturnTheModel().getProperty(URIService.grammarMarkURI);
-
-        Property markSocialCulturalLevel = readOntologyFileAndReturnTheModel().getProperty(URIService.markSocialCulturalLevelURI);
-
-        Property markStyleVariation= readOntologyFileAndReturnTheModel().getProperty(URIService.markStyleVariationURI);
+        Property example = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.exampleURI);
 
 
         for (Individual individual: individualList) {
@@ -243,22 +183,6 @@ public class OntologyService {
 
             if (examplePropertyValue!= null)
                 wordToSave.setEjemplo(examplePropertyValue.toString());
-
-            RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMark);
-
-            if (grammarMarkPropertyValue!= null)
-                wordToSave.setMarcaGramatical(grammarMarkPropertyValue.toString());
-
-            RDFNode marcaNivelSocioCulturalValue = individual.getPropertyValue(markSocialCulturalLevel);
-
-            if (marcaNivelSocioCulturalValue!= null)
-                wordToSave.setMarcaNivelSocioCultural(marcaNivelSocioCulturalValue.toString());
-
-            RDFNode marcaVariacionEstilisticaValue = individual.getPropertyValue(markStyleVariation);
-
-            if (marcaVariacionEstilisticaValue!= null)
-                wordToSave.setMarcaVariacionEstilistica(marcaVariacionEstilisticaValue.toString());
-
 
             wordList.add(wordToSave);
         }

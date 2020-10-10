@@ -164,24 +164,14 @@
                             <thead class="thead-dark">
 
                             <th>Lema</th>
-                            <th>Marca Gramatical</th>
                             <th>Definicion</th>
                             <th>Ejemplo</th>
-                            <th>Locucion</th>
-                            <th>Marca Nivel Sociocultural</th>
-                            <th>Marca Variacion Estilistica</th>
                             </thead>
 
                             <tbody>
                             <#list words as word >
                                 <tr>
                                     <td><b>${word.lema}</b></td>
-
-                                    <#if word.marcaGramatical??>
-                                        <td>${word.marcaGramatical}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
 
                                     <td>${word.definicion}</td>
 
@@ -191,19 +181,6 @@
                                         <td>N/A</td>
                                     </#if>
 
-                                    <td>N/A</td>
-
-                                    <#if word.marcaNivelSocioCultural??>
-                                        <td>${word.marcaNivelSocioCultural}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
-
-                                    <#if word.marcaVariacionEstilistica??>
-                                        <td>${word.marcaVariacionEstilistica}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
                                 </tr>
                             </#list>
                             </tbody>

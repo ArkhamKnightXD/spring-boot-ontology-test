@@ -51,12 +51,6 @@
 
                     </div>
 
-                    <div class="col-md-12 mb-3">
-                        <label for="marca_gramatical">Marca gramatical</label>
-                        <input type="text" class="form-control" id="definition" name="mark" placeholder="Marca gramatical...">
-
-                    </div>
-
 
                 <div class="col-md-12 mb-3">
                     <label for="fatherClassName">Clase a la que pertenece</label>

@@ -1,8 +1,8 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.Word;
+import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.URIService;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
@@ -24,6 +24,9 @@ public class OntologyController {
     @Autowired
     private OntologyService ontologyService;
 
+    @Autowired
+    private OntologyConnectionService ontologyConnectionService;
+
 
     @RequestMapping("/")
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName, @RequestParam(defaultValue = "tweet-search") String searchType) {
@@ -44,7 +47,7 @@ public class OntologyController {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyService.readOntologyFileAndReturnTheModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
 
 
         while (individualsIterator.hasNext()) {
@@ -65,7 +68,7 @@ public class OntologyController {
 
         List<String> classListNames = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
+        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
 
 
         while (classesIterator.hasNext()) {
@@ -82,11 +85,11 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark) {
+    public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example, mark);
+        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
 
-        return "redirect:/words/";
+        return "redirect:/words/individuals";
     }
 
 
@@ -95,7 +98,7 @@ public class OntologyController {
 
         List<String> classListNames = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
+        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
 
 
         while (classesIterator.hasNext()) {
@@ -105,32 +108,25 @@ public class OntologyController {
             classListNames.add(nextClass.getLocalName());
         }
 
-        String individualURI = URIService.ontologyURI.concat(individualName);
+        String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
-        Individual individual = ontologyService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
 
 
-        Property definitionProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(URIService.definitionURI);
+        Property definitionProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.definitionURI);
 
-        Property exampleProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(URIService.exampleURI);
-
-        Property grammarMarkProperty = ontologyService.readOntologyFileAndReturnTheModel().getProperty(URIService.grammarMarkURI);
+        Property exampleProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.exampleURI);
 
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
 
         RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
 
-        RDFNode grammarMarkPropertyValue = individual.getPropertyValue(grammarMarkProperty);
-
 
         model.addAttribute("fatherClass", individual.getOntClass().getLocalName());
         model.addAttribute("classes", classListNames);
         model.addAttribute("lema", individual.getLocalName());
         model.addAttribute("definicion", definitionPropertyValue.toString());
-
-        if (grammarMarkPropertyValue != null)
-            model.addAttribute("marca_gramatical", grammarMarkPropertyValue.toString());
 
         if (examplePropertyValue != null)
             model.addAttribute("ejemplo", examplePropertyValue.toString());
@@ -140,9 +136,9 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark,  @RequestParam("fatherClassName") String fatherClassName) {
+    public String edit(@RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("fatherClassName") String fatherClassName) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example, mark);
+        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
 
         return "redirect:/words/individuals";
     }

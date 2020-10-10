@@ -52,12 +52,6 @@
                         </div>
                     </#if>
 
-                            <#if marca_gramatical??>
-                                <div class="col-md-12 mb-3">
-                                <label for="marca_gramatical">Marca gramatical</label>
-                                <input type="text" class="form-control" value="${marca_gramatical}" id="name" name="mark" placeholder="Marca..."  required>
-                            </div>
-                            </#if>
 
                     <div class="col-md-12 mb-3">
                         <label for="fatherClassName">Clase a la que pertenece</label>

@@ -1,6 +1,7 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.Word;
+import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
@@ -17,6 +18,9 @@ public class OntologyRestController {
 
     @Autowired
     private OntologyService ontologyService;
+
+    @Autowired
+    private OntologyConnectionService ontologyConnectionService;
 
 
     @GetMapping("/find")
@@ -38,9 +42,9 @@ public class OntologyRestController {
 
 
     @PostMapping("/createIndividual")
-    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("mark") String mark) {
+    public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example, mark);
+        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
 
         return "individual Saved";
     }
@@ -51,7 +55,7 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyService.readOntologyFileAndReturnTheModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
 
 
         while (individualsIterator.hasNext()) {
@@ -75,7 +79,7 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> classList = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyService.readOntologyFileAndReturnTheModel().listClasses();
+        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
 
 
         while (classesIterator.hasNext()) {
@@ -99,7 +103,7 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> propertyList = new ArrayList<>();
 
-        Iterator<DatatypeProperty> propertyIterator = ontologyService.readOntologyFileAndReturnTheModel().listDatatypeProperties();
+        Iterator<DatatypeProperty> propertyIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listDatatypeProperties();
 
 
         while (propertyIterator.hasNext()) {
