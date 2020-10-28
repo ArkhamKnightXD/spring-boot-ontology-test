@@ -5,7 +5,6 @@ import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +31,12 @@ public class OntologyController {
     private WordService wordService;
 
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.tokenizeTheSentence(individualName), searchType);
+        List<Individual> individualList = ontologyService.getAllIndividualByName(ontologyService.tokenizeTheSentence(individualName), searchType);
 
-        List<Word> wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList);
-
+        List<Word> wordList = ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
 
         model.addAttribute("words", wordList);
 
@@ -46,7 +44,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping("/individuals")
+    @RequestMapping(value = "/individuals", method = RequestMethod.GET)
     public String showAllIndividuals(Model model) {
 
         List<Individual> individualList = new ArrayList<>();
@@ -67,22 +65,10 @@ public class OntologyController {
     }
 
 
-    @RequestMapping("/creation")
+    @RequestMapping(value = "/creation", method = RequestMethod.GET)
     public String creationPage(Model model) {
 
-        List<String> classListNames = new ArrayList<>();
-
-        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
-
-
-        while (classesIterator.hasNext()) {
-
-            OntClass nextClass = classesIterator.next();
-
-            classListNames.add(nextClass.getLocalName());
-        }
-
-        model.addAttribute("classes", classListNames);
+        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
 
         return "/freemarker/createIndividual";
     }
@@ -97,20 +83,8 @@ public class OntologyController {
     }
 
 
-    @RequestMapping("/edition")
+    @RequestMapping(value = "/edition", method = RequestMethod.GET)
     public String getIndividualByName(Model model, @RequestParam("individualName") String individualName)  {
-
-        List<String> classListNames = new ArrayList<>();
-
-        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
-
-
-        while (classesIterator.hasNext()) {
-
-            OntClass nextClass = classesIterator.next();
-
-            classListNames.add(nextClass.getLocalName());
-        }
 
         String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
@@ -128,7 +102,7 @@ public class OntologyController {
 
 
         model.addAttribute("fatherClass", individual.getOntClass().getLocalName());
-        model.addAttribute("classes", classListNames);
+        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
         model.addAttribute("lema", individual.getLocalName());
         model.addAttribute("definicion", definitionPropertyValue.toString());
 
@@ -148,10 +122,10 @@ public class OntologyController {
     }
 
 
-    @RequestMapping("/show")
+    @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showIndividual(Model model, @RequestParam("individualName") String individualName) {
 
-        Word wordToFind = wordService.findWordByLemma(individualName);
+        Word wordToFind = wordService.getWordByLemma(individualName);
 
         model.addAttribute("word", wordToFind);
 
@@ -159,7 +133,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteIndividual(@RequestParam("individualName") String individualName) {
 
         ontologyService.deleteIndividual(individualName);

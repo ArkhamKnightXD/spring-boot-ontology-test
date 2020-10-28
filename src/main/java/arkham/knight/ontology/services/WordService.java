@@ -15,13 +15,13 @@ public class WordService {
 
     public List<Word> getAllWords(){
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.getAllIndividualLocalName(),"tweet");
+        List<Individual> individualList = ontologyService.getAllIndividualByName(ontologyService.getAllIndividualLocalName(),"tweet");
 
-        return ontologyService.saveAllPropertiesValueInAWordList(individualList);
+        return ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
     }
 
 
-    public Word findWordByLemma(String lemma){
+    public Word getWordByLemma(String lemma){
 
         for (Word wordToFind: getAllWords()) {
 

@@ -3,6 +3,7 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.Word;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
@@ -21,6 +22,24 @@ public class OntologyService {
     private final OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
 
     private final IRI ontologyIRI = IRI.create("http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#");
+
+
+    public List<String> getAllClassesLocalName(){
+
+        List<String> classListNames = new ArrayList<>();
+
+        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
+
+
+        while (classesIterator.hasNext()) {
+
+            OntClass nextClass = classesIterator.next();
+
+            classListNames.add(nextClass.getLocalName());
+        }
+
+        return classListNames;
+    }
 
 
     public List<String> getAllIndividualLocalName(){
@@ -129,7 +148,7 @@ public class OntologyService {
     }
 
 
-    public List<Individual> findAllIndividualByName(List<String> sentenceByWords, String searchType) {
+    public List<Individual> getAllIndividualByName(List<String> sentenceByWords, String searchType) {
 
         List<Individual> individualList = new ArrayList<>();
 
@@ -169,7 +188,7 @@ public class OntologyService {
     }
 
 
-    public List<Word> saveAllPropertiesValueInAWordList(List<Individual> individualList){
+    public List<Word> saveAllIndividualPropertiesValueInAWordList(List<Individual> individualList){
 
         List<Word> wordList = new ArrayList<>();
 
