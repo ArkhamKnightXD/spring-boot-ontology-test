@@ -144,6 +144,19 @@ public class OntologyController {
     }
 
 
+    @RequestMapping("/show")
+    public String showIndividual(Model model, @RequestParam("individualName") String individualName) {
+
+        String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
+
+        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+
+        model.addAttribute("individualName", individual.getLocalName());
+
+        return "/freemarker/show";
+    }
+
+
     @RequestMapping("/delete")
     public String deleteIndividual(@RequestParam("individualName") String individualName) {
 

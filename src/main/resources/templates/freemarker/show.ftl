@@ -164,25 +164,13 @@
                             <thead class="thead-dark">
 
                             <th>Lema</th>
-                            <th>Definicion</th>
-                            <th>Ejemplo</th>
                             </thead>
 
                             <tbody>
-                            <#list words as word >
                                 <tr>
-                                    <td><a href="/words/show?individualName=${word.lema}"><b>${word.lema}</b></a></td>
-
-                                    <td>${word.definicion}</td>
-
-                                    <#if word.ejemplo??>
-                                        <td>${word.ejemplo}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
+                                    <td><b>${individualName}</b></td>
 
                                 </tr>
-                            </#list>
                             </tbody>
 
 
