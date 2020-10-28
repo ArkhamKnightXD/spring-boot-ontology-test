@@ -3,6 +3,7 @@ package arkham.knight.ontology.controllers;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.Property;
@@ -27,11 +28,14 @@ public class OntologyController {
     @Autowired
     private OntologyConnectionService ontologyConnectionService;
 
+    @Autowired
+    private WordService wordService;
+
 
     @RequestMapping("/")
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
-        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.cleanTheSentenceAndSaveInArrayList(individualName), searchType);
+        List<Individual> individualList = ontologyService.findAllIndividualByName(ontologyService.tokenizeTheSentence(individualName), searchType);
 
         List<Word> wordList = ontologyService.saveAllPropertiesValueInAWordList(individualList);
 
@@ -147,11 +151,9 @@ public class OntologyController {
     @RequestMapping("/show")
     public String showIndividual(Model model, @RequestParam("individualName") String individualName) {
 
-        String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
+        Word wordToFind = wordService.findWordByLemma(individualName);
 
-        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
-
-        model.addAttribute("individualName", individual.getLocalName());
+        model.addAttribute("word", wordToFind);
 
         return "/freemarker/show";
     }

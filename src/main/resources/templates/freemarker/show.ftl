@@ -140,14 +140,11 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/words/">
-            <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Buscar..." aria-label="Search">
-        </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Resultados</strong>
+                <strong>${word.getLema()}</strong>
             </h1>
         </section>
 
@@ -164,15 +161,22 @@
                             <thead class="thead-dark">
 
                             <th>Lema</th>
+                            <th>Definicion</th>
+                            <th>Ejempo</th>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td><b>${individualName}</b></td>
+                                    <td><b>${word.getLema()}</b></td>
+                                    <td>${word.getDefinicion()}</td>
 
+                                    <#if word.getEjemplo()??>
+                                        <td>${word.getEjemplo()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
                                 </tr>
                             </tbody>
-
 
                         </table>
 

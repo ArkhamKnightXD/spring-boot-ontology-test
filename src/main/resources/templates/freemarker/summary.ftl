@@ -171,12 +171,12 @@
                             <tbody>
                             <#list words as word >
                                 <tr>
-                                    <td><a href="/words/show?individualName=${word.lema}"><b>${word.lema}</b></a></td>
+                                    <td><a href="/words/show?individualName=${word.getLema()}"><b>${word.getLema()}</b></a></td>
 
-                                    <td>${word.definicion}</td>
+                                    <td>${word.getDefinicion()}</td>
 
-                                    <#if word.ejemplo??>
-                                        <td>${word.ejemplo}</td>
+                                    <#if word.getEjemplo()??>
+                                        <td>${word.getEjemplo()}</td>
                                     <#else>
                                         <td>N/A</td>
                                     </#if>

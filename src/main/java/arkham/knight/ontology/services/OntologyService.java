@@ -23,6 +23,24 @@ public class OntologyService {
     private final IRI ontologyIRI = IRI.create("http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#");
 
 
+    public List<String> getAllIndividualLocalName(){
+
+        List<String> individualNamesList = new ArrayList<>();
+
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+
+
+        while (individualsIterator.hasNext()) {
+
+            Individual individual = individualsIterator.next();
+
+            individualNamesList.add(individual.getLocalName());
+        }
+
+        return individualNamesList;
+    }
+
+
     public void saveClasses(String className1, String className2) {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
@@ -103,21 +121,11 @@ public class OntologyService {
     }
 
 
-    public List<String> cleanTheSentenceAndSaveInArrayList(String sentence){
-
-        List<String> listOfCleanWords = new ArrayList<>();
+    public List<String> tokenizeTheSentence(String sentence){
 
         String [] tokens = sentence.split("[\\s'.,:;]");
 
-        List<String> wordList = new ArrayList<>(Arrays.asList(tokens));
-
-        for (String word: wordList) {
-
-            //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
-            listOfCleanWords.add(StringUtils.stripAccents(word));
-        }
-
-        return listOfCleanWords;
+        return new ArrayList<>(Arrays.asList(tokens));
     }
 
 
@@ -145,11 +153,14 @@ public class OntologyService {
 
     public void compareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
 
+        //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
         String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 
         for (String word: sentenceByWords) {
 
-            if (cleanIndividual.equalsIgnoreCase(word) && avoidRepeatIndividualCount == 0 || searchType.equals("word-search") & cleanIndividual.matches(".*"+word.toLowerCase()+".*") && avoidRepeatIndividualCount == 0){
+            String cleanWord = StringUtils.stripAccents(word);
+
+            if (cleanIndividual.equalsIgnoreCase(cleanWord) && avoidRepeatIndividualCount == 0 || searchType.equals("word-search") & cleanIndividual.matches(".*"+cleanWord.toLowerCase()+".*") && avoidRepeatIndividualCount == 0){
                 individualList.add(individual);
 
                 avoidRepeatIndividualCount++;

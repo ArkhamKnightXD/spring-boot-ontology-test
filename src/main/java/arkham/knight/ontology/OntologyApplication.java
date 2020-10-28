@@ -22,12 +22,13 @@ public class OntologyApplication {
 
            // ontologyService.readOntologyFileAndReturnTheModel().write(System.out,"RDF/XML-ABBREV");
 
-           /* final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
+          /*  final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
 
-            for (Individual individual: ontologyService.findAllIndividualByName(ontologyService.getAllWordsFromTheSentence(textExample))) {
+            for (Individual individual: ontologyService.findAllIndividualByName(ontologyService.getAllIndividualLocalName(),"text")) {
 
                 System.out.println(individual.getLocalName());
             }
+
 
             String string = "pancakes";
 
