@@ -1,6 +1,5 @@
 package arkham.knight.ontology.controllers;
 
-import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
@@ -32,13 +31,13 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String individualName, @RequestParam(defaultValue = "tweet-search") String searchType) {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
-        List<Individual> individualList = ontologyService.getAllIndividualByName(ontologyService.tokenizeTheSentence(individualName), searchType);
+        List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
 
-        List<Word> wordList = ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
+        List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
 
-        model.addAttribute("words", wordList);
+        model.addAttribute("words", ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList));
 
         return "/freemarker/summary";
     }
@@ -90,11 +89,9 @@ public class OntologyController {
 
         Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
 
-
         Property definitionProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.definitionURI);
 
         Property exampleProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.exampleURI);
-
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
 
@@ -123,11 +120,9 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
-    public String showIndividual(Model model, @RequestParam("individualName") String individualName) {
+    public String showIndividual(Model model, @RequestParam("lemma") String lemma) {
 
-        Word wordToFind = wordService.getWordByLemma(individualName);
-
-        model.addAttribute("word", wordToFind);
+        model.addAttribute("word", wordService.getWordByLemma(lemma));
 
         return "/freemarker/show";
     }

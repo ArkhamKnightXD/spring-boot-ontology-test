@@ -141,7 +141,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <form action="/words/">
-            <input class="form-control form-control-dark w-100" type="text" name="individualName" placeholder="Buscar..." aria-label="Search">
+            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
         </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -171,7 +171,7 @@
                             <tbody>
                             <#list words as word >
                                 <tr>
-                                    <td><a href="/words/show?individualName=${word.getLema()}"><b>${word.getLema()}</b></a></td>
+                                    <td><a href="/words/show?lemma=${word.getLema()}"><b>${word.getLema()}</b></a></td>
 
                                     <td>${word.getDefinicion()}</td>
 

@@ -29,7 +29,6 @@ public class OntologyApplication {
                 System.out.println(individual.getLocalName());
             }
 
-
             String string = "pancakes";
 
             // Esta la implementacion en java del metodo like de sql

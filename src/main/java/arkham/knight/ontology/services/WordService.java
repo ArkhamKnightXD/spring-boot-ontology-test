@@ -15,7 +15,9 @@ public class WordService {
 
     public List<Word> getAllWords(){
 
-        List<Individual> individualList = ontologyService.getAllIndividualByName(ontologyService.getAllIndividualLocalName(),"tweet");
+        List<String> individualNameList = ontologyService.getAllIndividualLocalName();
+
+        List<Individual> individualList = ontologyService.getAllIndividualByName(individualNameList,"tweet");
 
         return ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
     }
