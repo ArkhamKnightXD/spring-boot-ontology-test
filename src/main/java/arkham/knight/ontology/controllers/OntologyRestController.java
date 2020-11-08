@@ -3,6 +3,7 @@ package arkham.knight.ontology.controllers;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
@@ -24,6 +25,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/find")
+    @Operation(summary = "Find All Individuals Properties By Name", description = "Buscara las palabras dominicanas de cualquier oracion que digite")
     public List<Word> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
         List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
@@ -35,6 +37,7 @@ public class OntologyRestController {
 
 
     @PostMapping("/createClass")
+    @Operation(summary = "Create Class", description = "Creacion de clases padre y clase hijo")
     public String createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) {
 
         ontologyService.saveClasses(className, className2);
@@ -44,6 +47,7 @@ public class OntologyRestController {
 
 
     @PostMapping("/createIndividual")
+    @Operation(summary = "Create Individual", description = "Creacion de individual")
     public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example) {
 
         ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
@@ -53,6 +57,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/individuals")
+    @Operation(summary = "Get Individuals", description = "Retorna una lista con todos los individuales")
     public List<HashMap<String, String>> getIndividuals() {
 
         List<HashMap<String, String>> individualList = new ArrayList<>();
@@ -77,6 +82,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/classes")
+    @Operation(summary = "Get Classes", description = "Retorna una lista con todas las clases")
     public List<HashMap<String, String>> getClasses() {
 
         List<HashMap<String, String>> classList = new ArrayList<>();
@@ -101,6 +107,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/datatype")
+    @Operation(summary = "Get All Datatype Properties", description = "Retorna una lista con todas las propiedades")
     public List<HashMap<String, String>> getAllDatatypeProperties() {
 
         List<HashMap<String, String>> propertyList = new ArrayList<>();

@@ -21,6 +21,8 @@ dependencies {
 
     compile group: 'net.sourceforge.owlapi', name: 'owlapi-distribution', version: '4.2.8'
 
+    compile 'org.springdoc:springdoc-openapi-ui:1.2.32'
+
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
