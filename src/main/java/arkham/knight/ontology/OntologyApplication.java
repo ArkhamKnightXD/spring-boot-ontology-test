@@ -6,8 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 @SpringBootApplication
 public class OntologyApplication {
@@ -16,15 +15,29 @@ public class OntologyApplication {
         SpringApplication.run(OntologyApplication.class, args);
     }
 
+
+    private void openHomePage() {
+
+        Runtime runtime = Runtime.getRuntime();
+        try {
+            runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/words/");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Bean
     public CommandLineRunner run(OntologyService ontologyService) {
         return args -> {
 
+            openHomePage();
+
            // ontologyService.readOntologyFileAndReturnTheModel().write(System.out,"RDF/XML-ABBREV");
 
-          /*  final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
+          /*final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
 
-            for (Individual individual: ontologyService.findAllIndividualByName(ontologyService.getAllIndividualLocalName(),"text")) {
+            for (Individual individual: ontologyService.getAllIndividualByName(ontologyService.getAllIndividualLocalName(),"text")) {
 
                 System.out.println(individual.getLocalName());
             }
