@@ -90,8 +90,8 @@ public class OntologyService {
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
-        saveIndividualProperties(ontology, individual, definition, example);
 
+        saveIndividualProperties(ontology, individual, definition, example);
 
         ontologyConnectionService.saveOntologyFile(ontology);
     }
@@ -131,7 +131,7 @@ public class OntologyService {
         for (OWLNamedIndividual individual : ontology.getIndividualsInSignature()) {
 
             if (individualIRI.toString().equals(individual.getIRI().toString()))
-            individual.accept(remover);
+                individual.accept(remover);
         }
 
         ontologyConnectionService.ontologyManager.applyChanges(remover.getChanges());
@@ -202,12 +202,12 @@ public class OntologyService {
             Word wordToSave = new Word();
 
             if (individual.getLocalName()!= null)
-            wordToSave.setLema(individual.getLocalName());
+                wordToSave.setLema(individual.getLocalName());
 
             RDFNode definitionPropertyValue = individual.getPropertyValue(definition);
 
             if (definitionPropertyValue!= null)
-            wordToSave.setDefinicion(definitionPropertyValue.toString());
+                wordToSave.setDefinicion(definitionPropertyValue.toString());
 
             RDFNode examplePropertyValue = individual.getPropertyValue(example);
 
