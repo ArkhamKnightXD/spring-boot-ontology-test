@@ -78,7 +78,9 @@ public class OntologyService {
     }
 
 
-    public void saveIndividual(String individualName, String fatherClassName, String definition, String example) {
+    public void saveIndividual(String originalIndividualName, String individualName, String fatherClassName, String definition, String example) {
+
+        deleteIndividual(originalIndividualName);
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
@@ -88,8 +90,8 @@ public class OntologyService {
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
-        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
         saveIndividualProperties(ontology, individual, definition, example);
 

@@ -76,7 +76,7 @@ public class OntologyController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
+        ontologyService.saveIndividual(individualName, individualName, fatherClassName, definition, example);
 
         return "redirect:/words/individuals";
     }
@@ -111,9 +111,9 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("fatherClassName") String fatherClassName) {
+    public String edit(@RequestParam("originalIndividualName") String originalIndividualName, @RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("fatherClassName") String fatherClassName) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
+        ontologyService.saveIndividual(originalIndividualName, individualName, fatherClassName, definition, example);
 
         return "redirect:/words/individuals";
     }

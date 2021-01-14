@@ -33,6 +33,9 @@
 
             <form method="post" action="/words/edit" class="needs-validation"  novalidate>
                 <div class="row">
+                    <!--Aqui siempre mando el nombre original del individual para poder hacer la edicion de manera efectiva-->
+                        <input type="hidden" class="form-control" value="${lema}" id="name" name="originalIndividualName" >
+
                     <div class="col-md-12 mb-3">
                         <label for="individualName">Lema</label>
                         <input type="text" class="form-control" value="${lema}" id="name" name="individualName" placeholder="Lema..."  required>

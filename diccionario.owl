@@ -857,18 +857,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#gallinero -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#gallinero">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
-        <untitled-ontology-2:definicion>Indica que cada quien manda solo donde le corresponde.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:frase_proverbial>cada gallo en su gallinero</untitled-ontology-2:frase_proverbial>
-        <untitled-ontology-2:marca_nivel_sociocultural>pop</untitled-ontology-2:marca_nivel_sociocultural>
-        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#globito -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#globito">

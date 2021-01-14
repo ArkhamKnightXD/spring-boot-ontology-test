@@ -63,7 +63,7 @@ public class OntologyRestController {
     @Operation(summary = "Create Individual", description = "Creacion de individual")
     public String createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam(required = false, defaultValue = "N/A") String example) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
+        ontologyService.saveIndividual(individualName, individualName, fatherClassName, definition, example);
 
         return "individual Saved";
     }
@@ -81,9 +81,9 @@ public class OntologyRestController {
 
     @PutMapping("/editIndividual")
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
-    public String editIndividual(@RequestParam(required = false) String individualName, @RequestParam(required = false) String fatherClassName, @RequestParam(required = false) String definition, @RequestParam(required = false) String example) {
+    public String editIndividual(@RequestParam("originalIndividualName") String originalIndividualName, @RequestParam(required = false) String individualName, @RequestParam(required = false) String fatherClassName, @RequestParam(required = false) String definition, @RequestParam(required = false) String example) {
 
-        ontologyService.saveIndividual(individualName, fatherClassName, definition, example);
+        ontologyService.saveIndividual(originalIndividualName, individualName, fatherClassName, definition, example);
 
         return "Individual Saved";
     }

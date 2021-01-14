@@ -1,7 +1,5 @@
 package arkham.knight.ontology;
 
-import arkham.knight.ontology.services.OntologyService;
-import org.apache.jena.ontology.Individual;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +14,14 @@ public class OntologyApplication {
     }
 
 
-    private void openHomePage() {
+    private void openIndexPage(boolean identifier) {
 
         Runtime runtime = Runtime.getRuntime();
         try {
-            runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/swagger.html");
+            if (identifier)
+                runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/words/");
+            else
+                runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/swagger.html");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,31 +29,12 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner run(OntologyService ontologyService) {
+    public CommandLineRunner Startup() {
         return args -> {
 
-            openHomePage();
+            openIndexPage(true);
 
-           // ontologyService.readOntologyFileAndReturnTheModel().write(System.out,"RDF/XML-ABBREV");
-
-          /*final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
-
-            for (Individual individual: ontologyService.getAllIndividualByName(ontologyService.getAllIndividualLocalName(),"text")) {
-
-                System.out.println(individual.getLocalName());
-            }
-
-            String string = "pancakes";
-
-            // Esta la implementacion en java del metodo like de sql
-            //En este caso al string se le debe de agregar .* que es el equivalente a % esto quiere decir que no importa las palabras demas que haya
-            String string2 = ".*panca.*";
-
-            //y con el metodo matches aqui hago las comparaciones
-            if (string.matches(string2)){
-
-                System.out.println(string);
-            }*/
+            openIndexPage(false);
         };
     }
 }
