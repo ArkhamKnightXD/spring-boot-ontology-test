@@ -592,6 +592,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1">
+        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba2"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -664,17 +678,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bosque">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">En el beisbol, zona del fondo del campo, más alejada del diamante.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#botada -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#botada">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Expulsión de alguien de un sitio.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
     </owl:NamedIndividual>
     
 
@@ -705,7 +709,6 @@
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zona rural habitada.</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Guzmán Memorias de un abogado 9 Fueron a vivir a Jayabo, el CAMPO donde nació toda mi familia.</untitled-ontology-2:ejemplo>
-        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
     </owl:NamedIndividual>
     
 
@@ -828,7 +831,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#envio">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Maleficio, maldición.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
     </owl:NamedIndividual>
     
 
@@ -885,7 +888,7 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#hartura">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Simple"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hartazgo, sensación de haber comido demasiado.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">f</untitled-ontology-2:marca_gramatical>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
     </owl:NamedIndividual>
     
 
@@ -1020,9 +1023,8 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#padecer">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
-        <untitled-ontology-2:definicion>Se usa para expresar contrariedad por la aparición de un inconveniente o un revés.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:frase_proverbial>ya empezó Cristo a padecer</untitled-ontology-2:frase_proverbial>
-        <untitled-ontology-2:marca_variacion_estilistica>col</untitled-ontology-2:marca_variacion_estilistica>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Se usa para expresar contrariedad por la aparición de un inconveniente o un revés.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
     </owl:NamedIndividual>
     
 
@@ -1056,6 +1058,16 @@
         <untitled-ontology-2:definicion>1. Vendedor callejero.
 2. Persona sin ocupación o sin trabajo.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definicion</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ejemplo</untitled-ontology-2:ejemplo>
     </owl:NamedIndividual>
     
 

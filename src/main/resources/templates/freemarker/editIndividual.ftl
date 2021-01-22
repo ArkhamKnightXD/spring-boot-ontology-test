@@ -42,18 +42,30 @@
 
                     </div>
 
+                    <div class="col-md-12 mb-3">
+                        <label for="individualNameRAE">Lema de la rae</label>
+                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae...">
+
+                    </div>
+
                         <div class="col-md-12 mb-3">
                             <label for="definition">Definicion</label>
-                            <input type="text" class="form-control" value="${definicion}" id="name" name="definition" placeholder="Definicion..."  required>
+                            <input type="text" class="form-control" value="${definicion}" id="definition" name="definition" placeholder="Definicion..."  required>
 
                         </div>
 
                     <#if ejemplo??>
                         <div class="col-md-12 mb-3">
                             <label for="ejemplo">Ejemplo</label>
-                            <input type="text" class="form-control" value="${ejemplo}" id="name" name="example" placeholder="Ejemplo..."  required>
+                            <input type="text" class="form-control" value="${ejemplo}" id="example" name="example" placeholder="Ejemplo..." >
                         </div>
                     </#if>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="synonyms">Sinonimos</label>
+                        <input type="text" class="form-control" id="synonyms" name="synonyms" placeholder="Sinonimo1, sinonimo2, etc..." >
+
+                    </div>
 
 
                     <div class="col-md-12 mb-3">

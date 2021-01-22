@@ -68,9 +68,9 @@ public class OntologyService {
         OWLClass classA = dataFactory.getOWLClass(IRI.create(ontologyIRI + className1));
         OWLClass classB = dataFactory.getOWLClass(IRI.create(ontologyIRI + className2));
 
-        OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(classA, classB);
+        OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA, classB);
 
-        //OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA,classB);
+        //OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(classA, classB);
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology,axiom);
 

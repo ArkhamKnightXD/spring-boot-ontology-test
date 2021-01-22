@@ -144,7 +144,7 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>${word.getLema()}</strong>
+                <strong>Lema original: ${word.getLema()}</strong>
             </h1>
         </section>
 
@@ -160,14 +160,15 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema</th>
+                            <th>Lema RAE</th>
                             <th>Definicion</th>
                             <th>Ejempo</th>
+                            <th>Sinonimos</th>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td><b>${word.getLema()}</b></td>
+                                    <td>N/A</td>
                                     <td>${word.getDefinicion()}</td>
 
                                     <#if word.getEjemplo()??>
@@ -175,6 +176,7 @@
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
+                                    <td>N/A</td>
                                 </tr>
                             </tbody>
 

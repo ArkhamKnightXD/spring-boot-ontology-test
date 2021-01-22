@@ -74,7 +74,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam("example") String example) {
+    public String create(@RequestParam() String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String fatherClassName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         ontologyService.saveIndividual(individualName, individualName, fatherClassName, definition, example);
 
@@ -83,7 +83,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
-    public String getIndividualByName(Model model, @RequestParam("individualName") String individualName)  {
+    public String getIndividualByName(Model model, @RequestParam() String individualName)  {
 
         String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
@@ -111,7 +111,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam("originalIndividualName") String originalIndividualName, @RequestParam("individualName") String individualName, @RequestParam("definition") String definition, @RequestParam("example") String example, @RequestParam("fatherClassName") String fatherClassName) {
+    public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String individualName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam() String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         ontologyService.saveIndividual(originalIndividualName, individualName, fatherClassName, definition, example);
 
@@ -120,7 +120,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
-    public String showIndividual(Model model, @RequestParam("lemma") String lemma) {
+    public String showIndividual(Model model, @RequestParam() String lemma) {
 
         model.addAttribute("word", wordService.getWordByLemma(lemma));
 
@@ -129,7 +129,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteIndividual(@RequestParam("individualName") String individualName) {
+    public String deleteIndividual(@RequestParam() String individualName) {
 
         ontologyService.deleteIndividual(individualName);
 

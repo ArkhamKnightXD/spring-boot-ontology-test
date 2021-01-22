@@ -163,7 +163,9 @@
 
                             <tr>
                                 <td>${individual.getOntClass().getLocalName()}</td>
-                                <td>${individual.getLocalName()}</td>
+
+                                <td><a href="/words/show?lemma=${individual.getLocalName()}"> ${individual.getLocalName()}</a></td>
+
                                 <td>
                                     <a href="/words/edition?individualName=${individual.getLocalName()}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
                                     <a href="/words/delete?individualName=${individual.getLocalName()}"> <i class="fa fa-trash" style="font-size:23px;color:#ff0000"></i> </a>

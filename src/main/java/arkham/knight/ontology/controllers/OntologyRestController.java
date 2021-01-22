@@ -45,7 +45,7 @@ public class OntologyRestController {
 
     @GetMapping("/getIndividual")
     @Operation(summary = "Get a individual by name", description = "Retornara el individual del lema indicado")
-    public ResponseEntity<Word> findIndividualByName(@RequestParam("individualName") String individualName) {
+    public ResponseEntity<Word> findIndividualByName(@RequestParam() String individualName) {
 
         return new ResponseEntity<>(wordService.getWordByLemma(individualName), HttpStatus.OK);
     }
@@ -53,7 +53,7 @@ public class OntologyRestController {
 
     @PostMapping("/createClass")
     @Operation(summary = "Create Class", description = "Creacion de clases padre y clase hijo")
-    public ResponseEntity<String> createClasses(@RequestParam("className") String className, @RequestParam("className2") String className2) {
+    public ResponseEntity<String> createClasses(@RequestParam() String className, @RequestParam() String className2) {
 
         ontologyService.saveClasses(className, className2);
 
@@ -63,9 +63,9 @@ public class OntologyRestController {
 
     @PostMapping("/createIndividual")
     @Operation(summary = "Create Individual", description = "Creacion de individual")
-    public ResponseEntity<String> createIndividual(@RequestParam("individualName") String individualName, @RequestParam("fatherClassName") String fatherClassName, @RequestParam("definition") String definition, @RequestParam(required = false, defaultValue = "N/A") String example) {
+    public ResponseEntity<String> createIndividual(@RequestParam() String fatherClassName, @RequestBody Word word) {
 
-        ontologyService.saveIndividual(individualName, individualName, fatherClassName, definition, example);
+        ontologyService.saveIndividual(word.getLema(), word.getLema(), fatherClassName, word.getDefinicion(), word.getEjemplo());
 
         return new ResponseEntity<>("individual Saved", HttpStatus.OK);
     }
@@ -73,7 +73,7 @@ public class OntologyRestController {
 
     @DeleteMapping("/deleteIndividual")
     @Operation(summary = "Delete Individual", description = "Elimina el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> deleteIndividual(@RequestParam("individualName") String individualName) {
+    public ResponseEntity<String> deleteIndividual(@RequestParam() String individualName) {
 
         ontologyService.deleteIndividual(individualName);
 
@@ -83,7 +83,10 @@ public class OntologyRestController {
 
     @PutMapping("/editIndividual")
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> editIndividual(@RequestParam("originalIndividualName") String originalIndividualName, @RequestParam(required = false) String individualName, @RequestParam(required = false) String fatherClassName, @RequestParam(required = false) String definition, @RequestParam(required = false) String example) {
+    public ResponseEntity<String> editIndividual(@RequestParam() String originalIndividualName, @RequestParam(required = false) String individualName, @RequestParam(required = false) String fatherClassName, @RequestParam(required = false) String definition, @RequestParam(required = false) String example) {
+
+        //tengo que ver como poner a funcionar correctamente este edit
+        Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
 
         ontologyService.saveIndividual(originalIndividualName, individualName, fatherClassName, definition, example);
 
