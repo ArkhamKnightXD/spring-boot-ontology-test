@@ -60,17 +60,17 @@ public class OntologyService {
     }
 
 
-    public void saveClasses(String className1, String className2) {
+    public void saveClasses(String fatherClassName, String subClassName) {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
-        OWLClass classA = dataFactory.getOWLClass(IRI.create(ontologyIRI + className1));
-        OWLClass classB = dataFactory.getOWLClass(IRI.create(ontologyIRI + className2));
+        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + fatherClassName));
+        OWLClass subClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + subClassName));
 
-        OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA, classB);
+       // OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA, classB);
 
-        //OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(classA, classB);
+        OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(fatherClass, subClass);
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology,axiom);
 
@@ -205,6 +205,9 @@ public class OntologyService {
 
             if (individual.getLocalName()!= null)
                 wordToSave.setLema(individual.getLocalName());
+
+            if (individual.getOntClass() != null)
+                wordToSave.setClasePadre(individual.getOntClass().getLocalName());
 
             RDFNode definitionPropertyValue = individual.getPropertyValue(definition);
 

@@ -32,7 +32,7 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner Startup() {
+    public CommandLineRunner startup() {
         return args -> {
 
             openIndexPage(true);

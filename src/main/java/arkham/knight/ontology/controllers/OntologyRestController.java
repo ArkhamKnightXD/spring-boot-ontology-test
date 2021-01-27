@@ -31,7 +31,17 @@ public class OntologyRestController {
     private WordService wordService;
 
 
-    @GetMapping("/getAllIndividuals")
+    @GetMapping("/getAllWords")
+    @Operation(summary = "Get All Words", description = "Retorna las distintas palabras almacenadas en la ontologia")
+    public ResponseEntity<List<Word>> getAllWords() {
+
+        List<Word> wordList = wordService.getAllWords();
+
+        return new ResponseEntity<>(wordList, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/search")
     @Operation(summary = "Get All Individuals Properties By Name", description = "Buscara las distintas palabras dominicanas de cualquier oracion que se digite")
     public ResponseEntity<List<Word>> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
@@ -53,9 +63,9 @@ public class OntologyRestController {
 
     @PostMapping("/createClass")
     @Operation(summary = "Create Class", description = "Creacion de clases padre y clase hijo")
-    public ResponseEntity<String> createClasses(@RequestParam() String className, @RequestParam() String className2) {
+    public ResponseEntity<String> createClasses(@RequestParam() String fatherClassName, @RequestParam() String subClassName) {
 
-        ontologyService.saveClasses(className, className2);
+        ontologyService.saveClasses(fatherClassName, subClassName);
 
         return new ResponseEntity<>("classes Saved", HttpStatus.OK) ;
     }
@@ -63,9 +73,9 @@ public class OntologyRestController {
 
     @PostMapping("/createIndividual")
     @Operation(summary = "Create Individual", description = "Creacion de individual")
-    public ResponseEntity<String> createIndividual(@RequestParam() String fatherClassName, @RequestBody Word word) {
+    public ResponseEntity<String> createIndividual(@RequestBody Word word) {
 
-        ontologyService.saveIndividual(word.getLema(), word.getLema(), fatherClassName, word.getDefinicion(), word.getEjemplo());
+        ontologyService.saveIndividual(word.getLema(), word.getLema(), word.getClasePadre(), word.getDefinicion(), word.getEjemplo());
 
         return new ResponseEntity<>("individual Saved", HttpStatus.OK);
     }
@@ -83,19 +93,30 @@ public class OntologyRestController {
 
     @PutMapping("/editIndividual")
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> editIndividual(@RequestParam() String originalIndividualName, @RequestParam(required = false) String individualName, @RequestParam(required = false) String fatherClassName, @RequestParam(required = false) String definition, @RequestParam(required = false) String example) {
+    public ResponseEntity<String> editIndividual(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example) {
 
-        //tengo que ver como poner a funcionar correctamente este edit
         Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
 
-        ontologyService.saveIndividual(originalIndividualName, individualName, fatherClassName, definition, example);
+        if (individualName.length() != 0)
+            wordToEdit.setLema(individualName);
+
+        if (definition.length() !=0)
+            wordToEdit.setDefinicion(definition);
+
+        if (example.length() != 0)
+            wordToEdit.setEjemplo(example);
+
+        if (fatherClassName.length() != 0)
+            wordToEdit.setClasePadre(fatherClassName);
+
+        ontologyService.saveIndividual(originalIndividualName, wordToEdit.getLema(), wordToEdit.getClasePadre(), wordToEdit.getDefinicion(), wordToEdit.getEjemplo());
 
         return new ResponseEntity<>("individual Saved", HttpStatus.OK);
     }
 
 
-    @GetMapping("/individuals")
-    @Operation(summary = "Get Individuals", description = "Retorna una lista con todos los individuales")
+    @GetMapping("/getAllIndividuals")
+    @Operation(summary = "Get All Individuals", description = "Retorna una lista con todas las individuales")
     public ResponseEntity<List<HashMap<String, String>>> getIndividuals() {
 
         List<HashMap<String, String>> individualList = new ArrayList<>();
@@ -120,7 +141,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/classes")
-    @Operation(summary = "Get Classes", description = "Retorna una lista con todas las clases")
+    @Operation(summary = "Get All Classes", description = "Retorna una lista con todas las clases")
     public ResponseEntity<List<HashMap<String, String>>> getClasses() {
 
         List<HashMap<String, String>> classList = new ArrayList<>();

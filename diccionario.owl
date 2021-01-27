@@ -592,20 +592,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1">
-        <owl:equivalentClass rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba2"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba2 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba2"/>
-    
-
-
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1058,16 +1044,6 @@
         <untitled-ontology-2:definicion>1. Vendedor callejero.
 2. Persona sin ocupación o sin trabajo.</untitled-ontology-2:definicion>
         <untitled-ontology-2:marca_gramatical rdf:datatype="http://www.w3.org/2001/XMLSchema#string">m</untitled-ontology-2:marca_gramatical>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definicion</untitled-ontology-2:definicion>
-        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ejemplo</untitled-ontology-2:ejemplo>
     </owl:NamedIndividual>
     
 

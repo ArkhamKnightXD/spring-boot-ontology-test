@@ -7,6 +7,7 @@ public class Word {
     private String lema;
     private String definicion;
     private String ejemplo;
+    private String clasePadre;
     private List<String> sinonimos;
     private String lemaRAE;
 
@@ -36,6 +37,10 @@ public class Word {
     public void setEjemplo(String ejemplo) {
         this.ejemplo = ejemplo;
     }
+
+    public String getClasePadre() { return clasePadre; }
+
+    public void setClasePadre(String clasePadre) { this.clasePadre = clasePadre; }
 
     public List<String> getSinonimos() { return sinonimos; }
 

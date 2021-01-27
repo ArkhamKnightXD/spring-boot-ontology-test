@@ -44,18 +44,26 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/individuals", method = RequestMethod.GET)
-    public String showAllIndividuals(Model model) {
+    public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence, @RequestParam(defaultValue = "word-search") String searchType) {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+        if (sentence.length() !=0){
 
+            List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
+            individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
+        }
 
-        while (individualsIterator.hasNext()) {
+        else{
 
-            Individual individual = individualsIterator.next();
+            Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
 
-            individualList.add(individual);
+            while (individualsIterator.hasNext()) {
+
+                Individual individual = individualsIterator.next();
+
+                individualList.add(individual);
+            }
         }
 
         model.addAttribute("individuals", individualList);

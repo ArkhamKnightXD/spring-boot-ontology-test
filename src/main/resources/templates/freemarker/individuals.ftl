@@ -133,6 +133,9 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <form action="/words/individuals">
+            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
+        </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
@@ -172,7 +175,9 @@
                                 </td>
                             </tr>
                             </#list>
+
                         </table>
+
 
                     </div>
                 </div>
@@ -206,6 +211,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
+
+
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
