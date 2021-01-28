@@ -41,6 +41,14 @@ public class OntologyRestController {
     }
 
 
+    @GetMapping("/getAllWordsByClassName")
+    @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las individuales de la clase indicada")
+    public ResponseEntity<List<Word>> getAllIndividualsByClasses(@RequestParam() String fatherClassName) {
+
+        return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);
+    }
+
+
     @GetMapping("/search")
     @Operation(summary = "Get All Individuals Properties By Name", description = "Buscara las distintas palabras dominicanas de cualquier oracion que se digite")
     public ResponseEntity<List<Word>> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
@@ -54,7 +62,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/getIndividual")
-    @Operation(summary = "Get a individual by name", description = "Retornara el individual del lema indicado")
+    @Operation(summary = "Get A Individual By Name", description = "Retornara el individual del lema indicado")
     public ResponseEntity<Word> findIndividualByName(@RequestParam() String individualName) {
 
         return new ResponseEntity<>(wordService.getWordByLemma(individualName), HttpStatus.OK);
@@ -65,7 +73,7 @@ public class OntologyRestController {
     @Operation(summary = "Create Class", description = "Creacion de clases padre y clase hijo")
     public ResponseEntity<String> createClasses(@RequestParam() String fatherClassName, @RequestParam() String subClassName) {
 
-        ontologyService.saveClasses(fatherClassName, subClassName);
+        ontologyService.saveFatherClassAndSubClass(fatherClassName, subClassName);
 
         return new ResponseEntity<>("classes Saved", HttpStatus.OK) ;
     }

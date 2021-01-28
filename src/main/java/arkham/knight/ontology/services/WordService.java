@@ -23,6 +23,14 @@ public class WordService {
     }
 
 
+    public List<Word> getAllWordsByFatherClassName(String fatherClassName){
+
+        List<Individual> individualList = ontologyService.getAllIndividualsByFatherClassName(fatherClassName);
+
+        return ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
+    }
+
+
     public Word getWordByLemma(String lemma){
 
         for (Word wordToFind: getAllWords()) {

@@ -60,7 +60,25 @@ public class OntologyService {
     }
 
 
-    public void saveClasses(String fatherClassName, String subClassName) {
+    public List<Individual> getAllIndividualsByFatherClassName(String fatherClassName){
+
+        List<Individual> individualList = new ArrayList<>();
+
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+
+        while (individualsIterator.hasNext()) {
+
+            Individual individual = individualsIterator.next();
+
+            if (individual.getOntClass().getLocalName().equalsIgnoreCase(fatherClassName))
+                individualList.add(individual);
+        }
+
+        return individualList;
+    }
+
+
+    public void saveFatherClassAndSubClass(String fatherClassName, String subClassName) {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
