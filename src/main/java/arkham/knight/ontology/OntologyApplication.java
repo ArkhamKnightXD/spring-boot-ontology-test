@@ -1,11 +1,14 @@
 package arkham.knight.ontology;
 
+import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.services.DRAEConnectionService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
 @SpringBootApplication
@@ -32,8 +35,15 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup() {
+    public CommandLineRunner startup(RestTemplate restTemplate, DRAEConnectionService DRAEConnectionService) {
         return args -> {
+
+//            DRAEObject[] test = DRAEConnectionService.saveWordDataInAObject(restTemplate,"gato");
+//
+//            for (DRAEObject object: test) {
+//
+//                System.out.println(object.toString());
+//            }
 
             openIndexPage(true);
 

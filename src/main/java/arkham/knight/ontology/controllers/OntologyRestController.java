@@ -1,6 +1,8 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.models.Word;
+import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -29,6 +32,22 @@ public class OntologyRestController {
 
     @Autowired
     private WordService wordService;
+
+    @Autowired
+    private DRAEConnectionService draeConnectionService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+
+    @GetMapping("/search-DRAE")
+    @Operation(summary = "Search For Any Word In The DRAE Endpoint", description = "Retorna la definicion de una palabra con respecto al diccionario de la RAE")
+    public ResponseEntity<DRAEObject[]> searchWordDRAEAPI(@RequestParam() String wordToSearch) {
+
+        DRAEObject[] wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
+
+        return new ResponseEntity<>(wordsResponse, HttpStatus.OK);
+    }
 
 
     @GetMapping("/getAllWords")
