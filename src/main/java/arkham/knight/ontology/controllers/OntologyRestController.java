@@ -70,7 +70,7 @@ public class OntologyRestController {
 
     @GetMapping("/search")
     @Operation(summary = "Get All Individuals Properties By Name", description = "Buscara las distintas palabras dominicanas de cualquier oracion que se digite")
-    public ResponseEntity<List<Word>> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "morirsoñando") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
+    public ResponseEntity<List<Word>> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
         List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
 
@@ -102,7 +102,7 @@ public class OntologyRestController {
     @Operation(summary = "Create Individual", description = "Creacion de individual")
     public ResponseEntity<String> createIndividual(@RequestBody Word word) {
 
-        ontologyService.saveIndividual(word.getLema(), word.getLema(), word.getClasePadre(), word.getDefinicion(), word.getEjemplo());
+        ontologyService.saveIndividual(word.getLema(), word.getLema(), word.getClasePadre(), word.getDefinicion(), word.getEjemplo(), word.getLemaRAE(), word.getSinonimos());
 
         return new ResponseEntity<>("individual Saved", HttpStatus.OK);
     }
@@ -120,7 +120,7 @@ public class OntologyRestController {
 
     @PutMapping("/editIndividual")
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> editIndividual(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example) {
+    public ResponseEntity<String> editIndividual(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
 
         Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
 
@@ -136,7 +136,13 @@ public class OntologyRestController {
         if (fatherClassName.length() != 0)
             wordToEdit.setClasePadre(fatherClassName);
 
-        ontologyService.saveIndividual(originalIndividualName, wordToEdit.getLema(), wordToEdit.getClasePadre(), wordToEdit.getDefinicion(), wordToEdit.getEjemplo());
+        if (individualNameRAE.length() != 0)
+            wordToEdit.setLemaRAE(individualNameRAE);
+
+        if (synonyms.length() != 0)
+            wordToEdit.setSinonimos(synonyms);
+
+        ontologyService.saveIndividual(originalIndividualName, wordToEdit.getLema(), wordToEdit.getClasePadre(), wordToEdit.getDefinicion(), wordToEdit.getEjemplo(), wordToEdit.getLemaRAE(), wordToEdit.getSinonimos());
 
         return new ResponseEntity<>("individual Saved", HttpStatus.OK);
     }
@@ -196,7 +202,7 @@ public class OntologyRestController {
     @Operation(summary = "Get Ontology Data", description = "Retorna datos de la ontologia")
     public ResponseEntity<String> getOntology() {
 
-        return new ResponseEntity<>(ontologyConnectionService.getOntologyURI(), HttpStatus.OK);
+        return new ResponseEntity<>(ontologyConnectionService.ontologyURI, HttpStatus.OK);
     }
 
 

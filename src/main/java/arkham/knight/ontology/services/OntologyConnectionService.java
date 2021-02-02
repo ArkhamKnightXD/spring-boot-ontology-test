@@ -35,27 +35,32 @@ public class OntologyConnectionService {
         return model;
     }
 
-    public String getOntologyURI(){
+    private Ontology getOntology(){
 
-        String ontologyUri = "";
+        Ontology ontology = null;
 
         Iterator<Ontology> ontologyIterator = readOntologyFileAndReturnTheModel().listOntologies();
 
         while (ontologyIterator.hasNext()) {
 
-            Ontology ontology = ontologyIterator.next();
+            ontology = ontologyIterator.next();
 
-            ontologyUri = ontology.getURI() + "#";
         }
 
-        return ontologyUri;
+        return ontology;
     }
 
-    public final String ontologyURI = getOntologyURI();
+
+    public final String ontologyURI = getOntology().getURI().concat("#");
 
     public final String definitionURI = ontologyURI.concat("definicion");
 
     public final String exampleURI = ontologyURI.concat("ejemplo");
+
+    public final String lemmaRAEURI = ontologyURI.concat("lema_rae");
+
+    public final String synonymsURI = ontologyURI.concat("sinonimos");
+
 
     public void saveOntologyFile(OWLOntology ontology){
 
@@ -71,6 +76,7 @@ public class OntologyConnectionService {
         // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
         ontologyManager.removeOntology(ontology);
     }
+
 
     public OWLOntology loadTheOntologyOwlAPI(){
 

@@ -38,9 +38,7 @@ public class OntologyApplication {
     public CommandLineRunner startup(RestTemplate restTemplate, DRAEConnectionService DRAEConnectionService) {
         return args -> {
 
-//            DRAEObject[] test = DRAEConnectionService.saveWordDataInAObject(restTemplate,"gato");
-//
-//            for (DRAEObject object: test) {
+//            for (DRAEObject object: DRAEConnectionService.getTheWordDataFromDRAE(restTemplate,"gato")) {
 //
 //                System.out.println(object.toString());
 //            }

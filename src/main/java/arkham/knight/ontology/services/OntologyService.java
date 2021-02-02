@@ -96,7 +96,7 @@ public class OntologyService {
     }
 
 
-    public void saveIndividual(String originalIndividualName, String individualName, String fatherClassName, String definition, String example) {
+    public void saveIndividual(String originalIndividualName, String individualName, String fatherClassName, String definition, String example, String lemmaRAE, String synonyms) {
 
         deleteIndividual(originalIndividualName);
 
@@ -111,31 +111,48 @@ public class OntologyService {
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
-        saveIndividualProperties(ontology, individual, definition, example);
+        saveIndividualProperties(ontology, individual, definition, example, lemmaRAE, synonyms);
 
         ontologyConnectionService.saveOntologyFile(ontology);
     }
 
 
-    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example) {
+    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example, String lemmaRAE, String synonyms) {
 
         IRI dataTypePropertyIRI = IRI.create(ontologyIRI +"definicion");
 
         IRI dataTypePropertyExampleIRI = IRI.create(ontologyIRI +"ejemplo");
+
+        IRI dataTypePropertyLemmaRAEIRI = IRI.create(ontologyIRI +"lema_rae");
+
+        IRI dataTypePropertySynonymsIRI = IRI.create(ontologyIRI +"sinonimos");
 
 
         OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(dataTypePropertyIRI);
 
         OWLDataProperty exampleDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyExampleIRI);
 
-        OWLDataPropertyAssertionAxiom axiom = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, definition);
+        OWLDataProperty lemmaRAEDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyLemmaRAEIRI);
+
+        OWLDataProperty synonymsDataProperty = dataFactory.getOWLDataProperty(dataTypePropertySynonymsIRI);
+
+
+        OWLDataPropertyAssertionAxiom axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, definition);
 
         OWLDataPropertyAssertionAxiom axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, example);
 
+        OWLDataPropertyAssertionAxiom axiomLemmaRAE = dataFactory.getOWLDataPropertyAssertionAxiom(lemmaRAEDataProperty, individual, lemmaRAE);
 
-        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
+        OWLDataPropertyAssertionAxiom axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, synonyms);
+
+
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomDefinition);
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomExample);
+
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomLemmaRAE);
+
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomSynonyms);
     }
 
 
@@ -216,6 +233,10 @@ public class OntologyService {
 
         Property example = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.exampleURI);
 
+        Property lemmaRAE = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.lemmaRAEURI);
+
+        Property synonyms = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.synonymsURI);
+
 
         for (Individual individual: individualList) {
 
@@ -236,6 +257,16 @@ public class OntologyService {
 
             if (examplePropertyValue!= null)
                 wordToSave.setEjemplo(examplePropertyValue.toString());
+
+            RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(lemmaRAE);
+
+            if (lemmaRAEPropertyValue!= null)
+                wordToSave.setLemaRAE(lemmaRAEPropertyValue.toString());
+
+            RDFNode synonymsPropertyValue = individual.getPropertyValue(synonyms);
+
+            if (synonymsPropertyValue != null)
+                wordToSave.setSinonimos(synonymsPropertyValue.toString());
 
             wordList.add(wordToSave);
         }

@@ -1,14 +1,12 @@
 package arkham.knight.ontology.models;
 
-import java.util.List;
-
 public class Word {
 
     private String lema;
     private String definicion;
     private String ejemplo;
     private String clasePadre;
-    private List<String> sinonimos;
+    private String sinonimos;
     private String lemaRAE;
 
 
@@ -42,9 +40,9 @@ public class Word {
 
     public void setClasePadre(String clasePadre) { this.clasePadre = clasePadre; }
 
-    public List<String> getSinonimos() { return sinonimos; }
+    public String getSinonimos() { return sinonimos; }
 
-    public void setSinonimos(List<String> sinonimos) { this.sinonimos = sinonimos; }
+    public void setSinonimos(String sinonimos) { this.sinonimos = sinonimos; }
 
     public String getLemaRAE() { return lemaRAE; }
 

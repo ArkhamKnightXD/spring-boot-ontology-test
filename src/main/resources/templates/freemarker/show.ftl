@@ -168,7 +168,13 @@
 
                             <tbody>
                                 <tr>
-                                    <td>N/A</td>
+
+                                    <#if word.getLemaRAE()??>
+                                        <td>${word.getLemaRAE()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
                                     <td>${word.getDefinicion()}</td>
 
                                     <#if word.getEjemplo()??>
@@ -176,7 +182,13 @@
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
-                                    <td>N/A</td>
+
+                                    <#if word.getSinonimos()??>
+                                        <td>${word.getSinonimos()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
                                 </tr>
                             </tbody>
 
