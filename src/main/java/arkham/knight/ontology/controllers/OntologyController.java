@@ -1,5 +1,7 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
@@ -12,7 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -29,6 +34,12 @@ public class OntologyController {
     @Autowired
     private WordService wordService;
 
+    @Autowired
+    private DRAEConnectionService draeConnectionService;
+
+    @Autowired
+    private RestTemplate restTemplate;
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "morirsoñando") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
@@ -40,6 +51,17 @@ public class OntologyController {
         model.addAttribute("words", ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList));
 
         return "/freemarker/summary";
+    }
+
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String searchPageDRAE(Model model, @RequestParam(defaultValue = "diccionario") String sentence) {
+
+        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, sentence);
+
+        model.addAttribute("words", wordList);
+
+        return "/freemarker/searchDRAE";
     }
 
 

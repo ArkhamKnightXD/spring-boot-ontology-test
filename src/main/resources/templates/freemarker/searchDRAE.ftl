@@ -32,7 +32,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="/words/" class="logo">
+        <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>PI</span>
             <!-- logo for regular state and mobile devices -->
@@ -121,7 +121,8 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="#"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
                         <span class="pull-right-container">
@@ -140,11 +141,14 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <form action="/words/search">
+            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
+        </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Lema original: ${word.getLema()}</strong>
+                <strong>Resultados</strong>
             </h1>
         </section>
 
@@ -160,25 +164,21 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema RAE</th>
-                            <th>Definicion</th>
-                            <th>Ejempo</th>
-                            <th>Sinonimos</th>
+                            <th>Lema</th>
+                            <th>Etimologia</th>
                             </thead>
 
                             <tbody>
+                            <#list words as word >
                                 <tr>
-                                    <td>N/A</td>
-                                    <td>${word.getDefinicion()}</td>
+                                    <td><a href="/words/show?lemma=${word.getWord()}"><b>${word.getWord()}</b></a></td>
 
-                                    <#if word.getEjemplo()??>
-                                        <td>${word.getEjemplo()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
-                                    <td>N/A</td>
+                                    <td>${word.getEtymology()}</td>
+
                                 </tr>
+                            </#list>
                             </tbody>
+
 
                         </table>
 

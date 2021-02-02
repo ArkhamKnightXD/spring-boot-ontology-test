@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class DRAEConnectionService {
@@ -18,7 +21,7 @@ public class DRAEConnectionService {
     }
 
 
-    public DRAEObject[] getTheWordDataFromDRAE(RestTemplate restTemplate, String wordToSearch){
+    public List<DRAEObject> getTheWordDataFromDRAE(RestTemplate restTemplate, String wordToSearch){
 
         String searchLink = "http://localhost:4000/api/"+wordToSearch;
 
@@ -30,6 +33,6 @@ public class DRAEConnectionService {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        return gson.fromJson(wordDataString, DRAEObject[].class);
+        return new ArrayList<>(Arrays.asList(gson.fromJson(wordDataString, DRAEObject[].class)));
     }
 }

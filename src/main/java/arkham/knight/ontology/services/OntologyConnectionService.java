@@ -2,6 +2,7 @@ package arkham.knight.ontology.services;
 
 import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.Ontology;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
@@ -9,36 +10,14 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Iterator;
 
 @Service
 public class OntologyConnectionService {
 
     public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
-    public final String ontologyURI = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
-
-    public final String definitionURI = ontologyURI.concat("definicion");
-
-    public final String exampleURI = ontologyURI.concat("ejemplo");
-
     private final File ontologyFile = new File("diccionario.owl");
-
-
-    public void saveOntologyFile(OWLOntology ontology){
-
-        IRI ontologySaveIRI = IRI.create(ontologyFile);
-
-        try {
-            // save in RDF/XML
-            ontologyManager.saveOntology(ontology, ontologySaveIRI);
-        } catch (OWLOntologyStorageException e) {
-            e.printStackTrace();
-        }
-
-        // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
-        ontologyManager.removeOntology(ontology);
-    }
-
 
     public OntModel readOntologyFileAndReturnTheModel() {
 
@@ -56,6 +35,42 @@ public class OntologyConnectionService {
         return model;
     }
 
+    public String getOntologyURI(){
+
+        String ontologyUri = "";
+
+        Iterator<Ontology> ontologyIterator = readOntologyFileAndReturnTheModel().listOntologies();
+
+        while (ontologyIterator.hasNext()) {
+
+            Ontology ontology = ontologyIterator.next();
+
+            ontologyUri = ontology.getURI() + "#";
+        }
+
+        return ontologyUri;
+    }
+
+    public final String ontologyURI = getOntologyURI();
+
+    public final String definitionURI = ontologyURI.concat("definicion");
+
+    public final String exampleURI = ontologyURI.concat("ejemplo");
+
+    public void saveOntologyFile(OWLOntology ontology){
+
+        IRI ontologySaveIRI = IRI.create(ontologyFile);
+
+        try {
+            // save in RDF/XML
+            ontologyManager.saveOntology(ontology, ontologySaveIRI);
+        } catch (OWLOntologyStorageException e) {
+            e.printStackTrace();
+        }
+
+        // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
+        ontologyManager.removeOntology(ontology);
+    }
 
     public OWLOntology loadTheOntologyOwlAPI(){
 

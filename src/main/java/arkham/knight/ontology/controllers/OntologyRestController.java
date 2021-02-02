@@ -42,9 +42,9 @@ public class OntologyRestController {
 
     @GetMapping("/search-DRAE")
     @Operation(summary = "Search For Any Word In The DRAE Endpoint", description = "Retorna la definicion de una palabra con respecto al diccionario de la RAE")
-    public ResponseEntity<DRAEObject[]> searchWordDRAEAPI(@RequestParam() String wordToSearch) {
+    public ResponseEntity<List<DRAEObject>> searchWordDRAEAPI(@RequestParam() String wordToSearch) {
 
-        DRAEObject[] wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
+        List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
 
         return new ResponseEntity<>(wordsResponse, HttpStatus.OK);
     }
@@ -189,6 +189,14 @@ public class OntologyRestController {
         }
 
         return new ResponseEntity<>(classList, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/ontology")
+    @Operation(summary = "Get Ontology Data", description = "Retorna datos de la ontologia")
+    public ResponseEntity<String> getOntology() {
+
+        return new ResponseEntity<>(ontologyConnectionService.getOntologyURI(), HttpStatus.OK);
     }
 
 
