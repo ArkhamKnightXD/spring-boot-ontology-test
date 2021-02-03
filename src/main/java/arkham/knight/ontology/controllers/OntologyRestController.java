@@ -200,9 +200,16 @@ public class OntologyRestController {
 
     @GetMapping("/ontology")
     @Operation(summary = "Get Ontology Data", description = "Retorna datos de la ontologia")
-    public ResponseEntity<String> getOntology() {
+    public ResponseEntity<HashMap<String, String>> getOntology() {
 
-        return new ResponseEntity<>(ontologyConnectionService.ontologyURI, HttpStatus.OK);
+        HashMap<String, String> ontologyData = new HashMap<>();
+
+        ontologyData.put("name",ontologyConnectionService.getOntology().getLocalName());
+        ontologyData.put("uri",ontologyConnectionService.getOntology().getURI());
+        ontologyData.put("namespace",ontologyConnectionService.getOntology().getNameSpace());
+        ontologyData.put("version",ontologyConnectionService.getOntology().getVersionInfo());
+
+        return new ResponseEntity<>(ontologyData, HttpStatus.OK);
     }
 
 

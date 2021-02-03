@@ -27,12 +27,10 @@ public class DRAEConnectionService {
 
         ResponseEntity<String> responseEntityDRAE = restTemplate.getForEntity(searchLink, String.class);
 
-        String wordDataString = responseEntityDRAE.getBody();
-
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        return new ArrayList<>(Arrays.asList(gson.fromJson(wordDataString, DRAEObject[].class)));
+        return new ArrayList<>(Arrays.asList(gson.fromJson(responseEntityDRAE.getBody(), DRAEObject[].class)));
     }
 }

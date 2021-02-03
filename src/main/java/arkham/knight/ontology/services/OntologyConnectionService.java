@@ -35,7 +35,7 @@ public class OntologyConnectionService {
         return model;
     }
 
-    private Ontology getOntology(){
+    public Ontology getOntology(){
 
         Ontology ontology = null;
 
