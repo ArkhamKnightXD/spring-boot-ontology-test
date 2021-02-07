@@ -71,7 +71,7 @@ class OntologyApplicationTests {
 
         String response = ontologyService.saveFatherClassAndSubClass("test1", "test2");
 
-        assertEquals("Classes Saved1", response);
+        assertEquals("Classes Saved", response);
     }
 
 
