@@ -43,9 +43,9 @@ public class OntologyApplication {
 //                System.out.println(object.toString());
 //            }
 
-            openIndexPage(true);
+        //    openIndexPage(true);
 
-            openIndexPage(false);
+        //    openIndexPage(false);
         };
     }
 }

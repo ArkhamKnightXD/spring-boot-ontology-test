@@ -92,19 +92,19 @@ public class OntologyRestController {
     @Operation(summary = "Create Class", description = "Creacion de clases padre y clase hijo")
     public ResponseEntity<String> createClasses(@RequestParam() String fatherClassName, @RequestParam() String subClassName) {
 
-        ontologyService.saveFatherClassAndSubClass(fatherClassName, subClassName);
+        String response = ontologyService.saveFatherClassAndSubClass(fatherClassName, subClassName);
 
-        return new ResponseEntity<>("classes Saved", HttpStatus.OK) ;
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
     @PostMapping("/createIndividual")
     @Operation(summary = "Create Individual", description = "Creacion de individual")
-    public ResponseEntity<String> createIndividual(@RequestBody Word word) {
+    public ResponseEntity<String> createIndividual(@RequestBody Word wordToSave) {
 
-        ontologyService.saveIndividual(word.getLema(), word.getLema(), word.getClasePadre(), word.getDefinicion(), word.getEjemplo(), word.getLemaRAE(), word.getSinonimos());
+        String response = ontologyService.saveIndividual(wordToSave.getLema(), wordToSave);
 
-        return new ResponseEntity<>("individual Saved", HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
@@ -112,7 +112,10 @@ public class OntologyRestController {
     @Operation(summary = "Delete Individual", description = "Elimina el individual cuyo nombre sea especificado")
     public ResponseEntity<String> deleteIndividual(@RequestParam() String individualName) {
 
-        ontologyService.deleteIndividual(individualName);
+        boolean response = ontologyService.deleteIndividual(individualName);
+
+        if (!response)
+            return new  ResponseEntity<>("Individual Not Found", HttpStatus.NOT_FOUND);
 
         return new  ResponseEntity<>("Individual Deleted", HttpStatus.OK);
     }
@@ -142,9 +145,9 @@ public class OntologyRestController {
         if (synonyms.length() != 0)
             wordToEdit.setSinonimos(synonyms);
 
-        ontologyService.saveIndividual(originalIndividualName, wordToEdit.getLema(), wordToEdit.getClasePadre(), wordToEdit.getDefinicion(), wordToEdit.getEjemplo(), wordToEdit.getLemaRAE(), wordToEdit.getSinonimos());
+        String response = ontologyService.saveIndividual(originalIndividualName, wordToEdit);
 
-        return new ResponseEntity<>("individual Saved", HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

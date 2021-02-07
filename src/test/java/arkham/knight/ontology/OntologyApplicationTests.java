@@ -1,50 +1,143 @@
 package arkham.knight.ontology;
 
+import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.models.Word;
+import arkham.knight.ontology.services.DRAEConnectionService;
+import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class OntologyApplicationTests {
 
-   /* @Test
-    void testTweetSearch(OntologyService ontologyService) {
+    @Autowired
+    DRAEConnectionService draeConnectionService;
 
-         //print the ontology
-        //ontologyService.readOntologyFileAndReturnTheModel().write(System.out,"RDF/XML-ABBREV");
+    @Autowired
+    OntologyService ontologyService;
 
-       final String textExample = "Yo soy un jornalero que esperaba beber un morirsoñando em el entretiempo para despues ponerme a motoconchar echadías";
+    @Autowired
+    WordService wordService;
 
-        for (Individual individual: ontologyService.getAllIndividualByName(ontologyService.getAllIndividualLocalName(),"text")) {
+    @Autowired
+    OntologyConnectionService ontologyConnectionService;
 
-            System.out.println(individual.getLocalName());
-        }
+    @Autowired
+    RestTemplate restTemplate;
 
-        //mientras tanto este test estara asi
-        assertEquals(true, true);
-    }*/
+    final String testLemma = "prueba";
+
+
+//    @Test
+//    void testDRAESearch() {
+//
+//        String wordExpected = "diccionario";
+//
+//        String wordFound = "";
+//
+//        List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordExpected);
+//
+//        for (DRAEObject word: wordsResponse) {
+//
+//            wordFound =  word.getWord();
+//        }
+//
+//        assertEquals(wordExpected ,wordFound);
+//    }
 
 
     @Test
-    public void testStringComparator(){
+    void testGetOntologyData() {
 
-        boolean comparator = false;
-        String string = "pancakes";
+        String response = ontologyConnectionService.getOntology().getURI().concat("#");
 
-        // Esta la implementacion en java del metodo like de sql
-        //En este caso al string se le debe de agregar .* que es el equivalente a % esto quiere decir que no importa las palabras demas que haya
-        String string2 = ".*panca.*";
+        String expectedResponse = ontologyConnectionService.ontologyURI;
 
-        //y con el metodo matches aqui hago las comparaciones
-        if (string.matches(string2)){
+        assertEquals(expectedResponse, response);
+    }
 
-            comparator = true;
+
+    @Test
+    void testClassesCreation() {
+
+        String response = ontologyService.saveFatherClassAndSubClass("test1", "test2");
+
+        assertEquals("Classes Saved", response);
+    }
+
+
+    @Test
+    void testTweetSearch() {
+
+        String individualTestName = "";
+
+        final String textExample = "soy un bobolongo que come yuca";
+
+        List<String> sentenceByWords = ontologyService.tokenizeTheSentence(textExample);
+
+        List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, "tweet-search");
+
+        for (Individual individual: individualList) {
+
+            individualTestName =  individual.getLocalName();
         }
 
-        //siempre y cuando sea true este test no fallara
-        assertTrue(comparator);
+        assertEquals("bobolongo", individualTestName);
+    }
+
+
+    @Test
+    void testIndividualCreation() {
+
+        Word wordToSave = new Word(testLemma, "definition", "example", "fatherClassName", "synonyms", "individualNameRAE");
+
+        String response = ontologyService.saveIndividual(testLemma, wordToSave);
+
+        assertEquals("Individual Saved", response);
+    }
+
+
+    @Test
+    void testGetWordByLemma() {
+
+        Word response = wordService.getWordByLemma(testLemma);
+
+        assertEquals(testLemma, response.getLema());
+    }
+
+
+    @Test
+    void testGetAllWords() {
+
+        List<Word> response = wordService.getAllWords();
+
+        assertFalse(response.isEmpty());
+    }
+
+
+    @Test
+    void testGetAllWordByFatherClassName() {
+
+        List<Word> response = wordService.getAllWordsByFatherClassName("Adjetivos");
+
+        assertFalse(response.isEmpty());
+    }
+
+
+    @Test
+    void testDeleteIndividual() {
+
+        boolean response = ontologyService.deleteIndividual(testLemma);
+
+        assertTrue(response);
     }
 }

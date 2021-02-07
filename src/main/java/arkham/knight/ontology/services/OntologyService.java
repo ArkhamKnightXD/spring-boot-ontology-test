@@ -78,7 +78,7 @@ public class OntologyService {
     }
 
 
-    public void saveFatherClassAndSubClass(String fatherClassName, String subClassName) {
+    public String saveFatherClassAndSubClass(String fatherClassName, String subClassName) {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
@@ -93,31 +93,35 @@ public class OntologyService {
         ontologyConnectionService.ontologyManager.addAxiom(ontology,axiom);
 
         ontologyConnectionService.saveOntologyFile(ontology);
+
+        return "Classes Saved";
     }
 
 
-    public void saveIndividual(String originalIndividualName, String individualName, String fatherClassName, String definition, String example, String lemmaRAE, String synonyms) {
+    public String saveIndividual(String originalIndividualName, Word wordToSave) {
 
         deleteIndividual(originalIndividualName);
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + individualName));
+        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + wordToSave.getLema()));
 
-        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + fatherClassName));
+        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + wordToSave.getClasePadre()));
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
-        saveIndividualProperties(ontology, individual, definition, example, lemmaRAE, synonyms);
+        saveIndividualProperties(ontology, individual, wordToSave);
 
         ontologyConnectionService.saveOntologyFile(ontology);
+
+        return "Individual Saved";
     }
 
 
-    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, String definition, String example, String lemmaRAE, String synonyms) {
+    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, Word wordToSave) {
 
         IRI dataTypePropertyIRI = IRI.create(ontologyIRI +"definicion");
 
@@ -137,13 +141,13 @@ public class OntologyService {
         OWLDataProperty synonymsDataProperty = dataFactory.getOWLDataProperty(dataTypePropertySynonymsIRI);
 
 
-        OWLDataPropertyAssertionAxiom axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, definition);
+        OWLDataPropertyAssertionAxiom axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, wordToSave.getDefinicion());
 
-        OWLDataPropertyAssertionAxiom axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, example);
+        OWLDataPropertyAssertionAxiom axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, wordToSave.getEjemplo());
 
-        OWLDataPropertyAssertionAxiom axiomLemmaRAE = dataFactory.getOWLDataPropertyAssertionAxiom(lemmaRAEDataProperty, individual, lemmaRAE);
+        OWLDataPropertyAssertionAxiom axiomLemmaRAE = dataFactory.getOWLDataPropertyAssertionAxiom(lemmaRAEDataProperty, individual, wordToSave.getLemaRAE());
 
-        OWLDataPropertyAssertionAxiom axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, synonyms);
+        OWLDataPropertyAssertionAxiom axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, wordToSave.getSinonimos());
 
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomDefinition);
@@ -156,7 +160,9 @@ public class OntologyService {
     }
 
 
-    public void deleteIndividual(String individualName) {
+    public boolean deleteIndividual(String individualName) {
+
+        boolean deleteConfirmation = false;
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
@@ -167,13 +173,25 @@ public class OntologyService {
 
         for (OWLNamedIndividual individual : ontology.getIndividualsInSignature()) {
 
-            if (individualIRI.toString().equals(individual.getIRI().toString()))
+            if (individualIRI.toString().equals(individual.getIRI().toString())){
+
                 individual.accept(remover);
+
+                deleteConfirmation = true;
+            }
         }
+
 
         ontologyConnectionService.ontologyManager.applyChanges(remover.getChanges());
 
         ontologyConnectionService.saveOntologyFile(ontology);
+
+        if (!deleteConfirmation){
+
+            return deleteConfirmation;
+        }
+
+        return deleteConfirmation;
     }
 
 

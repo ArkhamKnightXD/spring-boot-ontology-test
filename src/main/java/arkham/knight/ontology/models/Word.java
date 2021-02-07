@@ -13,6 +13,14 @@ public class Word {
     public Word() {
     }
 
+    public Word(String lema, String definicion, String ejemplo, String clasePadre, String sinonimos, String lemaRAE) {
+        this.lema = lema;
+        this.definicion = definicion;
+        this.ejemplo = ejemplo;
+        this.clasePadre = clasePadre;
+        this.sinonimos = sinonimos;
+        this.lemaRAE = lemaRAE;
+    }
 
     public String getLema() {
         return lema;

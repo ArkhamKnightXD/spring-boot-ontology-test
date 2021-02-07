@@ -1,6 +1,7 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
@@ -104,7 +105,9 @@ public class OntologyController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestParam() String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String fatherClassName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
 
-        ontologyService.saveIndividual(individualName, individualName, fatherClassName, definition, example, individualNameRAE, synonyms);
+        Word wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE);
+
+        ontologyService.saveIndividual(individualName, wordToSave);
 
         return "redirect:/words/individuals";
     }
@@ -144,7 +147,9 @@ public class OntologyController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String individualName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam() String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
 
-        ontologyService.saveIndividual(originalIndividualName, individualName, fatherClassName, definition, example, individualNameRAE, synonyms);
+        Word wordToEdit = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE);
+
+        ontologyService.saveIndividual(originalIndividualName, wordToEdit);
 
         return "redirect:/words/individuals";
     }
