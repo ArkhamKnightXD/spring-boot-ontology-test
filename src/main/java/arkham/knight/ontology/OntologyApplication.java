@@ -38,9 +38,14 @@ public class OntologyApplication {
     public CommandLineRunner startup(RestTemplate restTemplate, DRAEConnectionService DRAEConnectionService) {
         return args -> {
 
-            openIndexPage(true);
+//            for (DRAEObject object: DRAEConnectionService.getTheWordDataFromDRAE(restTemplate,"gato")) {
+//
+//                System.out.println(object.toString());
+//            }
 
-            openIndexPage(false);
+        //    openIndexPage(true);
+
+        //    openIndexPage(false);
         };
     }
 }
