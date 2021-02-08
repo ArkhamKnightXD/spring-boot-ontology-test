@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  covid:
+    
+    image: kerxd/ontology-app
+
+    container_name: docker-ontology
+
+    environment:
+      - SERVER_PORT=80
+
+    ports:
+      - "88:80"
+
+    networks: 
+      - ontology-network
+
+    depends_on:
+      - DRAE
+
+
+
+  DRAE:
+    image: squat/drae
+
+    container_name: docker-squat-drae
+
+    networks:
+      - ontology-network
+
+
+
+networks:
+  ontology-network:

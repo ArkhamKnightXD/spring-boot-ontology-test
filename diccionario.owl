@@ -321,6 +321,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Thing -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Thing"/>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales">
