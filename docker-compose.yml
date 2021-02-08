@@ -4,7 +4,7 @@ services:
 
   covid:
     
-    image: kerxd/ontology-app
+    image: kerxd/ontology-app:latest
 
     container_name: docker-ontology
 
@@ -23,7 +23,7 @@ services:
 
 
   DRAE:
-    image: squat/drae
+    image: squat/drae:latest
 
     container_name: docker-squat-drae
 

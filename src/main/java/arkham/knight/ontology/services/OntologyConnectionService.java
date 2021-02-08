@@ -17,7 +17,9 @@ public class OntologyConnectionService {
 
     public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
-    private final File ontologyFile = new File("diccionario.owl");
+    private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
+
+   // private final File ontologyFile = new File("classes/ontology/diccionario.owl");
 
     public OntModel readOntologyFileAndReturnTheModel() {
 
