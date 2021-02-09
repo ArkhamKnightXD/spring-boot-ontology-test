@@ -1,6 +1,8 @@
 package arkham.knight.ontology.models;
 
-public class Word {
+import java.io.Serializable;
+
+public class Word implements Serializable {
 
     private String lema;
     private String definicion;

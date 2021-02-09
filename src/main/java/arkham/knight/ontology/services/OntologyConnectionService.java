@@ -15,11 +15,16 @@ import java.util.Iterator;
 @Service
 public class OntologyConnectionService {
 
+    //normal file
+     private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
+
+    //simple jar file
+    //private final File ontologyFile = new File(System.getProperty("user.dir")+"\\ontology-0.0.1-SNAPSHOT\\BOOT-INF\\classes\\ontology\\diccionario.owl");
+
+    //docker jar file sigue fallando
+    // private final File ontologyFile = new File("\\BOOT-INF\\classes!\\ontology\\diccionario.owl");
+
     public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
-
-    private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
-
-   // private final File ontologyFile = new File("classes/ontology/diccionario.owl");
 
     public OntModel readOntologyFileAndReturnTheModel() {
 
@@ -52,7 +57,6 @@ public class OntologyConnectionService {
         return ontology;
     }
 
-
     public final String ontologyURI = getOntology().getURI().concat("#");
 
     public final String definitionURI = ontologyURI.concat("definicion");
@@ -62,7 +66,6 @@ public class OntologyConnectionService {
     public final String lemmaRAEURI = ontologyURI.concat("lema_rae");
 
     public final String synonymsURI = ontologyURI.concat("sinonimos");
-
 
     public void saveOntologyFile(OWLOntology ontology){
 
@@ -78,7 +81,6 @@ public class OntologyConnectionService {
         // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
         ontologyManager.removeOntology(ontology);
     }
-
 
     public OWLOntology loadTheOntologyOwlAPI(){
 

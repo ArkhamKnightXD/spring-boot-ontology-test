@@ -1,8 +1,9 @@
 package arkham.knight.ontology.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DRAEDefinition {
+public class DRAEDefinition implements Serializable {
 
     private String category;
     private String definition;

@@ -133,12 +133,15 @@ public class OntologyController {
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
         model.addAttribute("lema", individual.getLocalName());
         model.addAttribute("definicion", definitionPropertyValue.toString());
-        model.addAttribute("lemmaRAE", lemmaRAEPropertyValue.toString());
-        model.addAttribute("sinonimos", synonymsPropertyValue.toString());
 
-        //quitar estos if de todo el proyecto, pues las propiedades siempre tendran el valor n/a
         if (examplePropertyValue != null)
             model.addAttribute("ejemplo", examplePropertyValue.toString());
+
+        if (lemmaRAEPropertyValue != null)
+            model.addAttribute("lemmaRAE", lemmaRAEPropertyValue.toString());
+
+        if (synonymsPropertyValue != null)
+            model.addAttribute("sinonimos", synonymsPropertyValue.toString());
 
         return "/freemarker/editIndividual";
     }

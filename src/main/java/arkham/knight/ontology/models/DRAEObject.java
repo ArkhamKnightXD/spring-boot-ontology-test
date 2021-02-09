@@ -1,8 +1,9 @@
 package arkham.knight.ontology.models;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DRAEObject {
+public class DRAEObject implements Serializable {
 
     private String word;
     private String etymology;
