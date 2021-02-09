@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import java.io.IOException;
+import java.io.*;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "API Español Dominicano", version = "1.0", description = "API Centrada en palabras dominicanas"))
@@ -35,9 +35,23 @@ public class OntologyApplication {
     public CommandLineRunner startup() {
         return args -> {
 
+//            InputStream inputStream = OntologyApplication.class.getResourceAsStream("/ontology/diccionario.owl");
+//
+//            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//
+//            BufferedReader reader = new BufferedReader(inputStreamReader);
+//
+//            String line =null;
+//
+//            while ((line = reader.readLine()) != null){
+//                System.out.println(line);
+//            }
+
+
             openIndexPage(true);
 
             openIndexPage(false);
+
         };
     }
 }
