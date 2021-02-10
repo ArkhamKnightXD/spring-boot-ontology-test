@@ -35,6 +35,7 @@ public class OntologyApplication {
     public CommandLineRunner startup() {
         return args -> {
 
+//lograr llevar el inputStream a un file o ver que otras opciones tengo
 //            InputStream inputStream = OntologyApplication.class.getResourceAsStream("/ontology/diccionario.owl");
 //
 //            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
@@ -48,10 +49,14 @@ public class OntologyApplication {
 //            }
 
 
+            //encontrar otra forma para buscar el path del archivo
+//            final File ontologyFile = new File("/ontology/diccionario.owl");
+//
+//            System.out.println(ontologyFile.exists());
+
             openIndexPage(true);
 
             openIndexPage(false);
-
         };
     }
 }

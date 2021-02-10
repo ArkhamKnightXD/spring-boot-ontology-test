@@ -13,14 +13,6 @@ import java.util.Iterator;
 @Service
 public class OntologyConnectionService {
 
-    //Utilizare inputstream para docker
-    private final InputStream inputStream = OntologyConnectionService.class.getResourceAsStream("/ontology/diccionario.owl");
-
-    private final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-
-    BufferedReader reader = new BufferedReader(inputStreamReader);
-
-    //utilizare este normal file cuando trabaje de forma local
     private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
 
     //simple jar file
@@ -31,7 +23,6 @@ public class OntologyConnectionService {
 
     public OntModel readOntologyFileAndReturnTheModel() {
 
-      //  utilizo esto cuando trabajo local
         FileReader reader = null;
 
         try {
@@ -73,10 +64,8 @@ public class OntologyConnectionService {
 
     public void saveOntologyFile(OWLOntology ontology){
 
-        //no podre salvar en docker gracias al asunto de file ya que debo de utilizar inputstream
         IRI ontologySaveIRI = IRI.create(ontologyFile);
 
-        //probar luego salvando mediante outputstream
         try {
             // save in RDF/XML
             ontologyManager.saveOntology(ontology, ontologySaveIRI);
@@ -90,7 +79,6 @@ public class OntologyConnectionService {
 
     public OWLOntology loadTheOntologyOwlAPI(){
 
-        //No estoy seguro si esto da error con inputstream
         try {
             return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
         } catch (OWLOntologyCreationException e) {

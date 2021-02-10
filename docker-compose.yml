@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  covid:
+  ontology:
     
     image: kerxd/ontology-app:latest
 
@@ -17,19 +17,21 @@ services:
     networks: 
       - ontology-network
 
-    depends_on:
-      - DRAE
 
+  drae:
 
-
-  DRAE:
     image: squat/drae:latest
 
     container_name: docker-squat-drae
 
+    environment:
+      - SERVER_PORT=4000
+
+    ports:
+      - "4000:4000"
+
     networks:
       - ontology-network
-
 
 
 networks:
