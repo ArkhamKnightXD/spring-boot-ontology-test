@@ -9,14 +9,16 @@ services:
     container_name: docker-ontology
 
     environment:
-      - SERVER_PORT=80
+      - SERVER_PORT=88
 
     ports:
-      - "88:80"
+      - "88:88"
 
-    networks: 
+    networks:
       - ontology-network
 
+    depends_on:
+      - drae
 
   drae:
 

@@ -368,6 +368,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
+
     
 
 
@@ -516,11 +517,11 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test1"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example</untitled-ontology-2:ejemplo>
-        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">individualNameRAE</untitled-ontology-2:lema_rae>
-        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">synonyms</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">synonims</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">individualNameRae</untitled-ontology-2:sinonimos>
     </owl:NamedIndividual>
 </rdf:RDF>
 

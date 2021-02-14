@@ -88,11 +88,23 @@ public class OntologyRestController {
     }
 
 
-    @PostMapping("/createClass")
-    @Operation(summary = "Create Class", description = "Creacion de clases padre y clase hijo")
+    @PostMapping("/createClasses")
+    @Operation(summary = "Create FatherClass And SubClass", description = "Creacion de clases padre y clase hijo")
     public ResponseEntity<String> createClasses(@RequestParam() String fatherClassName, @RequestParam() String subClassName) {
 
         String response = ontologyService.saveFatherClassAndSubClass(fatherClassName, subClassName);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+    @PostMapping("/createClass")
+    @Operation(summary = "Create Class", description = "Creacion de una clase")
+    public ResponseEntity<String> createClass(@RequestParam() String className) {
+
+        Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims");
+
+        String response = ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
