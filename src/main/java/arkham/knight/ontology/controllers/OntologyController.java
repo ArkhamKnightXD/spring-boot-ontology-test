@@ -174,4 +174,27 @@ public class OntologyController {
 
         return "redirect:/words/individuals";
     }
+
+
+    @RequestMapping(value = "/class-creation", method = RequestMethod.GET)
+    public String creationClassPage() {
+
+        return "/freemarker/createClass";
+    }
+
+
+    @RequestMapping(value = "/class-create", method = RequestMethod.POST)
+    public String createClass(@RequestParam() String fatherClassName, @RequestParam("") String subClass) {
+
+        if (subClass.length() == 0) {
+
+            Word defaultTestWord = new Word("prueba","definition","example", fatherClassName,"individualNameRae", "synonims");
+
+            ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
+        }
+        else
+            ontologyService.saveFatherClassAndSubClass(fatherClassName, subClass);
+
+        return "redirect:/words/individuals";
+    }
 }

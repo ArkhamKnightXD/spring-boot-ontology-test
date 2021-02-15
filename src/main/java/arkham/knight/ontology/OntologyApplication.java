@@ -48,12 +48,6 @@ public class OntologyApplication {
 //                System.out.println(line);
 //            }
 
-
-            //encontrar otra forma para buscar el path del archivo
-//            final File ontologyFile = new File("/ontology/diccionario.owl");
-//
-//            System.out.println(ontologyFile.exists());
-
             openIndexPage(true);
 
             openIndexPage(false);

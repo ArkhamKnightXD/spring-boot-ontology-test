@@ -18,9 +18,7 @@
 
     <!-- Theme style -->
     <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect. -->
+
     <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/skins/_all-skins.min.css">
 
 </head>
@@ -122,6 +120,7 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="#"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="#"><i class="active fa fa-user"></i> <span>Users</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
@@ -155,9 +154,6 @@
         <!-- Main content -->
         <section class="content container-fluid">
 
-            <!--------------------------
-              | Your Page Content Here |
-              -------------------------->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-responsive">
@@ -205,19 +201,13 @@
     immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+
 </body>
 </html>

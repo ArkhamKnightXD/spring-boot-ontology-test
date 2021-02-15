@@ -13,13 +13,13 @@ import java.util.Iterator;
 @Service
 public class OntologyConnectionService {
 
+    public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
+
     private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
 
     //simple jar file
     //private final File ontologyFile = new File(System.getProperty("user.dir")+"\\ontology-0.0.1-SNAPSHOT\\BOOT-INF\\classes\\ontology\\diccionario.owl");
 
-
-    public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
     public OntModel readOntologyFileAndReturnTheModel() {
 
