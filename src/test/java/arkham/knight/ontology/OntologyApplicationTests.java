@@ -6,13 +6,15 @@ import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
+import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
+import java.util.Iterator;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -52,6 +54,33 @@ class OntologyApplicationTests {
 //
 //        assertEquals(wordExpected ,wordFound);
 //    }
+
+
+    @Test
+    void testGetAllClasses() {
+
+        List<OntClass> classList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses().toList();
+
+        assertFalse(classList.isEmpty());
+    }
+
+
+    @Test
+    void testGetAllIndividuals() {
+
+        List<Individual> individualList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals().toList();
+
+        assertFalse(individualList.isEmpty());
+    }
+
+
+    @Test
+    void testGetAllDataTypeProperties() {
+
+        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listDatatypeProperties().toList();
+
+        assertFalse(datatypePropertyList.isEmpty());
+    }
 
 
     @Test

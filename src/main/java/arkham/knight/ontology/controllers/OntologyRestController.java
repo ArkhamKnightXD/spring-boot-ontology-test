@@ -104,9 +104,9 @@ public class OntologyRestController {
 
         Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims");
 
-        String response = ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
+        ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>("Class Saved", HttpStatus.OK);
     }
 
 
@@ -213,21 +213,6 @@ public class OntologyRestController {
     }
 
 
-    @GetMapping("/ontology")
-    @Operation(summary = "Get Ontology Data", description = "Retorna datos de la ontologia")
-    public ResponseEntity<HashMap<String, String>> getOntology() {
-
-        HashMap<String, String> ontologyData = new HashMap<>();
-
-        ontologyData.put("name",ontologyConnectionService.getOntology().getLocalName());
-        ontologyData.put("uri",ontologyConnectionService.getOntology().getURI());
-        ontologyData.put("namespace",ontologyConnectionService.getOntology().getNameSpace());
-        ontologyData.put("version",ontologyConnectionService.getOntology().getVersionInfo());
-
-        return new ResponseEntity<>(ontologyData, HttpStatus.OK);
-    }
-
-
     @GetMapping("/datatype")
     @Operation(summary = "Get All Datatype Properties", description = "Retorna una lista con todas las propiedades")
     public ResponseEntity<List<HashMap<String, String>>> getAllDatatypeProperties() {
@@ -251,5 +236,20 @@ public class OntologyRestController {
         }
 
         return new ResponseEntity<>(propertyList, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/ontology")
+    @Operation(summary = "Get Ontology Data", description = "Retorna datos de la ontologia")
+    public ResponseEntity<HashMap<String, String>> getOntology() {
+
+        HashMap<String, String> ontologyData = new HashMap<>();
+
+        ontologyData.put("name",ontologyConnectionService.getOntology().getLocalName());
+        ontologyData.put("uri",ontologyConnectionService.getOntology().getURI());
+        ontologyData.put("namespace",ontologyConnectionService.getOntology().getNameSpace());
+        ontologyData.put("version",ontologyConnectionService.getOntology().getVersionInfo());
+
+        return new ResponseEntity<>(ontologyData, HttpStatus.OK);
     }
 }
