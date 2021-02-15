@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import java.io.*;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "API Español Dominicano", version = "1.0", description = "API Centrada en palabras dominicanas"))
+@OpenAPIDefinition(info = @Info(title = "API Español Dominicano", version = "1.0", description = "API Centrada en el desarrollo de un diccionario de palabras dominicanas"))
 public class OntologyApplication {
 
     public static void main(String[] args) {

@@ -1,6 +1,5 @@
 package arkham.knight.ontology;
 
-import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
@@ -13,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
-import java.util.Iterator;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
