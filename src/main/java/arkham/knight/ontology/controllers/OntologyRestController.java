@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.DatatypeProperty;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,14 +20,16 @@ import java.util.List;
 @RestController
 public class OntologyRestController {
 
-    @Autowired
-    private OntologyService ontologyService;
+    private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
 
-    @Autowired
-    private OntologyConnectionService ontologyConnectionService;
+    private final OntologyService ontologyService;
 
-    @Autowired
-    private WordService wordService;
+    private final WordService wordService;
+
+    public OntologyRestController(OntologyService ontologyService, WordService wordService) {
+        this.ontologyService = ontologyService;
+        this.wordService = wordService;
+    }
 
 
     @PostMapping("/createClasses")
@@ -188,10 +189,10 @@ public class OntologyRestController {
 
         HashMap<String, String> ontologyData = new HashMap<>();
 
-        ontologyData.put("name",ontologyConnectionService.getOntology().getLocalName());
-        ontologyData.put("uri",ontologyConnectionService.getOntology().getURI());
-        ontologyData.put("namespace",ontologyConnectionService.getOntology().getNameSpace());
-        ontologyData.put("version",ontologyConnectionService.getOntology().getVersionInfo());
+        ontologyData.put("name", ontologyConnectionService.getOntology().getLocalName());
+        ontologyData.put("uri", ontologyConnectionService.getOntology().getURI());
+        ontologyData.put("namespace", ontologyConnectionService.getOntology().getNameSpace());
+        ontologyData.put("version", ontologyConnectionService.getOntology().getVersionInfo());
 
         return new ResponseEntity<>(ontologyData, HttpStatus.OK);
     }

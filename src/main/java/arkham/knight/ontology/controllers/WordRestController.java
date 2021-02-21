@@ -7,7 +7,6 @@ import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.Individual;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,17 +20,20 @@ import java.util.List;
 @RestController
 public class WordRestController {
 
-    @Autowired
-    private OntologyService ontologyService;
+    private final OntologyService ontologyService;
 
-    @Autowired
-    private WordService wordService;
+    private final WordService wordService;
 
-    @Autowired
-    private DRAEConnectionService draeConnectionService;
+    private final DRAEConnectionService draeConnectionService;
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public WordRestController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, RestTemplate restTemplate) {
+        this.ontologyService = ontologyService;
+        this.wordService = wordService;
+        this.draeConnectionService = draeConnectionService;
+        this.restTemplate = restTemplate;
+    }
 
 
     @GetMapping("/search")

@@ -9,19 +9,17 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
 public class OntologyService {
 
-    @Autowired
-    private OntologyConnectionService ontologyConnectionService;
+    private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
 
     private final OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
 
-    private final IRI ontologyIRI = IRI.create("http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#");
+    private final IRI ontologyIRI = IRI.create(ontologyConnectionService.ontologyURI);
 
 
     public List<String> getAllClassesLocalName(){
@@ -185,11 +183,6 @@ public class OntologyService {
         ontologyConnectionService.ontologyManager.applyChanges(remover.getChanges());
 
         ontologyConnectionService.saveOntologyFile(ontology);
-
-        if (!deleteConfirmation){
-
-            return deleteConfirmation;
-        }
 
         return deleteConfirmation;
     }

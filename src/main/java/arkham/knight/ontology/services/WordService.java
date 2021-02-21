@@ -2,15 +2,17 @@ package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
 public class WordService {
 
-    @Autowired
-    private OntologyService ontologyService;
+    private final OntologyService ontologyService;
+
+    public WordService(OntologyService ontologyService) {
+        this.ontologyService = ontologyService;
+    }
 
 
     public List<Word> getAllWords(){

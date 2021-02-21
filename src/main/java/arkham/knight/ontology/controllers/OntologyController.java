@@ -9,7 +9,6 @@ import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,20 +23,22 @@ import java.util.List;
 @Controller
 public class OntologyController {
 
-    @Autowired
-    private OntologyService ontologyService;
+    private final OntologyService ontologyService;
 
-    @Autowired
-    private OntologyConnectionService ontologyConnectionService;
+    private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
 
-    @Autowired
-    private WordService wordService;
+    private final WordService wordService;
 
-    @Autowired
-    private DRAEConnectionService draeConnectionService;
+    private final DRAEConnectionService draeConnectionService;
 
-    @Autowired
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public OntologyController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, RestTemplate restTemplate) {
+        this.ontologyService = ontologyService;
+        this.wordService = wordService;
+        this.draeConnectionService = draeConnectionService;
+        this.restTemplate = restTemplate;
+    }
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -184,7 +185,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/class-create", method = RequestMethod.POST)
-    public String createClass(@RequestParam() String fatherClassName, @RequestParam("") String subClass) {
+    public String createClass(@RequestParam() String fatherClassName, @RequestParam(defaultValue = "") String subClass) {
 
         if (subClass.length() == 0) {
 

@@ -6,19 +6,35 @@ import org.apache.jena.ontology.Ontology;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
-import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.Iterator;
 
-@Service
 public class OntologyConnectionService {
 
     public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
 
     private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
 
-    //simple jar file
-    //private final File ontologyFile = new File(System.getProperty("user.dir")+"\\ontology-0.0.1-SNAPSHOT\\BOOT-INF\\classes\\ontology\\diccionario.owl");
+    public final String ontologyURI = getOntology().getURI().concat("#");
+
+    public final String definitionURI = ontologyURI.concat("definicion");
+
+    public final String exampleURI = ontologyURI.concat("ejemplo");
+
+    public final String lemmaRAEURI = ontologyURI.concat("lema_rae");
+
+    public final String synonymsURI = ontologyURI.concat("sinonimos");
+
+    private static OntologyConnectionService instance;
+
+
+    public static OntologyConnectionService getInstance() {
+
+        if (instance == null)
+            return instance = new OntologyConnectionService();
+
+        return instance;
+    }
 
 
     public OntModel readOntologyFileAndReturnTheModel() {
@@ -37,6 +53,7 @@ public class OntologyConnectionService {
         return model;
     }
 
+
     public Ontology getOntology(){
 
         Ontology ontology = null;
@@ -52,15 +69,6 @@ public class OntologyConnectionService {
         return ontology;
     }
 
-    public final String ontologyURI = getOntology().getURI().concat("#");
-
-    public final String definitionURI = ontologyURI.concat("definicion");
-
-    public final String exampleURI = ontologyURI.concat("ejemplo");
-
-    public final String lemmaRAEURI = ontologyURI.concat("lema_rae");
-
-    public final String synonymsURI = ontologyURI.concat("sinonimos");
 
     public void saveOntologyFile(OWLOntology ontology){
 
@@ -76,6 +84,7 @@ public class OntologyConnectionService {
         // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
         ontologyManager.removeOntology(ontology);
     }
+
 
     public OWLOntology loadTheOntologyOwlAPI(){
 

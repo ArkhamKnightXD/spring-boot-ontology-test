@@ -28,10 +28,9 @@ class OntologyApplicationTests {
     WordService wordService;
 
     @Autowired
-    OntologyConnectionService ontologyConnectionService;
-
-    @Autowired
     RestTemplate restTemplate;
+
+    private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
 
     final String testLemma = "prueba";
 
@@ -52,6 +51,15 @@ class OntologyApplicationTests {
 //
 //        assertEquals(wordExpected ,wordFound);
 //    }
+
+
+    @Test
+    void testGetAllClassesLocalName() {
+
+        List<String> classNameList = ontologyService.getAllClassesLocalName();
+
+        assertFalse(classNameList.isEmpty());
+    }
 
 
     @Test
@@ -84,9 +92,9 @@ class OntologyApplicationTests {
     @Test
     void testGetOntologyData() {
 
-        String response = ontologyConnectionService.getOntology().getURI().concat("#");
+        String response = ontologyConnectionService.ontologyURI;
 
-        String expectedResponse = ontologyConnectionService.ontologyURI;
+        String expectedResponse = "http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#";
 
         assertEquals(expectedResponse, response);
     }
