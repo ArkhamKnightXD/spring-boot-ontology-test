@@ -23,9 +23,9 @@ import java.util.List;
 @Controller
 public class OntologyController {
 
-    private final OntologyService ontologyService;
-
     private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
+
+    private final OntologyService ontologyService;
 
     private final WordService wordService;
 

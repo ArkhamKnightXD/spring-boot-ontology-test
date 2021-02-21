@@ -35,19 +35,6 @@ public class OntologyApplication {
     public CommandLineRunner startup() {
         return args -> {
 
-//lograr llevar el inputStream a un file o ver que otras opciones tengo
-//            InputStream inputStream = OntologyApplication.class.getResourceAsStream("/ontology/diccionario.owl");
-//
-//            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//
-//            BufferedReader reader = new BufferedReader(inputStreamReader);
-//
-//            String line =null;
-//
-//            while ((line = reader.readLine()) != null){
-//                System.out.println(line);
-//            }
-
             openIndexPage(true);
 
             openIndexPage(false);

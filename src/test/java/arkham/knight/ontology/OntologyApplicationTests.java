@@ -30,7 +30,7 @@ class OntologyApplicationTests {
     @Autowired
     RestTemplate restTemplate;
 
-    private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
+    final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
 
     final String testLemma = "prueba";
 
