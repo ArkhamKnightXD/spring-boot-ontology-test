@@ -41,10 +41,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-
-                .antMatchers("/","/css/**", "/js/**").permitAll()
-                .antMatchers("/api/v1/**").permitAll()
-                .antMatchers("/words/individuals/**").hasAnyRole("ADMIN")
+//Desactivo a la hora de subir
+//                .antMatchers("/","/css/**", "/js/**").permitAll()
+//                .antMatchers("/api/v1/**").permitAll()
+//                .antMatchers("/words/individuals/**").hasAnyRole("ADMIN")
                 //.antMatchers("/clients/**").hasAnyRole("ADMIN", "USER")
                 //.anyRequest().authenticated() //cualquier llamada debe ser validada
 
