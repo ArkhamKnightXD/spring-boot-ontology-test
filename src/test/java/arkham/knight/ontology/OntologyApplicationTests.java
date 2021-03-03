@@ -52,7 +52,7 @@ class OntologyApplicationTests {
 //        assertEquals(wordExpected ,wordFound);
 //    }
 
-
+//    Estan fallando todas las pruebas ya que implemente spring security verificare por que pasa esto luego
     @Test
     void testGetAllClassesLocalName() {
 
@@ -79,14 +79,14 @@ class OntologyApplicationTests {
         assertFalse(individualList.isEmpty());
     }
 
-//estes test y 2 mas para abajo fallan a la hora de subir al github sin razon alguna, ya que si prueba aqui todos funcionan
-//    @Test
-//    void testGetAllDataTypeProperties() {
-//
-//        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listDatatypeProperties().toList();
-//
-//        assertFalse(datatypePropertyList.isEmpty());
-//    }
+
+    @Test
+    void testGetAllDataTypeProperties() {
+
+        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listDatatypeProperties().toList();
+
+        assertFalse(datatypePropertyList.isEmpty());
+    }
 
 
     @Test
@@ -140,23 +140,23 @@ class OntologyApplicationTests {
     }
 
 
-//    @Test
-//    void testGetWordByLemma() {
-//
-//        Word response = wordService.getWordByLemma(testLemma);
-//
-//        assertEquals(testLemma, response.getLema());
-//    }
+    @Test
+    void testGetWordByLemma() {
+
+        Word response = wordService.getWordByLemma(testLemma);
+
+        assertEquals(testLemma, response.getLema());
+    }
 
 
-//    @Test
-//    void testGetAllWords() {
-//
-//        List<Word> response = wordService.getAllWords();
-//
-//        assertFalse(response.isEmpty());
-//    }
-//
+    @Test
+    void testGetAllWords() {
+
+        List<Word> response = wordService.getAllWords();
+
+        assertFalse(response.isEmpty());
+    }
+
 
     @Test
     void testGetAllWordByFatherClassName() {
