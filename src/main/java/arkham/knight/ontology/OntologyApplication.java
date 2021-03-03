@@ -35,9 +35,9 @@ public class OntologyApplication {
     public CommandLineRunner startup() {
         return args -> {
 
-//            openIndexPage(true);
+            openIndexPage(true);
 
-//            openIndexPage(false);
+            openIndexPage(false);
         };
     }
 }

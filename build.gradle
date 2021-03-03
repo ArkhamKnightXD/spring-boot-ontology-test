@@ -19,7 +19,8 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.3.1.RELEASE'
     compile 'org.springdoc:springdoc-openapi-ui:1.2.32'
 
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.1'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 
     compile group: 'org.apache.jena', name: 'jena-core', version: '3.13.1'

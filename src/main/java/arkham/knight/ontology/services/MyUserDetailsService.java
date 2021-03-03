@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     private final UserRepository userRepository;
 
