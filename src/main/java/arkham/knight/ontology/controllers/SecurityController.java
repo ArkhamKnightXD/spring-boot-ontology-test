@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SecurityController {
 
-    final UserService userService;
+    private final UserService userService;
 
-    final MyUserDetailsService myUserDetailsService;
+    private final MyUserDetailsService myUserDetailsService;
 
     public SecurityController(UserService userService, MyUserDetailsService myUserDetailsService) {
         this.userService = userService;
