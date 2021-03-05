@@ -18,21 +18,21 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class OntologyApplicationTests {
 
-    @Autowired
-    DRAEConnectionService draeConnectionService;
+    private final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
 
     @Autowired
-    OntologyService ontologyService;
+    private OntologyService ontologyService;
 
     @Autowired
-    WordService wordService;
+    private WordService wordService;
 
     @Autowired
-    RestTemplate restTemplate;
+    private DRAEConnectionService draeConnectionService;
 
-    final OntologyConnectionService ontologyConnectionService = OntologyConnectionService.getInstance();
+    @Autowired
+    private RestTemplate restTemplate;
 
-    final String testLemma = "prueba";
+    private final String testLemma = "prueba";
 
 
 //    @Test
