@@ -36,8 +36,6 @@ public class OntologyApplication {
     public CommandLineRunner startup(MyUserDetailsService myUserDetailsService) {
         return args -> {
 
-            myUserDetailsService.createAdminUser();
-
 //            openIndexPage(true);
 
 //            openIndexPage(false);
