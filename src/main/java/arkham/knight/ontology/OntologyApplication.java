@@ -1,6 +1,5 @@
 package arkham.knight.ontology;
 
-import arkham.knight.ontology.services.MyUserDetailsService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
@@ -33,12 +32,12 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup(MyUserDetailsService myUserDetailsService) {
+    public CommandLineRunner startup() {
         return args -> {
 
-//            openIndexPage(true);
+            openIndexPage(true);
 
-//            openIndexPage(false);
+            openIndexPage(false);
         };
     }
 }
