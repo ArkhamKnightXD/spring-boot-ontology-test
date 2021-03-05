@@ -2,8 +2,6 @@ package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.Rol;
 import arkham.knight.ontology.models.User;
-import arkham.knight.ontology.repositories.RolRepository;
-import arkham.knight.ontology.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,13 +17,10 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    private final RolRepository rolRepository;
-
-    public MyUserDetailsService(UserRepository userRepository, RolRepository rolRepository) {
-        this.userRepository = userRepository;
-        this.rolRepository = rolRepository;
+    public MyUserDetailsService(UserService userService) {
+        this.userService = userService;
     }
 
 
@@ -39,12 +34,12 @@ public class MyUserDetailsService implements UserDetailsService {
         rolList.add(rolUser);
         rolList.add(rolAdmin);
 
-        rolRepository.save(rolAdmin);
-        rolRepository.save(rolUser);
+//        rolRepository.save(rolAdmin);
+//        rolRepository.save(rolUser);
 
         User adminUser = new User("admin",bCryptPasswordEncoder.encode("1234"),true,rolList);
 
-        userRepository.save(adminUser);
+        userService.saveUser(adminUser);
     }
 
     @Override
@@ -52,9 +47,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> rolList = new ArrayList<>();
 
-        User userAdminToFind = userRepository.findUserByUsername(username);
+        User userAdminToFind = userService.findUserByUsername(username);
 
-        for (Rol roles :userAdminToFind.getRolList()) {
+        for (Rol roles : userAdminToFind.getRolList()) {
 
             rolList.add(new SimpleGrantedAuthority(roles.getRol()));
         }
