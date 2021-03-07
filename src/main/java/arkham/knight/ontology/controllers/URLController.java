@@ -47,12 +47,12 @@ public class URLController implements ErrorController {
 
 
     @RequestMapping("/login-error")
-    public String errorPage404(Model model){
+    public String loginError(Model model){
 
         model.addAttribute("title", "Login Failed");
-        model.addAttribute("message", "User Not Authorized");
+        model.addAttribute("message", "User Not Found or Authorized");
 
-        return "/freemarker/error";
+        return "freemarker/errorPage";
     }
 
 
@@ -70,21 +70,21 @@ public class URLController implements ErrorController {
                 model.addAttribute("title", "Error 404");
                 model.addAttribute("message", "Error 404 - The Page can't be found");
 
-                return "freemarker/error";
+                return "freemarker/errorPage";
             }
             else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
 
                 model.addAttribute("title", "Error 500");
                 model.addAttribute("message", "Error 500 - Internal Server Error");
 
-                return "freemarker/error";
+                return "freemarker/errorPage";
             }
             else if (statusCode == HttpStatus.FORBIDDEN.value()) {
 
                 model.addAttribute("title", "Error 403");
                 model.addAttribute("message", "Error 403 - This Page is Forbidden");
 
-                return "freemarker/error";
+                return "freemarker/errorPage";
             }
         }
 
