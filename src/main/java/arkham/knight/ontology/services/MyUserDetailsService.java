@@ -42,7 +42,7 @@ public class MyUserDetailsService implements UserDetailsService {
         rolRepository.save(rolAdmin);
         rolRepository.save(rolUser);
 
-        User adminUser = new User("admin",bCryptPasswordEncoder.encode("1234"),true,rolList);
+        User adminUser = new User("admin",bCryptPasswordEncoder.encode("1234"),true, rolList);
 
         userRepository.save(adminUser);
     }

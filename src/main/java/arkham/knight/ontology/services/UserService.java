@@ -54,9 +54,9 @@ public class UserService {
     }
 
 
-    public void saveUserRol(Rol userRol){
+    public void saveAllUsersRol(List<Rol> usersRol){
 
-        rolRepository.save(userRol);
+        rolRepository.saveAll(usersRol);
     }
 
 
@@ -65,10 +65,12 @@ public class UserService {
         return rolRepository.findAll();
     }
 
+
     public List<Rol> findAllRolesById(List<Long> idRoles){
 
         return rolRepository.findAllById(idRoles);
     }
+
 
 //basic save method
 //    public void saveUser(User user){
@@ -85,5 +87,4 @@ public class UserService {
 //        }
 //        return new User();
 //    }
-
 }

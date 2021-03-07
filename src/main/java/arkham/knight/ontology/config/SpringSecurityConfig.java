@@ -30,9 +30,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth
-                .userDetailsService(myUserDetailsService)
-                .passwordEncoder(bCryptPasswordEncoder);
+        auth.userDetailsService(myUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
     }
 
 
@@ -50,7 +48,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .failureUrl("/login?error")
+// Aqui indico la url de la pagina que salga cuando haga login error
+                .failureUrl("/login-error")
+//Aqui indico la url por defecto que sera enviada la persona en caso de que haya hecho logout o no haya definido una url a la que entrara
+                .defaultSuccessUrl("/words/")
                 .permitAll()
                 .and()
                 .logout()
@@ -59,5 +60,4 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.headers().frameOptions().disable();
     }
-
 }
