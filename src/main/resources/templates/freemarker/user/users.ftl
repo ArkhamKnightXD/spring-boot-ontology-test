@@ -8,19 +8,15 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <!--Con este link soluciono el error de favicon.ico en la consola que te carga el recurso favicon.ico pero como este recurso no existe da error 404
-     Y esto es malo por que reduce el performance de la pagina-->
     <link rel="shortcut icon" href="#" />
 
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect. -->
+
     <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/skins/_all-skins.min.css">
 
 </head>
@@ -45,17 +41,13 @@
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-
-
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
-
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
 
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
-
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
@@ -69,12 +61,11 @@
                                 <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                     user<!--Aqui agrego el nombre del usuario logueado -->
+                                    user <!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
-
                                 <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
@@ -120,8 +111,9 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/words/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
+                <li><a href="/words/search"><i class="fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
                         <span class="pull-right-container">
@@ -130,7 +122,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class=""><a href="/words/individuals">All Individuals</a></li>
-                        <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
+                        <li class="active"><a href="#"><i class="active"></i> <span>Users</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -141,59 +133,48 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        <form action="/users/">
+            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
+        </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Lema original: ${word.getLema()}</strong>
+                <strong>Listado de Usuarios</strong>
             </h1>
+            <a class="btn btn-primary" href="/users/creation" role="button">Agregar un nuevo Usuario</a>
         </section>
 
         <!-- Main content -->
         <section class="content container-fluid">
 
-            <!--------------------------
-              | Your Page Content Here |
-              -------------------------->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-condensed table-hover">
-                            <thead class="thead-dark">
+                            <thead>
 
-                            <th>Lema RAE</th>
-                            <th>Definicion</th>
-                            <th>Ejempo</th>
-                            <th>Sinonimos</th>
+                            <th>Nombre de usuario</th>
+                            <th>Email</th>
+                            <th>Options</th>
                             </thead>
 
-                            <tbody>
-                                <tr>
+                            <#list users as user>
 
-                                    <#if word.getLemaRAE()??>
-                                        <td>${word.getLemaRAE()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
+                            <tr>
+                                <td>${user.getUsername()}</td>
 
-                                    <td>${word.getDefinicion()}</td>
+                                <td> ${user.getEmail()}</td>
 
-                                    <#if word.getEjemplo()??>
-                                        <td>${word.getEjemplo()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
-
-                                    <#if word.getSinonimos()??>
-                                        <td>${word.getSinonimos()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
-
-                                </tr>
-                            </tbody>
+                                <td>
+                                    <a href="/users/edition?id=${user.getId()}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/users/delete?id=${user.getId()}"> <i class="fa fa-trash" style="font-size:23px;color:#ff0000"></i> </a>
+                                </td>
+                            </tr>
+                            </#list>
 
                         </table>
+
 
                     </div>
                 </div>
@@ -212,25 +193,14 @@
         <strong>Copyright &copy; 2020 <a href="#">Words</a>.</strong> All rights reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-     <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
+
     <div class="control-sidebar-bg"></div>
 </div>
-<!-- ./wrapper -->
 
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
 </body>
 </html>

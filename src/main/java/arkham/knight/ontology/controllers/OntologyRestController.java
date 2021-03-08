@@ -34,7 +34,7 @@ public class OntologyRestController {
 
     @PostMapping("/createClasses")
     @Operation(summary = "Create FatherClass And SubClass", description = "Creacion de clases padre y clase hijo")
-    public ResponseEntity<String> createClasses(@RequestParam() String fatherClassName, @RequestParam() String subClassName) {
+    public ResponseEntity<String> createClasses(@RequestParam String fatherClassName, @RequestParam String subClassName) {
 
         String response = ontologyService.saveFatherClassAndSubClass(fatherClassName, subClassName);
 
@@ -44,7 +44,7 @@ public class OntologyRestController {
 
     @PostMapping("/createClass")
     @Operation(summary = "Create Class", description = "Creacion de una clase")
-    public ResponseEntity<String> createClass(@RequestParam() String className) {
+    public ResponseEntity<String> createClass(@RequestParam String className) {
 
         Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims");
 
@@ -66,7 +66,7 @@ public class OntologyRestController {
 
     @DeleteMapping("/deleteIndividual")
     @Operation(summary = "Delete Individual", description = "Elimina el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> deleteIndividual(@RequestParam() String individualName) {
+    public ResponseEntity<String> deleteIndividual(@RequestParam String individualName) {
 
         boolean response = ontologyService.deleteIndividual(individualName);
 
@@ -79,7 +79,7 @@ public class OntologyRestController {
 
     @PutMapping("/editIndividual")
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> editIndividual(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
+    public ResponseEntity<String> editIndividual(@RequestParam String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
 
         Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
 

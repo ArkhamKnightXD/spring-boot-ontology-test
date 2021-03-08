@@ -115,7 +115,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
-    public String getIndividualByName(Model model, @RequestParam() String individualName)  {
+    public String getIndividualByName(Model model, @RequestParam String individualName)  {
 
         String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
@@ -149,7 +149,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String individualName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam() String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
+    public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         Word wordToEdit = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE);
 
@@ -160,7 +160,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/show", method = RequestMethod.GET)
-    public String showIndividual(Model model, @RequestParam() String lemma) {
+    public String showIndividual(Model model, @RequestParam String lemma) {
 
         model.addAttribute("word", wordService.getWordByLemma(lemma));
 
@@ -169,7 +169,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteIndividual(@RequestParam() String individualName) {
+    public String deleteIndividual(@RequestParam String individualName) {
 
         ontologyService.deleteIndividual(individualName);
 
@@ -185,7 +185,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/class-create", method = RequestMethod.POST)
-    public String createClass(@RequestParam() String fatherClassName, @RequestParam(defaultValue = "") String subClass) {
+    public String createClass(@RequestParam String fatherClassName, @RequestParam(defaultValue = "") String subClass) {
 
         if (subClass.length() == 0) {
 

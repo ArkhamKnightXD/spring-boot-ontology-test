@@ -113,7 +113,6 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
-                <li><a href="#"><i class="active fa fa-user"></i> <span>Users</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
@@ -123,6 +122,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="#">All Individuals</a></li>
+                        <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
                     </ul>
                 </li>
             </ul>

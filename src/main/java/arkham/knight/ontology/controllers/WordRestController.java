@@ -50,7 +50,7 @@ public class WordRestController {
 
     @GetMapping("/search-DRAE")
     @Operation(summary = "Search For Any Word In The DRAE Endpoint", description = "Retorna la definicion de una palabra con respecto al diccionario de la RAE")
-    public ResponseEntity<List<DRAEObject>> searchWordDRAEAPI(@RequestParam() String wordToSearch) {
+    public ResponseEntity<List<DRAEObject>> searchWordDRAEAPI(@RequestParam String wordToSearch) {
 
         List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
 
@@ -70,7 +70,7 @@ public class WordRestController {
 
     @GetMapping("/getWord")
     @Operation(summary = "Get A Word By Name", description = "Retornara el individual del lema indicado")
-    public ResponseEntity<Word> findIndividualByName(@RequestParam() String individualName) {
+    public ResponseEntity<Word> findIndividualByName(@RequestParam String individualName) {
 
         return new ResponseEntity<>(wordService.getWordByLemma(individualName), HttpStatus.OK);
     }
@@ -78,7 +78,7 @@ public class WordRestController {
 
     @GetMapping("/getAllWordsByClassName")
     @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las individuales de la clase indicada")
-    public ResponseEntity<List<Word>> getAllIndividualsByClasses(@RequestParam() String fatherClassName) {
+    public ResponseEntity<List<Word>> getAllIndividualsByClasses(@RequestParam String fatherClassName) {
 
         return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);
     }

@@ -30,19 +30,19 @@ public class UserService {
     }
 
 
-    public List<User> findAllUsers(){
+    public List<User> getAllUsers(){
 
         return userRepository.findAll();
     }
 
 
-    public User findUserByUsername(String username){
+    public User getUserByUsername(String username){
 
         return userRepository.findUserByUsername(username);
     }
 
 
-    public User findUserById(long id){
+    public User getUserById(long id){
 
         return userRepository.findUserById(id);
     }
@@ -54,21 +54,15 @@ public class UserService {
     }
 
 
-    public void saveAllUsersRol(List<Rol> usersRol){
-
-        rolRepository.saveAll(usersRol);
-    }
-
-
-    public List<Rol> findAllRoles(){
+    public List<Rol> getAllRoles(){
 
         return rolRepository.findAll();
     }
 
 
-    public List<Rol> findAllRolesById(List<Long> idRoles){
+    public Rol getRolById(long idRol){
 
-        return rolRepository.findAllById(idRoles);
+        return rolRepository.findRolById(idRol);
     }
 
 

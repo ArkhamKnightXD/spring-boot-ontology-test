@@ -35,7 +35,7 @@ public class URLController implements ErrorController {
     @RequestMapping("/login")
     public String login(){
 
-        User adminUser = userService.findUserByUsername("admin");
+        User adminUser = userService.getUserByUsername("admin");
 
         if (adminUser == null){
 
