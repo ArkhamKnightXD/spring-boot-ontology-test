@@ -5,14 +5,10 @@ import arkham.knight.ontology.models.User;
 import arkham.knight.ontology.repositories.RolRepository;
 import arkham.knight.ontology.repositories.UserRepository;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
-
-//basic db
-//    private static List<User> userDb =new ArrayList<>();
 
     final UserRepository userRepository;
 
@@ -64,21 +60,4 @@ public class UserService {
 
         return rolRepository.findRolById(idRol);
     }
-
-
-//basic save method
-//    public void saveUser(User user){
-//
-//        userDb.add(user);
-//    }
-
-
-//    public User findUserByUsername(String username){
-//        for (User userToFind: userDb) {
-//
-//            if (userToFind.getUsername().equalsIgnoreCase(username))
-//                return userToFind;
-//        }
-//        return new User();
-//    }
 }

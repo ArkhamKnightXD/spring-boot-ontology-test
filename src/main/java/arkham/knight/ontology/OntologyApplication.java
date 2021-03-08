@@ -12,9 +12,7 @@ import java.io.*;
 @OpenAPIDefinition(info = @Info(title = "API Español Dominicano", version = "1.0", description = "API Centrada en el desarrollo de un diccionario de palabras dominicanas"))
 public class OntologyApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(OntologyApplication.class, args);
-    }
+    public static void main(String[] args) { SpringApplication.run(OntologyApplication.class, args); }
 
 
     private void openIndexPage(boolean identifier) {
