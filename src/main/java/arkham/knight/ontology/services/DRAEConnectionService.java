@@ -1,6 +1,8 @@
 package arkham.knight.ontology.services;
 
+import arkham.knight.ontology.models.DRAEDefinition;
 import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.models.DRAEVariation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -32,5 +34,31 @@ public class DRAEConnectionService {
         Gson gson = builder.create();
 
         return new ArrayList<>(Arrays.asList(gson.fromJson(responseEntityDRAE.getBody(), DRAEObject[].class)));
+    }
+
+
+    public List<DRAEDefinition> getAllDefinitionsFromDRAEWord(List<DRAEObject> words){
+
+        List<DRAEDefinition> definitionList = new ArrayList<>();
+
+        for (DRAEObject word: words) {
+
+            definitionList.addAll(word.getDefinitions());
+        }
+
+        return definitionList;
+    }
+
+
+    public List<DRAEVariation> getAllVariationsFromDRAEWord(List<DRAEObject> words){
+
+        List<DRAEVariation> variationList = new ArrayList<>();
+
+        for (DRAEObject word: words) {
+
+            variationList.addAll(word.getVariations());
+        }
+
+        return variationList;
     }
 }

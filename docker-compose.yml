@@ -18,7 +18,8 @@ services:
       - ontology-network
 
     depends_on:
-      - drae
+      - mysqldb
+
 
   drae:
 
@@ -35,6 +36,26 @@ services:
     networks:
       - ontology-network
 
+
+  mysqldb:
+
+    image: mysql:8
+
+    container_name: docker-mysql-user
+
+    networks:
+      - ontology-network
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=user_details
+
+    volumes:
+      - mysql_db:/var/lib/mysql
+
+
+volumes:
+  mysql_db:
 
 networks:
   ontology-network:

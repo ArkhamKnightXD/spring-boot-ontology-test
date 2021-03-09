@@ -94,7 +94,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="../../js/main.js"></script>
+	<script src="../../bootstrap-4.3.1/dist/js/main.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.DRAEDefinition;
 import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
@@ -62,6 +63,20 @@ public class OntologyController {
         model.addAttribute("words", wordList);
 
         return "/freemarker/searchDRAE";
+    }
+
+
+    @RequestMapping(value = "/showDRAE", method = RequestMethod.GET)
+    public String showDRAEWordData(Model model, @RequestParam String lemma) {
+
+        List<DRAEObject> words = draeConnectionService.getTheWordDataFromDRAE(restTemplate, lemma);
+
+        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWord(words);
+
+        model.addAttribute("word", lemma);
+        model.addAttribute("definitions", definitions);
+
+        return "/freemarker/searchDRAEComplete";
     }
 
 

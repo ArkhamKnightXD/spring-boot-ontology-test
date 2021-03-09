@@ -12,6 +12,7 @@
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
 
+	<link rel="icon" type="image/png" href="../../bootstrap-4.3.1/dist/img/icons/favicon.ico"/>
 	<!-- Custom stlylesheet -->
 	<link type="text/css" rel="stylesheet" href="../../bootstrap-4.3.1/style/style-error-page.css" />
 

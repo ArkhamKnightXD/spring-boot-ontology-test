@@ -119,7 +119,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="#"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
@@ -140,14 +140,11 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/words/search">
-            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
-        </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Resultados</strong>
+                <strong>${word}</strong>
             </h1>
         </section>
 
@@ -160,16 +157,24 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema</th>
-                            <th>Etimologia</th>
+                            <th>Categoria</th>
+                            <th>Definicion</th>
+<#--                            <th>Origen</th>-->
+<#--                            <th>Notas</th>-->
+<#--                            <th>Ejemplo</th>-->
                             </thead>
 
                             <tbody>
-                            <#list words as word >
+                            <#list definitions as definition >
                                 <tr>
-                                    <td><a href="/words/showDRAE?lemma=${word.getWord()}"><b>${word.getWord()}</b></a></td>
+                                    <td>${definition.getCategory()}</td>
+                                    <td>${definition.getDefinition()}</td>
 
-                                    <td>${word.getEtymology()}</td>
+<#--                                    <#if definition.getOrigin()??>-->
+<#--                                        <td>${definition.getOrigin().get(0)}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>N/A</td>-->
+<#--                                    </#if>-->
 
                                 </tr>
                             </#list>

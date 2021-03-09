@@ -113,9 +113,6 @@
                 </div>
             </div>
 
-            <!-- search form (Optional) -->
-
-            <!-- /.search form -->
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
