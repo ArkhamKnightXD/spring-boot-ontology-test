@@ -96,7 +96,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String editUser(@RequestParam Long id) {
+    public String deleteUser(@RequestParam Long id) {
 
         userService.deleteUserById(id);
 
