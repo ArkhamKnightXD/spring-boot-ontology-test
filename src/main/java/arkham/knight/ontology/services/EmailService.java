@@ -1,6 +1,5 @@
 package arkham.knight.ontology.services;
 
-import arkham.knight.ontology.models.User;
 import org.springframework.stereotype.Service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -10,15 +9,15 @@ import java.util.Properties;
 @Service
 public class EmailService {
     //Usuario de email desde donde mandare los correos
-    final String user="fillclick@alternard.com";
+    final String user="karvin.jimenez@alternard.com";
 
     //El parametro to sera el email del usuario al que le mandare el mensaje
     public void sendEmail(String to, String subject, String html) {
         // Get system properties
         Properties properties = System.getProperties();
 
-        // Setup mail server
-        properties.setProperty("mail.smtp.host", "smtp.yandex.ru");
+        // Setup mail server Gmail
+        properties.setProperty("mail.smtp.host", "smtp.gmail.com");
         properties.setProperty("mail.smtp.port", "465");
         properties.setProperty("mail.smtp.ssl.enable", "true");
         properties.setProperty("mail.smtp.starttls.enable", "true");
@@ -30,7 +29,7 @@ public class EmailService {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
 
-                return new PasswordAuthentication(user, "alterna.1234");
+                return new PasswordAuthentication(user, "1234");
             }
         });
 
@@ -53,13 +52,13 @@ public class EmailService {
     }
 
 
-    public void sendVerificationEmail(User user) {
+    public void sendVerificationEmail(String email) {
 
-        String verifyUrl = "https://safezona.alterna.com/verify-email?token="+"User.VerificationToken";
+        String verifyUrl = "https://safezona.alterna.com/verify-email?token=";
 
         String message = "<p>Please click the below link to verify your email address:</p> <p><a href="+verifyUrl+">"+verifyUrl+"</a></p>";
 
-        sendEmail(user.getUsername(), "Sign-up Verification Safezona", "<h4>Verify Email</h4> <p>Thanks for registering!</p>" + message);
+        sendEmail(email, "Sign-up Verification Safezona", "<h4>Verify Email</h4> <p>Thanks for registering!</p>" + message);
     }
 
 
@@ -71,12 +70,12 @@ public class EmailService {
     }
 
 
-    public void sendPasswordResetEmail(User user) {
+    public void sendPasswordResetEmail(String email) {
 
         String resetUrl = "https://safezona.alterna.com/reset-password?token="+"User.ResetToken";
 
         String message = "<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>\n" + "<p><a href="+resetUrl+">"+resetUrl+"</a></p>";
 
-        sendEmail(user.getUsername(), "SafeZona.com - Reset Password", "<h4>Reset Password Email</h4>" + message);
+        sendEmail(email, "SafeZona.com - Reset Password", "<h4>Reset Password Email</h4>" + message);
     }
 }
