@@ -37,7 +37,7 @@ public class DRAEConnectionService {
     }
 
 
-    public List<DRAEDefinition> getAllDefinitionsFromDRAEWord(List<DRAEObject> words){
+    public List<DRAEDefinition> getAllDefinitionsFromDRAEWordList(List<DRAEObject> words){
 
         List<DRAEDefinition> definitionList = new ArrayList<>();
 
@@ -50,7 +50,7 @@ public class DRAEConnectionService {
     }
 
 
-    public List<DRAEVariation> getAllVariationsFromDRAEWord(List<DRAEObject> words){
+    public List<DRAEVariation> getAllVariationsFromDRAEWordList(List<DRAEObject> words){
 
         List<DRAEVariation> variationList = new ArrayList<>();
 

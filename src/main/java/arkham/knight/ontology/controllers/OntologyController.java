@@ -71,7 +71,7 @@ public class OntologyController {
 
         List<DRAEObject> words = draeConnectionService.getTheWordDataFromDRAE(restTemplate, lemma);
 
-        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWord(words);
+        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWordList(words);
 
         model.addAttribute("word", lemma);
         model.addAttribute("definitions", definitions);
