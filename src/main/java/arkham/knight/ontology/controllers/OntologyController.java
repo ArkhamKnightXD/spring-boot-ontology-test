@@ -8,7 +8,6 @@ import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -135,15 +134,11 @@ public class OntologyController {
         String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
         Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
-        Property definitionProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.definitionURI);
-        Property exampleProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.exampleURI);
-        Property lemmaRAEProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.lemmaRAEURI);
-        Property synonymsProperty = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.synonymsURI);
 
-        RDFNode definitionPropertyValue = individual.getPropertyValue(definitionProperty);
-        RDFNode examplePropertyValue = individual.getPropertyValue(exampleProperty);
-        RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(lemmaRAEProperty);
-        RDFNode synonymsPropertyValue = individual.getPropertyValue(synonymsProperty);
+        RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
+        RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
+        RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
+        RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
 
         model.addAttribute("fatherClass", individual.getOntClass().getLocalName());
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());

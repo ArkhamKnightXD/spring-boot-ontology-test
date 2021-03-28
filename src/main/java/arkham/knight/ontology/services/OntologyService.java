@@ -4,7 +4,6 @@ import arkham.knight.ontology.models.Word;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
-import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
@@ -240,14 +239,6 @@ public class OntologyService {
 
         List<Word> wordList = new ArrayList<>();
 
-        Property definition = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.definitionURI);
-
-        Property example = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.exampleURI);
-
-        Property lemmaRAE = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.lemmaRAEURI);
-
-        Property synonyms = ontologyConnectionService.readOntologyFileAndReturnTheModel().getProperty(ontologyConnectionService.synonymsURI);
-
 
         for (Individual individual: individualList) {
 
@@ -259,22 +250,22 @@ public class OntologyService {
             if (individual.getOntClass() != null)
                 wordToSave.setClasePadre(individual.getOntClass().getLocalName());
 
-            RDFNode definitionPropertyValue = individual.getPropertyValue(definition);
+            RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
 
             if (definitionPropertyValue!= null)
                 wordToSave.setDefinicion(definitionPropertyValue.toString());
 
-            RDFNode examplePropertyValue = individual.getPropertyValue(example);
+            RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
 
             if (examplePropertyValue!= null)
                 wordToSave.setEjemplo(examplePropertyValue.toString());
 
-            RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(lemmaRAE);
+            RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
 
             if (lemmaRAEPropertyValue!= null)
                 wordToSave.setLemaRAE(lemmaRAEPropertyValue.toString());
 
-            RDFNode synonymsPropertyValue = individual.getPropertyValue(synonyms);
+            RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
 
             if (synonymsPropertyValue != null)
                 wordToSave.setSinonimos(synonymsPropertyValue.toString());

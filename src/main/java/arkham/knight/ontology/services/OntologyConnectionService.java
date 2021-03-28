@@ -4,13 +4,13 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.ontology.Ontology;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import java.io.*;
 import java.util.Iterator;
 
 public class OntologyConnectionService {
-
     //jar file path
     //private final File ontologyFile = new File(System.getProperty("user.dir")+"\\ontology-0.0.1-SNAPSHOT\\BOOT-INF\\classes\\ontology\\diccionario.owl");
 
@@ -27,6 +27,14 @@ public class OntologyConnectionService {
     public final String lemmaRAEURI = ontologyURI.concat("lema_rae");
 
     public final String synonymsURI = ontologyURI.concat("sinonimos");
+
+    public Property definitionProperty = readOntologyFileAndReturnTheModel().getProperty(definitionURI);
+
+    public Property exampleProperty = readOntologyFileAndReturnTheModel().getProperty(exampleURI);
+
+    public Property lemmaRAEProperty = readOntologyFileAndReturnTheModel().getProperty(lemmaRAEURI);
+
+    public Property synonymsProperty = readOntologyFileAndReturnTheModel().getProperty(synonymsURI);
 
     private static OntologyConnectionService instance;
 
