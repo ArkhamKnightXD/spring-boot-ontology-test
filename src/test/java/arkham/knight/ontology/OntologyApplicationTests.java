@@ -77,7 +77,7 @@ class OntologyApplicationTests {
         assertFalse(variations.isEmpty());
     }
 
-//    Estan fallando todas las pruebas ya que implemente spring security verificare por que pasa esto luego
+//    Estan fallando todas las pruebas ya que implemente spring JPA verificare por que pasa esto luego
     @Test
     void testGetAllClassesLocalName() {
 
@@ -160,6 +160,19 @@ class OntologyApplicationTests {
         Word wordToSave = new Word(testLemma, "definition", "example", "fatherClassName", "synonyms", "individualNameRAE");
 
         String response = ontologyService.saveIndividual(testLemma, wordToSave);
+
+        assertEquals("Individual Saved", response);
+    }
+
+
+    @Test
+    void testIndividualEdition() {
+
+        String testLemma2 = "prueba1";
+
+        Word wordToSave = new Word(testLemma2, "definition23", "example2", "fatherClassName23", "synonyms2", "individualNameRAE2");
+
+        String response = ontologyService.saveIndividual(testLemma2, wordToSave);
 
         assertEquals("Individual Saved", response);
     }

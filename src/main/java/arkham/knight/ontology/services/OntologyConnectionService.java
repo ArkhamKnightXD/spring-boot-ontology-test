@@ -8,13 +8,14 @@ import org.apache.jena.rdf.model.Property;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import java.io.*;
+import java.net.URL;
 import java.util.Iterator;
 
 public class OntologyConnectionService {
-    //jar file path
-    //private final File ontologyFile = new File(System.getProperty("user.dir")+"\\ontology-0.0.1-SNAPSHOT\\BOOT-INF\\classes\\ontology\\diccionario.owl");
 
     public final OWLOntologyManager ontologyManager = OWLManager.createOWLOntologyManager();
+
+    private final String ontologyURL = "https://ghcdn.rawgit.org/ArkhamKnightXD/spring-boot-ontology-test/master/src/main/resources/ontology/diccionario.owl";
 
     private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
 
@@ -54,12 +55,20 @@ public class OntologyConnectionService {
 
         try {
             reader = new FileReader(ontologyFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
         }
 
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
         model.read(reader,null);
+
+        //URL Connection
+//        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+//        try {
+//            model.read(new URL(ontologyURL).openStream(),null);
+//        } catch (IOException exception) {
+//            exception.printStackTrace();
+//        }
 
         return model;
     }
@@ -82,14 +91,16 @@ public class OntologyConnectionService {
 
 
     public void saveOntologyFile(OWLOntology ontology){
+        //Este metodo falla a la hora de implementarse con url, pero todos los demas funcionan bien
+//        IRI ontologySaveIRI = IRI.create(ontologyURL);
 
         IRI ontologySaveIRI = IRI.create(ontologyFile);
 
         try {
             // save in RDF/XML
             ontologyManager.saveOntology(ontology, ontologySaveIRI);
-        } catch (OWLOntologyStorageException e) {
-            e.printStackTrace();
+        } catch (OWLOntologyStorageException exception) {
+            exception.printStackTrace();
         }
 
         // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
@@ -101,9 +112,16 @@ public class OntologyConnectionService {
 
         try {
             return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
-        } catch (OWLOntologyCreationException e) {
-            e.printStackTrace();
+        } catch (OWLOntologyCreationException exception) {
+            exception.printStackTrace();
         }
+
+        //URl connection
+//        try {
+//            return ontologyManager.loadOntologyFromOntologyDocument(new URL(ontologyURL).openStream());
+//        } catch (OWLOntologyCreationException | IOException exception) {
+//            exception.printStackTrace();
+//        }
         return null;
     }
 }
