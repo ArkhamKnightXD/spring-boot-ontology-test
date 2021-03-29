@@ -9,6 +9,7 @@ import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import java.io.*;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.Iterator;
 
 public class OntologyConnectionService {
@@ -49,28 +50,33 @@ public class OntologyConnectionService {
     }
 
 
-    public OntModel readOntologyFileAndReturnTheModel() {
-
-        FileReader reader = null;
+    public InputStream getOntologyURLInputStream() {
 
         try {
-            reader = new FileReader(ontologyFile);
-        } catch (FileNotFoundException exception) {
+            return new URL(ontologyURL).openStream();
+        } catch (IOException exception) {
             exception.printStackTrace();
         }
 
-        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
-        model.read(reader,null);
+        return null;
+    }
 
-        //URL Connection
-//        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
-//        try {
-//            model.read(new URL(ontologyURL).openStream(),null);
-//        } catch (IOException exception) {
-//            exception.printStackTrace();
-//        }
 
-        return model;
+    public OutputStream getOntologyURLOutputStream() {
+
+        URLConnection urlConnection = null;
+
+        try {
+
+            urlConnection = new URL(ontologyURL).openConnection();
+            urlConnection.setDoOutput(true);
+
+            return urlConnection.getOutputStream();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        return null;
     }
 
 
@@ -90,15 +96,37 @@ public class OntologyConnectionService {
     }
 
 
+    public OntModel readOntologyFileAndReturnTheModel() {
+
+        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+
+        FileReader reader = null;
+
+        try {
+            reader = new FileReader(ontologyFile);
+        } catch (FileNotFoundException exception) {
+            exception.printStackTrace();
+        }
+
+        model.read(reader,null);
+
+        //URL Connection
+//        model.read(getOntologyURLInputStream(), null);
+
+        return model;
+    }
+
+
     public void saveOntologyFile(OWLOntology ontology){
-        //Este metodo falla a la hora de implementarse con url, pero todos los demas funcionan bien
-//        IRI ontologySaveIRI = IRI.create(ontologyURL);
 
         IRI ontologySaveIRI = IRI.create(ontologyFile);
 
         try {
             // save in RDF/XML
             ontologyManager.saveOntology(ontology, ontologySaveIRI);
+
+            //UrlConnection
+//            ontologyManager.saveOntology(ontology, getOntologyURLOutputStream());
         } catch (OWLOntologyStorageException exception) {
             exception.printStackTrace();
         }
@@ -111,17 +139,15 @@ public class OntologyConnectionService {
     public OWLOntology loadTheOntologyOwlAPI(){
 
         try {
+
             return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
+
+            //URl connection
+//            return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
         } catch (OWLOntologyCreationException exception) {
             exception.printStackTrace();
         }
 
-        //URl connection
-//        try {
-//            return ontologyManager.loadOntologyFromOntologyDocument(new URL(ontologyURL).openStream());
-//        } catch (OWLOntologyCreationException | IOException exception) {
-//            exception.printStackTrace();
-//        }
         return null;
     }
 }
