@@ -19,6 +19,7 @@ services:
 
     depends_on:
       - mysqldb
+      - drae
 
 
   drae:

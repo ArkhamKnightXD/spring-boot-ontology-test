@@ -170,7 +170,7 @@ class OntologyApplicationTests {
 
         String testLemma2 = "prueba1";
 
-        Word wordToSave = new Word(testLemma2, "definition23", "example2", "fatherClassName23", "synonyms2", "individualNameRAE2");
+        Word wordToSave = new Word(testLemma2, "definition3", "example3", "fatherClassName3", "synonyms3", "individualNameRAE3");
 
         String response = ontologyService.saveIndividual(testLemma2, wordToSave);
 

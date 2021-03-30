@@ -22,21 +22,13 @@ public class OntologyConnectionService {
 
     public final String ontologyURI = getOntology().getURI().concat("#");
 
-    public final String definitionURI = ontologyURI.concat("definicion");
+    public Property definitionProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("definicion"));
 
-    public final String exampleURI = ontologyURI.concat("ejemplo");
+    public Property exampleProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("ejemplo"));
 
-    public final String lemmaRAEURI = ontologyURI.concat("lema_rae");
+    public Property lemmaRAEProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("lema_rae"));
 
-    public final String synonymsURI = ontologyURI.concat("sinonimos");
-
-    public Property definitionProperty = readOntologyFileAndReturnTheModel().getProperty(definitionURI);
-
-    public Property exampleProperty = readOntologyFileAndReturnTheModel().getProperty(exampleURI);
-
-    public Property lemmaRAEProperty = readOntologyFileAndReturnTheModel().getProperty(lemmaRAEURI);
-
-    public Property synonymsProperty = readOntologyFileAndReturnTheModel().getProperty(synonymsURI);
+    public Property synonymsProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("sinonimos"));
 
     private static OntologyConnectionService instance;
 
