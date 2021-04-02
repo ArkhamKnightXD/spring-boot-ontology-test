@@ -43,4 +43,18 @@ public class WordService {
 
         return null;
     }
+
+
+    public float calculateWordAgreementPercentage(Word word){
+
+        float agreementPercentage = 0.f;
+
+        int cantidadVotaciones = Integer.parseInt(word.getCantidadVotacionesI());
+        int totalRespuestas = Integer.parseInt(word.getTotalRespuestasN());
+
+        //formula = I/N *100 falla
+        agreementPercentage = (2/5) * 100;
+
+        return agreementPercentage;
+    }
 }

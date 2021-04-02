@@ -30,6 +30,10 @@ public class OntologyConnectionService {
 
     public Property synonymsProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("sinonimos"));
 
+    public Property totalAnswersProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("total_respuestas_N"));
+
+    public Property votesQuantityProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("cantidad_votaciones_I"));
+
     private static OntologyConnectionService instance;
 
 

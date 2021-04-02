@@ -10,6 +10,8 @@ public class Word implements Serializable {
     private String clasePadre;
     private String sinonimos;
     private String lemaRAE;
+    private String totalRespuestasN;
+    private String cantidadVotacionesI;
 
 
     public Word() {
@@ -57,4 +59,12 @@ public class Word implements Serializable {
     public String getLemaRAE() { return lemaRAE; }
 
     public void setLemaRAE(String lemaRAE) { this.lemaRAE = lemaRAE; }
+
+    public String getTotalRespuestasN() { return totalRespuestasN; }
+
+    public void setTotalRespuestasN(String totalRespuestasN) { this.totalRespuestasN = totalRespuestasN; }
+
+    public String getCantidadVotacionesI() { return cantidadVotacionesI; }
+
+    public void setCantidadVotacionesI(String  cantidadVotacionesI) { this.cantidadVotacionesI = cantidadVotacionesI; }
 }

@@ -270,6 +270,16 @@ public class OntologyService {
             if (synonymsPropertyValue != null)
                 wordToSave.setSinonimos(synonymsPropertyValue.toString());
 
+            RDFNode totalAnswersPropertyValue = individual.getPropertyValue(ontologyConnectionService.totalAnswersProperty);
+
+            if (totalAnswersPropertyValue != null)
+                wordToSave.setTotalRespuestasN(totalAnswersPropertyValue.toString());
+
+            RDFNode votesQuantityPropertyValue = individual.getPropertyValue(ontologyConnectionService.votesQuantityProperty);
+
+            if (votesQuantityPropertyValue != null)
+                wordToSave.setCantidadVotacionesI(votesQuantityPropertyValue.toString());
+
             wordList.add(wordToSave);
         }
 
