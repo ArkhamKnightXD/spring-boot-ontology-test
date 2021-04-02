@@ -12,6 +12,8 @@ public class Word implements Serializable {
     private String lemaRAE;
     private String totalRespuestasN;
     private String cantidadVotacionesI;
+    private String numeroDeAusenciasD;
+    private String numeroDePresenciasA;
 
 
     public Word() {
@@ -67,4 +69,12 @@ public class Word implements Serializable {
     public String getCantidadVotacionesI() { return cantidadVotacionesI; }
 
     public void setCantidadVotacionesI(String  cantidadVotacionesI) { this.cantidadVotacionesI = cantidadVotacionesI; }
+
+    public String getNumeroDeAusenciasD() { return numeroDeAusenciasD; }
+
+    public void setNumeroDeAusenciasD(String numeroDeAusenciasD) { this.numeroDeAusenciasD = numeroDeAusenciasD; }
+
+    public String getNumeroDePresenciasA() { return numeroDePresenciasA; }
+
+    public void setNumeroDePresenciasA(String numeroDePresenciasA) { this.numeroDePresenciasA = numeroDePresenciasA; }
 }

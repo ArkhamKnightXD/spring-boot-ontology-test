@@ -37,7 +37,10 @@ public class OntologyApplication {
 
             Word testWord = wordService.getWordByLemma("apota");
 
-            System.out.println(wordService.calculateWordAgreementPercentage(testWord));
+            System.out.println("Porcentaje de acuerdo: " + wordService.calculateWordPercentageAgreement(testWord));
+            System.out.println("Porcentaje de acuerdo de presencia: " + wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, true));
+            System.out.println("Porcentaje de acuerdo de ausencia: " + wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, false));
+            System.out.println("Porcentaje medio de acuerdo: " + wordService.calculateWordMeanPercentageAgreement(testWord));
 
 //            openIndexPage(true);
 //

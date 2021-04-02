@@ -34,6 +34,10 @@ public class OntologyConnectionService {
 
     public Property votesQuantityProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("cantidad_votaciones_I"));
 
+    public Property numberOfAbsencesProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("numero_de_ausencias_D"));
+
+    public Property numberOfPresencesProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("numero_de_presencias_A"));
+
     private static OntologyConnectionService instance;
 
 

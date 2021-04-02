@@ -41,6 +41,50 @@ class OntologyApplicationTests {
 
 
     @Test
+    void testCalculateWordPercentageAgreement() {
+
+        Word testWord = wordService.getWordByLemma("apota");
+
+        float response = wordService.calculateWordPercentageAgreement(testWord);
+
+        assertEquals(40 ,response);
+    }
+
+
+    @Test
+    void testCalculateWordPercentageAgreementOfPresence() {
+
+        Word testWord = wordService.getWordByLemma("apota");
+
+        float response = wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, true);
+
+        assertEquals(200 ,response);
+    }
+
+
+    @Test
+    void testCalculateWordPercentageAgreementOfAbsences() {
+
+        Word testWord = wordService.getWordByLemma("apota");
+
+        float response = wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, false);
+
+        assertEquals(300 ,response);
+    }
+
+
+    @Test
+    void testCalculateWordMeanPercentageAgreement() {
+
+        Word testWord = wordService.getWordByLemma("apota");
+
+        float response = wordService.calculateWordMeanPercentageAgreement(testWord);
+
+        assertEquals(25000 ,response);
+    }
+
+
+    @Test
     void testDRAEObjectSearch() {
 
         String wordFound = "";
