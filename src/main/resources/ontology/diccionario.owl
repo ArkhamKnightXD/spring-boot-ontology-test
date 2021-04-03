@@ -465,8 +465,8 @@
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a propósito</untitled-ontology-2:lema_rae>
         <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</untitled-ontology-2:numero>
         <untitled-ontology-2:numero_acepcion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:numero_acepcion>
-        <untitled-ontology-2:numero_de_ausencias_D rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:numero_de_ausencias_D>
-        <untitled-ontology-2:numero_de_presencias_A rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4</untitled-ontology-2:numero_de_presencias_A>
+        <untitled-ontology-2:numero_de_ausencias_D rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero_de_ausencias_D>
+        <untitled-ontology-2:numero_de_presencias_A rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero_de_presencias_A>
         <untitled-ontology-2:sinonimos>adrede
 con intención
 deliberadamente</untitled-ontology-2:sinonimos>

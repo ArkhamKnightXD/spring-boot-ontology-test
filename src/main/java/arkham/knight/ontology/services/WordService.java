@@ -64,17 +64,17 @@ public class WordService {
 
         if (wordToEvaluate.getCantidadVotacionesI() != null && wordToEvaluate.getNumeroDeAusenciasD() != null){
 
-            int numberOfAbsencesD = Integer.parseInt(wordToEvaluate.getNumeroDeAusenciasD());;
-            int numberOfPresencesA = Integer.parseInt(wordToEvaluate.getNumeroDePresenciasA());;
+            float numberOfAbsencesD = Integer.parseInt(wordToEvaluate.getNumeroDeAusenciasD());;
+            float numberOfPresencesA = Integer.parseInt(wordToEvaluate.getNumeroDePresenciasA());;
 
             int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
 
             //Porcentaje de acuerdo de ‘presencia’ formula = A/N-D * 100
             if (percentageType)
-                return (float) (numberOfPresencesA /(totalAnswers- numberOfAbsencesD)) * 100;
+                return (numberOfPresencesA /(totalAnswers - numberOfAbsencesD)) * 100;
 
             //Porcentaje de acuerdo de ausencias formula = D/N-A * 100
-            return (float) (numberOfAbsencesD /(totalAnswers- numberOfPresencesA)) * 100;
+            return (numberOfAbsencesD /(totalAnswers - numberOfPresencesA)) * 100;
         }
 
         return 0;
@@ -83,8 +83,8 @@ public class WordService {
 
     public float calculateWordMeanPercentageAgreement(Word wordToEvaluate){
 
-        float percentageOfAbsences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, false);
-        float percentageOfPresences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, true);
+        float percentageOfAbsences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, false)/100;
+        float percentageOfPresences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, true)/100;
 
         //formula = porcentaje de ausencias + porcentaje de asistencias *100
         return  ((percentageOfPresences+percentageOfAbsences)/2) * 100;

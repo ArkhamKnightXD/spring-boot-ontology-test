@@ -189,7 +189,7 @@ public class OntologyService {
 
     public List<String> tokenizeTheSentence(String sentence){
 
-        String [] tokens = sentence.split("[\\s'.,:;]");
+        String [] tokens = sentence.split("[\\s'.,:;+-]");
 
         return new ArrayList<>(Arrays.asList(tokens));
     }
@@ -227,6 +227,7 @@ public class OntologyService {
             String cleanWord = StringUtils.stripAccents(word);
 
             if (cleanIndividual.equalsIgnoreCase(cleanWord) && avoidRepeatIndividualCount == 0 || searchType.equals("word-search") & cleanIndividual.matches(".*"+cleanWord.toLowerCase()+".*") && avoidRepeatIndividualCount == 0){
+
                 individualList.add(individual);
 
                 avoidRepeatIndividualCount++;
