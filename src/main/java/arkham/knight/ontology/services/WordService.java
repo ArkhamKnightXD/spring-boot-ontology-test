@@ -3,7 +3,6 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,10 +63,10 @@ public class WordService {
 
     public float calculateWordPercentageAgreementOfPresenceOrAbsents(Word wordToEvaluate, boolean percentageType){
 
-        if (wordToEvaluate.getCantidadVotacionesI() != null && wordToEvaluate.getNumeroDeAusenciasD() != null){
+        if (wordToEvaluate.getCantidadVotacionesI() != null){
 
-            float numberOfAbsencesD = Integer.parseInt(wordToEvaluate.getNumeroDeAusenciasD());;
-            float numberOfPresencesA = Integer.parseInt(wordToEvaluate.getNumeroDePresenciasA());;
+            float numberOfAbsencesD = 2;
+            float numberOfPresencesA = 2;
 
             int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
 

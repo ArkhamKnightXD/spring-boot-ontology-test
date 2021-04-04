@@ -281,16 +281,6 @@ public class OntologyService {
             if (votesQuantityPropertyValue != null)
                 wordToSave.setCantidadVotacionesI(votesQuantityPropertyValue.toString());
 
-            RDFNode numberOfAbsencesPropertyValue = individual.getPropertyValue(ontologyConnectionService.numberOfAbsencesProperty);
-
-            if (numberOfAbsencesPropertyValue != null)
-                wordToSave.setNumeroDeAusenciasD(numberOfAbsencesPropertyValue.toString());
-
-            RDFNode numberOfPresencesPropertyValue = individual.getPropertyValue(ontologyConnectionService.numberOfPresencesProperty);
-
-            if (numberOfPresencesPropertyValue != null)
-                wordToSave.setNumeroDePresenciasA(numberOfPresencesPropertyValue.toString());
-
             wordList.add(wordToSave);
         }
 

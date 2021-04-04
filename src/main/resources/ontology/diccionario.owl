@@ -95,24 +95,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#numero_de_ausencias_D -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#numero_de_ausencias_D">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#numero_de_presencias_A -->
-
-    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#numero_de_presencias_A">
-        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    </owl:DatatypeProperty>
-    
-
-
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pronunciacion_habitual -->
 
     <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pronunciacion_habitual">
@@ -465,8 +447,6 @@
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a propósito</untitled-ontology-2:lema_rae>
         <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</untitled-ontology-2:numero>
         <untitled-ontology-2:numero_acepcion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:numero_acepcion>
-        <untitled-ontology-2:numero_de_ausencias_D rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero_de_ausencias_D>
-        <untitled-ontology-2:numero_de_presencias_A rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero_de_presencias_A>
         <untitled-ontology-2:sinonimos>adrede
 con intención
 deliberadamente</untitled-ontology-2:sinonimos>
@@ -479,10 +459,12 @@ deliberadamente</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bobolongo">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Dicho de una persona: Falta o escasa de entendimiento o de razón</untitled-ontology-2:definicion>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tonto</untitled-ontology-2:lema_rae>
         <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</untitled-ontology-2:numero>
-        <untitled-ontology-2:sinonimos>torpe
-tarado</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bobo, tarado, torpe</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
@@ -492,9 +474,8 @@ tarado</untitled-ontology-2:sinonimos>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#caballá">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
         <untitled-ontology-2:definicion>Barbaridad (|| cantidad grande).</untitled-ontology-2:definicion>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</untitled-ontology-2:numero>
-        <untitled-ontology-2:sinonimos>incoherencia
-tontería</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">incoherencia, tontería</untitled-ontology-2:sinonimos>
     </owl:NamedIndividual>
     
 
@@ -503,11 +484,14 @@ tontería</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#chueco">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Imperfecto, falto.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">defectuoso</untitled-ontology-2:lema_rae>
         <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</untitled-ontology-2:numero>
-        <untitled-ontology-2:sinonimos>defectuoso
-deficiente
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">imperfecto,
+deficiente,
 dañado</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
@@ -516,8 +500,11 @@ dañado</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#dar_bola">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Forma de viajar por carretera solicitando transporte gratuito de los conductores de vehículos particulares.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</untitled-ontology-2:numero>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">autostop</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:numero>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
@@ -526,11 +513,14 @@ dañado</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#deguabinao">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Que implica o denota agotamiento.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</untitled-ontology-2:numero>
-        <untitled-ontology-2:sinonimos>cansado
-exhausto
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">agotado</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:numero>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cansado,
+exhausto,
 fatigado</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
@@ -539,11 +529,14 @@ fatigado</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#detutane">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Decisión del empresario por la que pone término a la relación laboral que lo unía a un empleado.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</untitled-ontology-2:numero>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">despido</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero>
         <untitled-ontology-2:sinonimos>destitución
 expulsión
 deposición</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
@@ -564,11 +557,14 @@ fastidiar</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#guiñapo">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Acción sucia o indecente.</untitled-ontology-2:definicion>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">3</untitled-ontology-2:numero>
-        <untitled-ontology-2:sinonimos>asquerosidad
-cochinada
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">porquería</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:numero>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">asquerosidad,
+cochinada,
 chatarra</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
