@@ -1,7 +1,5 @@
 package arkham.knight.ontology;
 
-import arkham.knight.ontology.models.Word;
-import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
@@ -32,15 +30,8 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup(WordService wordService) {
+    public CommandLineRunner startup() {
         return args -> {
-
-            Word testWord = wordService.getWordByLemma("apota");
-
-            System.out.println("Porcentaje de acuerdo: " + wordService.calculateWordPercentageAgreement(testWord));
-            System.out.println("Porcentaje de acuerdo de presencia: " + wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, true));
-            System.out.println("Porcentaje de acuerdo de ausencia: " + wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, false));
-            System.out.println("Porcentaje medio de acuerdo: " + wordService.calculateWordMeanPercentageAgreement(testWord));
 
 //            openIndexPage(true);
 //

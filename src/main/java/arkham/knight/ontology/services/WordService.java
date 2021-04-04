@@ -101,7 +101,6 @@ public class WordService {
 
             if (calculateWordPercentageAgreement(wordToEvaluate) >= 40)
                 cleanWordList.add(wordToEvaluate);
-
         }
 
         return cleanWordList;

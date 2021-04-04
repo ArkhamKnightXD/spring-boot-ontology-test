@@ -164,18 +164,18 @@
                             <th>Sinonimos</th>
                             <th>Porcentaje de acuerdo</th>
 
-                            <#if percentageAgreementOfPresences??>
-                                <th>Porcentaje de acuerdo de presencia</th>
+<#--                            <#if percentageAgreementOfPresences??>-->
+<#--                                <th>Porcentaje de acuerdo de presencia</th>-->
 
-                            </#if>
-                            <#if percentageAgreementOfPresences??>
-                                <th>Porcentaje de acuerdo de ausencia</th>
+<#--                            </#if>-->
+<#--                            <#if percentageAgreementOfPresences??>-->
+<#--                                <th>Porcentaje de acuerdo de ausencia</th>-->
 
-                            </#if>
-                            <#if percentageAgreementOfPresences??>
-                                <th>Porcentaje medio de acuerdo </th>
+<#--                            </#if>-->
+<#--                            <#if percentageAgreementOfPresences??>-->
+<#--                                <th>Porcentaje medio de acuerdo </th>-->
 
-                            </#if>
+<#--                            </#if>-->
 
 
                             </thead>
@@ -208,20 +208,20 @@
 
                                     </#if>
 
-                                    <#if percentageAgreementOfPresences??>
-                                        <td>${percentageAgreementOfPresences}%</td>
+<#--                                    <#if percentageAgreementOfPresences??>-->
+<#--                                        <td>${percentageAgreementOfPresences}%</td>-->
 
-                                    </#if>
+<#--                                    </#if>-->
 
-                                    <#if percentageAgreementOfAbsents??>
-                                        <td>${percentageAgreementOfAbsents}%</td>
+<#--                                    <#if percentageAgreementOfAbsents??>-->
+<#--                                        <td>${percentageAgreementOfAbsents}%</td>-->
 
-                                    </#if>
+<#--                                    </#if>-->
 
-                                    <#if meanPercentageAgreement??>
-                                        <td>${meanPercentageAgreement}%</td>
+<#--                                    <#if meanPercentageAgreement??>-->
+<#--                                        <td>${meanPercentageAgreement}%</td>-->
 
-                                    </#if>
+<#--                                    </#if>-->
 
                                 </tr>
                             </tbody>
