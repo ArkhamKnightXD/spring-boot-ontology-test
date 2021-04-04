@@ -160,8 +160,24 @@
 
                             <th>Lema RAE</th>
                             <th>Definicion</th>
-                            <th>Ejempo</th>
+                            <th>Ejemplo</th>
                             <th>Sinonimos</th>
+                            <th>Porcentaje de acuerdo</th>
+
+                            <#if percentageAgreementOfPresences??>
+                                <th>Porcentaje de acuerdo de presencia</th>
+
+                            </#if>
+                            <#if percentageAgreementOfPresences??>
+                                <th>Porcentaje de acuerdo de ausencia</th>
+
+                            </#if>
+                            <#if percentageAgreementOfPresences??>
+                                <th>Porcentaje medio de acuerdo </th>
+
+                            </#if>
+
+
                             </thead>
 
                             <tbody>
@@ -185,6 +201,26 @@
                                         <td>${word.getSinonimos()}</td>
                                     <#else>
                                         <td>N/A</td>
+                                    </#if>
+
+                                    <#if percentageAgreement??>
+                                        <td>${percentageAgreement}%</td>
+
+                                    </#if>
+
+                                    <#if percentageAgreementOfPresences??>
+                                        <td>${percentageAgreementOfPresences}%</td>
+
+                                    </#if>
+
+                                    <#if percentageAgreementOfAbsents??>
+                                        <td>${percentageAgreementOfAbsents}%</td>
+
+                                    </#if>
+
+                                    <#if meanPercentageAgreement??>
+                                        <td>${meanPercentageAgreement}%</td>
+
                                     </#if>
 
                                 </tr>

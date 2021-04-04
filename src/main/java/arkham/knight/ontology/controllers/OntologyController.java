@@ -48,7 +48,9 @@ public class OntologyController {
 
         List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
 
-        model.addAttribute("words", ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList));
+        List<Word> wordList = ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
+
+        model.addAttribute("words", wordService.evaluateWordsAndReturnCleanWordList(wordList));
 
         return "/freemarker/summary";
     }
@@ -172,7 +174,13 @@ public class OntologyController {
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showIndividual(Model model, @RequestParam String lemma) {
 
-        model.addAttribute("word", wordService.getWordByLemma(lemma));
+        Word wordToShow = wordService.getWordByLemma(lemma);
+
+        model.addAttribute("word", wordToShow);
+        model.addAttribute("percentageAgreement", String.format("%.2f", wordService.calculateWordPercentageAgreement(wordToShow)));
+        model.addAttribute("percentageAgreementOfAbsents", String.format("%.2f", wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(wordToShow, false)));
+        model.addAttribute("percentageAgreementOfPresences", String.format("%.2f", wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(wordToShow, true)));
+        model.addAttribute("meanPercentageAgreement", String.format("%.2f", wordService.calculateWordMeanPercentageAgreement(wordToShow)));
 
         return "/freemarker/show";
     }

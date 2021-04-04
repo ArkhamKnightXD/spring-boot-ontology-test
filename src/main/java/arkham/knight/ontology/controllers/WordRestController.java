@@ -44,7 +44,9 @@ public class WordRestController {
 
         List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
 
-        return new ResponseEntity<>(ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList), HttpStatus.OK);
+        List<Word> wordList = ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
+
+        return new ResponseEntity<>(wordService.evaluateWordsAndReturnCleanWordList(wordList), HttpStatus.OK);
     }
 
 

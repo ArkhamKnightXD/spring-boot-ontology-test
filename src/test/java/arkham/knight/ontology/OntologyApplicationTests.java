@@ -58,7 +58,7 @@ class OntologyApplicationTests {
 
         float response = wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, true);
 
-        assertEquals(200 ,response);
+        assertEquals(67, Math.round(response));
     }
 
 
@@ -69,7 +69,7 @@ class OntologyApplicationTests {
 
         float response = wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(testWord, false);
 
-        assertEquals(300 ,response);
+        assertEquals(67, Math.round(response));
     }
 
 
@@ -80,7 +80,7 @@ class OntologyApplicationTests {
 
         float response = wordService.calculateWordMeanPercentageAgreement(testWord);
 
-        assertEquals(25000 ,response);
+        assertEquals(67, Math.round(response));
     }
 
 

@@ -166,10 +166,10 @@
                             <thead class="thead-dark">
 
                             <th>Lema</th>
-                            <th>Lema RAE</th>
                             <th>Definicion</th>
                             <th>Ejemplo</th>
                             <th>Sinonimos</th>
+                            <th>Lema RAE</th>
                             </thead>
 
                             <tbody>
@@ -177,7 +177,6 @@
                                 <tr>
                                     <td><a href="/words/show?lemma=${word.getLema()}"><b>${word.getLema()}</b></a></td>
 
-                                    <td>N/A</td>
                                     <td>${word.getDefinicion()}</td>
 
                                     <#if word.getEjemplo()??>
@@ -185,7 +184,19 @@
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
-                                    <td>N/A</td>
+
+                                    <#if word.getSinonimos()??>
+                                        <td>${word.getSinonimos()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
+                                    <#if word.getLemaRAE()??>
+                                        <td>${word.getLemaRAE()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
                                 </tr>
                             </#list>
                             </tbody>

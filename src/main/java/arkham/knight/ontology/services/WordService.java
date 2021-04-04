@@ -3,6 +3,8 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -88,5 +90,20 @@ public class WordService {
 
         //formula = porcentaje de ausencias + porcentaje de asistencias *100
         return  ((percentageOfPresences+percentageOfAbsences)/2) * 100;
+    }
+
+
+    public List<Word> evaluateWordsAndReturnCleanWordList(List<Word> originalWordList) {
+
+        List<Word> cleanWordList = new ArrayList<>();
+
+        for (Word wordToEvaluate : originalWordList) {
+
+            if (calculateWordPercentageAgreement(wordToEvaluate) >= 40)
+                cleanWordList.add(wordToEvaluate);
+
+        }
+
+        return cleanWordList;
     }
 }
