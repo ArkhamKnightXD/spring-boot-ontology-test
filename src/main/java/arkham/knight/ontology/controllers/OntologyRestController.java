@@ -46,7 +46,7 @@ public class OntologyRestController {
     @Operation(summary = "Create Class", description = "Creacion de una clase")
     public ResponseEntity<String> createClass(@RequestParam String className) {
 
-        Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims");
+        Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims", "0", "0");
 
         ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
 
@@ -81,27 +81,13 @@ public class OntologyRestController {
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
     public ResponseEntity<String> editIndividual(@RequestParam String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
 
+        Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
+
         Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
 
-        if (individualName.length() != 0)
-            wordToEdit.setLema(individualName);
+        Word filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
 
-        if (definition.length() !=0)
-            wordToEdit.setDefinicion(definition);
-
-        if (example.length() != 0)
-            wordToEdit.setEjemplo(example);
-
-        if (fatherClassName.length() != 0)
-            wordToEdit.setClasePadre(fatherClassName);
-
-        if (individualNameRAE.length() != 0)
-            wordToEdit.setLemaRAE(individualNameRAE);
-
-        if (synonyms.length() != 0)
-            wordToEdit.setSinonimos(synonyms);
-
-        String response = ontologyService.saveIndividual(originalIndividualName, wordToEdit);
+        String response = ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

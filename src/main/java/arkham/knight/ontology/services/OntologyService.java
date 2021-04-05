@@ -128,6 +128,10 @@ public class OntologyService {
 
         IRI dataTypePropertySynonymsIRI = IRI.create(ontologyIRI +"sinonimos");
 
+        IRI dataTypePropertyTotalAnswersIRI = IRI.create(ontologyIRI +"total_respuestas_N");
+
+        IRI dataTypePropertyVotesQuantityIRI = IRI.create(ontologyIRI +"cantidad_votaciones_I");
+
 
         OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(dataTypePropertyIRI);
 
@@ -136,6 +140,10 @@ public class OntologyService {
         OWLDataProperty lemmaRAEDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyLemmaRAEIRI);
 
         OWLDataProperty synonymsDataProperty = dataFactory.getOWLDataProperty(dataTypePropertySynonymsIRI);
+
+        OWLDataProperty totalAnswersDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyTotalAnswersIRI);
+
+        OWLDataProperty votesQuantityDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyVotesQuantityIRI);
 
 
         OWLDataPropertyAssertionAxiom axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, wordToSave.getDefinicion());
@@ -146,6 +154,10 @@ public class OntologyService {
 
         OWLDataPropertyAssertionAxiom axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, wordToSave.getSinonimos());
 
+        OWLDataPropertyAssertionAxiom axiomTotalAnswers = dataFactory.getOWLDataPropertyAssertionAxiom(totalAnswersDataProperty, individual, wordToSave.getTotalRespuestasN());
+
+        OWLDataPropertyAssertionAxiom axiomVotesQuantity = dataFactory.getOWLDataPropertyAssertionAxiom(votesQuantityDataProperty, individual, wordToSave.getCantidadVotacionesI());
+
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomDefinition);
 
@@ -154,6 +166,10 @@ public class OntologyService {
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomLemmaRAE);
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomSynonyms);
+
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomTotalAnswers);
+
+        ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomVotesQuantity);
     }
 
 
@@ -218,7 +234,6 @@ public class OntologyService {
 
 
     public void compareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
-
         //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
         String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 

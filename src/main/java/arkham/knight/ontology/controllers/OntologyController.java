@@ -122,7 +122,7 @@ public class OntologyController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestParam() String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String fatherClassName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
 
-        Word wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE);
+        Word wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
         ontologyService.saveIndividual(individualName, wordToSave);
 
@@ -161,11 +161,16 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
+    public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
 
-        Word wordToEdit = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE);
+        Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
-        ontologyService.saveIndividual(originalIndividualName, wordToEdit);
+        Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
+
+        Word filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
+
+
+        ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
         return "redirect:/words/individuals";
     }
@@ -207,7 +212,7 @@ public class OntologyController {
 
         if (subClass.length() == 0) {
 
-            Word defaultTestWord = new Word("prueba","definition","example", fatherClassName,"individualNameRae", "synonims");
+            Word defaultTestWord = new Word("prueba","definition","example", fatherClassName,"individualNameRae", "synonims", "0", "0");
 
             ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
         }

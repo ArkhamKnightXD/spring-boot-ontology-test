@@ -401,6 +401,18 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName33 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName33"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331"/>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#string -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#string"/>
@@ -443,13 +455,10 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#apota">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adverbiales"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:cantidad_votaciones_I>
-        <untitled-ontology-2:definicion>Voluntaria y deliberadamente.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Voluntaria y deliberadamente.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">a propósito</untitled-ontology-2:lema_rae>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</untitled-ontology-2:numero>
-        <untitled-ontology-2:numero_acepcion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:numero_acepcion>
-        <untitled-ontology-2:sinonimos>adrede
-con intención
-deliberadamente</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adrede con intención, deliberadamente</untitled-ontology-2:sinonimos>
         <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
@@ -573,10 +582,12 @@ chatarra</untitled-ontology-2:sinonimos>
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">individualNameRAE</untitled-ontology-2:lema_rae>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">synonyms</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     
 
@@ -584,11 +595,13 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName3"/>
-        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition3</untitled-ontology-2:definicion>
-        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example3</untitled-ontology-2:ejemplo>
-        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">individualNameRAE3</untitled-ontology-2:lema_rae>
-        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">synonyms3</untitled-ontology-2:sinonimos>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:cantidad_votaciones_I>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition331</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example331</untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">individualNameRAE331</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">synonyms331</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
 </rdf:RDF>
 

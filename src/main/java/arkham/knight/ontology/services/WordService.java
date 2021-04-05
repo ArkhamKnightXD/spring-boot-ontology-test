@@ -46,6 +46,44 @@ public class WordService {
     }
 
 
+    public Word editionWordFilter(Word wordToEdit, Word wordDataToSave){
+
+        if (wordDataToSave.getLema().length() != 0)
+            wordToEdit.setLema(wordDataToSave.getLema());
+
+        if (wordDataToSave.getDefinicion().length() !=0)
+            wordToEdit.setDefinicion(wordDataToSave.getDefinicion());
+
+        if (wordDataToSave.getEjemplo().length() != 0)
+            wordToEdit.setEjemplo(wordDataToSave.getEjemplo());
+
+        if (wordDataToSave.getClasePadre().length() != 0)
+            wordToEdit.setClasePadre(wordDataToSave.getClasePadre());
+
+        if (wordDataToSave.getLemaRAE().length() != 0)
+            wordToEdit.setLemaRAE(wordDataToSave.getLemaRAE());
+
+        if (wordDataToSave.getSinonimos().length() != 0)
+            wordToEdit.setSinonimos(wordDataToSave.getSinonimos());
+
+        return wordToEdit;
+    }
+
+
+    public List<Word> evaluateWordsAndReturnCleanWordList(List<Word> originalWordList) {
+
+        List<Word> cleanWordList = new ArrayList<>();
+
+        for (Word wordToEvaluate : originalWordList) {
+
+            if (calculateWordPercentageAgreement(wordToEvaluate) >= 40)
+                cleanWordList.add(wordToEvaluate);
+        }
+
+        return cleanWordList;
+    }
+
+
     public float calculateWordPercentageAgreement(Word wordToEvaluate){
 
         if (wordToEvaluate.getCantidadVotacionesI() != null){
@@ -89,19 +127,5 @@ public class WordService {
 
         //formula = porcentaje de ausencias + porcentaje de asistencias *100
         return  ((percentageOfPresences+percentageOfAbsences)/2) * 100;
-    }
-
-
-    public List<Word> evaluateWordsAndReturnCleanWordList(List<Word> originalWordList) {
-
-        List<Word> cleanWordList = new ArrayList<>();
-
-        for (Word wordToEvaluate : originalWordList) {
-
-            if (calculateWordPercentageAgreement(wordToEvaluate) >= 40)
-                cleanWordList.add(wordToEvaluate);
-        }
-
-        return cleanWordList;
     }
 }
