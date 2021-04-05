@@ -151,6 +151,7 @@
 
                 <strong>Resultados</strong>
             </h1>
+            <a class="btn btn-primary" href="/surveys/survey-creation" role="button">Agregar</a>
         </section>
 
         <!-- Main content -->

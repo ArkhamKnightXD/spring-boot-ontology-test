@@ -169,7 +169,6 @@ public class OntologyController {
 
         Word filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
 
-
         ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
         return "redirect:/words/individuals";

@@ -28,6 +28,7 @@ public class Word implements Serializable {
         this.cantidadVotacionesI = cantidadVotacionesI;
     }
 
+
     public String getLema() {
         return lema;
     }
