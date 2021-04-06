@@ -31,42 +31,36 @@
         <div class="col-md-8 order-md-1">
             <h5 class="mb-3 head-text">Seleccione la palabra con la que desea trabajar</h5>
 
-            <form method="post" action="/surveys/survey-create" class="needs-validation"  novalidate>
+            <form method="post" action="/surveys/survey-complete-create" class="needs-validation"  novalidate>
                 <div class="row">
 
                     <div class="col-md-12 mb-3">
-                        <label for="individualName">Palabra</label>
-
-                        <div class="input-group">
-                            <select class="form-control" name="individualName" id="individualName" required onchange="definitionFilter()">
-                                <#list words as word>
-                                    <option value="${word.getLema()}">${word.getLema()}</option>
-                                </#list>
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-12 mb-3">
-                        <label for="definition">Definición</label>
-
-                        <div class="input-group">
-                            <select class="form-control" name="definition" id="definition" required>
-
-                            </select>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-12 mb-3">
-                        <label for="individualNameRAE">Teniendo en cuenta la anterior palabra y su definición indique la palabra de la rae y su definicion correspondiente</label>
-                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae..." required>
+                        <label for="individualName">Lema dominicano</label>
+                        <input type="text" class="form-control" id="name" name="individualName" placeholder="Lema..."  required>
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="definitionRAE">Definicion de la rae</label>
-                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definicion de la rae..." required>
+                        <label for="definition">Definicion</label>
+                        <input type="text" class="form-control" id="definition" name="definition" placeholder="Definicion..."  required>
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="individualNameRAE">Lema de la rae</label>
+                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae...">
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="definition">Definicion de la rae</label>
+                        <input type="text" class="form-control" id="definitionRae" name="definitionRae" placeholder="Definicion de la rae..."  required>
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label for="example">Ejemplo</label>
+                        <input type="text" class="form-control" id="example" name="example" placeholder="Ejemplo..." >
 
                     </div>
 
@@ -76,17 +70,17 @@
 
                     </div>
 
-                <div class="col-md-12 mb-3">
-                    <label for="fatherClassName">Clase a la que pertenece</label>
+                    <div class="col-md-12 mb-3">
+                        <label for="fatherClassName">Clase a la que pertenece</label>
 
-                    <div class="input-group">
-                        <select class="form-control" name="fatherClassName" required>
-                            <#list classes as class>
-                                <option value="${class}">${class}</option>
-                            </#list>
-                        </select>
+                        <div class="input-group">
+                            <select class="form-control" name="fatherClassName" required>
+                                <#list classes as class>
+                                    <option value="${class}">${class}</option>
+                                </#list>
+                            </select>
+                        </div>
                     </div>
-                </div>
 
                 <button class="btn btn-primary btn-lg btn-block my-buttons" type="submit">Guardar</button>
                 <a class="btn btn-danger btn-lg btn-block my-buttons" href="/surveys/" role="button">Cancelar</a>

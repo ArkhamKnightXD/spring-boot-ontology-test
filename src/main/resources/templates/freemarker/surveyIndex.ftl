@@ -122,7 +122,7 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="#"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
-                <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
+                <li><a href="#"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
@@ -143,7 +143,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/words/">
+        <form action="/surveys/">
             <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
         </form>
         <!-- Content Header (Page header) -->
@@ -152,7 +152,8 @@
 
                 <strong>Resultados</strong>
             </h1>
-            <a class="btn btn-primary" href="/surveys/survey-creation" role="button">Agregar</a>
+            <a class="btn btn-primary" href="/surveys/survey-creation" role="button">Agregar nueva palabra</a>
+            <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar nueva definicion</a>
         </section>
 
         <!-- Main content -->
@@ -167,37 +168,39 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema</th>
+                            <th>Lema dominicano</th>
                             <th>Definicion</th>
-                            <th>Ejemplo</th>
-                            <th>Sinonimos</th>
                             <th>Lema RAE</th>
+                            <th>Definicion RAE</th>
+                            <th>Sinonimos</th>
+                            <th>Clase</th>
+                            <th>Ejemplo</th>
                             </thead>
 
                             <tbody>
-                            <#list words as word >
+                            <#list surveys as survey >
                                 <tr>
-                                    <td><a href="/words/show?lemma=${word.getLema()}"><b>${word.getLema()}</b></a></td>
+                                    <td><b>${survey.getLemma()}</b></td>
 
-                                    <td>${word.getDefinicion()}</td>
+                                    <td>${survey.getOriginalDefinition()}</td>
 
-                                    <#if word.getEjemplo()??>
-                                        <td>${word.getEjemplo()}</td>
+                                    <td>${survey.getLemmaRAE()}</td>
+                                    <td>${survey.getDefinitionRAE()}</td>
+
+                                    <#if survey.getSynonyms()??>
+                                        <td>${survey.getSynonyms()}</td>
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
 
-                                    <#if word.getSinonimos()??>
-                                        <td>${word.getSinonimos()}</td>
+                                    <td>${survey.getFatherClass()}</td>
+
+                                    <#if survey.getExample()??>
+                                        <td>${survey.getExample()}</td>
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
 
-                                    <#if word.getLemaRAE()??>
-                                        <td>${word.getLemaRAE()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
 
                                 </tr>
                             </#list>

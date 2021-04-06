@@ -1,5 +1,6 @@
 package arkham.knight.ontology;
 
+import arkham.knight.ontology.services.SurveyWordDataService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
@@ -30,8 +31,10 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup() {
+    public CommandLineRunner startup(SurveyWordDataService surveyWordDataService) {
         return args -> {
+
+            System.out.println(surveyWordDataService.calculateSurveysDataByLemma("detutane"));
 
 //            openIndexPage(true);
 //

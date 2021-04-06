@@ -27,6 +27,15 @@ public class SurveyWordDataController {
     }
 
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String indexPage(Model model) {
+
+        model.addAttribute("surveys", surveyWordDataService.getAllSurveys());
+
+        return "/freemarker/surveyIndex";
+    }
+
+
     @RequestMapping(value = "/survey-creation", method = RequestMethod.GET)
     public String creationSurveyPage(Model model) {
 
@@ -44,6 +53,26 @@ public class SurveyWordDataController {
 
         surveyWordDataService.saveSurvey(surveyWordDataToSave);
 
-        return "redirect:/words/";
+        return "redirect:/surveys/";
+    }
+
+
+    @RequestMapping(value = "/survey-complete-creation", method = RequestMethod.GET)
+    public String completeCreationSurveyPage(Model model) {
+
+        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
+
+        return "/freemarker/createCompleteWordSurveyData";
+    }
+
+
+    @RequestMapping(value = "/survey-complete-create", method = RequestMethod.POST)
+    public String createCompleteSurvey(@RequestParam String individualName, @RequestParam String definition, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms ) {
+
+        SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
+
+        surveyWordDataService.saveSurvey(surveyWordDataToSave);
+
+        return "redirect:/surveys/";
     }
 }
