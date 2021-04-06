@@ -48,21 +48,21 @@
 
                     <div class="col-md-12 mb-3">
                         <label for="individualNameRAE">Lema de la rae</label>
-                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae...">
+                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae..." required>
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="definition">Definicion de la rae</label>
-                        <input type="text" class="form-control" id="definitionRae" name="definitionRae" placeholder="Definicion de la rae..."  required>
+                        <label for="definitionRAE">Definicion de la rae</label>
+                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definicion de la rae..."  required>
 
                     </div>
 
-                    <div class="col-md-12 mb-3">
-                        <label for="example">Ejemplo</label>
-                        <input type="text" class="form-control" id="example" name="example" placeholder="Ejemplo..." >
+<#--                    <div class="col-md-12 mb-3">-->
+<#--                        <label for="example">Ejemplo</label>-->
+<#--                        <input type="text" class="form-control" id="example" name="example" placeholder="Ejemplo..." >-->
 
-                    </div>
+<#--                    </div>-->
 
                     <div class="col-md-12 mb-3">
                         <label for="synonyms">Sinonimos</label>
@@ -97,36 +97,5 @@
 <script>window.jQuery || document.write('<script src="../../bootstrap-4.3.1/dist/js/jquery-3.2.1.slim.min.js"><\/script>')</script><script src="../../bootstrap-4.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../bootstrap-4.3.1/dist/js/form-validation.js"></script>
 </body>
-
-
-<script>
-
-    function definitionFilter() {
-
-        //Si le quito las variables var me falla el codigo
-        var definitions = [];
-        var lemmaSelected = document.querySelector("#individualName").value;
-
-
-        <#list words as word>
-
-        var wordLemma = "${word.getLema()}";
-
-        if (lemmaSelected === wordLemma) {
-            definitions.push({ id: "${word.getDefinicion()}", definition: "${word.getDefinicion()}" });
-        }
-
-        </#list>
-
-        document.querySelector("#definition").innerHTML = "";
-
-        for (var i = 0; i < definitions.length; i++) {
-            document.querySelector("#definition").innerHTML += '<option value="' + definitions[i].id +'">' + definitions[i].definition +'</option>';
-        }
-
-        console.table(definitions);
-    }
-
-</script>
 
 </html>

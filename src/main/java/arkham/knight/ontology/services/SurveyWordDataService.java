@@ -3,8 +3,6 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.SurveyWordData;
 import arkham.knight.ontology.repositories.SurveyWordDataRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -35,39 +33,30 @@ public class SurveyWordDataService {
     }
 
 
-    public HashMap<String, Float> calculateSurveysDataByLemma(String lemma){
+    public SurveyWordData determineSurveysDataByLemmaAndReturnSurveyWord(String lemma){
 
-        HashMap<String, Float> resultsMap = new HashMap<>();
-
-        float percentageAgreement = 0.f;
-
-        int totalAnswers = 0;
+        SurveyWordData winnerSurveyWordData = new SurveyWordData();
 
         int votesQuantity = 0;
 
-        int actualVotesByLemmaRAE = 0;
-
-        String actualMostVoteLemmaRae = "";
-
         List<SurveyWordData> surveyWordDataList = surveyWordDataRepository.findAllByLemma(lemma);
 
-        totalAnswers = surveyWordDataList.size();
+        int totalAnswers = surveyWordDataList.size();
 
         for (SurveyWordData wordToEvaluate: surveyWordDataList) {
 
-            actualVotesByLemmaRAE = surveyWordDataRepository.findAllByLemmaRAE(wordToEvaluate.getLemmaRAE()).size();
+            int actualVotesByLemmaRAE = surveyWordDataRepository.findAllByLemmaRAE(wordToEvaluate.getLemmaRAE()).size();
 
             if (actualVotesByLemmaRAE > votesQuantity){
                 votesQuantity = actualVotesByLemmaRAE;
-                actualMostVoteLemmaRae = wordToEvaluate.getLemmaRAE();
+                winnerSurveyWordData = wordToEvaluate;
             }
         }
 
-        percentageAgreement = (float) votesQuantity/totalAnswers * 100;
+        winnerSurveyWordData.setTotalAnswers(totalAnswers);
+        winnerSurveyWordData.setVotesQuantity(votesQuantity);
 
-        resultsMap.put(actualMostVoteLemmaRae, percentageAgreement);
-
-        return resultsMap;
+        return winnerSurveyWordData;
     }
 
 

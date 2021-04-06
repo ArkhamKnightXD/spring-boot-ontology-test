@@ -1,5 +1,6 @@
 package arkham.knight.ontology.services;
 
+import arkham.knight.ontology.models.SurveyWordData;
 import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Service;
@@ -81,6 +82,15 @@ public class WordService {
         }
 
         return cleanWordList;
+    }
+
+
+    public Word convertWordSurveyDataToWord (SurveyWordData surveyWordData){
+
+        String totalAnswers = String.valueOf(surveyWordData.getTotalAnswers());
+        String votesQuantity = String.valueOf(surveyWordData.getVotesQuantity());
+
+        return new Word(surveyWordData.getLemma(), surveyWordData.getOriginalDefinition(),"",surveyWordData.getFatherClass(), surveyWordData.getSynonyms(),surveyWordData.getLemmaRAE(), totalAnswers, votesQuantity);
     }
 
 

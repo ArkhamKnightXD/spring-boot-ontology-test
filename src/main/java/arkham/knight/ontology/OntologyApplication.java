@@ -34,7 +34,7 @@ public class OntologyApplication {
     public CommandLineRunner startup(SurveyWordDataService surveyWordDataService) {
         return args -> {
 
-            System.out.println(surveyWordDataService.calculateSurveysDataByLemma("detutane"));
+//            surveyWordDataService.deleteAllSurveys();
 
 //            openIndexPage(true);
 //

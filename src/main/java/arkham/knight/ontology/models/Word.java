@@ -10,6 +10,7 @@ public class Word implements Serializable {
     private String clasePadre;
     private String sinonimos;
     private String lemaRAE;
+    private String definicionRAE;
     private String totalRespuestasN;
     private String cantidadVotacionesI;
 
@@ -62,6 +63,10 @@ public class Word implements Serializable {
     public String getLemaRAE() { return lemaRAE; }
 
     public void setLemaRAE(String lemaRAE) { this.lemaRAE = lemaRAE; }
+
+    public String getDefinicionRAE() { return definicionRAE; }
+
+    public void setDefinicionRAE(String definicionRAE) { this.definicionRAE = definicionRAE; }
 
     public String getTotalRespuestasN() { return totalRespuestasN; }
 

@@ -20,6 +20,8 @@ public class SurveyWordData implements Serializable {
     private String synonyms;
     private String lemmaRAE;
     private String definitionRAE;
+    private int totalAnswers;
+    private int votesQuantity;
 
 
     public SurveyWordData() {
@@ -67,4 +69,12 @@ public class SurveyWordData implements Serializable {
     public String getDefinitionRAE() { return definitionRAE; }
 
     public void setDefinitionRAE(String definitionRAE) { this.definitionRAE = definitionRAE; }
+
+    public int getTotalAnswers() { return totalAnswers; }
+
+    public void setTotalAnswers(int totalAnswers) { this.totalAnswers = totalAnswers; }
+
+    public int getVotesQuantity() { return votesQuantity; }
+
+    public void setVotesQuantity(int votesQuantity) { this.votesQuantity = votesQuantity; }
 }
