@@ -54,6 +54,15 @@ public class SurveyWordDataController {
 
         surveyWordDataService.saveSurvey(surveyWordDataToSave);
 
+        SurveyWordData completeSurveyWordData = surveyWordDataService.determineSurveysDataByLemmaAndReturnSurveyWord(individualName);
+
+        Word wordToSaveInTheOntology = wordService.convertWordSurveyDataToWord(completeSurveyWordData);
+
+        int totalAnswers = Integer.parseInt(wordToSaveInTheOntology.getTotalRespuestasN());
+
+        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInTheOntology) > 40)
+            ontologyService.saveIndividual(wordToSaveInTheOntology.getLema(), wordToSaveInTheOntology);
+
         return "redirect:/surveys/";
     }
 
