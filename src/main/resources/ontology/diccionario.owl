@@ -539,12 +539,10 @@ fatigado</untitled-ontology-2:sinonimos>
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#detutane">
         <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
-        <untitled-ontology-2:definicion>Decisión del empresario por la que pone término a la relación laboral que lo unía a un empleado.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decisión del empresario por la que pone término a la relación laboral que lo unía a un empleado.</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">despido</untitled-ontology-2:lema_rae>
-        <untitled-ontology-2:numero rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</untitled-ontology-2:numero>
-        <untitled-ontology-2:sinonimos>destitución
-expulsión
-deposición</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">destitución, expulsión, deposición</untitled-ontology-2:sinonimos>
         <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
     

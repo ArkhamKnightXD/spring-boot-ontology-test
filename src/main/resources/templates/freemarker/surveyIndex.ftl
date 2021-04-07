@@ -120,7 +120,7 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="#"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
+                <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="#"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
