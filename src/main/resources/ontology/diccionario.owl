@@ -464,6 +464,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#arroz -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#arroz">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal"/>
+        <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">11</untitled-ontology-2:cantidad_votaciones_I>
+        <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sas</untitled-ontology-2:definicion>
+        <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></untitled-ontology-2:ejemplo>
+        <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pepe</untitled-ontology-2:lema_rae>
+        <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">dsds</untitled-ontology-2:sinonimos>
+        <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20</untitled-ontology-2:total_respuestas_N>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bobolongo -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bobolongo">

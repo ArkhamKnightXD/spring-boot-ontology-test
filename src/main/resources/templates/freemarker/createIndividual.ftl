@@ -40,14 +40,14 @@
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="individualNameRAE">Lema de la rae</label>
-                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae...">
+                        <label for="individualNameRAE">Lema de la RAE</label>
+                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la RAE...">
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="definition">Definicion</label>
-                        <input type="text" class="form-control" id="definition" name="definition" placeholder="Definicion..."  required>
+                        <label for="definition">Definición</label>
+                        <input type="text" class="form-control" id="definition" name="definition" placeholder="Definición..."  required>
 
                     </div>
 

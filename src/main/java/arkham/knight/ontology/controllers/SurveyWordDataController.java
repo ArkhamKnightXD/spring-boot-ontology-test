@@ -33,7 +33,7 @@ public class SurveyWordDataController {
 
         model.addAttribute("surveys", surveyWordDataService.getAllSurveys());
 
-        return "/freemarker/surveyIndex";
+        return "/freemarker/survey/surveyIndex";
     }
 
 
@@ -43,7 +43,7 @@ public class SurveyWordDataController {
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
         model.addAttribute("words", wordService.getAllWords());
 
-        return "/freemarker/createWordSurveyData";
+        return "/freemarker/survey/createWordSurveyData";
     }
 
 
@@ -72,7 +72,7 @@ public class SurveyWordDataController {
 
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
 
-        return "/freemarker/createCompleteWordSurveyData";
+        return "/freemarker/survey/createCompleteWordSurveyData";
     }
 
 

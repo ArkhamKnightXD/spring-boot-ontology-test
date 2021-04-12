@@ -158,7 +158,7 @@
                             <thead class="thead-dark">
 
                             <th>Categoria</th>
-                            <th>Definicion</th>
+                            <th>Definición</th>
 <#--                            <th>Origen</th>-->
 <#--                            <th>Notas</th>-->
 <#--                            <th>Ejemplo</th>-->

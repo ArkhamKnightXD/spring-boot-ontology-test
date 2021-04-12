@@ -44,15 +44,15 @@
 
                     <#if lemmaRAE??>
                     <div class="col-md-12 mb-3">
-                        <label for="individualNameRAE">Lema de la rae</label>
-                        <input type="text" class="form-control" value="${lemmaRAE}" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae...">
+                        <label for="individualNameRAE">Lema de la RAE</label>
+                        <input type="text" class="form-control" value="${lemmaRAE}" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la RAE...">
 
                     </div>
                     </#if>
 
                         <div class="col-md-12 mb-3">
-                            <label for="definition">Definicion</label>
-                            <input type="text" class="form-control" value="${definicion}" id="definition" name="definition" placeholder="Definicion..."  required>
+                            <label for="definition">Definición</label>
+                            <input type="text" class="form-control" value="${definicion}" id="definition" name="definition" placeholder="Definición..."  required>
 
                         </div>
 
@@ -65,7 +65,7 @@
 
                     <#if sinonimos??>
                     <div class="col-md-12 mb-3">
-                        <label for="synonyms">Sinonimos</label>
+                        <label for="synonyms">Sinónimos</label>
                         <input type="text" class="form-control" value="${sinonimos}" id="synonyms" name="synonyms" placeholder="Sinonimo1, sinonimo2, etc..." >
 
                     </div>

@@ -153,7 +153,7 @@
                 <strong>Resultados</strong>
             </h1>
             <a class="btn btn-primary" href="/surveys/survey-complete-creation" role="button">Agregar nueva palabra</a>
-            <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar nueva definicion</a>
+            <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar nueva definición</a>
         </section>
 
         <!-- Main content -->
@@ -169,10 +169,10 @@
                             <thead class="thead-dark">
 
                             <th>Lema dominicano</th>
-                            <th>Definicion</th>
+                            <th>Definición</th>
                             <th>Lema RAE</th>
-                            <th>Definicion RAE</th>
-                            <th>Sinonimos</th>
+                            <th>Definición RAE</th>
+                            <th>Sinónimos</th>
                             <th>Clase</th>
                             <th>Ejemplo</th>
                             </thead>

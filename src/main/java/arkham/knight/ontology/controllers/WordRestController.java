@@ -51,7 +51,7 @@ public class WordRestController {
 
 
     @GetMapping("/search-DRAE")
-    @Operation(summary = "Search For Any Word In The DRAE Endpoint", description = "Retorna la definicion de una palabra con respecto al diccionario de la RAE")
+    @Operation(summary = "Search For Any Word In The DRAE Endpoint", description = "Retorna la definición de una palabra con respecto al diccionario de la RAE")
     public ResponseEntity<List<DRAEObject>> searchWordDRAEAPI(@RequestParam String wordToSearch) {
 
         List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);

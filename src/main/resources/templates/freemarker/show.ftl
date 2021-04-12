@@ -119,6 +119,7 @@
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
                         <span class="pull-right-container">
@@ -159,9 +160,9 @@
                             <thead class="thead-dark">
 
                             <th>Lema RAE</th>
-                            <th>Definicion</th>
+                            <th>Definición</th>
                             <th>Ejemplo</th>
-                            <th>Sinonimos</th>
+                            <th>Sinónimos</th>
                             <th>Porcentaje de acuerdo</th>
 
 <#--                            <#if percentageAgreementOfPresences??>-->

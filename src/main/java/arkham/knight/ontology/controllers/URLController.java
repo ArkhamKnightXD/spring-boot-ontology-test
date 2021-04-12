@@ -52,7 +52,7 @@ public class URLController implements ErrorController {
         model.addAttribute("title", "Login Failed");
         model.addAttribute("message", "User Not Found or Authorized");
 
-        return "freemarker/errorPage";
+        return "freemarker/errors/errorPage";
     }
 
 
@@ -70,21 +70,21 @@ public class URLController implements ErrorController {
                 model.addAttribute("title", "Error 404");
                 model.addAttribute("message", "Error 404 - The Page can't be found");
 
-                return "freemarker/errorPage";
+                return "freemarker/errors/errorPage";
             }
             else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
 
                 model.addAttribute("title", "Error 500");
                 model.addAttribute("message", "Error 500 - Internal Server Error");
 
-                return "freemarker/errorPage";
+                return "freemarker/errors/errorPage";
             }
             else if (statusCode == HttpStatus.FORBIDDEN.value()) {
 
                 model.addAttribute("title", "Error 403");
                 model.addAttribute("message", "Error 403 - This Page is Forbidden");
 
-                return "freemarker/errorPage";
+                return "freemarker/errors/errorPage";
             }
         }
 

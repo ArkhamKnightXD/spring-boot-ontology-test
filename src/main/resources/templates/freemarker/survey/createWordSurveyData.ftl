@@ -59,19 +59,19 @@
 
 
                     <div class="col-md-12 mb-3">
-                        <label for="individualNameRAE">Teniendo en cuenta la anterior palabra y su definición indique la palabra de la rae y su definicion correspondiente</label>
-                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae..." required>
+                        <label for="individualNameRAE">Teniendo en cuenta la anterior palabra y su definición indique la palabra de la RAE y su definición correspondiente</label>
+                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la RAE..." required>
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="definitionRAE">Definicion de la rae</label>
-                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definicion de la rae..." required>
+                        <label for="definitionRAE">Definición de la rae</label>
+                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definición de la rae..." required>
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="synonyms">Sinonimos</label>
+                        <label for="synonyms">Sinónimos</label>
                         <input type="text" class="form-control" id="synonyms" name="synonyms" placeholder="Sinonimo1, sinonimo2, etc..." >
 
                     </div>

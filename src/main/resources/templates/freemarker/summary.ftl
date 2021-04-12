@@ -168,9 +168,9 @@
                             <thead class="thead-dark">
 
                             <th>Lema</th>
-                            <th>Definicion</th>
+                            <th>Definición</th>
                             <th>Ejemplo</th>
-                            <th>Sinonimos</th>
+                            <th>Sinónimos</th>
                             <th>Lema RAE</th>
                             </thead>
 

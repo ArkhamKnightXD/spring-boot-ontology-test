@@ -27,12 +27,6 @@ public class SurveyWordDataService {
     }
 
 
-    public List<SurveyWordData> getAllSurveysByLemma(String lemma){
-
-        return surveyWordDataRepository.findAllByLemma(lemma);
-    }
-
-
     public SurveyWordData determineSurveysDataByLemmaAndReturnSurveyWord(String lemma){
 
         SurveyWordData winnerSurveyWordData = new SurveyWordData();
@@ -57,6 +51,12 @@ public class SurveyWordDataService {
         winnerSurveyWordData.setVotesQuantity(votesQuantity);
 
         return winnerSurveyWordData;
+    }
+
+
+    public List<SurveyWordData> getAllSurveysByLemma(String lemma){
+
+        return surveyWordDataRepository.findAllByLemma(lemma);
     }
 
 

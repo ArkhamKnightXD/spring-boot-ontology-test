@@ -42,19 +42,19 @@
 
                     <div class="col-md-12 mb-3">
                         <label for="definition">Definicion</label>
-                        <input type="text" class="form-control" id="definition" name="definition" placeholder="Definicion..."  required>
+                        <input type="text" class="form-control" id="definition" name="definition" placeholder="Definición..."  required>
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="individualNameRAE">Lema de la rae</label>
-                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la rae..." required>
+                        <label for="individualNameRAE">Lema de la RAE</label>
+                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la RAE..." required>
 
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="definitionRAE">Definicion de la rae</label>
-                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definicion de la rae..."  required>
+                        <label for="definitionRAE">Definición de la rae</label>
+                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definición de la RAE..."  required>
 
                     </div>
 
@@ -65,7 +65,7 @@
 <#--                    </div>-->
 
                     <div class="col-md-12 mb-3">
-                        <label for="synonyms">Sinonimos</label>
+                        <label for="synonyms">Sinónimos</label>
                         <input type="text" class="form-control" id="synonyms" name="synonyms" placeholder="Sinonimo1, sinonimo2, etc..." >
 
                     </div>
