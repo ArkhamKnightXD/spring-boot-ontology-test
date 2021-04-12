@@ -8,12 +8,10 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <!--Con este link soluciono el error de favicon.ico en la consola que te carga el recurso favicon.ico pero como este recurso no existe da error 404
-     Y esto es malo por que reduce el performance de la pagina-->
     <link rel="shortcut icon" href="#" />
 
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Theme style -->
@@ -43,17 +41,13 @@
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                 <span class="sr-only">Toggle navigation</span>
             </a>
-
-
             <!-- Navbar Right Menu -->
             <div class="navbar-custom-menu">
-
                 <ul class="nav navbar-nav">
                     <!-- Messages: style can be found in dropdown.less-->
 
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
-
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
@@ -67,12 +61,11 @@
                                 <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                     user<!--Aqui agrego el nombre del usuario logueado -->
+                                    user <!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
                             <!-- Menu Body -->
                             <li class="user-body">
-
                                 <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
@@ -118,8 +111,8 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="#"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/words/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
+                <li><a href="/rae/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
                 <li class="treeview">
@@ -129,7 +122,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="/words/individuals">All Individuals</a></li>
+                        <li class="active"><a href="#">All Individuals</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
                     </ul>
                 </li>
@@ -141,15 +134,17 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/words/search">
+        <form action="/words/individuals">
             <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
         </form>
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Resultados</strong>
+                <strong>Listado de Lemas</strong>
             </h1>
+            <a class="btn btn-primary" href="/words/creation" role="button">Agregar un nuevo lema</a>
+            <a class="btn btn-success" href="/words/class-creation" role="button">Agregar clases</a>
         </section>
 
         <!-- Main content -->
@@ -159,25 +154,29 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-condensed table-hover">
-                            <thead class="thead-dark">
+                            <thead>
 
+                            <th>Clase</th>
                             <th>Lema</th>
-                            <th>Etimologia</th>
+                            <th>Options</th>
                             </thead>
 
-                            <tbody>
-                            <#list words as word >
-                                <tr>
-                                    <td><a href="/words/showDRAE?lemma=${word.getWord()}"><b>${word.getWord()}</b></a></td>
+                            <#list individuals as individual>
 
-                                    <td>${word.getEtymology()}</td>
+                            <tr>
+                                <td>${individual.getOntClass().getLocalName()}</td>
 
-                                </tr>
+                                <td><a href="/words/show?lemma=${individual.getLocalName()}"> ${individual.getLocalName()}</a></td>
+
+                                <td>
+                                    <a href="/words/edition?individualName=${individual.getLocalName()}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/words/delete?individualName=${individual.getLocalName()}"> <i class="fa fa-trash" style="font-size:23px;color:#ff0000"></i> </a>
+                                </td>
+                            </tr>
                             </#list>
-                            </tbody>
-
 
                         </table>
+
 
                     </div>
                 </div>
@@ -196,19 +195,14 @@
         <strong>Copyright &copy; 2020 <a href="#">Words</a>.</strong> All rights reserved.
     </footer>
 
-    <!-- Control Sidebar -->
-     <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
+
     <div class="control-sidebar-bg"></div>
 </div>
 
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
-
 
 </body>
 </html>

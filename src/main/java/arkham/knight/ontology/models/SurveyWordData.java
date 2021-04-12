@@ -27,6 +27,11 @@ public class SurveyWordData implements Serializable {
     public SurveyWordData() {
     }
 
+    public SurveyWordData(String lemma, String originalDefinition) {
+        this.lemma = lemma;
+        this.originalDefinition = originalDefinition;
+    }
+
     public SurveyWordData(String lemma, String originalDefinition, String example, String fatherClass, String synonyms, String lemmaRAE, String definitionRAE) {
         this.lemma = lemma;
         this.originalDefinition = originalDefinition;

@@ -10,12 +10,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class DRAEConnectionService {
+
+    //Este resttemplate tendra timeout para evitar que el api DRAE se quede buscando una palabra de forma indefinida
+//    @Bean
+//    public RestTemplate restTemplate() {
+//        return new RestTemplateBuilder()
+//                .setConnectTimeout(Duration.ofMillis(1500))
+//                .setReadTimeout(Duration.ofMillis(1500))
+//                .build();
+//    }
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {

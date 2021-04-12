@@ -112,7 +112,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="/words/search"><i class="fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/rae/search"><i class="fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
                 <li class="treeview">

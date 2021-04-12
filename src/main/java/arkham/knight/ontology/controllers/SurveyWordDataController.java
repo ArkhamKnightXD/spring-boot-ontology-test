@@ -94,4 +94,22 @@ public class SurveyWordDataController {
 
         return "redirect:/surveys/";
     }
+
+
+    @RequestMapping(value = "/simple-survey-creation", method = RequestMethod.GET)
+    public String creationSimpleSurveyPage() {
+
+        return "/freemarker/survey/createWordSurveyProposition";
+    }
+
+
+    @RequestMapping(value = "/simple-survey-create", method = RequestMethod.POST)
+    public String createSimpleSurvey(@RequestParam String individualName, @RequestParam String definition) {
+
+        SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName, definition);
+
+        surveyWordDataService.saveSurvey(surveyWordDataToSave);
+
+        return "redirect:/surveys/";
+    }
 }

@@ -28,13 +28,13 @@
     <div class="row">
 
         <div class="col-md-8 order-md-1">
-            <h5 class="mb-3 head-text">Seleccione la palabra con la que desea trabajar</h5>
+            <h5 class="mb-3 head-text">Indique los datos de la palabra </h5>
 
-            <form method="post" action="/surveys/survey-complete-create" class="needs-validation"  novalidate>
+            <form method="post" action="/surveys/simple-survey-create" class="needs-validation"  novalidate>
                 <div class="row">
 
                     <div class="col-md-12 mb-3">
-                        <label for="individualName">Lema dominicano</label>
+                        <label for="individualName">Lema de la palabra</label>
                         <input type="text" class="form-control" id="name" name="individualName" placeholder="Lema..."  required>
 
                     </div>
@@ -45,41 +45,6 @@
 
                     </div>
 
-                    <div class="col-md-12 mb-3">
-                        <label for="individualNameRAE">Lema de la RAE</label>
-                        <input type="text" class="form-control" id="individualNameRAE" name="individualNameRAE" placeholder="Lema de la RAE..." required>
-
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-                        <label for="definitionRAE">Definición de la rae</label>
-                        <input type="text" class="form-control" id="definitionRAE" name="definitionRAE" placeholder="Definición de la RAE..."  required>
-
-                    </div>
-
-<#--                    <div class="col-md-12 mb-3">-->
-<#--                        <label for="example">Ejemplo</label>-->
-<#--                        <input type="text" class="form-control" id="example" name="example" placeholder="Ejemplo..." >-->
-
-<#--                    </div>-->
-
-                    <div class="col-md-12 mb-3">
-                        <label for="synonyms">Sinónimos</label>
-                        <input type="text" class="form-control" id="synonyms" name="synonyms" placeholder="Sinonimo1, sinonimo2, etc..." >
-
-                    </div>
-
-                    <div class="col-md-12 mb-3">
-                        <label for="fatherClassName">Clase a la que pertenece</label>
-
-                        <div class="input-group">
-                            <select class="form-control" name="fatherClassName" required>
-                                <#list classes as class>
-                                    <option value="${class}">${class}</option>
-                                </#list>
-                            </select>
-                        </div>
-                    </div>
 
                 <button class="btn btn-primary btn-lg btn-block my-buttons" type="submit">Guardar</button>
                 <a class="btn btn-danger btn-lg btn-block my-buttons" href="/surveys/" role="button">Cancelar</a>

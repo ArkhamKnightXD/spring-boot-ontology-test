@@ -121,7 +121,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/words/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="/words/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/rae/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="#"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
                 <li class="treeview">
@@ -154,6 +154,7 @@
             </h1>
             <a class="btn btn-primary" href="/surveys/survey-complete-creation" role="button">Agregar nueva palabra</a>
             <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar nueva definición</a>
+            <a class="btn btn-info" href="/surveys/simple-survey-creation" role="button">Proponer palabra</a>
         </section>
 
         <!-- Main content -->
@@ -184,8 +185,18 @@
 
                                     <td>${survey.getOriginalDefinition()}</td>
 
-                                    <td>${survey.getLemmaRAE()}</td>
-                                    <td>${survey.getDefinitionRAE()}</td>
+                                    <#if survey.getLemmaRAE()??>
+                                        <td>${survey.getLemmaRAE()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
+
+
+                                    <#if survey.getDefinitionRAE()??>
+                                        <td>${survey.getDefinitionRAE()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
 
                                     <#if survey.getSynonyms()??>
                                         <td>${survey.getSynonyms()}</td>
@@ -193,14 +204,17 @@
                                         <td>N/A</td>
                                     </#if>
 
-                                    <td>${survey.getFatherClass()}</td>
+                                    <#if survey.getFatherClass()??>
+                                        <td>${survey.getFatherClass()}</td>
+                                    <#else>
+                                        <td>N/A</td>
+                                    </#if>
 
                                     <#if survey.getExample()??>
                                         <td>${survey.getExample()}</td>
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
-
 
                                 </tr>
                             </#list>

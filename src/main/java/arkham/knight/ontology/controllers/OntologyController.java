@@ -1,9 +1,6 @@
 package arkham.knight.ontology.controllers;
 
-import arkham.knight.ontology.models.DRAEDefinition;
-import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.models.Word;
-import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
@@ -14,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -29,15 +25,9 @@ public class OntologyController {
 
     private final WordService wordService;
 
-    private final DRAEConnectionService draeConnectionService;
-
-    private final RestTemplate restTemplate;
-
-    public OntologyController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, RestTemplate restTemplate) {
+    public OntologyController(OntologyService ontologyService, WordService wordService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
-        this.draeConnectionService = draeConnectionService;
-        this.restTemplate = restTemplate;
     }
 
 
@@ -52,32 +42,7 @@ public class OntologyController {
 
         model.addAttribute("words", wordService.evaluateWordsAndReturnCleanWordList(wordList));
 
-        return "/freemarker/summary";
-    }
-
-
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchPageDRAE(Model model, @RequestParam(defaultValue = "diccionario") String sentence) {
-
-        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, sentence);
-
-        model.addAttribute("words", wordList);
-
-        return "/freemarker/searchDRAE";
-    }
-
-
-    @RequestMapping(value = "/showDRAE", method = RequestMethod.GET)
-    public String showDRAEWordData(Model model, @RequestParam String lemma) {
-
-        List<DRAEObject> words = draeConnectionService.getTheWordDataFromDRAE(restTemplate, lemma);
-
-        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWordList(words);
-
-        model.addAttribute("word", lemma);
-        model.addAttribute("definitions", definitions);
-
-        return "/freemarker/searchDRAEComplete";
+        return "/freemarker/ontology/summary";
     }
 
 
@@ -106,7 +71,7 @@ public class OntologyController {
 
         model.addAttribute("individuals", individualList);
 
-        return "/freemarker/individuals";
+        return "/freemarker/ontology/individuals";
     }
 
 
@@ -115,7 +80,7 @@ public class OntologyController {
 
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
 
-        return "/freemarker/createIndividual";
+        return "/freemarker/ontology/createIndividual";
     }
 
 
@@ -156,7 +121,7 @@ public class OntologyController {
         if (synonymsPropertyValue != null)
             model.addAttribute("sinonimos", synonymsPropertyValue.toString());
 
-        return "/freemarker/editIndividual";
+        return "/freemarker/ontology/editIndividual";
     }
 
 
@@ -186,7 +151,7 @@ public class OntologyController {
         model.addAttribute("percentageAgreementOfPresences", String.format("%.2f", wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(wordToShow, true)));
         model.addAttribute("meanPercentageAgreement", String.format("%.2f", wordService.calculateWordMeanPercentageAgreement(wordToShow)));
 
-        return "/freemarker/show";
+        return "/freemarker/ontology/show";
     }
 
 
@@ -202,7 +167,7 @@ public class OntologyController {
     @RequestMapping(value = "/class-creation", method = RequestMethod.GET)
     public String creationClassPage() {
 
-        return "/freemarker/createClass";
+        return "/freemarker/ontology/createClass";
     }
 
 
