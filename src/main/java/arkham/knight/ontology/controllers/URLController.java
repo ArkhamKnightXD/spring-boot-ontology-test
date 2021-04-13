@@ -1,15 +1,21 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.Rol;
 import arkham.knight.ontology.models.User;
 import arkham.knight.ontology.services.MyUserDetailsService;
 import arkham.knight.ontology.services.UserService;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 //Este controlador maneja todos los posibles errores de url y tambien maneja el login
 @Controller
@@ -19,9 +25,12 @@ public class URLController implements ErrorController {
 
     private final MyUserDetailsService myUserDetailsService;
 
-    public URLController(UserService userService, MyUserDetailsService myUserDetailsService) {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public URLController(UserService userService, MyUserDetailsService myUserDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.myUserDetailsService = myUserDetailsService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     //es necesario implementar este metodo para que funcione el error controller
@@ -40,7 +49,31 @@ public class URLController implements ErrorController {
         if (adminUser == null)
             myUserDetailsService.createAdminUser();
 
-        return "/freemarker/login";
+        return "/freemarker/authentication/login";
+    }
+
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String registerUserPage(Model model) {
+
+        model.addAttribute("roles", userService.getAllRoles());
+
+        return "/freemarker/authentication/register";
+    }
+
+
+    @RequestMapping(value = "/sing-up", method = RequestMethod.POST)
+    public String registerUser(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
+
+        List<Rol> userRol = new ArrayList<>();
+
+        userRol.add(new Rol("ROLE_USER"));
+
+        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, email, userRol);
+
+        userService.saveUser(userToCreate);
+
+        return "redirect:/login";
     }
 
 

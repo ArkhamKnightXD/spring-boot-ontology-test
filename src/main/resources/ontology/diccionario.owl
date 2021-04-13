@@ -461,7 +461,7 @@
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">adrede con intención, deliberadamente</untitled-ontology-2:sinonimos>
         <untitled-ontology-2:total_respuestas_N rdf:datatype="http://www.w3.org/2001/XMLSchema#string">5</untitled-ontology-2:total_respuestas_N>
     </owl:NamedIndividual>
-
+    
 
 
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bobolongo -->

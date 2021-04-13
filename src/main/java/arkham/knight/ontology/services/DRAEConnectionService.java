@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class DRAEConnectionService {
 
-    //Este resttemplate tendra timeout para evitar que el api DRAE se quede buscando una palabra de forma indefinida
+    //Este restTemplate tendra timeout para evitar que el api DRAE se quede buscando una palabra de forma indefinida
 //    @Bean
 //    public RestTemplate restTemplate() {
 //        return new RestTemplateBuilder()

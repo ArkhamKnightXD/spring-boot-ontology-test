@@ -19,7 +19,7 @@
 <body class="bg-light">
 <div class="container">
     <div class="py-5 text-center">
-        <h1>Agregar Usuario</h1>
+        <h1>Registro</h1>
     </div>
 
 
@@ -29,9 +29,9 @@
     <div class="row">
 
         <div class="col-md-8 order-md-1">
-            <h5 class="mb-3 head-text">Digite la informacion del usuario</h5>
+            <h5 class="mb-3 head-text">Digite la informacion requerida</h5>
 
-            <form method="post" action="/users/create" class="needs-validation"  novalidate>
+            <form method="post" action="/sing-up" class="needs-validation"  novalidate>
                 <div class="row">
                     <div class="col-md-12 mb-3">
                         <label for="username">Nombre de usuario</label>
@@ -52,20 +52,20 @@
                     </div>
 
 
-                <div class="col-md-12 mb-3">
-                    <label for="idRol">Rol del usuario</label>
+<#--                <div class="col-md-12 mb-3">-->
+<#--                    <label for="idRol">Rol del usuario</label>-->
 
-                    <div class="input-group">
-                        <select class="form-control" name="idRol" required>
-                            <#list roles as rol>
-                                <option value="${rol.getId()}">${rol.getRol()}</option>
-                            </#list>
-                        </select>
-                    </div>
-                </div>
+<#--                    <div class="input-group">-->
+<#--                        <select class="form-control" name="idRol" required>-->
+<#--                            <#list roles as rol>-->
+<#--                                <option value="${rol.getId()}">${rol.getRol()}</option>-->
+<#--                            </#list>-->
+<#--                        </select>-->
+<#--                    </div>-->
+<#--                </div>-->
 
                 <button class="btn btn-primary btn-lg btn-block my-buttons" type="submit">Guardar</button>
-                <a class="btn btn-danger btn-lg btn-block my-buttons" href="/users/" role="button">Cancelar</a>
+                <a class="btn btn-danger btn-lg btn-block my-buttons" href="/login" role="button">Cancelar</a>
                 </div>
             </form>
     </div>
