@@ -60,9 +60,9 @@ public class SurveyWordDataService {
     }
 
 
-    public SurveyWordData getSurveyById(long id){
+    public List<SurveyWordData> getAllSurveysByLemmaRAE(String lemmaRAE){
 
-        return surveyWordDataRepository.findSurveyWordDataById(id);
+        return surveyWordDataRepository.findAllByLemmaRAE(lemmaRAE);
     }
 
 

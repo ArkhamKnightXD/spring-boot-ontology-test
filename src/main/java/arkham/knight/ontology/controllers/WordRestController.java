@@ -1,9 +1,11 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.models.SurveyWordData;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.SurveyWordDataService;
 import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.Individual;
@@ -26,12 +28,15 @@ public class WordRestController {
 
     private final DRAEConnectionService draeConnectionService;
 
+    private final SurveyWordDataService surveyWordDataService;
+
     private final RestTemplate restTemplate;
 
-    public WordRestController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, RestTemplate restTemplate) {
+    public WordRestController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, SurveyWordDataService surveyWordDataService, RestTemplate restTemplate) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
         this.draeConnectionService = draeConnectionService;
+        this.surveyWordDataService = surveyWordDataService;
         this.restTemplate = restTemplate;
     }
 
@@ -83,5 +88,29 @@ public class WordRestController {
     public ResponseEntity<List<Word>> getAllIndividualsByClasses(@RequestParam String fatherClassName) {
 
         return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getAllSurveyWords")
+    @Operation(summary = "Get All Survey Words", description = "Retorna una lista con todas las encuestas realizadas ")
+    public ResponseEntity<List<SurveyWordData>> getAllSurveyWordData() {
+
+        return new ResponseEntity<>(surveyWordDataService.getAllSurveys(), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getAllSurveyWordsByLemma")
+    @Operation(summary = "Get All Survey Words By Lemma", description = "Retorna una lista con todas las encuestas realizadas del lema indicado")
+    public ResponseEntity<List<SurveyWordData>> getAllSurveyWordDataByLemma(@RequestParam String lemma) {
+
+        return new ResponseEntity<>(surveyWordDataService.getAllSurveysByLemma(lemma), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getAllSurveyWordsByLemmaRAE")
+    @Operation(summary = "Get All Survey Words By Lemma Rae", description = "Retorna una lista con todas las encuestas realizadas del lema de la rae indicado")
+    public ResponseEntity<List<SurveyWordData>> getAllSurveyWordDataByLemmaRAE(@RequestParam String lemmaRAE) {
+
+        return new ResponseEntity<>(surveyWordDataService.getAllSurveysByLemmaRAE(lemmaRAE), HttpStatus.OK);
     }
 }

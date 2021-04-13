@@ -30,7 +30,7 @@
         <div class="col-md-8 order-md-1">
             <h5 class="mb-3 head-text">Seleccione la palabra con la que desea trabajar</h5>
 
-            <form method="post" action="/surveys/survey-complete-create" class="needs-validation"  novalidate>
+            <form method="post" action="/surveys/survey-create" class="needs-validation"  novalidate>
                 <div class="row">
 
                     <div class="col-md-12 mb-3">

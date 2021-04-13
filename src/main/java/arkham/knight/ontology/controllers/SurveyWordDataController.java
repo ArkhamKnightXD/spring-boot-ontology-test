@@ -47,26 +47,6 @@ public class SurveyWordDataController {
     }
 
 
-    @RequestMapping(value = "/survey-create", method = RequestMethod.POST)
-    public String createSurvey(@RequestParam String individualName, @RequestParam String definition, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
-
-        SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
-
-        surveyWordDataService.saveSurvey(surveyWordDataToSave);
-
-        SurveyWordData completeSurveyWordData = surveyWordDataService.determineSurveysDataByLemmaAndReturnSurveyWord(individualName);
-
-        Word wordToSaveInTheOntology = wordService.convertWordSurveyDataToWord(completeSurveyWordData);
-
-        int totalAnswers = Integer.parseInt(wordToSaveInTheOntology.getTotalRespuestasN());
-
-        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInTheOntology) > 40)
-            ontologyService.saveIndividual(wordToSaveInTheOntology.getLema(), wordToSaveInTheOntology);
-
-        return "redirect:/surveys/";
-    }
-
-
     @RequestMapping(value = "/survey-complete-creation", method = RequestMethod.GET)
     public String completeCreationSurveyPage(Model model) {
 
@@ -76,8 +56,8 @@ public class SurveyWordDataController {
     }
 
 
-    @RequestMapping(value = "/survey-complete-create", method = RequestMethod.POST)
-    public String createCompleteSurvey(@RequestParam String individualName, @RequestParam String definition, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
+    @RequestMapping(value = "/survey-create", method = RequestMethod.POST)
+    public String createSurvey(@RequestParam String individualName, @RequestParam String definition, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
 
         SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
 
