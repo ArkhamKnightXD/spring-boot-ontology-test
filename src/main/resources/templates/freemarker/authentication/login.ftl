@@ -7,13 +7,11 @@
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="../../bootstrap-4.3.1/dist/img/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/dist/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/vendor/css-hamburgers/hamburgers.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/vendor/select2/select2.min.css">
 <!--===============================================================================================-->

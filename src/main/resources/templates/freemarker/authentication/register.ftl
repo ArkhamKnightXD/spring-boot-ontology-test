@@ -12,9 +12,12 @@
     <!-- Title Page-->
     <title>Registro</title>
 
+    <link rel="icon" type="image/png" href="../../bootstrap-4.3.1/dist/img/icons/favicon.ico"/>
     <!-- Icons font CSS-->
     <link href="../../forms/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="../../forms/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 
@@ -71,7 +74,7 @@
     </div>
 
     <!-- Jquery JS-->
-    <script src="../../forms/vendor/jquery/jquery.min.js"></script>
+    <script src="../../bootstrap-4.3.1/vendor/jquery/jquery-3.2.1.min.js"></script>
     <!-- Vendor JS-->
     <script src="../../forms/vendor/select2/select2.min.js"></script>
     <script src="../../forms/vendor/datepicker/moment.min.js"></script>
