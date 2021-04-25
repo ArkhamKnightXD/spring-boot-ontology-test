@@ -96,18 +96,18 @@ public class OntologyConnectionService {
 
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
 
-        FileReader reader = null;
-
-        try {
-            reader = new FileReader(ontologyFile);
-        } catch (FileNotFoundException exception) {
-            exception.printStackTrace();
-        }
-
-        model.read(reader,null);
+//        FileReader reader = null;
+//
+//        try {
+//            reader = new FileReader(ontologyFile);
+//        } catch (FileNotFoundException exception) {
+//            exception.printStackTrace();
+//        }
+//
+//        model.read(reader,null);
 
         //URL Connection
-//        model.read(getOntologyURLInputStream(), null);
+        model.read(getOntologyURLInputStream(), null);
 
         return model;
     }
@@ -115,14 +115,14 @@ public class OntologyConnectionService {
 
     public void saveOntologyFile(OWLOntology ontology){
 
-        IRI ontologySaveIRI = IRI.create(ontologyFile);
+//        IRI ontologySaveIRI = IRI.create(ontologyFile);
 
         try {
             // save in RDF/XML
-            ontologyManager.saveOntology(ontology, ontologySaveIRI);
+//            ontologyManager.saveOntology(ontology, ontologySaveIRI);
 
             //UrlConnection
-//            ontologyManager.saveOntology(ontology, getOntologyURLOutputStream());
+            ontologyManager.saveOntology(ontology, getOntologyURLOutputStream());
         } catch (OWLOntologyStorageException exception) {
             exception.printStackTrace();
         }
@@ -136,10 +136,10 @@ public class OntologyConnectionService {
 
         try {
 
-            return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
+//            return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
 
             //URl connection
-//            return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
+            return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
         } catch (OWLOntologyCreationException exception) {
             exception.printStackTrace();
         }
