@@ -27,3 +27,6 @@ jobs:
       
     - name: Build with Gradle And Skipping test
       run: ./gradlew build -x test
+      
+    - name: Build Jar 
+      run: ./gradlew bootJar
