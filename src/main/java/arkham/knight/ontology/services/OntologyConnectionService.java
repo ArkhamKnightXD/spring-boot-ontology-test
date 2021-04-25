@@ -98,7 +98,7 @@ public class OntologyConnectionService {
 
         FileReader reader = null;
 
-        if (ontologyFile != null){
+        if (ontologyFile.exists()){
 
             try {
                 reader = new FileReader(ontologyFile);
@@ -140,7 +140,7 @@ public class OntologyConnectionService {
 
         try {
             //URl connection
-            if (ontologyFile == null)
+            if (!ontologyFile.exists())
                 return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
 
             return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
