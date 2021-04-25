@@ -28,5 +28,10 @@ jobs:
     - name: Build with Gradle And Skipping test
       run: ./gradlew build -x test
       
-    - name: Build Jar 
+    - name: Build Jar With BootJar
       run: ./gradlew bootJar
+      
+    - name: Build Docker 
+      run: docker build -t kerxd/ontology-app .
+      
+      
