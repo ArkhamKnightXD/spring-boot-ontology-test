@@ -43,8 +43,9 @@ jobs:
 #       Aqui creo la imagen y le hago push
     - name: Build Docker Image
       run: docker build -t kerxd/ontology-app .
-      
-    - name: Push Docker Image
-      run: docker push kerxd/ontology-app 
+
+#      Desactivado hasta que automatice la conexion entre la ontologia y la app
+#    - name: Push Docker Image
+#      run: docker push kerxd/ontology-app
       
       
