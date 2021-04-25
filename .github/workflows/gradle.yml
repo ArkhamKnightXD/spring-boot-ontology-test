@@ -27,3 +27,24 @@ jobs:
       
     - name: Build with Gradle And Skipping test
       run: ./gradlew build -x test
+      
+    - name: Build Jar With BootJar
+      run: ./gradlew bootJar
+      
+    - name: Docker Login 
+#     Setting secrets to enviroment variables
+      env: 
+        DOCKER_USER: ${{ secrets.DOCKER_USER }} 
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
+      
+#       Login in docker hub with my enviroment variable
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      
+#       Aqui creo la imagen y le hago push
+    - name: Build Docker Image
+      run: docker build -t kerxd/ontology-app .
+      
+    - name: Push Docker Image
+      run: docker push kerxd/ontology-app 
+      
+      
