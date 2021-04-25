@@ -26,7 +26,7 @@ jobs:
       run: chmod +x gradlew
       
     - name: Build with Gradle And Skipping test
-      run: ./gradlew build -x test
+      run: ./gradlew build 
 
     - name: Build Jar With BootJar
       run: ./gradlew bootJar
