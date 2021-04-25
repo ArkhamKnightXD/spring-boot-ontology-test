@@ -98,16 +98,19 @@ public class OntologyConnectionService {
 
         FileReader reader = null;
 
-        try {
-            reader = new FileReader(ontologyFile);
-        } catch (FileNotFoundException exception) {
-            exception.printStackTrace();
+        if (ontologyFile != null){
+
+            try {
+                reader = new FileReader(ontologyFile);
+            } catch (FileNotFoundException exception) {
+                exception.printStackTrace();
+            }
+
+            model.read(reader,null);
         }
-
-        model.read(reader,null);
-
         //URL Connection
-//        model.read(getOntologyURLInputStream(), null);
+        else
+            model.read(getOntologyURLInputStream(), null);
 
         return model;
     }
@@ -118,6 +121,7 @@ public class OntologyConnectionService {
         IRI ontologySaveIRI = IRI.create(ontologyFile);
 
         try {
+
             // save in RDF/XML
             ontologyManager.saveOntology(ontology, ontologySaveIRI);
 
@@ -135,11 +139,12 @@ public class OntologyConnectionService {
     public OWLOntology loadTheOntologyOwlAPI(){
 
         try {
+            //URl connection
+            if (ontologyFile == null)
+                return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
 
             return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
 
-            //URl connection
-//            return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
         } catch (OWLOntologyCreationException exception) {
             exception.printStackTrace();
         }
