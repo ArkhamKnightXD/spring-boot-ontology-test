@@ -21,6 +21,7 @@ dependencies {
 
     compile 'org.springdoc:springdoc-openapi-ui:1.2.32'
 
+    runtimeOnly 'com.h2database:h2'
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 
     compile group: 'org.apache.jena', name: 'jena-core', version: '3.13.1'

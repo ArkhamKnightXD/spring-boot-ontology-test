@@ -26,7 +26,7 @@ jobs:
       run: chmod +x gradlew
       
     - name: Build with Gradle And Skipping test
-      run: ./gradlew build -x test
+      run: ./gradlew build
 
     - name: Execute Test With Gradle
       run: ./gradlew test
