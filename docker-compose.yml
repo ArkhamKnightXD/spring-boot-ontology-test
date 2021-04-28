@@ -8,9 +8,6 @@ services:
 
     container_name: docker-ontology
 
-    environment:
-      - SERVER_PORT=88
-
     ports:
       - "88:88"
 
@@ -27,9 +24,6 @@ services:
     image: squat/drae:latest
 
     container_name: docker-squat-drae
-
-    environment:
-      - SERVER_PORT=4000
 
     ports:
       - "4000:4000"
