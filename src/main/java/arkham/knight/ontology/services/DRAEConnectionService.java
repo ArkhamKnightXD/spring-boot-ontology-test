@@ -36,8 +36,9 @@ public class DRAEConnectionService {
     public List<DRAEObject> getTheWordDataFromDRAE(RestTemplate restTemplate, String wordToSearch){
 
         //Link to use with docker
-        String searchLink = "http://docker-squat-drae:4000/api/"+wordToSearch;
-//        String searchLink = "http://localhost:4000/api/"+wordToSearch;
+//        String searchLink = "http://docker-squat-drae:4000/api/"+wordToSearch;
+
+        String searchLink = "http://localhost:4000/api/"+wordToSearch;
 
         ResponseEntity<String> responseEntityDRAE = restTemplate.getForEntity(searchLink, String.class);
 
