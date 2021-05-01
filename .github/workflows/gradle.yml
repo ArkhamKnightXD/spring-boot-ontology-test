@@ -10,7 +10,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build and test:
 
     runs-on: ubuntu-latest
 
@@ -30,23 +30,23 @@ jobs:
       run: ./gradlew build
 
 #Si no deseo subir imagen de docker comentare los sigtes jobs
-#    - name: Build Jar With Gradle
-#      run: ./gradlew bootJar
-#
-#      # Setting secrets to environment variables To login in docker
-#    - name: Login To Docker
-#      env:
-#        DOCKER_USER: ${{ secrets.DOCKER_USER }}
-#        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-#
-##       Login in docker hub with my environment variable
-#      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-#
-##       Build docker image and then push the image to dockerhub
-#    - name: Build Docker Image
-#      run: docker build -t kerxd/ontology-app .
-#
-#    - name: Push Docker Image
-#      run: docker push kerxd/ontology-app
+    - name: Build Jar With Gradle
+      run: ./gradlew bootJar
+
+      # Setting secrets to environment variables To login in docker
+    - name: Login To Docker
+      env:
+        DOCKER_USER: ${{ secrets.DOCKER_USER }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+#       Login in docker hub with my environment variable
+      run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+#       Build docker image and then push the image to dockerhub
+    - name: Build Docker Image
+      run: docker build -t kerxd/ontology-app .
+
+    - name: Push Docker Image
+      run: docker push kerxd/ontology-app
       
       
