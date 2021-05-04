@@ -46,16 +46,16 @@ public class OntologyApplication {
 //            surveyWordDataService.deleteAllSurveys();
 
 
-            OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
-            OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ontologyConnectionService.prefixManager.getDefaultPrefix(), "Adjetivos"));
-
-            Set<OWLNamedIndividual> individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
-
-            for (OWLNamedIndividual individual :individualSet) {
-
-                //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
-                System.out.println("Individual Name: " + ontologyConnectionService.prefixManager.getShortForm(individual));
-            }
+//            OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
+//            OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ontologyConnectionService.prefixManager.getDefaultPrefix(), "Adjetivos"));
+//
+//            Set<OWLNamedIndividual> individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
+//
+//            for (OWLNamedIndividual individual :individualSet) {
+//
+//                //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
+//                System.out.println("Individual Name: " + ontologyConnectionService.prefixManager.getShortForm(individual));
+//            }
 //            openIndexPage(true);
 //
 //            openIndexPage(false);
