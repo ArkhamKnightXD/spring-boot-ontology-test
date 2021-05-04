@@ -5,8 +5,11 @@ import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.ontology.Ontology;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
+import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.reasoner.*;
+import org.semanticweb.owlapi.util.DefaultPrefixManager;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -21,6 +24,8 @@ public class OntologyConnectionService {
     private final File ontologyFile = new File("src/main/resources/ontology/diccionario.owl");
 
     public final String ontologyURI = getOntology().getURI().concat("#");
+
+    public final DefaultPrefixManager prefixManager = new DefaultPrefixManager(null, null, ontologyURI);
 
     public Property definitionProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("definicion"));
 
@@ -153,5 +158,23 @@ public class OntologyConnectionService {
         }
 
         return null;
+    }
+
+
+    public OWLReasoner getHermitReasoner(){
+
+        //Setting up the reasoner
+        OWLReasonerFactory reasonerFactory = new ReasonerFactory();
+
+        ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
+        OWLReasonerConfiguration reasonerConfiguration = new SimpleConfiguration(progressMonitor);
+
+        //Create the reasoner
+        OWLReasoner reasoner = reasonerFactory.createReasoner(loadTheOntologyOwlAPI(), reasonerConfiguration);
+
+        //Determinar el proposito de esto
+        reasoner.precomputeInferences(InferenceType.values());
+
+        return reasoner;
     }
 }
