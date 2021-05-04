@@ -11,10 +11,7 @@ import org.apache.jena.ontology.OntClass;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 @RequestMapping("/api/v1/")
 @RestController
@@ -29,6 +26,16 @@ public class OntologyRestController {
     public OntologyRestController(OntologyService ontologyService, WordService wordService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
+    }
+
+
+    @GetMapping("/reasoner")
+    @Operation(summary = "Reasoner Testing Endpoint", description = "Prueba del hermit reasoner")
+    public ResponseEntity<List<String>> reasonerTest(@RequestParam String individualName) {
+
+        List<String> individualSet = ontologyService.getAllIndividualNameByClassNameWithReasoner(individualName);
+
+        return new  ResponseEntity<>(individualSet, HttpStatus.OK);
     }
 
 

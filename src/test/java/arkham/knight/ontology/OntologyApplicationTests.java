@@ -84,44 +84,6 @@ class OntologyApplicationTests {
     }
 
 
-//    @Test
-//    void testDRAEObjectSearch() {
-//
-//        String wordFound = "";
-//
-//        List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
-//
-//        for (DRAEObject word: wordsResponse) {
-//
-//            wordFound =  word.getWord();
-//        }
-//
-//        assertEquals(wordToSearchDRAE ,wordFound);
-//    }
-//
-//
-//    @Test
-//    void testDRAEDefinitionsSearch() {
-//
-//        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
-//
-//        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWordList(wordList);
-//
-//        assertFalse(definitions.isEmpty());
-//    }
-//
-//
-//    @Test
-//    void testDRAEVariationsSearch() {
-//
-//        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
-//
-//        List<DRAEVariation> variations = draeConnectionService.getAllVariationsFromDRAEWordList(wordList);
-//
-//        assertFalse(variations.isEmpty());
-//    }
-
-//    Estan fallando todas las pruebas ya que implemente spring JPA verificare por que pasa esto luego
     @Test
     void testGetAllClassesLocalName() {
 
@@ -256,4 +218,42 @@ class OntologyApplicationTests {
 
         assertTrue(response);
     }
+
+
+//    @Test
+//    void testDRAEObjectSearch() {
+//
+//        String wordFound = "";
+//
+//        List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
+//
+//        for (DRAEObject word: wordsResponse) {
+//
+//            wordFound =  word.getWord();
+//        }
+//
+//        assertEquals(wordToSearchDRAE ,wordFound);
+//    }
+//
+//
+//    @Test
+//    void testDRAEDefinitionsSearch() {
+//
+//        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
+//
+//        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWordList(wordList);
+//
+//        assertFalse(definitions.isEmpty());
+//    }
+//
+//
+//    @Test
+//    void testDRAEVariationsSearch() {
+//
+//        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
+//
+//        List<DRAEVariation> variations = draeConnectionService.getAllVariationsFromDRAEWordList(wordList);
+//
+//        assertFalse(variations.isEmpty());
+//    }
 }

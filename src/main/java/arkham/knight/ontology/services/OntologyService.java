@@ -21,6 +21,29 @@ public class OntologyService {
     private final IRI ontologyIRI = IRI.create(ontologyConnectionService.ontologyURI);
 
 
+    public List<String> getAllIndividualNameByClassNameWithReasoner(String className){
+
+         OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ontologyConnectionService.prefixManager.getDefaultPrefix(), className));
+
+         Set<OWLNamedIndividual> individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
+
+         return convertFromSetToList(individualSet);
+    }
+
+
+    public List<String> convertFromSetToList(Set<OWLNamedIndividual> dataSet){
+
+        List<String> individualNameList = new ArrayList<>();
+
+        for (OWLNamedIndividual individual : dataSet) {
+
+            individualNameList.add(ontologyConnectionService.prefixManager.getShortForm(individual));
+        }
+
+        return individualNameList;
+    }
+
+
     public List<String> getAllClassesLocalName(){
 
         List<String> classListNames = new ArrayList<>();

@@ -172,7 +172,7 @@ public class OntologyConnectionService {
         //Create the reasoner
         OWLReasoner reasoner = reasonerFactory.createReasoner(loadTheOntologyOwlAPI(), reasonerConfiguration);
 
-        //Determinar el proposito de esto
+        //Determinar la importancia de esto
         reasoner.precomputeInferences(InferenceType.values());
 
         return reasoner;
