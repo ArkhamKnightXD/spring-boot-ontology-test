@@ -26,7 +26,7 @@ jobs:
 
       #para hacer deployment de docker debo desactivar los test con: -x test
     - name: Build And Test With Gradle
-      run: ./gradlew build
+      run: ./gradlew build -x test
 
 #Si no deseo subir imagen de docker comentare los sigtes jobs
     - name: Build Jar With Gradle
@@ -48,14 +48,14 @@ jobs:
     - name: Push Docker Image
       run: docker push kerxd/ontology-app
 
-    - name: Deploy to Heroku
-      uses: AkhileshNS/heroku-deploy@v3.12.12
-      with:
-   # This will be used for authentication. You can find it in your heroku homepage account settings
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-   # Email that you use with heroku
-        heroku_email: ${{secrets.HEROKU_EMAIL}}
-   # The appname to use for deploying/updating
-        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+#    - name: Deploy to Heroku
+#      uses: AkhileshNS/heroku-deploy@v3.12.12
+#      with:
+#   # This will be used for authentication. You can find it in your heroku homepage account settings
+#        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#   # Email that you use with heroku
+#        heroku_email: ${{secrets.HEROKU_EMAIL}}
+#   # The appname to use for deploying/updating
+#        heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
       
       
