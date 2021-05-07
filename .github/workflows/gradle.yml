@@ -27,6 +27,9 @@ jobs:
     - name: Build And Test With Gradle
       run: ./gradlew build
 
+    - name: Build Jar With Gradle
+      run: ./gradlew bootJar
+
     - name: Deploy to Heroku
       uses: AkhileshNS/heroku-deploy@v3.12.12
       with:
@@ -38,8 +41,6 @@ jobs:
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
 
 #Si no deseo subir imagen de docker comentare los sigtes jobs
-#    - name: Build Jar With Gradle
-#      run: ./gradlew bootJar
 #
 #      # Setting secrets to environment variables To login in docker
 #    - name: Login To Docker
