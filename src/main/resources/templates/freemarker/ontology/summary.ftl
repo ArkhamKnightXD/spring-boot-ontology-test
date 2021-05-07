@@ -150,7 +150,7 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Resultados Test</strong>
+                <strong>Resultados</strong>
             </h1>
 <#--            <a class="btn btn-primary" href="/surveys/survey-creation" role="button">Agregar</a>-->
         </section>
