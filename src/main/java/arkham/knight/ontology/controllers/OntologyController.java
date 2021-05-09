@@ -59,7 +59,7 @@ public class OntologyController {
 
         else{
 
-            Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+            Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
             while (individualsIterator.hasNext()) {
 
@@ -100,7 +100,7 @@ public class OntologyController {
 
         String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
-        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheModel().getIndividual(individualURI);
+        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().getIndividual(individualURI);
 
         RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
         RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);

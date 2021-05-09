@@ -1,8 +1,5 @@
 package arkham.knight.ontology;
 
-import arkham.knight.ontology.models.DRAEDefinition;
-import arkham.knight.ontology.models.DRAEObject;
-import arkham.knight.ontology.models.DRAEVariation;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
@@ -96,7 +93,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllClasses() {
 
-        List<OntClass> classList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses().toList();
+        List<OntClass> classList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses().toList();
 
         assertFalse(classList.isEmpty());
     }
@@ -105,7 +102,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllIndividuals() {
 
-        List<Individual> individualList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals().toList();
+        List<Individual> individualList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
 
         assertFalse(individualList.isEmpty());
     }
@@ -114,7 +111,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllDataTypeProperties() {
 
-        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.readOntologyFileAndReturnTheModel().listDatatypeProperties().toList();
+        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listDatatypeProperties().toList();
 
         assertFalse(datatypePropertyList.isEmpty());
     }

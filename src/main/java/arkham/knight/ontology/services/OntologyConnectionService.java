@@ -9,7 +9,6 @@ import org.semanticweb.HermiT.ReasonerFactory;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.*;
-import org.semanticweb.owlapi.util.DefaultPrefixManager;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -25,19 +24,17 @@ public class OntologyConnectionService {
 
     public final String ontologyURI = getOntology().getURI().concat("#");
 
-    public final DefaultPrefixManager prefixManager = new DefaultPrefixManager(null, null, ontologyURI);
+    public Property definitionProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("definicion"));
 
-    public Property definitionProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("definicion"));
+    public Property exampleProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("ejemplo"));
 
-    public Property exampleProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("ejemplo"));
+    public Property lemmaRAEProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("lema_rae"));
 
-    public Property lemmaRAEProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("lema_rae"));
+    public Property synonymsProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("sinonimos"));
 
-    public Property synonymsProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("sinonimos"));
+    public Property totalAnswersProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("total_respuestas_N"));
 
-    public Property totalAnswersProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("total_respuestas_N"));
-
-    public Property votesQuantityProperty = readOntologyFileAndReturnTheModel().getProperty(ontologyURI.concat("cantidad_votaciones_I"));
+    public Property votesQuantityProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("cantidad_votaciones_I"));
 
     private static OntologyConnectionService instance;
 
@@ -85,7 +82,7 @@ public class OntologyConnectionService {
 
         Ontology ontology = null;
 
-        Iterator<Ontology> ontologyIterator = readOntologyFileAndReturnTheModel().listOntologies();
+        Iterator<Ontology> ontologyIterator = readOntologyFileAndReturnTheJenaModel().listOntologies();
 
         while (ontologyIterator.hasNext()) {
 
@@ -97,7 +94,7 @@ public class OntologyConnectionService {
     }
 
 
-    public OntModel readOntologyFileAndReturnTheModel() {
+    public OntModel readOntologyFileAndReturnTheJenaModel() {
 
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
 
@@ -140,6 +137,7 @@ public class OntologyConnectionService {
         }
 
         // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
+        //remuevo la ontologia para que no se quede en uso, si esta queda en uso no puedo volver a utilizar la ontologia o me da error
         ontologyManager.removeOntology(ontology);
     }
 
@@ -163,17 +161,20 @@ public class OntologyConnectionService {
 
     public OWLReasoner getHermitReasoner(){
 
+        OWLOntology ontology = loadTheOntologyOwlAPI();
+
         //Setting up the reasoner
         OWLReasonerFactory reasonerFactory = new ReasonerFactory();
-
         ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
         OWLReasonerConfiguration reasonerConfiguration = new SimpleConfiguration(progressMonitor);
 
         //Create the reasoner
-        OWLReasoner reasoner = reasonerFactory.createReasoner(loadTheOntologyOwlAPI(), reasonerConfiguration);
+        OWLReasoner reasoner = reasonerFactory.createReasoner(ontology, reasonerConfiguration);
 
-        //Determinar la importancia de esto
+        //Metodo encargado de trabajar la inferencias
         reasoner.precomputeInferences(InferenceType.values());
+
+        ontologyManager.removeOntology(ontology);
 
         return reasoner;
     }

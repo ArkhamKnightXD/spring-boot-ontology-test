@@ -7,6 +7,7 @@ import org.apache.jena.ontology.OntClass;
 import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.util.DefaultPrefixManager;
 import org.semanticweb.owlapi.util.OWLEntityRemover;
 import org.springframework.stereotype.Service;
 import java.util.*;
@@ -20,24 +21,26 @@ public class OntologyService {
 
     private final IRI ontologyIRI = IRI.create(ontologyConnectionService.ontologyURI);
 
+    public final DefaultPrefixManager prefixManager = new DefaultPrefixManager(null, null, ontologyConnectionService.ontologyURI);
+
 
     public List<String> getAllIndividualNameByClassNameWithReasoner(String className){
 
-         OWLClass owlClass = dataFactory.getOWLClass(IRI.create(ontologyConnectionService.prefixManager.getDefaultPrefix(), className));
+        OWLClass owlClass = dataFactory.getOWLClass(IRI.create(prefixManager.getDefaultPrefix(), className));
 
-         Set<OWLNamedIndividual> individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
+        Set<OWLNamedIndividual> individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
 
-         return convertFromSetToList(individualSet);
+        return convertFromSetToStringList(individualSet);
     }
 
 
-    public List<String> convertFromSetToList(Set<OWLNamedIndividual> dataSet){
+    public List<String> convertFromSetToStringList(Set<OWLNamedIndividual> dataSet){
 
         List<String> individualNameList = new ArrayList<>();
 
         for (OWLNamedIndividual individual : dataSet) {
 
-            individualNameList.add(ontologyConnectionService.prefixManager.getShortForm(individual));
+            individualNameList.add(prefixManager.getShortForm(individual));
         }
 
         return individualNameList;
@@ -48,7 +51,7 @@ public class OntologyService {
 
         List<String> classListNames = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listClasses();
+        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
 
 
         while (classesIterator.hasNext()) {
@@ -66,7 +69,7 @@ public class OntologyService {
 
         List<String> individualNamesList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
 
         while (individualsIterator.hasNext()) {
@@ -84,7 +87,7 @@ public class OntologyService {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
         while (individualsIterator.hasNext()) {
 
@@ -238,7 +241,7 @@ public class OntologyService {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
         Individual individual;
 
