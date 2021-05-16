@@ -1,89 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Colorlib Templates">
-    <meta name="author" content="Colorlib">
-    <meta name="keywords" content="Colorlib Templates">
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../../bootstrap-4.3.1/dist/img/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/dist/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Title Page-->
-    <title>Registro</title>
-
-    <link rel="icon" type="image/png" href="../../bootstrap-4.3.1/dist/img/icons/favicon.ico"/>
-    <!-- Icons font CSS-->
-    <link href="../../forms/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-
-    <!-- Vendor CSS-->
-    <link href="../../forms/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="../../forms/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="../../forms/css/main.css" rel="stylesheet" media="all">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/dist/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap-4.3.1/dist/css/main.css">
+<!--===============================================================================================-->
 </head>
-
 <body>
-    <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
-        <div class="wrapper wrapper--w790">
-            <div class="card card-5">
-                <div class="card-heading">
-                    <h2 class="title">Formulario de registro</h2>
-                </div>
-                <div class="card-body">
-                    <form method="post" action="/sing-up">
-                        <div class="form-row">
-                            <div class="name">Nombre de usuario</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="username" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Email</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="email" required>
-                                </div>
-                            </div>
-                        </div>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="../../bootstrap-4.3.1/dist/img/img-01.png" alt="IMG">
+				</div>
 
-                        <div class="form-row">
-                            <div class="name">Contraseña</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="password" name="password" required>
-                                </div>
-                            </div>
-                        </div>
+				<form class="login100-form validate-form" action="/sing-up" method="post">
+					<span class="login100-form-title">
+						Registro
+					</span>
 
-                        <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Registrar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="username" placeholder="Username">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-    <!-- Jquery JS-->
-    <script src="../../bootstrap-4.3.1/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!-- Vendor JS-->
-    <script src="../../forms/vendor/select2/select2.min.js"></script>
-    <script src="../../forms/vendor/datepicker/moment.min.js"></script>
-    <script src="../../forms/vendor/datepicker/daterangepicker.js"></script>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-    <!-- Main JS-->
-    <script src="../../forms/js/global.js"></script>
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Registrar
+						</button>
+					</div>
 
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
+					<div class="text-center p-t-136">
+						<a class="txt2" href="/login">
+							Ya tienes cuenta?
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="../../bootstrap-4.3.1/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../bootstrap-4.3.1/vendor/bootstrap/js/popper.js"></script>
+	<script src="../../bootstrap-4.3.1/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../bootstrap-4.3.1/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="../../bootstrap-4.3.1/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="../../bootstrap-4.3.1/dist/js/main.js"></script>
+
+</body>
 </html>
-<!-- end document-->

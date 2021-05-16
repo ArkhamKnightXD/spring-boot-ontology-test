@@ -1,5 +1,8 @@
 package arkham.knight.ontology;
 
+import arkham.knight.ontology.models.DRAEDefinition;
+import arkham.knight.ontology.models.DRAEObject;
+import arkham.knight.ontology.models.DRAEVariation;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
@@ -35,6 +38,15 @@ class OntologyApplicationTests {
     private final String testLemma = "prueba";
 
     private final String wordToSearchDRAE = "diccionario";
+
+
+    @Test
+    void testHermitReasoner() {
+
+        List<String> individualNames = ontologyService.getAllIndividualNameByClassNameWithReasoner("Verbos");
+
+        assertFalse(individualNames.contains("fuñir"));
+    }
 
 
     @Test
@@ -86,7 +98,7 @@ class OntologyApplicationTests {
 
         List<String> classNameList = ontologyService.getAllClassesLocalName();
 
-        assertFalse(classNameList.isEmpty());
+        assertFalse(classNameList.contains("bobolongo"));
     }
 
 

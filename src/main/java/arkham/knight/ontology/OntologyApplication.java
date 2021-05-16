@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import java.io.*;
-import java.util.List;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "API Español Dominicano", version = "1.0", description = "API Centrada en el desarrollo de un diccionario de palabras dominicanas"))
@@ -38,9 +37,7 @@ public class OntologyApplication {
 
 //            surveyWordDataService.deleteAllSurveys();
 
-//            List<String> individualNames = ontologyService.getAllIndividualNameByClassNameWithReasoner("Adjetivos");
-//
-//            for (String individual : individualNames) {
+//            for (String individual : ontologyService.getAllIndividualNameByClassNameWithReasoner("Adjetivos")) {
 //
 //                //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
 //                System.out.println("Individual Name: " + individual);

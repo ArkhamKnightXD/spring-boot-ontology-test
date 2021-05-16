@@ -54,7 +54,7 @@ public class URLController implements ErrorController {
 
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String registerUserPage(Model model) {
+    public String registerUserPage() {
 
         return "/freemarker/authentication/register";
     }

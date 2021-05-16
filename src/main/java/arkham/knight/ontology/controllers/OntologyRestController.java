@@ -29,9 +29,9 @@ public class OntologyRestController {
     }
 
 
-    @GetMapping("/reasoner")
-    @Operation(summary = "Reasoner Testing Endpoint", description = "Prueba del hermit reasoner")
-    public ResponseEntity<List<String>> reasonerTest(@RequestParam String individualName) {
+    @GetMapping("/getIndividualsNameReasoner")
+    @Operation(summary = "Get All Individuals Name By Class Name Reasoner Way", description = "Retorna los lemas pertenecientes a la clase indicada")
+    public ResponseEntity<List<String>> getAllIndividualNameByClassNameWithReasoner(@RequestParam String individualName) {
 
         List<String> individualSet = ontologyService.getAllIndividualNameByClassNameWithReasoner(individualName);
 
