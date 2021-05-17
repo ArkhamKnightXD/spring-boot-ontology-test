@@ -184,4 +184,11 @@ public class OntologyController {
 
         return "redirect:/individuals";
     }
+
+
+    @RequestMapping(value = "/test-form", method = RequestMethod.GET)
+    public String testForm() {
+
+        return "/freemarker/authentication/oldRegister";
+    }
 }

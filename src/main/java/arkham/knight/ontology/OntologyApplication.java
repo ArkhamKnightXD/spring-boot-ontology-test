@@ -44,7 +44,7 @@ public class OntologyApplication {
 //            }
 
 //            openIndexPage(true);
-
+//
 //            openIndexPage(false);
         };
     }

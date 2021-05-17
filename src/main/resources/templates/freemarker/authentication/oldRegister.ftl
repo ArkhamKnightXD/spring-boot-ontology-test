@@ -27,6 +27,8 @@
 
     <!-- Main CSS-->
     <link href="../../forms/css/main.css" rel="stylesheet" media="all">
+
+
 </head>
 
 <body>
@@ -65,7 +67,11 @@
                         </div>
 
                         <div>
-                            <button class="btn btn--radius-2 btn--red" type="submit">Registrar</button>
+                            <button class="btn btn--radius-2 btn--black" type="submit">Registrar</button>
+                        </div>
+
+                        <div>
+                            <button class="btn-cancel btn--radius-2 btn--black" type="submit">Cancelar</button>
                         </div>
                     </form>
                 </div>
