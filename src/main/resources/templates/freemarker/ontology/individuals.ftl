@@ -28,7 +28,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="/words/" class="logo">
+        <a href="/" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>PI</span>
             <!-- logo for regular state and mobile devices -->
@@ -111,7 +111,7 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/words/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
+                <li><a href="/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/rae/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
@@ -134,7 +134,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/words/individuals">
+        <form action="/individuals">
             <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
         </form>
         <!-- Content Header (Page header) -->
@@ -143,8 +143,8 @@
 
                 <strong>Listado de Lemas</strong>
             </h1>
-            <a class="btn btn-primary" href="/words/creation" role="button">Agregar un nuevo lema</a>
-            <a class="btn btn-success" href="/words/class-creation" role="button">Agregar clases</a>
+            <a class="btn btn-primary" href="/creation" role="button">Agregar un nuevo lema</a>
+            <a class="btn btn-success" href="/class-creation" role="button">Agregar clases</a>
         </section>
 
         <!-- Main content -->
@@ -166,11 +166,11 @@
                             <tr>
                                 <td>${individual.getOntClass().getLocalName()}</td>
 
-                                <td><a href="/words/show?lemma=${individual.getLocalName()}"> ${individual.getLocalName()}</a></td>
+                                <td><a href="/show?lemma=${individual.getLocalName()}"> ${individual.getLocalName()}</a></td>
 
                                 <td>
-                                    <a href="/words/edition?individualName=${individual.getLocalName()}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
-                                    <a href="/words/delete?individualName=${individual.getLocalName()}"> <i class="fa fa-trash" style="font-size:23px;color:#ff0000"></i> </a>
+                                    <a href="/edition?individualName=${individual.getLocalName()}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
+                                    <a href="/delete?individualName=${individual.getLocalName()}"> <i class="fa fa-trash" style="font-size:23px;color:#ff0000"></i> </a>
                                 </td>
                             </tr>
                             </#list>

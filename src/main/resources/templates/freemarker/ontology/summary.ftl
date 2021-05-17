@@ -131,7 +131,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="/words/individuals">All Individuals</a></li>
+                        <li class=""><a href="/individuals">All Individuals</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
                     </ul>
                 </li>
@@ -143,7 +143,7 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/words/">
+        <form action="/">
             <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
         </form>
         <!-- Content Header (Page header) -->
@@ -177,7 +177,7 @@
                             <tbody>
                             <#list words as word >
                                 <tr>
-                                    <td><a href="/words/show?lemma=${word.getLema()}"><b>${word.getLema()}</b></a></td>
+                                    <td><a href="/show?lemma=${word.getLema()}"><b>${word.getLema()}</b></a></td>
 
                                     <td>${word.getDefinicion()}</td>
 

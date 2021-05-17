@@ -28,7 +28,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="/words/" class="logo">
+        <a href="/" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>PI</span>
             <!-- logo for regular state and mobile devices -->
@@ -111,7 +111,7 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/words/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
+                <li><a href="/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/rae/search"><i class="fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
 
@@ -122,7 +122,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="/words/individuals">All Individuals</a></li>
+                        <li class=""><a href="/individuals">All Individuals</a></li>
                         <li class="active"><a href="#"><i class="active"></i> <span>Users</span></a></li>
                     </ul>
                 </li>

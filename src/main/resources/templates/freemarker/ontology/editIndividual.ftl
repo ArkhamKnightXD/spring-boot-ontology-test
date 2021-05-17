@@ -31,7 +31,7 @@
         <div class="col-md-8 order-md-1">
             <h5 class="mb-3 head-text">Digite la informacion del lema</h5>
 
-            <form method="post" action="/words/edit" class="needs-validation"  novalidate>
+            <form method="post" action="/edit" class="needs-validation"  novalidate>
                 <div class="row">
                     <!--Aqui siempre mando el nombre original del individual para poder hacer la edicion de manera efectiva-->
                         <input type="hidden" class="form-control" value="${lema}" id="name" name="originalIndividualName" >
@@ -86,7 +86,7 @@
                     </div>
 
                 <button class="btn btn-primary btn-lg btn-block my-buttons" type="submit">Guardar</button>
-                <a class="btn btn-danger btn-lg btn-block my-buttons" href="/words/individuals" role="button">Cancelar</a>
+                <a class="btn btn-danger btn-lg btn-block my-buttons" href="/individuals" role="button">Cancelar</a>
                 </div>
             </form>
     </div>

@@ -33,7 +33,7 @@
 				<h1>Oops!</h1>
 				<h2>${message}</h2>
 			</div>
-			<a href="/words/">Go TO Homepage</a>
+			<a href="/">Go TO Homepage</a>
 		</div>
 	</div>
 

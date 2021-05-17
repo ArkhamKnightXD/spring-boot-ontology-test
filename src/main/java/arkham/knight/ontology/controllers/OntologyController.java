@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@RequestMapping("/words")
 @Controller
 public class OntologyController {
 
@@ -91,7 +90,7 @@ public class OntologyController {
 
         ontologyService.saveIndividual(individualName, wordToSave);
 
-        return "redirect:/words/individuals";
+        return "redirect:/individuals";
     }
 
 
@@ -136,7 +135,7 @@ public class OntologyController {
 
         ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
-        return "redirect:/words/individuals";
+        return "redirect:/individuals";
     }
 
 
@@ -160,7 +159,7 @@ public class OntologyController {
 
         ontologyService.deleteIndividual(individualName);
 
-        return "redirect:/words/individuals";
+        return "redirect:/individuals";
     }
 
 
@@ -183,6 +182,6 @@ public class OntologyController {
         else
             ontologyService.saveFatherClassAndSubClass(fatherClassName, subClass);
 
-        return "redirect:/words/individuals";
+        return "redirect:/individuals";
     }
 }

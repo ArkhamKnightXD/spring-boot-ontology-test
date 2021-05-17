@@ -22,7 +22,7 @@ public class OntologyApplication {
         Runtime runtime = Runtime.getRuntime();
         try {
             if (identifier)
-                runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/words/");
+                runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/");
             else
                 runtime.exec("rundll32 url.dll,FileProtocolHandler " + "http://localhost:88/swagger.html");
         } catch (IOException e) {
@@ -44,7 +44,7 @@ public class OntologyApplication {
 //            }
 
 //            openIndexPage(true);
-//
+
 //            openIndexPage(false);
         };
     }
