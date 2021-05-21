@@ -19,9 +19,13 @@ public class OntologyService {
 
     private final OWLDataFactory dataFactory = OWLManager.getOWLDataFactory();
 
-    private final IRI ontologyIRI = IRI.create(ontologyConnectionService.ontologyURI);
+    private final DefaultPrefixManager prefixManager = new DefaultPrefixManager(null, null, ontologyConnectionService.ontologyURI);
 
-    public final DefaultPrefixManager prefixManager = new DefaultPrefixManager(null, null, ontologyConnectionService.ontologyURI);
+
+    public IRI createIRIByPropertyName (String propertyName){
+
+        return IRI.create(ontologyConnectionService.ontologyURI.concat(propertyName));
+    }
 
 
     public List<String> getAllIndividualNameByClassNameWithReasoner(String className){
@@ -40,6 +44,7 @@ public class OntologyService {
 
         for (OWLNamedIndividual individual : dataSet) {
 
+            //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
             individualNameList.add(prefixManager.getShortForm(individual));
         }
 
@@ -52,7 +57,6 @@ public class OntologyService {
         List<String> classListNames = new ArrayList<>();
 
         Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
-
 
         while (classesIterator.hasNext()) {
 
@@ -70,7 +74,6 @@ public class OntologyService {
         List<String> individualNamesList = new ArrayList<>();
 
         Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
-
 
         while (individualsIterator.hasNext()) {
 
@@ -106,8 +109,8 @@ public class OntologyService {
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
-        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + fatherClassName));
-        OWLClass subClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + subClassName));
+        OWLClass fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(fatherClassName));
+        OWLClass subClass = dataFactory.getOWLClass(createIRIByPropertyName(subClassName));
 
        // OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA, classB);
 
@@ -127,12 +130,11 @@ public class OntologyService {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        OWLIndividual individual = dataFactory.getOWLNamedIndividual(IRI.create(ontologyIRI + wordToSave.getLema()));
+        OWLIndividual individual = dataFactory.getOWLNamedIndividual(createIRIByPropertyName(wordToSave.getLema()));
 
-        OWLClass fatherClass = dataFactory.getOWLClass(IRI.create(ontologyIRI + wordToSave.getClasePadre()));
+        OWLClass fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(wordToSave.getClasePadre()));
 
         OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
-
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
@@ -146,55 +148,25 @@ public class OntologyService {
 
     public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, Word wordToSave) {
 
-        IRI dataTypePropertyIRI = IRI.create(ontologyIRI +"definicion");
-
-        IRI dataTypePropertyExampleIRI = IRI.create(ontologyIRI +"ejemplo");
-
-        IRI dataTypePropertyLemmaRAEIRI = IRI.create(ontologyIRI +"lema_rae");
-
-        IRI dataTypePropertySynonymsIRI = IRI.create(ontologyIRI +"sinonimos");
-
-        IRI dataTypePropertyTotalAnswersIRI = IRI.create(ontologyIRI +"total_respuestas_N");
-
-        IRI dataTypePropertyVotesQuantityIRI = IRI.create(ontologyIRI +"cantidad_votaciones_I");
-
-
-        OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(dataTypePropertyIRI);
-
-        OWLDataProperty exampleDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyExampleIRI);
-
-        OWLDataProperty lemmaRAEDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyLemmaRAEIRI);
-
-        OWLDataProperty synonymsDataProperty = dataFactory.getOWLDataProperty(dataTypePropertySynonymsIRI);
-
-        OWLDataProperty totalAnswersDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyTotalAnswersIRI);
-
-        OWLDataProperty votesQuantityDataProperty = dataFactory.getOWLDataProperty(dataTypePropertyVotesQuantityIRI);
-
+        OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("definicion"));
+        OWLDataProperty exampleDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("ejemplo"));
+        OWLDataProperty lemmaRAEDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("lema_rae"));
+        OWLDataProperty synonymsDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("sinonimos"));
+        OWLDataProperty totalAnswersDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("total_respuestas_N"));
+        OWLDataProperty votesQuantityDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("cantidad_votaciones_I"));
 
         OWLDataPropertyAssertionAxiom axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, wordToSave.getDefinicion());
-
         OWLDataPropertyAssertionAxiom axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, wordToSave.getEjemplo());
-
         OWLDataPropertyAssertionAxiom axiomLemmaRAE = dataFactory.getOWLDataPropertyAssertionAxiom(lemmaRAEDataProperty, individual, wordToSave.getLemaRAE());
-
         OWLDataPropertyAssertionAxiom axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, wordToSave.getSinonimos());
-
         OWLDataPropertyAssertionAxiom axiomTotalAnswers = dataFactory.getOWLDataPropertyAssertionAxiom(totalAnswersDataProperty, individual, wordToSave.getTotalRespuestasN());
-
         OWLDataPropertyAssertionAxiom axiomVotesQuantity = dataFactory.getOWLDataPropertyAssertionAxiom(votesQuantityDataProperty, individual, wordToSave.getCantidadVotacionesI());
 
-
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomDefinition);
-
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomExample);
-
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomLemmaRAE);
-
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomSynonyms);
-
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomTotalAnswers);
-
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomVotesQuantity);
     }
 
@@ -205,10 +177,9 @@ public class OntologyService {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        IRI individualIRI = IRI.create(ontologyIRI + individualName);
+        IRI individualIRI = createIRIByPropertyName(individualName);
 
         OWLEntityRemover remover = new OWLEntityRemover(Collections.singleton(ontology));
-
 
         for (OWLNamedIndividual individual : ontology.getIndividualsInSignature()) {
 
@@ -219,7 +190,6 @@ public class OntologyService {
                 deleteConfirmation = true;
             }
         }
-
 
         ontologyConnectionService.ontologyManager.applyChanges(remover.getChanges());
 
@@ -244,7 +214,6 @@ public class OntologyService {
         Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
         Individual individual;
-
 
         while (individualsIterator.hasNext()) {
 
@@ -280,7 +249,6 @@ public class OntologyService {
     public List<Word> saveAllIndividualPropertiesValueInAWordList(List<Individual> individualList){
 
         List<Word> wordList = new ArrayList<>();
-
 
         for (Individual individual: individualList) {
 

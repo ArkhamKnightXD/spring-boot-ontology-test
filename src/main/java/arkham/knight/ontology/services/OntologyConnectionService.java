@@ -51,6 +51,7 @@ public class OntologyConnectionService {
     public InputStream getOntologyURLInputStream() {
 
         try {
+
             return new URL(ontologyURL).openStream();
         } catch (IOException exception) {
             exception.printStackTrace();
@@ -87,7 +88,6 @@ public class OntologyConnectionService {
         while (ontologyIterator.hasNext()) {
 
             ontology = ontologyIterator.next();
-
         }
 
         return ontology;

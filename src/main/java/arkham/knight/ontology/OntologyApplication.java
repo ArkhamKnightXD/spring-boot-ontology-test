@@ -39,7 +39,6 @@ public class OntologyApplication {
 
 //            for (String individual : ontologyService.getAllIndividualNameByClassNameWithReasoner("Adjetivos")) {
 //
-//                //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
 //                System.out.println("Individual Name: " + individual);
 //            }
 
