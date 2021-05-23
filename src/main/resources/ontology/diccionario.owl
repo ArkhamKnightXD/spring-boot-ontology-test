@@ -413,6 +413,20 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba7 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba7">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba8"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba8 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba8"/>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#string -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#string"/>

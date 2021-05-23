@@ -175,7 +175,7 @@
                             <th>Definición RAE</th>
                             <th>Sinónimos</th>
                             <th>Clase</th>
-                            <th>Ejemplo</th>
+<#--                            <th>Ejemplo</th>-->
                             </thead>
 
                             <tbody>
@@ -210,11 +210,11 @@
                                         <td>N/A</td>
                                     </#if>
 
-                                    <#if survey.getExample()??>
-                                        <td>${survey.getExample()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
+<#--                                    <#if survey.getExample()??>-->
+<#--                                        <td>${survey.getExample()}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>N/A</td>-->
+<#--                                    </#if>-->
 
                                 </tr>
                             </#list>

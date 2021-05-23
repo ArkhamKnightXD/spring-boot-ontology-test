@@ -179,16 +179,10 @@ public class OntologyController {
 
             ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
         }
+
         else
             ontologyService.saveFatherClassAndSubClass(fatherClassName, subClass);
 
         return "redirect:/individuals";
-    }
-
-
-    @RequestMapping(value = "/test-form", method = RequestMethod.GET)
-    public String testForm() {
-
-        return "/freemarker/authentication/oldRegister";
     }
 }
