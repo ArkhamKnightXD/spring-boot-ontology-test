@@ -47,13 +47,13 @@ public class UserController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createUser(@RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Long idRol) {
 
-        Rol userRol = userService.getRolById(idRol);
+        var userRol = userService.getRolById(idRol);
 
         List<Rol> usersRoles = new ArrayList<>();
 
         usersRoles.add(userRol);
 
-        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, email, usersRoles);
+        var userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, email, usersRoles);
 
         userService.saveUser(userToCreate);
 
@@ -64,7 +64,7 @@ public class UserController {
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
     public String editionUserPage(Model model, @RequestParam Long id)  {
 
-        User userToEdit = userService.getUserById(id);
+        var userToEdit = userService.getUserById(id);
 
         model.addAttribute("user", userToEdit);
         model.addAttribute("roles", userService.getAllRoles());
@@ -76,9 +76,9 @@ public class UserController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String editUser(@RequestParam Long id, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Long idRol) {
 
-        User userToEdit = userService.getUserById(id);
+        var userToEdit = userService.getUserById(id);
 
-        Rol userRol = userService.getRolById(idRol);
+        var userRol = userService.getRolById(idRol);
 
         List<Rol> usersRoles = new ArrayList<>();
 

@@ -1,7 +1,6 @@
 package arkham.knight.ontology;
 
 import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.SurveyWordDataService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
@@ -32,12 +31,10 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup(SurveyWordDataService surveyWordDataService, OntologyService ontologyService) {
+    public CommandLineRunner startup(OntologyService ontologyService) {
         return args -> {
 
-//            surveyWordDataService.deleteAllSurveys();
-
-//            for (String individual : ontologyService.getAllIndividualNameByClassNameWithReasoner("Adjetivos")) {
+//            for (var individual : ontologyService.getAllIndividualNameByClassNameWithReasoner("Adjetivos")) {
 //
 //                System.out.println("Individual Name: " + individual);
 //            }

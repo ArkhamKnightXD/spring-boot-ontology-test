@@ -3,8 +3,6 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.Word;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.ontology.OntClass;
-import org.apache.jena.rdf.model.RDFNode;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.util.DefaultPrefixManager;
@@ -30,9 +28,9 @@ public class OntologyService {
 
     public List<String> getAllIndividualNameByClassNameWithReasoner(String className){
 
-        OWLClass owlClass = dataFactory.getOWLClass(IRI.create(prefixManager.getDefaultPrefix(), className));
+        var owlClass = dataFactory.getOWLClass(IRI.create(prefixManager.getDefaultPrefix(), className));
 
-        Set<OWLNamedIndividual> individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
+        var individualSet = ontologyConnectionService.getHermitReasoner().getInstances(owlClass, false).getFlattened();
 
         return convertFromSetToStringList(individualSet);
     }
@@ -42,7 +40,7 @@ public class OntologyService {
 
         List<String> individualNameList = new ArrayList<>();
 
-        for (OWLNamedIndividual individual : dataSet) {
+        for (var individual : dataSet) {
 
             //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
             individualNameList.add(prefixManager.getShortForm(individual));
@@ -56,11 +54,11 @@ public class OntologyService {
 
         List<String> classListNames = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
+        var classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
 
         while (classesIterator.hasNext()) {
 
-            OntClass nextClass = classesIterator.next();
+            var nextClass = classesIterator.next();
 
             classListNames.add(nextClass.getLocalName());
         }
@@ -73,11 +71,11 @@ public class OntologyService {
 
         List<String> individualNamesList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        var individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
         while (individualsIterator.hasNext()) {
 
-            Individual individual = individualsIterator.next();
+            var individual = individualsIterator.next();
 
             individualNamesList.add(individual.getLocalName());
         }
@@ -90,11 +88,11 @@ public class OntologyService {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        var individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
         while (individualsIterator.hasNext()) {
 
-            Individual individual = individualsIterator.next();
+            var individual = individualsIterator.next();
 
             if (individual.getOntClass().getLocalName().equalsIgnoreCase(fatherClassName))
                 individualList.add(individual);
@@ -106,15 +104,15 @@ public class OntologyService {
 
     public String saveFatherClassAndSubClass(String fatherClassName, String subClassName) {
 
-        OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
+        var ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
-        OWLClass fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(fatherClassName));
-        OWLClass subClass = dataFactory.getOWLClass(createIRIByPropertyName(subClassName));
+        var fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(fatherClassName));
+        var subClass = dataFactory.getOWLClass(createIRIByPropertyName(subClassName));
 
        // OWLAxiom axiom = dataFactory.getOWLEquivalentClassesAxiom(classA, classB);
 
-        OWLAxiom axiom = dataFactory.getOWLSubClassOfAxiom(fatherClass, subClass);
+        var axiom = dataFactory.getOWLSubClassOfAxiom(fatherClass, subClass);
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology,axiom);
 
@@ -128,13 +126,13 @@ public class OntologyService {
 
         deleteIndividual(originalIndividualName);
 
-        OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
+        var ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        OWLIndividual individual = dataFactory.getOWLNamedIndividual(createIRIByPropertyName(wordToSave.getLema()));
+        var individual = dataFactory.getOWLNamedIndividual(createIRIByPropertyName(wordToSave.getLema()));
 
-        OWLClass fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(wordToSave.getClasePadre()));
+        var fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(wordToSave.getClasePadre()));
 
-        OWLClassAssertionAxiom axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
+        var axiom = dataFactory.getOWLClassAssertionAxiom(fatherClass, individual);
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiom);
 
@@ -148,19 +146,19 @@ public class OntologyService {
 
     public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, Word wordToSave) {
 
-        OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("definicion"));
-        OWLDataProperty exampleDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("ejemplo"));
-        OWLDataProperty lemmaRAEDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("lema_rae"));
-        OWLDataProperty synonymsDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("sinonimos"));
-        OWLDataProperty totalAnswersDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("total_respuestas_N"));
-        OWLDataProperty votesQuantityDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("cantidad_votaciones_I"));
+        var dataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("definicion"));
+        var exampleDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("ejemplo"));
+        var lemmaRAEDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("lema_rae"));
+        var synonymsDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("sinonimos"));
+        var totalAnswersDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("total_respuestas_N"));
+        var votesQuantityDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("cantidad_votaciones_I"));
 
-        OWLDataPropertyAssertionAxiom axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, wordToSave.getDefinicion());
-        OWLDataPropertyAssertionAxiom axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, wordToSave.getEjemplo());
-        OWLDataPropertyAssertionAxiom axiomLemmaRAE = dataFactory.getOWLDataPropertyAssertionAxiom(lemmaRAEDataProperty, individual, wordToSave.getLemaRAE());
-        OWLDataPropertyAssertionAxiom axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, wordToSave.getSinonimos());
-        OWLDataPropertyAssertionAxiom axiomTotalAnswers = dataFactory.getOWLDataPropertyAssertionAxiom(totalAnswersDataProperty, individual, wordToSave.getTotalRespuestasN());
-        OWLDataPropertyAssertionAxiom axiomVotesQuantity = dataFactory.getOWLDataPropertyAssertionAxiom(votesQuantityDataProperty, individual, wordToSave.getCantidadVotacionesI());
+        var axiomDefinition = dataFactory.getOWLDataPropertyAssertionAxiom(dataProperty, individual, wordToSave.getDefinicion());
+        var axiomExample = dataFactory.getOWLDataPropertyAssertionAxiom(exampleDataProperty, individual, wordToSave.getEjemplo());
+        var axiomLemmaRAE = dataFactory.getOWLDataPropertyAssertionAxiom(lemmaRAEDataProperty, individual, wordToSave.getLemaRAE());
+        var axiomSynonyms = dataFactory.getOWLDataPropertyAssertionAxiom(synonymsDataProperty, individual, wordToSave.getSinonimos());
+        var axiomTotalAnswers = dataFactory.getOWLDataPropertyAssertionAxiom(totalAnswersDataProperty, individual, wordToSave.getTotalRespuestasN());
+        var axiomVotesQuantity = dataFactory.getOWLDataPropertyAssertionAxiom(votesQuantityDataProperty, individual, wordToSave.getCantidadVotacionesI());
 
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomDefinition);
         ontologyConnectionService.ontologyManager.addAxiom(ontology, axiomExample);
@@ -175,13 +173,13 @@ public class OntologyService {
 
         boolean deleteConfirmation = false;
 
-        OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
+        var ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
 
-        IRI individualIRI = createIRIByPropertyName(individualName);
+        var individualIRI = createIRIByPropertyName(individualName);
 
-        OWLEntityRemover remover = new OWLEntityRemover(Collections.singleton(ontology));
+        var remover = new OWLEntityRemover(Collections.singleton(ontology));
 
-        for (OWLNamedIndividual individual : ontology.getIndividualsInSignature()) {
+        for (var individual : ontology.getIndividualsInSignature()) {
 
             if (individualIRI.toString().equals(individual.getIRI().toString())){
 
@@ -211,7 +209,7 @@ public class OntologyService {
 
         List<Individual> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        var individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
         Individual individual;
 
@@ -229,12 +227,13 @@ public class OntologyService {
 
 
     public void compareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
+
         //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
-        String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
+        var cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 
         for (String word: sentenceByWords) {
 
-            String cleanWord = StringUtils.stripAccents(word);
+            var cleanWord = StringUtils.stripAccents(word);
 
             if (cleanIndividual.equalsIgnoreCase(cleanWord) && avoidRepeatIndividualCount == 0 || searchType.equals("word-search") & cleanIndividual.matches(".*"+cleanWord.toLowerCase()+".*") && avoidRepeatIndividualCount == 0){
 
@@ -252,7 +251,7 @@ public class OntologyService {
 
         for (Individual individual: individualList) {
 
-            Word wordToSave = new Word();
+            var wordToSave = new Word();
 
             if (individual.getLocalName()!= null)
                 wordToSave.setLema(individual.getLocalName());
@@ -260,32 +259,32 @@ public class OntologyService {
             if (individual.getOntClass() != null)
                 wordToSave.setClasePadre(individual.getOntClass().getLocalName());
 
-            RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
+            var definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
 
             if (definitionPropertyValue!= null)
                 wordToSave.setDefinicion(definitionPropertyValue.toString());
 
-            RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
+            var examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
 
             if (examplePropertyValue!= null)
                 wordToSave.setEjemplo(examplePropertyValue.toString());
 
-            RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
+            var lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
 
             if (lemmaRAEPropertyValue!= null)
                 wordToSave.setLemaRAE(lemmaRAEPropertyValue.toString());
 
-            RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
+            var synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
 
             if (synonymsPropertyValue != null)
                 wordToSave.setSinonimos(synonymsPropertyValue.toString());
 
-            RDFNode totalAnswersPropertyValue = individual.getPropertyValue(ontologyConnectionService.totalAnswersProperty);
+            var totalAnswersPropertyValue = individual.getPropertyValue(ontologyConnectionService.totalAnswersProperty);
 
             if (totalAnswersPropertyValue != null)
                 wordToSave.setTotalRespuestasN(totalAnswersPropertyValue.toString());
 
-            RDFNode votesQuantityPropertyValue = individual.getPropertyValue(ontologyConnectionService.votesQuantityProperty);
+            var votesQuantityPropertyValue = individual.getPropertyValue(ontologyConnectionService.votesQuantityProperty);
 
             if (votesQuantityPropertyValue != null)
                 wordToSave.setCantidadVotacionesI(votesQuantityPropertyValue.toString());

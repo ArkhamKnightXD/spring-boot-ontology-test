@@ -29,17 +29,17 @@ public class SurveyWordDataService {
 
     public SurveyWordData determineSurveysDataByLemmaAndReturnSurveyWord(String lemma){
 
-        SurveyWordData winnerSurveyWordData = new SurveyWordData();
+        var winnerSurveyWordData = new SurveyWordData();
 
         int votesQuantity = 0;
 
         List<SurveyWordData> surveyWordDataList = surveyWordDataRepository.findAllByLemma(lemma);
 
-        int totalAnswers = surveyWordDataList.size();
+        var totalAnswers = surveyWordDataList.size();
 
-        for (SurveyWordData wordToEvaluate: surveyWordDataList) {
+        for (var wordToEvaluate: surveyWordDataList) {
 
-            int actualVotesByLemmaRAE = surveyWordDataRepository.findAllByLemmaRAE(wordToEvaluate.getLemmaRAE()).size();
+            var actualVotesByLemmaRAE = surveyWordDataRepository.findAllByLemmaRAE(wordToEvaluate.getLemmaRAE()).size();
 
             if (actualVotesByLemmaRAE > votesQuantity){
                 votesQuantity = actualVotesByLemmaRAE;

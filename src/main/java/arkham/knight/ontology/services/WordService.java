@@ -37,7 +37,7 @@ public class WordService {
 
     public Word getWordByLemma(String lemma){
 
-        for (Word wordToFind: getAllWords()) {
+        for (var wordToFind: getAllWords()) {
 
             if (wordToFind.getLema().equals(lemma))
                 return wordToFind;
@@ -75,7 +75,7 @@ public class WordService {
 
         List<Word> cleanWordList = new ArrayList<>();
 
-        for (Word wordToEvaluate : originalWordList) {
+        for (var wordToEvaluate : originalWordList) {
 
             if (calculateWordPercentageAgreement(wordToEvaluate) >= 40)
                 cleanWordList.add(wordToEvaluate);
@@ -87,8 +87,8 @@ public class WordService {
 
     public Word convertWordSurveyDataToWord (SurveyWordData surveyWordData){
 
-        String totalAnswers = String.valueOf(surveyWordData.getTotalAnswers());
-        String votesQuantity = String.valueOf(surveyWordData.getVotesQuantity());
+        var totalAnswers = String.valueOf(surveyWordData.getTotalAnswers());
+        var votesQuantity = String.valueOf(surveyWordData.getVotesQuantity());
 
         return new Word(surveyWordData.getLemma(), surveyWordData.getOriginalDefinition(),"",surveyWordData.getFatherClass(), surveyWordData.getSynonyms(),surveyWordData.getLemmaRAE(), totalAnswers, votesQuantity);
     }
@@ -98,8 +98,8 @@ public class WordService {
 
         if (wordToEvaluate.getCantidadVotacionesI() != null){
 
-            int votesQuantity = Integer.parseInt(wordToEvaluate.getCantidadVotacionesI());
-            int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
+            var votesQuantity = Integer.parseInt(wordToEvaluate.getCantidadVotacionesI());
+            var totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
 
             //formula = I/N *100 el cast a float es necesario sino me da 0 siempre
             return (float) votesQuantity/totalAnswers * 100;
@@ -116,7 +116,7 @@ public class WordService {
             float numberOfAbsencesD = 2;
             float numberOfPresencesA = 2;
 
-            int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
+            var totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
 
             //Porcentaje de acuerdo de ‘presencia’ formula = A/N-D * 100
             if (percentageType)

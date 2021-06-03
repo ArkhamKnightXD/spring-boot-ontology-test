@@ -5,14 +5,12 @@ import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.rdf.model.RDFNode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -58,11 +56,11 @@ public class OntologyController {
 
         else{
 
-            Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+            var individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
             while (individualsIterator.hasNext()) {
 
-                Individual individual = individualsIterator.next();
+                var individual = individualsIterator.next();
 
                 individualList.add(individual);
             }
@@ -86,7 +84,7 @@ public class OntologyController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String create(@RequestParam() String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String fatherClassName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
 
-        Word wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
+        var wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
         ontologyService.saveIndividual(individualName, wordToSave);
 
@@ -97,14 +95,14 @@ public class OntologyController {
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
     public String getIndividualByName(Model model, @RequestParam String individualName)  {
 
-        String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
+        var individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
 
-        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().getIndividual(individualURI);
+        var individual = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().getIndividual(individualURI);
 
-        RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
-        RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
-        RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
-        RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
+        var definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
+        var examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
+        var lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
+        var synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
 
         model.addAttribute("fatherClass", individual.getOntClass().getLocalName());
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
@@ -127,11 +125,11 @@ public class OntologyController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
 
-        Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
+        var wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
-        Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
+        var wordToEdit = wordService.getWordByLemma(originalIndividualName);
 
-        Word filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
+        var filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
 
         ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
@@ -142,7 +140,7 @@ public class OntologyController {
     @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String showIndividual(Model model, @RequestParam String lemma) {
 
-        Word wordToShow = wordService.getWordByLemma(lemma);
+        var wordToShow = wordService.getWordByLemma(lemma);
 
         model.addAttribute("word", wordToShow);
         model.addAttribute("percentageAgreement", String.format("%.2f", wordService.calculateWordPercentageAgreement(wordToShow)));
@@ -175,7 +173,7 @@ public class OntologyController {
 
         if (subClass.length() == 0) {
 
-            Word defaultTestWord = new Word("prueba","definition","example", fatherClassName,"individualNameRae", "synonims", "0", "0");
+            var defaultTestWord = new Word("prueba","definition","example", fatherClassName,"individualNameRae", "synonims", "0", "0");
 
             ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
         }

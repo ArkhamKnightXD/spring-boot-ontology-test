@@ -44,7 +44,7 @@ public class URLController implements ErrorController {
     @RequestMapping("/login")
     public String login(){
 
-        User adminUser = userService.getUserByUsername("admin");
+        var adminUser = userService.getUserByUsername("admin");
 
         if (adminUser == null)
             myUserDetailsService.createAdminUser();
@@ -67,7 +67,7 @@ public class URLController implements ErrorController {
 
         userRol.add(new Rol("ROLE_USER"));
 
-        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, email, userRol);
+        var userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, email, userRol);
 
         userService.saveUser(userToCreate);
 
@@ -88,10 +88,10 @@ public class URLController implements ErrorController {
     @RequestMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
         // get error status
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+        var status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
         if (status != null) {
-            int statusCode = Integer.parseInt(status.toString());
+            var statusCode = Integer.parseInt(status.toString());
 
             // display specific error page
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
