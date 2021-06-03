@@ -83,7 +83,7 @@ public class OntologyConnectionService {
 
         Ontology ontology = null;
 
-        var ontologyIterator = readOntologyFileAndReturnTheJenaModel().listOntologies();
+        Iterator<Ontology> ontologyIterator = readOntologyFileAndReturnTheJenaModel().listOntologies();
 
         while (ontologyIterator.hasNext()) {
 
@@ -96,7 +96,7 @@ public class OntologyConnectionService {
 
     public OntModel readOntologyFileAndReturnTheJenaModel() {
 
-        var model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
+        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
 
         FileReader reader = null;
 
@@ -122,7 +122,7 @@ public class OntologyConnectionService {
 
     public void saveOntologyFile(OWLOntology ontology){
 
-        var ontologySaveIRI = IRI.create(ontologyFile);
+        IRI ontologySaveIRI = IRI.create(ontologyFile);
 
         try {
             // save in RDF/XML
@@ -161,15 +161,15 @@ public class OntologyConnectionService {
 
     public OWLReasoner getHermitReasoner(){
 
-        var ontology = loadTheOntologyOwlAPI();
+        OWLOntology ontology = loadTheOntologyOwlAPI();
 
         //Setting up the reasoner
-        var reasonerFactory = new ReasonerFactory();
-        var progressMonitor = new ConsoleProgressMonitor();
-        var reasonerConfiguration = new SimpleConfiguration(progressMonitor);
+        OWLReasonerFactory reasonerFactory = new ReasonerFactory();
+        ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
+        OWLReasonerConfiguration reasonerConfiguration = new SimpleConfiguration(progressMonitor);
 
         //Create the reasoner
-        var reasoner = reasonerFactory.createReasoner(ontology, reasonerConfiguration);
+        OWLReasoner reasoner = reasonerFactory.createReasoner(ontology, reasonerConfiguration);
 
         //Metodo encargado de trabajar la inferencias
         reasoner.precomputeInferences(InferenceType.values());

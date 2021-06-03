@@ -5,6 +5,9 @@ import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.apache.jena.ontology.DatatypeProperty;
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +53,7 @@ public class OntologyRestController {
     @Operation(summary = "Create Class", description = "Creacion de una clase")
     public ResponseEntity<String> createClass(@RequestParam String className) {
 
-        var defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims", "0", "0");
+        Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims", "0", "0");
 
         ontologyService.saveIndividual(defaultTestWord.getLema(), defaultTestWord);
 
@@ -62,7 +65,7 @@ public class OntologyRestController {
     @Operation(summary = "Create Individual", description = "Creacion de individual")
     public ResponseEntity<String> createIndividual(@RequestBody Word wordToSave) {
 
-        var response = ontologyService.saveIndividual(wordToSave.getLema(), wordToSave);
+        String response = ontologyService.saveIndividual(wordToSave.getLema(), wordToSave);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -72,7 +75,7 @@ public class OntologyRestController {
     @Operation(summary = "Delete Individual", description = "Elimina el individual cuyo nombre sea especificado")
     public ResponseEntity<String> deleteIndividual(@RequestParam String individualName) {
 
-        var response = ontologyService.deleteIndividual(individualName);
+        boolean response = ontologyService.deleteIndividual(individualName);
 
         if (!response)
             return new  ResponseEntity<>("Individual Not Found", HttpStatus.NOT_FOUND);
@@ -85,13 +88,13 @@ public class OntologyRestController {
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
     public ResponseEntity<String> editIndividual(@RequestParam String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
 
-        var wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
+        Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
-        var wordToEdit = wordService.getWordByLemma(originalIndividualName);
+        Word wordToEdit = wordService.getWordByLemma(originalIndividualName);
 
-        var filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
+        Word filteredWord = wordService.editionWordFilter(wordToEdit, wordDataToSave);
 
-        var response = ontologyService.saveIndividual(originalIndividualName, filteredWord);
+        String response = ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -103,11 +106,12 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> individualList = new ArrayList<>();
 
-        var individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+
 
         while (individualsIterator.hasNext()) {
 
-            var individual = individualsIterator.next();
+            Individual individual = individualsIterator.next();
 
             HashMap<String, String> individualToSave = new HashMap<>();
 
@@ -127,11 +131,12 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> classList = new ArrayList<>();
 
-        var classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
+        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
+
 
         while (classesIterator.hasNext()) {
 
-            var nextClass = classesIterator.next();
+            OntClass nextClass = classesIterator.next();
 
             HashMap<String, String> classToSave = new HashMap<>();
 
@@ -151,11 +156,12 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> propertyList = new ArrayList<>();
 
-        var propertyIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listDatatypeProperties();
+        Iterator<DatatypeProperty> propertyIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listDatatypeProperties();
+
 
         while (propertyIterator.hasNext()) {
 
-            var nextProperty = propertyIterator.next();
+            DatatypeProperty nextProperty = propertyIterator.next();
 
             HashMap<String, String> propertyToSave = new HashMap<>();
 

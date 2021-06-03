@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.Properties;
 
 @Service
 public class EmailService {
@@ -13,7 +14,7 @@ public class EmailService {
     //El parametro to sera el email del usuario al que le mandare el mensaje
     public void sendEmail(String to, String subject, String html) {
         // Get system properties
-        var properties = System.getProperties();
+        Properties properties = System.getProperties();
 
         // Setup mail server Gmail
         properties.setProperty("mail.smtp.host", "smtp.gmail.com");
@@ -23,7 +24,7 @@ public class EmailService {
         properties.setProperty("mail.imaps.partialfetch", "false");
         properties.put("mail.smtp.auth", "true");
 
-        var session = Session.getDefaultInstance(properties, new Authenticator() {
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
 
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
@@ -34,7 +35,7 @@ public class EmailService {
 
         try {
 
-            var email = new MimeMessage(session);
+            MimeMessage email = new MimeMessage(session);
 
             //Email configuration
             email.setFrom(new InternetAddress(user));
@@ -53,9 +54,9 @@ public class EmailService {
 
     public void sendVerificationEmail(String email) {
 
-        var verifyUrl = "https://safezona.alterna.com/verify-email?token=";
+        String verifyUrl = "https://safezona.alterna.com/verify-email?token=";
 
-        var message = "<p>Please click the below link to verify your email address:</p> <p><a href="+verifyUrl+">"+verifyUrl+"</a></p>";
+        String message = "<p>Please click the below link to verify your email address:</p> <p><a href="+verifyUrl+">"+verifyUrl+"</a></p>";
 
         sendEmail(email, "Sign-up Verification Safezona", "<h4>Verify Email</h4> <p>Thanks for registering!</p>" + message);
     }
@@ -63,7 +64,7 @@ public class EmailService {
 
     public void sendAlreadyRegisteredEmail(String email) {
 
-        var message = "<p>If you don't know your password please visit the <a href=\"https://safezona.alterna.com/forgot-password\">forgot password</a> page.</p>";
+        String message = "<p>If you don't know your password please visit the <a href=\"https://safezona.alterna.com/forgot-password\">forgot password</a> page.</p>";
 
         sendEmail(email, "Sign-up Verification Safezona.com- Email Already Registered", "<h4>Email Already Registered</h4> <p>Your email <strong>"+email+"</strong> is already registered.</p>" + message);
     }
@@ -71,9 +72,9 @@ public class EmailService {
 
     public void sendPasswordResetEmail(String email) {
 
-        var resetUrl = "https://safezona.alterna.com/reset-password?token="+"User.ResetToken";
+        String resetUrl = "https://safezona.alterna.com/reset-password?token="+"User.ResetToken";
 
-        var message = "<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>\n" + "<p><a href="+resetUrl+">"+resetUrl+"</a></p>";
+        String message = "<p>Please click the below link to reset your password, the link will be valid for 1 day:</p>\n" + "<p><a href="+resetUrl+">"+resetUrl+"</a></p>";
 
         sendEmail(email, "SafeZona.com - Reset Password", "<h4>Reset Password Email</h4>" + message);
     }

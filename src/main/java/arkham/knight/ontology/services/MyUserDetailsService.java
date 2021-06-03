@@ -33,15 +33,15 @@ public class MyUserDetailsService implements UserDetailsService {
 
         List<Rol> rolList = new ArrayList<>();
 
-        var rolUser = new Rol("ROLE_USER");
-        var rolAdmin = new Rol("ROLE_ADMIN");
+        Rol rolUser = new Rol("ROLE_USER");
+        Rol rolAdmin = new Rol("ROLE_ADMIN");
 
         rolList.add(rolUser);
         rolList.add(rolAdmin);
 
         rolRepository.saveAll(rolList);
 
-        var adminUser = new User("admin",bCryptPasswordEncoder.encode("1234"),true, "admin@hotmail.com", rolList);
+        User adminUser = new User("admin",bCryptPasswordEncoder.encode("1234"),true, "admin@hotmail.com", rolList);
 
         userRepository.save(adminUser);
     }
@@ -52,9 +52,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> rolList = new ArrayList<>();
 
-        var userAdminToFind = userRepository.findUserByUsername(username);
+        User userAdminToFind = userRepository.findUserByUsername(username);
 
-        for (var roles : userAdminToFind.getRolList()) {
+        for (Rol roles : userAdminToFind.getRolList()) {
 
             rolList.add(new SimpleGrantedAuthority(roles.getRol()));
         }
