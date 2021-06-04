@@ -171,8 +171,8 @@
 
                             <th>Palabra</th>
                             <th>Definicion</th>
-                            <th>Cantidad de votos</th>
-                            <th>Cantidad de Respuestas</th>
+<#--                            <th>Cantidad de votos</th>-->
+<#--                            <th>Cantidad de Respuestas</th>-->
 
                             </thead>
 
@@ -187,17 +187,17 @@
                                         <td>N/A</td>
                                     </#if>
 
-                                    <#if word.getVotesQuantity()??>
-                                        <td>${word.getVotesQuantity()}</td>
-                                    <#else>
-                                        <td>0</td>
-                                    </#if>
+<#--                                    <#if word.getVotesQuantity()??>-->
+<#--                                        <td>${word.getVotesQuantity()}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>0</td>-->
+<#--                                    </#if>-->
 
-                                    <#if word.getTotalAnswers()??>
-                                        <td>${word.getTotalAnswers()}</td>
-                                    <#else>
-                                        <td>0</td>
-                                    </#if>
+<#--                                    <#if word.getTotalAnswers()??>-->
+<#--                                        <td>${word.getTotalAnswers()}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>0</td>-->
+<#--                                    </#if>-->
 
                                 </tr>
                             </#list>

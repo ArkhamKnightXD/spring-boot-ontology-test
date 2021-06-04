@@ -122,15 +122,25 @@ public class SurveyWordDataController {
 
         SimpleWord simpleWordToCreate = new SimpleWord(word, wordDefinition);
 
-        simpleWordToCreate.setVotesQuantity(1);
-
         simpleWordService.saveSimpleWord(simpleWordToCreate);
 
-        int totalAnswers = simpleWordService.getAllSimpleWordByWord(word).size();
+        SimpleWord winnerWord = simpleWordService.determineSimpleWordWinner(word);
 
-        simpleWordToCreate.setTotalAnswers(totalAnswers);
+        Word wordToSaveInOntology = new Word();
 
-        simpleWordService.saveSimpleWord(simpleWordToCreate);
+        wordToSaveInOntology.setLema(winnerWord.getWord());
+        wordToSaveInOntology.setDefinicion(winnerWord.getWordDefinition());
+        wordToSaveInOntology.setTotalRespuestasN(String.valueOf(winnerWord.getTotalAnswers()));
+        wordToSaveInOntology.setCantidadVotacionesI(String.valueOf(winnerWord.getVotesQuantity()));
+        wordToSaveInOntology.setClasePadre("n/a");
+        wordToSaveInOntology.setEjemplo("n/a");
+        wordToSaveInOntology.setLemaRAE("n/a");
+        wordToSaveInOntology.setSinonimos("n/a");
+
+        int totalAnswers = winnerWord.getTotalAnswers();
+
+        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInOntology) > 40)
+            ontologyService.saveIndividual(winnerWord.getWord(), wordToSaveInOntology);
 
         return "redirect:/surveys/simple/";
     }

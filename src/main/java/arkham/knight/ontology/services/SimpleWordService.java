@@ -33,36 +33,46 @@ public class SimpleWordService {
     }
 
 
-    public int calculateVotesQuantity(String word){
+    public void calculateVotesQuantityByWord(SimpleWord word){
 
         int totalVotes = 0;
 
-        List<SimpleWord> simpleWords = simpleWordRepository.findAllByWord(word);
-
-        int totalAnswers = simpleWords.size();
+        List<SimpleWord> simpleWords = simpleWordRepository.findAllByWord(word.getWord());
 
         for (SimpleWord wordToEvaluate : simpleWords) {
 
-            totalVotes += wordToEvaluate.getVotesQuantity();
+             totalVotes = simpleWordRepository.findAllByWordDefinition(wordToEvaluate.getWordDefinition()).size();
+
+             wordToEvaluate.setVotesQuantity(totalVotes);
+
+             simpleWordRepository.save(wordToEvaluate);
+        }
+    }
+
+
+    public SimpleWord determineSimpleWordWinner(String word){
+
+        SimpleWord winnerWord = new SimpleWord();
+
+        int votesQuantity = 0;
+
+        List<SimpleWord> simpleList = simpleWordRepository.findAllByWord(word);
+
+        int totalAnswers = simpleList.size();
+
+        for (SimpleWord wordToEvaluate: simpleList) {
+
+            int actualVotesByWord = simpleWordRepository.findAllByWordDefinition(wordToEvaluate.getWordDefinition()).size();
+
+            if (actualVotesByWord > votesQuantity){
+                votesQuantity = actualVotesByWord;
+                winnerWord = wordToEvaluate;
+            }
         }
 
-        return totalVotes;
-    }
+        winnerWord.setTotalAnswers(totalAnswers);
+        winnerWord.setVotesQuantity(votesQuantity);
 
-    public SimpleWord getSimpleWordByWord(String word){
-
-        return simpleWordRepository.findByWord(word);
-    }
-
-
-    public SimpleWord getSimpleWordById(long id){
-
-        return simpleWordRepository.findById(id);
-    }
-
-
-    public void deleteSimpleWordById(Long id){
-
-        simpleWordRepository.deleteById(id);
+        return winnerWord;
     }
 }
