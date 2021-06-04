@@ -108,23 +108,29 @@ public class SurveyWordDataController {
     }
 
 
-    @RequestMapping(value = "/simple-survey-edition", method = RequestMethod.GET)
-    public String editionSimpleSurveyPage(Model model, @RequestParam Long id) {
+    @RequestMapping(value = "/simple-survey-complete-creation", method = RequestMethod.GET)
+    public String editionSimpleSurveyPage(Model model) {
 
-        model.addAttribute("word", simpleWordService.getSimpleWordById(id));
+        model.addAttribute("words", simpleWordService.getAllSimpleWord());
 
         return "/freemarker/survey/editWordSurveyProposition";
     }
 
 
-    @RequestMapping(value = "/simple-survey-edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/simple-survey-complete-create", method = RequestMethod.POST)
     public String editSimpleSurvey(@RequestParam String word, @RequestParam String wordDefinition) {
 
-        SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordByWord(word);
+        SimpleWord simpleWordToCreate = new SimpleWord(word, wordDefinition);
 
-        simpleWordToEdit.setWordDefinition(wordDefinition);
+        simpleWordToCreate.setVotesQuantity(1);
 
-        simpleWordService.saveSimpleWord(simpleWordToEdit);
+        simpleWordService.saveSimpleWord(simpleWordToCreate);
+
+        int totalAnswers = simpleWordService.getAllSimpleWordByWord(word).size();
+
+        simpleWordToCreate.setTotalAnswers(totalAnswers);
+
+        simpleWordService.saveSimpleWord(simpleWordToCreate);
 
         return "redirect:/surveys/simple/";
     }

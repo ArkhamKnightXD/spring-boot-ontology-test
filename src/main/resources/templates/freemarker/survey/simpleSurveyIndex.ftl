@@ -154,6 +154,7 @@
                 <strong>Resultados</strong>
             </h1>
             <a class="btn btn-info" href="/surveys/simple-survey-creation" role="button">Proponer nueva palabra</a>
+            <a class="btn btn-primary" href="/surveys/simple-survey-complete-creation" role="button">Votar definición</a>
         </section>
 
         <!-- Main content -->
@@ -170,7 +171,8 @@
 
                             <th>Palabra</th>
                             <th>Definicion</th>
-                            <th>Opciones</th>
+                            <th>Cantidad de votos</th>
+                            <th>Cantidad de Respuestas</th>
 
                             </thead>
 
@@ -185,10 +187,18 @@
                                         <td>N/A</td>
                                     </#if>
 
-                                    <td>
-                                        <a class="btn btn-primary" href="/surveys/simple-survey-edition?id=${word.getId()}" role="button">Agregar definición</a>
-<#--                                        <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar mas datos</a>-->
-                                    </td>
+                                    <#if word.getVotesQuantity()??>
+                                        <td>${word.getVotesQuantity()}</td>
+                                    <#else>
+                                        <td>0</td>
+                                    </#if>
+
+                                    <#if word.getTotalAnswers()??>
+                                        <td>${word.getTotalAnswers()}</td>
+                                    <#else>
+                                        <td>0</td>
+                                    </#if>
+
                                 </tr>
                             </#list>
                             </tbody>

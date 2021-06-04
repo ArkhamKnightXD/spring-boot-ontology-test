@@ -27,6 +27,28 @@ public class SimpleWordService {
     }
 
 
+    public List<SimpleWord> getAllSimpleWordByWord(String word){
+
+        return simpleWordRepository.findAllByWord(word);
+    }
+
+
+    public int calculateVotesQuantity(String word){
+
+        int totalVotes = 0;
+
+        List<SimpleWord> simpleWords = simpleWordRepository.findAllByWord(word);
+
+        int totalAnswers = simpleWords.size();
+
+        for (SimpleWord wordToEvaluate : simpleWords) {
+
+            totalVotes += wordToEvaluate.getVotesQuantity();
+        }
+
+        return totalVotes;
+    }
+
     public SimpleWord getSimpleWordByWord(String word){
 
         return simpleWordRepository.findByWord(word);

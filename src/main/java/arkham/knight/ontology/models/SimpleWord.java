@@ -15,12 +15,18 @@ public class SimpleWord implements Serializable{
 
     private String word;
     private String wordDefinition;
+    private int totalAnswers;
+    private int votesQuantity;
 
 
     public SimpleWord() { }
 
     public SimpleWord(String word) { this.word = word; }
 
+    public SimpleWord(String word, String wordDefinition) {
+        this.word = word;
+        this.wordDefinition = wordDefinition;
+    }
 
     public Long getId() { return id; }
 
@@ -31,4 +37,12 @@ public class SimpleWord implements Serializable{
     public String getWordDefinition() { return wordDefinition; }
 
     public void setWordDefinition(String wordDefinition) { this.wordDefinition = wordDefinition; }
+
+    public int getTotalAnswers() { return totalAnswers; }
+
+    public void setTotalAnswers(int totalAnswers) { this.totalAnswers = totalAnswers; }
+
+    public int getVotesQuantity() { return votesQuantity; }
+
+    public void setVotesQuantity(int votesQuantity) { this.votesQuantity = votesQuantity; }
 }
