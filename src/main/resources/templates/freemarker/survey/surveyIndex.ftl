@@ -123,6 +123,7 @@
                 <li><a href="/"><i class="active fa fa-desktop"></i> <span>Search</span></a></li>
                 <li><a href="/rae/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="#"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
+                <li><a href="/surveys/simple/"><i class="active fa fa-desktop"></i> <span>Palabras propuestas</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
@@ -154,7 +155,6 @@
             </h1>
             <a class="btn btn-primary" href="/surveys/survey-complete-creation" role="button">Agregar nueva palabra</a>
             <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar nueva definición</a>
-            <a class="btn btn-info" href="/surveys/simple-survey-creation" role="button">Proponer palabra</a>
         </section>
 
         <!-- Main content -->

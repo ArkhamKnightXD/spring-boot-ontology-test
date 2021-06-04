@@ -108,7 +108,6 @@ public class OntologyRestController {
 
         Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
 
-
         while (individualsIterator.hasNext()) {
 
             Individual individual = individualsIterator.next();
@@ -133,7 +132,6 @@ public class OntologyRestController {
 
         Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
 
-
         while (classesIterator.hasNext()) {
 
             OntClass nextClass = classesIterator.next();
@@ -157,7 +155,6 @@ public class OntologyRestController {
         List<HashMap<String, String>> propertyList = new ArrayList<>();
 
         Iterator<DatatypeProperty> propertyIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listDatatypeProperties();
-
 
         while (propertyIterator.hasNext()) {
 

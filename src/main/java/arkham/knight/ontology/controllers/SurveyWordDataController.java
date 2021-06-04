@@ -1,8 +1,10 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.SimpleWord;
 import arkham.knight.ontology.models.SurveyWordData;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.SimpleWordService;
 import arkham.knight.ontology.services.SurveyWordDataService;
 import arkham.knight.ontology.services.WordService;
 import org.springframework.stereotype.Controller;
@@ -15,16 +17,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class SurveyWordDataController {
 
-    final OntologyService ontologyService;
+    private final OntologyService ontologyService;
 
-    final WordService wordService;
+    private final WordService wordService;
 
-    final SurveyWordDataService surveyWordDataService;
+    private final SurveyWordDataService surveyWordDataService;
 
-    public SurveyWordDataController(OntologyService ontologyService, WordService wordService, SurveyWordDataService surveyWordDataService) {
+    private final SimpleWordService simpleWordService;
+
+    public SurveyWordDataController(OntologyService ontologyService, WordService wordService, SurveyWordDataService surveyWordDataService, SimpleWordService simpleWordService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
         this.surveyWordDataService = surveyWordDataService;
+        this.simpleWordService = simpleWordService;
     }
 
 
@@ -76,6 +81,15 @@ public class SurveyWordDataController {
     }
 
 
+    @RequestMapping(value = "simple/", method = RequestMethod.GET)
+    public String indexSimplePage(Model model) {
+
+        model.addAttribute("words", simpleWordService.getAllSimpleWord());
+
+        return "/freemarker/survey/simpleSurveyIndex";
+    }
+
+
     @RequestMapping(value = "/simple-survey-creation", method = RequestMethod.GET)
     public String creationSimpleSurveyPage() {
 
@@ -84,12 +98,34 @@ public class SurveyWordDataController {
 
 
     @RequestMapping(value = "/simple-survey-create", method = RequestMethod.POST)
-    public String createSimpleSurvey(@RequestParam String individualName, @RequestParam String definition) {
+    public String createSimpleSurvey(@RequestParam String word) {
 
-        SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName, definition);
+        SimpleWord simpleWordToCreate = new SimpleWord(word);
 
-        surveyWordDataService.saveSurvey(surveyWordDataToSave);
+        simpleWordService.saveSimpleWord(simpleWordToCreate);
 
-        return "redirect:/surveys/";
+        return "redirect:/surveys/simple/";
+    }
+
+
+    @RequestMapping(value = "/simple-survey-edition", method = RequestMethod.GET)
+    public String editionSimpleSurveyPage(Model model, @RequestParam Long id) {
+
+        model.addAttribute("word", simpleWordService.getSimpleWordById(id));
+
+        return "/freemarker/survey/editWordSurveyProposition";
+    }
+
+
+    @RequestMapping(value = "/simple-survey-edit", method = RequestMethod.POST)
+    public String editSimpleSurvey(@RequestParam String word, @RequestParam String wordDefinition) {
+
+        SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordByWord(word);
+
+        simpleWordToEdit.setWordDefinition(wordDefinition);
+
+        simpleWordService.saveSimpleWord(simpleWordToEdit);
+
+        return "redirect:/surveys/simple/";
     }
 }

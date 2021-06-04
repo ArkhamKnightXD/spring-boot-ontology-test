@@ -45,13 +45,23 @@
                     <h2 class="title">Sugerir nueva palabra</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/surveys/simple-survey-create">
+                    <form method="post" action="/surveys/simple-survey-edit">
 
                         <div class="form-row">
                             <div class="name">Palabra</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="word" required>
+                                    <input class="input--style-5" type="text" name="word" value="${word.getWord()}" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="name">Definición</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="wordDefinition" required>
                                 </div>
                             </div>
                         </div>
