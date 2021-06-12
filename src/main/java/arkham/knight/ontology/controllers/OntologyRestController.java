@@ -35,7 +35,7 @@ public class OntologyRestController {
 
         List<String> individualSet = ontologyService.getAllIndividualNameByClassNameWithReasoner(individualName);
 
-        return new  ResponseEntity<>(individualSet, HttpStatus.OK);
+        return new ResponseEntity<>(individualSet, HttpStatus.OK);
     }
 
 
@@ -78,9 +78,9 @@ public class OntologyRestController {
         boolean response = ontologyService.deleteIndividual(individualName);
 
         if (!response)
-            return new  ResponseEntity<>("Individual Not Found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Individual Not Found", HttpStatus.NOT_FOUND);
 
-        return new  ResponseEntity<>("Individual Deleted", HttpStatus.OK);
+        return new ResponseEntity<>("Individual Deleted", HttpStatus.OK);
     }
 
 

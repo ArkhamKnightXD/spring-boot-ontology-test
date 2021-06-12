@@ -111,9 +111,10 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/"><i class="fa fa-desktop"></i> <span>Search</span></a></li>
-                <li><a href="/rae/search"><i class="active fa fa-desktop"></i> <span>DRAE-Search</span></a></li>
-                <li><a href="/surveys/"><i class="active fa fa-desktop"></i> <span>Surveys</span></a></li>
+                <li><a href="/"><i class="fa fa-search"></i> <span>Search</span></a></li>
+                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>
+                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>
+                <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>

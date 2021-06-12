@@ -31,7 +31,7 @@ public class SurveyWordDataRestController {
     @Operation(summary = "Get All Survey Word Data", description = "Retorna los lemas de la encuestas")
     public ResponseEntity<List<SurveyWordData>> getAllSurveyWordData() {
 
-        return new  ResponseEntity<>(surveyWordDataService.getAllSurveys(), HttpStatus.OK);
+        return new ResponseEntity<>(surveyWordDataService.getAllSurveys(), HttpStatus.OK);
     }
 
 
@@ -39,7 +39,7 @@ public class SurveyWordDataRestController {
     @Operation(summary = "Get All Survey Word Data", description = "Retorna los lemas de la encuestas")
     public ResponseEntity<List<SurveyWordData>> getAllSurveyWordDataByLemma(@RequestParam String lemma) {
 
-        return new  ResponseEntity<>(surveyWordDataService.getAllSurveysByLemma(lemma), HttpStatus.OK);
+        return new ResponseEntity<>(surveyWordDataService.getAllSurveysByLemma(lemma), HttpStatus.OK);
     }
 
 
@@ -47,7 +47,7 @@ public class SurveyWordDataRestController {
     @Operation(summary = "Get All Simple Word Data", description = "Retorna los lemas de la encuestas simples")
     public ResponseEntity<List<SimpleWord>> getAllSimpleWordData() {
 
-        return new  ResponseEntity<>(simpleWordService.getAllSimpleWord(), HttpStatus.OK);
+        return new ResponseEntity<>(simpleWordService.getAllSimpleWord(), HttpStatus.OK);
     }
 
 
@@ -55,6 +55,6 @@ public class SurveyWordDataRestController {
     @Operation(summary = "Get All Simple Word Data By Word", description = "Retorna los lemas de la encuestas simples")
     public ResponseEntity<List<SimpleWord>> getAllSimpleWordDataByWord(@RequestParam String lemma) {
 
-        return new  ResponseEntity<>(simpleWordService.getAllSimpleWordByWord(lemma), HttpStatus.OK);
+        return new ResponseEntity<>(simpleWordService.getAllSimpleWordByWord(lemma), HttpStatus.OK);
     }
 }

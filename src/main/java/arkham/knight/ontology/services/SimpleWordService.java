@@ -1,6 +1,7 @@
 package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.SimpleWord;
+import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.repositories.SimpleWordRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -35,7 +36,7 @@ public class SimpleWordService {
 
     public void calculateVotesQuantityByWord(SimpleWord word){
 
-        int totalVotes = 0;
+        int totalVotes;
 
         List<SimpleWord> simpleWords = simpleWordRepository.findAllByWord(word.getWord());
 
@@ -54,10 +55,9 @@ public class SimpleWordService {
 
         SimpleWord winnerWord = new SimpleWord();
 
-        int votesQuantity = 0;
-
         List<SimpleWord> simpleList = simpleWordRepository.findAllByWord(word);
 
+        int votesQuantity = 0;
         int totalAnswers = simpleList.size();
 
         for (SimpleWord wordToEvaluate: simpleList) {
@@ -65,6 +65,7 @@ public class SimpleWordService {
             int actualVotesByWord = simpleWordRepository.findAllByWordDefinition(wordToEvaluate.getWordDefinition()).size();
 
             if (actualVotesByWord > votesQuantity){
+
                 votesQuantity = actualVotesByWord;
                 winnerWord = wordToEvaluate;
             }
@@ -74,5 +75,22 @@ public class SimpleWordService {
         winnerWord.setVotesQuantity(votesQuantity);
 
         return winnerWord;
+    }
+
+
+    public Word convertSimpleWordToWord(SimpleWord winnerWord) {
+
+        Word wordToSaveInOntology = new Word();
+
+        wordToSaveInOntology.setLema(winnerWord.getWord());
+        wordToSaveInOntology.setDefinicion(winnerWord.getWordDefinition());
+        wordToSaveInOntology.setTotalRespuestasN(String.valueOf(winnerWord.getTotalAnswers()));
+        wordToSaveInOntology.setCantidadVotacionesI(String.valueOf(winnerWord.getVotesQuantity()));
+        wordToSaveInOntology.setClasePadre("n/a");
+        wordToSaveInOntology.setEjemplo("n/a");
+        wordToSaveInOntology.setLemaRAE("n/a");
+        wordToSaveInOntology.setSinonimos("n/a");
+
+        return wordToSaveInOntology;
     }
 }
