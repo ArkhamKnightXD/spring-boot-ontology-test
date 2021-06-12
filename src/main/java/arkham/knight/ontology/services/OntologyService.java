@@ -56,13 +56,11 @@ public class OntologyService {
 
         List<String> classListNames = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
+        List<OntClass> ontClasses = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses().toList();
 
-        while (classesIterator.hasNext()) {
+        for (OntClass ontClass : ontClasses) {
 
-            OntClass nextClass = classesIterator.next();
-
-            classListNames.add(nextClass.getLocalName());
+            classListNames.add(ontClass.getLocalName());
         }
 
         return classListNames;
@@ -73,11 +71,9 @@ public class OntologyService {
 
         List<String> individualNamesList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        List<Individual> individuals = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
 
-        while (individualsIterator.hasNext()) {
-
-            Individual individual = individualsIterator.next();
+        for (Individual individual : individuals) {
 
             individualNamesList.add(individual.getLocalName());
         }
@@ -88,19 +84,17 @@ public class OntologyService {
 
     public List<Individual> getAllIndividualsByFatherClassName(String fatherClassName){
 
-        List<Individual> individualList = new ArrayList<>();
+        List<Individual> individualsByFatherClassName = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        List<Individual> allIndividuals = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
 
-        while (individualsIterator.hasNext()) {
-
-            Individual individual = individualsIterator.next();
+        for (Individual individual : allIndividuals) {
 
             if (individual.getOntClass().getLocalName().equalsIgnoreCase(fatherClassName))
-                individualList.add(individual);
+                individualsByFatherClassName.add(individual);
         }
 
-        return individualList;
+        return individualsByFatherClassName;
     }
 
 
@@ -209,22 +203,18 @@ public class OntologyService {
 
     public List<Individual> getAllIndividualByName(List<String> sentenceByWords, String searchType) {
 
-        List<Individual> individualList = new ArrayList<>();
+        List<Individual> filteredIndividual = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        List<Individual> allIndividuals = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
 
-        Individual individual;
-
-        while (individualsIterator.hasNext()) {
+        for (Individual individual : allIndividuals) {
 
             int avoidRepeatIndividualCount = 0;
 
-            individual = individualsIterator.next();
-
-            compareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, individualList,avoidRepeatIndividualCount, individual);
+            compareAllWordsInTheWordListAndSaveInTheIndividualList(searchType, sentenceByWords, filteredIndividual, avoidRepeatIndividualCount, individual);
         }
 
-        return individualList;
+        return filteredIndividual;
     }
 
 
@@ -254,8 +244,7 @@ public class OntologyService {
 
             Word wordToSave = new Word();
 
-            if (individual.getLocalName()!= null)
-                wordToSave.setLema(individual.getLocalName());
+            wordToSave.setLema(individual.getLocalName());
 
             if (individual.getOntClass() != null)
                 wordToSave.setClasePadre(individual.getOntClass().getLocalName());

@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Controller
@@ -48,9 +46,9 @@ public class OntologyController {
     @RequestMapping(value = "/individuals", method = RequestMethod.GET)
     public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence, @RequestParam(defaultValue = "word-search") String searchType) {
 
-        List<Individual> individualList = new ArrayList<>();
+        List<Individual> individualList;
 
-        if (sentence.length() !=0){
+        if (sentence.length() != 0){
 
             List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
             individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
@@ -58,14 +56,7 @@ public class OntologyController {
 
         else{
 
-            Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
-
-            while (individualsIterator.hasNext()) {
-
-                Individual individual = individualsIterator.next();
-
-                individualList.add(individual);
-            }
+            individualList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
         }
 
         model.addAttribute("individuals", individualList);
