@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
+@RequestMapping("/dashboard")
 @Controller
 public class OntologyController {
 
@@ -81,7 +82,7 @@ public class OntologyController {
 
         ontologyService.saveIndividual(individualName, wordToSave);
 
-        return "redirect:/individuals";
+        return "redirect:/dashboard/individuals";
     }
 
 
@@ -126,7 +127,7 @@ public class OntologyController {
 
         ontologyService.saveIndividual(originalIndividualName, filteredWord);
 
-        return "redirect:/individuals";
+        return "redirect:/dashboard/individuals";
     }
 
 
@@ -150,7 +151,7 @@ public class OntologyController {
 
         ontologyService.deleteIndividual(individualName);
 
-        return "redirect:/individuals";
+        return "redirect:/dashboard/individuals";
     }
 
 
@@ -174,6 +175,6 @@ public class OntologyController {
         else
             ontologyService.saveFatherClassAndSubClass(fatherClassName, subClass);
 
-        return "redirect:/individuals";
+        return "redirect:/dashboard/individuals";
     }
 }

@@ -45,7 +45,7 @@
                     <h2 class="title">Agregar Nueva clase</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/class-create">
+                    <form method="post" action="/dashboard/class-create">
                         <div class="form-row">
                             <div class="name">Clase padre</div>
                             <div class="value">
@@ -77,7 +77,7 @@
                         </div>
 
                         <div>
-                            <a class="btn-cancel btn--radius-2 btn--black" href="/individuals" role="button"> Cancelar</a>
+                            <a class="btn-cancel btn--radius-2 btn--black" href="/dashboard/individuals" role="button"> Cancelar</a>
                         </div>
                     </form>
                 </div>

@@ -45,7 +45,7 @@
                     <h2 class="title">Agregar nueva palabra</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/create">
+                    <form method="post" action="/dashboard/create">
                         <div class="form-row">
                             <div class="name">Lema</div>
                             <div class="value">
@@ -110,7 +110,7 @@
                         </div>
 
                         <div>
-                            <a class="btn-cancel btn--radius-2 btn--black" href="/individuals" role="button"> Cancelar</a>
+                            <a class="btn-cancel btn--radius-2 btn--black" href="/dashboard/individuals" role="button"> Cancelar</a>
                         </div>
                     </form>
                 </div>

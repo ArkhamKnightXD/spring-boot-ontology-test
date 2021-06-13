@@ -45,7 +45,7 @@
                     <h2 class="title">Editar</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/edit">
+                    <form method="post" action="/dashboard/edit">
 
                         <!--Aqui siempre mando el nombre original del individual para poder hacer la edicion de manera efectiva-->
                         <input type="hidden" class="form-control" value="${lema}" id="name" name="originalIndividualName" >
@@ -127,7 +127,7 @@
                         </div>
 
                         <div>
-                            <a class="btn-cancel btn--radius-2 btn--black" href="/individuals" role="button"> Cancelar</a>
+                            <a class="btn-cancel btn--radius-2 btn--black" href="/dashboard/individuals" role="button"> Cancelar</a>
                         </div>
                     </form>
                 </div>

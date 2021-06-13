@@ -56,12 +56,13 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
 						<a class="txt2" href="#">
-							Username / Password?
+							Desea solo proponer palabras?
 						</a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<a class="login100-form-btn" href="/surveys/simple-survey-creation" role="button"> Proponer palabra</a>
 					</div>
 
 					<div class="text-center p-t-136">

@@ -104,7 +104,7 @@ public class SurveyWordDataController {
 
         simpleWordService.saveSimpleWord(simpleWordToCreate);
 
-        return "redirect:/surveys/simple/";
+        return "redirect:/surveys/simple-survey-creation";
     }
 
 

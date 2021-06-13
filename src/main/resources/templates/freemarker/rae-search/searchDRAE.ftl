@@ -30,7 +30,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="/" class="logo">
+        <a href="/dashboard/" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>PI</span>
             <!-- logo for regular state and mobile devices -->
@@ -118,7 +118,7 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/"><i class="fa fa-search"></i> <span>Search</span></a></li>
+                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
                 <li class="active"><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
@@ -130,7 +130,7 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="/individuals">All Individuals</a></li>
+                        <li class=""><a href="/dashboard/individuals">All Individuals</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
                     </ul>
                 </li>
