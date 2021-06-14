@@ -5,7 +5,6 @@ import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
-import org.apache.jena.rdf.model.RDFNode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,7 +56,7 @@ public class OntologyController {
 
         else{
 
-            individualList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
+            individualList = ontologyConnectionService.getAllIndividuals();
         }
 
         model.addAttribute("individuals", individualList);
@@ -89,28 +88,15 @@ public class OntologyController {
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
     public String getIndividualByName(Model model, @RequestParam String individualName)  {
 
-        String individualURI = ontologyConnectionService.ontologyURI.concat(individualName);
+        Word actualWord = wordService.getWordByLemma(individualName);
 
-        Individual individual = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().getIndividual(individualURI);
-
-        RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
-        RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
-        RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
-        RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
-
-        model.addAttribute("fatherClass", individual.getOntClass().getLocalName());
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
-        model.addAttribute("lema", individual.getLocalName());
-        model.addAttribute("definicion", definitionPropertyValue.toString());
-
-        if (examplePropertyValue != null)
-            model.addAttribute("ejemplo", examplePropertyValue.toString());
-
-        if (lemmaRAEPropertyValue != null)
-            model.addAttribute("lemmaRAE", lemmaRAEPropertyValue.toString());
-
-        if (synonymsPropertyValue != null)
-            model.addAttribute("sinonimos", synonymsPropertyValue.toString());
+        model.addAttribute("fatherClass", actualWord.getClasePadre());
+        model.addAttribute("lema", actualWord.getLema());
+        model.addAttribute("definicion", actualWord.getDefinicion());
+        model.addAttribute("ejemplo", actualWord.getEjemplo());
+        model.addAttribute("lemmaRAE", actualWord.getLemaRAE());
+        model.addAttribute("sinonimos", actualWord.getSinonimos());
 
         return "/freemarker/ontology/editIndividual";
     }

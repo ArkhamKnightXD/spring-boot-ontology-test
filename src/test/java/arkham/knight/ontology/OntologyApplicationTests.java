@@ -105,7 +105,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllClasses() {
 
-        List<OntClass> classList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses().toList();
+        List<OntClass> classList = ontologyConnectionService.getAllClasses();
 
         assertFalse(classList.isEmpty());
     }
@@ -114,7 +114,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllIndividuals() {
 
-        List<Individual> individualList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
+        List<Individual> individualList = ontologyConnectionService.getAllIndividuals();
 
         assertFalse(individualList.isEmpty());
     }
@@ -123,7 +123,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllDataTypeProperties() {
 
-        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listDatatypeProperties().toList();
+        List<DatatypeProperty> datatypePropertyList = ontologyConnectionService.getAllDataTypeProperties();
 
         assertFalse(datatypePropertyList.isEmpty());
     }

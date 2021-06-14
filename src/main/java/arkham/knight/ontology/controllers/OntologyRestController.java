@@ -106,11 +106,9 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> individualList = new ArrayList<>();
 
-        Iterator<Individual> individualsIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals();
+        List<Individual> allIndividuals = ontologyConnectionService.getAllIndividuals();
 
-        while (individualsIterator.hasNext()) {
-
-            Individual individual = individualsIterator.next();
+        for (Individual individual : allIndividuals) {
 
             HashMap<String, String> individualToSave = new HashMap<>();
 
@@ -130,16 +128,14 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> classList = new ArrayList<>();
 
-        Iterator<OntClass> classesIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses();
+        List<OntClass> allClasses = ontologyConnectionService.getAllClasses();
 
-        while (classesIterator.hasNext()) {
-
-            OntClass nextClass = classesIterator.next();
+        for (OntClass ontClass : allClasses) {
 
             HashMap<String, String> classToSave = new HashMap<>();
 
-            classToSave.put("name", nextClass.getLocalName());
-            classToSave.put("uri", nextClass.getURI());
+            classToSave.put("name", ontClass.getLocalName());
+            classToSave.put("uri", ontClass.getURI());
 
             classList.add(classToSave);
         }
@@ -154,17 +150,15 @@ public class OntologyRestController {
 
         List<HashMap<String, String>> propertyList = new ArrayList<>();
 
-        Iterator<DatatypeProperty> propertyIterator = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listDatatypeProperties();
+        List<DatatypeProperty> allDataTypeProperties = ontologyConnectionService.getAllDataTypeProperties();
 
-        while (propertyIterator.hasNext()) {
-
-            DatatypeProperty nextProperty = propertyIterator.next();
+        for (DatatypeProperty datatypeProperty : allDataTypeProperties) {
 
             HashMap<String, String> propertyToSave = new HashMap<>();
 
-            propertyToSave.put("domain", nextProperty.getDomain().getLocalName());
-            propertyToSave.put("property", nextProperty.getLocalName());
-            propertyToSave.put("datatype", nextProperty.getRange().getLocalName());
+            propertyToSave.put("domain", datatypeProperty.getDomain().getLocalName());
+            propertyToSave.put("property", datatypeProperty.getLocalName());
+            propertyToSave.put("datatype", datatypeProperty.getRange().getLocalName());
 
             propertyList.add(propertyToSave);
         }

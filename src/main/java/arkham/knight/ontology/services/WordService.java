@@ -100,7 +100,6 @@ public class WordService {
 
             int votesQuantity = Integer.parseInt(wordToEvaluate.getCantidadVotacionesI());
             int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
-
             //formula = I/N *100 el cast a float es necesario sino me da 0 siempre
             return (float) votesQuantity/totalAnswers * 100;
         }
@@ -117,11 +116,9 @@ public class WordService {
             float numberOfPresencesA = 2;
 
             int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
-
             //Porcentaje de acuerdo de ‘presencia’ formula = A/N-D * 100
             if (percentageType)
                 return (numberOfPresencesA /(totalAnswers - numberOfAbsencesD)) * 100;
-
             //Porcentaje de acuerdo de ausencias formula = D/N-A * 100
             return (numberOfAbsencesD /(totalAnswers - numberOfPresencesA)) * 100;
         }
@@ -134,7 +131,6 @@ public class WordService {
 
         float percentageOfAbsences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, false)/100;
         float percentageOfPresences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, true)/100;
-
         //formula = porcentaje de ausencias + porcentaje de asistencias *100
         return  ((percentageOfPresences+percentageOfAbsences)/2) * 100;
     }

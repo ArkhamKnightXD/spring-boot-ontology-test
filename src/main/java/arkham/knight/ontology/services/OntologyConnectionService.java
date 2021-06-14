@@ -1,8 +1,6 @@
 package arkham.knight.ontology.services;
 
-import org.apache.jena.ontology.OntModel;
-import org.apache.jena.ontology.OntModelSpec;
-import org.apache.jena.ontology.Ontology;
+import org.apache.jena.ontology.*;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Property;
 import org.semanticweb.HermiT.ReasonerFactory;
@@ -12,7 +10,7 @@ import org.semanticweb.owlapi.reasoner.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.Iterator;
+import java.util.List;
 
 public class OntologyConnectionService {
 
@@ -81,20 +79,20 @@ public class OntologyConnectionService {
 
     public Ontology getOntology(){
 
-        Ontology ontology = null;
+        Ontology actualOntology = null;
 
-        Iterator<Ontology> ontologyIterator = readOntologyFileAndReturnTheJenaModel().listOntologies();
+        List<Ontology> ontologies = readOntologyFileAndReturnTheJenaModel().listOntologies().toList();
 
-        while (ontologyIterator.hasNext()) {
+        for (Ontology ontology : ontologies) {
 
-            ontology = ontologyIterator.next();
+            actualOntology = ontology;
         }
 
-        return ontology;
+        return actualOntology;
     }
 
 
-    public OntModel readOntologyFileAndReturnTheJenaModel() {
+    private OntModel readOntologyFileAndReturnTheJenaModel() {
 
         OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM);
 
@@ -111,12 +109,29 @@ public class OntologyConnectionService {
 
             model.read(reader,null);
         }
-
         //URL Connection
         else
             model.read(getOntologyURLInputStream(), null);
 
         return model;
+    }
+
+
+    public List<Individual> getAllIndividuals(){
+
+        return readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
+    }
+
+
+    public List<OntClass> getAllClasses(){
+
+        return readOntologyFileAndReturnTheJenaModel().listClasses().toList();
+    }
+
+
+    public List<DatatypeProperty> getAllDataTypeProperties(){
+
+        return readOntologyFileAndReturnTheJenaModel().listDatatypeProperties().toList();
     }
 
 
@@ -135,7 +150,6 @@ public class OntologyConnectionService {
         } catch (OWLOntologyStorageException exception) {
             exception.printStackTrace();
         }
-
         // Remove the ontology from the manager, esta parte es necesaria porque sino da error a la hora de guardar mas de una clase o individual
         //remuevo la ontologia para que no se quede en uso, si esta queda en uso no puedo volver a utilizar la ontologia o me da error
         ontologyManager.removeOntology(ontology);
@@ -148,7 +162,6 @@ public class OntologyConnectionService {
 
             if (ontologyFile.exists())
                 return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
-
             //URL Connection
             return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
         } catch (OWLOntologyCreationException exception) {
@@ -162,15 +175,12 @@ public class OntologyConnectionService {
     public OWLReasoner getHermitReasoner(){
 
         OWLOntology ontology = loadTheOntologyOwlAPI();
-
         //Setting up the reasoner
         OWLReasonerFactory reasonerFactory = new ReasonerFactory();
         ConsoleProgressMonitor progressMonitor = new ConsoleProgressMonitor();
         OWLReasonerConfiguration reasonerConfiguration = new SimpleConfiguration(progressMonitor);
-
         //Create the reasoner
         OWLReasoner reasoner = reasonerFactory.createReasoner(ontology, reasonerConfiguration);
-
         //Metodo encargado de trabajar la inferencias
         reasoner.precomputeInferences(InferenceType.values());
 

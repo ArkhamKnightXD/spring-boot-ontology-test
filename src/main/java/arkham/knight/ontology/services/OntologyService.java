@@ -43,7 +43,6 @@ public class OntologyService {
         List<String> individualNameList = new ArrayList<>();
 
         for (OWLNamedIndividual individual : dataSet) {
-
             //El defaultPrefixManager se utiliza aqui para de esta forma poder obtener el nombre corto del individual
             individualNameList.add(prefixManager.getShortForm(individual));
         }
@@ -56,7 +55,7 @@ public class OntologyService {
 
         List<String> classListNames = new ArrayList<>();
 
-        List<OntClass> ontClasses = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listClasses().toList();
+        List<OntClass> ontClasses = ontologyConnectionService.getAllClasses();
 
         for (OntClass ontClass : ontClasses) {
 
@@ -71,7 +70,7 @@ public class OntologyService {
 
         List<String> individualNamesList = new ArrayList<>();
 
-        List<Individual> individuals = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
+        List<Individual> individuals = ontologyConnectionService.getAllIndividuals();
 
         for (Individual individual : individuals) {
 
@@ -86,7 +85,7 @@ public class OntologyService {
 
         List<Individual> individualsByFatherClassName = new ArrayList<>();
 
-        List<Individual> allIndividuals = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
+        List<Individual> allIndividuals = ontologyConnectionService.getAllIndividuals();
 
         for (Individual individual : allIndividuals) {
 
@@ -101,7 +100,6 @@ public class OntologyService {
     public String saveFatherClassAndSubClass(String fatherClassName, String subClassName) {
 
         OWLOntology ontology = ontologyConnectionService.loadTheOntologyOwlAPI();
-
         //Aqui puedo agregar clases nuevas que la api las llama axiomas
         OWLClass fatherClass = dataFactory.getOWLClass(createIRIByPropertyName(fatherClassName));
         OWLClass subClass = dataFactory.getOWLClass(createIRIByPropertyName(subClassName));
@@ -205,7 +203,7 @@ public class OntologyService {
 
         List<Individual> filteredIndividual = new ArrayList<>();
 
-        List<Individual> allIndividuals = ontologyConnectionService.readOntologyFileAndReturnTheJenaModel().listIndividuals().toList();
+        List<Individual> allIndividuals = ontologyConnectionService.getAllIndividuals();
 
         for (Individual individual : allIndividuals) {
 
