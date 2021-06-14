@@ -28,7 +28,7 @@
 					<img src="../../bootstrap-4.3.1/dist/img/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="/login" method="post">
+				<form class="login100-form validate-form" action="/" method="post">
 					<span class="login100-form-title">
 						Login
 					</span>

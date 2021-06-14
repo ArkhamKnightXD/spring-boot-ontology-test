@@ -41,7 +41,8 @@ public class URLController implements ErrorController {
     }
 
 
-    @RequestMapping("/login")
+    //Cambiar url de /login por / para que en heroku no me redirija a la pagina de error
+    @RequestMapping("/")
     public String login(){
 
         User adminUser = userService.getUserByUsername("admin");
@@ -71,7 +72,7 @@ public class URLController implements ErrorController {
 
         userService.saveUser(userToCreate);
 
-        return "redirect:/login";
+        return "redirect:/";
     }
 
 

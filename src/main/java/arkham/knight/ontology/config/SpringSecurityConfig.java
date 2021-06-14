@@ -43,13 +43,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/**").permitAll()
                 .antMatchers("/dashboard/**").hasAnyRole("ADMIN")
                 .antMatchers("/users/**").hasAnyRole("ADMIN")
-//                .antMatchers("/**").hasAnyRole("ADMIN")
                 .antMatchers("/surveys/").hasAnyRole("ADMIN")
                 .antMatchers("/surveys/simple/").hasAnyRole("ADMIN")
                 //.anyRequest().authenticated() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
-                .loginPage("/login")
+                .loginPage("/")
 // Aqui indico la url de la pagina que salga cuando haga login error
                 .failureUrl("/login-error")
 //Aqui indico la url por defecto que sera enviada la persona en caso de que haya hecho logout o no haya definido una url a la que entrara

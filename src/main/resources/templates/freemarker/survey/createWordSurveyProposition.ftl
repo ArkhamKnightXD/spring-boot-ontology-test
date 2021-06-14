@@ -61,7 +61,7 @@
                         </div>
 
                         <div>
-                            <a class="btn-cancel btn--radius-2 btn--black" href="/login" role="button"> Cancelar</a>
+                            <a class="btn-cancel btn--radius-2 btn--black" href="/" role="button"> Cancelar</a>
                         </div>
                     </form>
                 </div>
