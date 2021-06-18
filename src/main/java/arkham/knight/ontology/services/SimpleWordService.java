@@ -28,7 +28,7 @@ public class SimpleWordService {
     }
 
 
-    public List<SimpleWord> getAllSimpleWordByWord(String word){
+    public List<SimpleWord> getAllSimpleWordByLemma(String word){
 
         return simpleWordRepository.findAllByWord(word);
     }

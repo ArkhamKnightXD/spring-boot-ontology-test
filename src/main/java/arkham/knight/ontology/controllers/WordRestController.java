@@ -1,7 +1,6 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.DRAEObject;
-import arkham.knight.ontology.models.SurveyWordData;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyService;
@@ -11,10 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.Individual;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
@@ -28,15 +24,12 @@ public class WordRestController {
 
     private final DRAEConnectionService draeConnectionService;
 
-    private final SurveyWordDataService surveyWordDataService;
-
     private final RestTemplate restTemplate;
 
-    public WordRestController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, SurveyWordDataService surveyWordDataService, RestTemplate restTemplate) {
+    public WordRestController(OntologyService ontologyService, WordService wordService, DRAEConnectionService draeConnectionService, RestTemplate restTemplate) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
         this.draeConnectionService = draeConnectionService;
-        this.surveyWordDataService = surveyWordDataService;
         this.restTemplate = restTemplate;
     }
 
@@ -55,8 +48,8 @@ public class WordRestController {
     }
 
 
-    @GetMapping("/search-DRAE")
-    @Operation(summary = "Search For Any Word In The DRAE Endpoint", description = "Retorna la definición de una palabra con respecto al diccionario de la RAE")
+    @GetMapping("/search-rae")
+    @Operation(summary = "Search For Any Word In The RAE Endpoint", description = "Retorna la definición de una palabra con respecto al diccionario de la RAE")
     public ResponseEntity<List<DRAEObject>> searchWordDRAEAPI(@RequestParam String wordToSearch) {
 
         List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
@@ -65,52 +58,26 @@ public class WordRestController {
     }
 
 
-    @GetMapping("/getAllWords")
+    @GetMapping("/words")
     @Operation(summary = "Get All Words", description = "Retorna las distintas palabras almacenadas en la ontologia")
     public ResponseEntity<List<Word>> getAllWords() {
 
-        List<Word> wordList = wordService.getAllWords();
-
-        return new ResponseEntity<>(wordList, HttpStatus.OK);
+        return new ResponseEntity<>(wordService.getAllWords(), HttpStatus.OK);
     }
 
 
-    @GetMapping("/getWord")
-    @Operation(summary = "Get A Word By Name", description = "Retornara el individual del lema indicado")
-    public ResponseEntity<Word> findIndividualByName(@RequestParam String individualName) {
+    @GetMapping("/words/{lemma}")
+    @Operation(summary = "Get A Word By Lemma", description = "Retornara el individual del lema indicado")
+    public ResponseEntity<Word> findIndividualByName(@PathVariable String lemma) {
 
-        return new ResponseEntity<>(wordService.getWordByLemma(individualName), HttpStatus.OK);
+        return new ResponseEntity<>(wordService.getWordByLemma(lemma), HttpStatus.OK);
     }
 
 
-    @GetMapping("/getAllWordsByClassName")
+    @GetMapping("/words/{fatherClass}")
     @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las individuales de la clase indicada")
-    public ResponseEntity<List<Word>> getAllIndividualsByClasses(@RequestParam String fatherClassName) {
+    public ResponseEntity<List<Word>> getAllIndividualsByClasses(@PathVariable String fatherClass) {
 
-        return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/getAllSurveyWords")
-    @Operation(summary = "Get All Survey Words", description = "Retorna una lista con todas las encuestas realizadas ")
-    public ResponseEntity<List<SurveyWordData>> getAllSurveyWordData() {
-
-        return new ResponseEntity<>(surveyWordDataService.getAllSurveys(), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/getAllSurveyWordsByLemma")
-    @Operation(summary = "Get All Survey Words By Lemma", description = "Retorna una lista con todas las encuestas realizadas del lema indicado")
-    public ResponseEntity<List<SurveyWordData>> getAllSurveyWordDataByLemma(@RequestParam String lemma) {
-
-        return new ResponseEntity<>(surveyWordDataService.getAllSurveysByLemma(lemma), HttpStatus.OK);
-    }
-
-
-    @GetMapping("/getAllSurveyWordsByLemmaRAE")
-    @Operation(summary = "Get All Survey Words By Lemma Rae", description = "Retorna una lista con todas las encuestas realizadas del lema de la rae indicado")
-    public ResponseEntity<List<SurveyWordData>> getAllSurveyWordDataByLemmaRAE(@RequestParam String lemmaRAE) {
-
-        return new ResponseEntity<>(surveyWordDataService.getAllSurveysByLemmaRAE(lemmaRAE), HttpStatus.OK);
+        return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClass), HttpStatus.OK);
     }
 }

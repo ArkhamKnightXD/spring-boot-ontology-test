@@ -29,7 +29,7 @@ public class OntologyRestController {
     }
 
 
-    @GetMapping("/getIndividualsNameReasoner")
+    @GetMapping("/individuals-reasoner")
     @Operation(summary = "Get All Individuals Name By Class Name Reasoner Way", description = "Retorna los lemas pertenecientes a la clase indicada")
     public ResponseEntity<List<String>> getAllIndividualNameByClassNameWithReasoner(@RequestParam String individualName) {
 
@@ -39,7 +39,7 @@ public class OntologyRestController {
     }
 
 
-    @PostMapping("/createClasses")
+    @PostMapping("/classes")
     @Operation(summary = "Create FatherClass And SubClass", description = "Creacion de clases padre y clase hijo")
     public ResponseEntity<String> createClasses(@RequestParam String fatherClassName, @RequestParam String subClassName) {
 
@@ -49,7 +49,7 @@ public class OntologyRestController {
     }
 
 
-    @PostMapping("/createClass")
+    @PostMapping("/class")
     @Operation(summary = "Create Class", description = "Creacion de una clase")
     public ResponseEntity<String> createClass(@RequestParam String className) {
 
@@ -61,7 +61,7 @@ public class OntologyRestController {
     }
 
 
-    @PostMapping("/createIndividual")
+    @PostMapping("/individual")
     @Operation(summary = "Create Individual", description = "Creacion de individual")
     public ResponseEntity<String> createIndividual(@RequestBody Word wordToSave) {
 
@@ -71,7 +71,7 @@ public class OntologyRestController {
     }
 
 
-    @DeleteMapping("/deleteIndividual")
+    @DeleteMapping("/individual")
     @Operation(summary = "Delete Individual", description = "Elimina el individual cuyo nombre sea especificado")
     public ResponseEntity<String> deleteIndividual(@RequestParam String individualName) {
 
@@ -84,9 +84,9 @@ public class OntologyRestController {
     }
 
 
-    @PutMapping("/editIndividual")
+    @PutMapping("/individual/{originalIndividualName}")
     @Operation(summary = "Edit Individual", description = "Edita el individual cuyo nombre sea especificado")
-    public ResponseEntity<String> editIndividual(@RequestParam String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
+    public ResponseEntity<String> editIndividual(@PathVariable String originalIndividualName, @RequestParam(defaultValue = "") String individualName, @RequestParam(defaultValue = "") String individualNameRAE, @RequestParam(defaultValue = "") String fatherClassName, @RequestParam(defaultValue = "") String definition, @RequestParam(defaultValue = "") String example, @RequestParam(defaultValue = "") String synonyms) {
 
         Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
@@ -100,7 +100,7 @@ public class OntologyRestController {
     }
 
 
-    @GetMapping("/getAllIndividuals")
+    @GetMapping("/individuals")
     @Operation(summary = "Get All Individuals", description = "Retorna una lista con todas las individuales")
     public ResponseEntity<List<HashMap<String, String>>> getIndividuals() {
 
@@ -144,7 +144,7 @@ public class OntologyRestController {
     }
 
 
-    @GetMapping("/datatype")
+    @GetMapping("/datatypes")
     @Operation(summary = "Get All Datatype Properties", description = "Retorna una lista con todas las propiedades")
     public ResponseEntity<List<HashMap<String, String>>> getAllDatatypeProperties() {
 
