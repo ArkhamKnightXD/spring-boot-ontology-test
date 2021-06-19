@@ -4,7 +4,6 @@ import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.SurveyWordDataService;
 import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.Individual;
@@ -36,7 +35,7 @@ public class WordRestController {
 
     @GetMapping("/search")
     @Operation(summary = "Get All Individuals Properties By Name", description = "Buscara las distintas palabras dominicanas de cualquier oracion que se digite")
-    public ResponseEntity<List<Word>> findAllIndividualPropertiesByName(@RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
+    public ResponseEntity<List<Word>> getAllIndividualPropertiesByName(@RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
 
         List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
 
@@ -48,9 +47,9 @@ public class WordRestController {
     }
 
 
-    @GetMapping("/search-rae")
+    @GetMapping("/search-rae/{wordToSearch}")
     @Operation(summary = "Search For Any Word In The RAE Endpoint", description = "Retorna la definición de una palabra con respecto al diccionario de la RAE")
-    public ResponseEntity<List<DRAEObject>> searchWordDRAEAPI(@RequestParam String wordToSearch) {
+    public ResponseEntity<List<DRAEObject>> getTheWordDataFromDRAE(@PathVariable String wordToSearch) {
 
         List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
 
@@ -68,16 +67,16 @@ public class WordRestController {
 
     @GetMapping("/words/{lemma}")
     @Operation(summary = "Get A Word By Lemma", description = "Retornara el individual del lema indicado")
-    public ResponseEntity<Word> findIndividualByName(@PathVariable String lemma) {
+    public ResponseEntity<Word> getWordByLemma(@PathVariable String lemma) {
 
         return new ResponseEntity<>(wordService.getWordByLemma(lemma), HttpStatus.OK);
     }
 
 
-    @GetMapping("/words/{fatherClass}")
+    @GetMapping("/words/father/{fatherClassName}")
     @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las individuales de la clase indicada")
-    public ResponseEntity<List<Word>> getAllIndividualsByClasses(@PathVariable String fatherClass) {
+    public ResponseEntity<List<Word>> getAllWordsByFatherClassName(@PathVariable String fatherClassName) {
 
-        return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClass), HttpStatus.OK);
+        return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);
     }
 }
