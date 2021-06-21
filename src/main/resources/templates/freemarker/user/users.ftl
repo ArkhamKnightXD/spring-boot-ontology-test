@@ -135,9 +135,9 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <form action="/users/">
-            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">
-        </form>
+<#--        <form action="/users/">-->
+<#--            <input class="form-control form-control-dark w-100" type="text" name="sentence" placeholder="Buscar..." aria-label="Search">-->
+<#--        </form>-->
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="text-center">

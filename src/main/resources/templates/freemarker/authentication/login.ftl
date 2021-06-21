@@ -56,14 +56,24 @@
 					</div>
 
 					<div class="text-center p-t-12">
-						<a class="txt2" href="#">
-							Desea solo proponer palabras?
+						<a class="txt2" href="/surveys/simple-survey-creation">
+							Desea proponer palabras nuevas?
 						</a>
 					</div>
 
-					<div class="container-login100-form-btn">
-						<a class="login100-form-btn" href="/surveys/simple-survey-creation" role="button"> Proponer palabra</a>
+					<div class="text-center p-t-12">
+						<a class="txt2" href="/dashboard/">
+							Desea solo buscar palabras?
+						</a>
 					</div>
+
+<#--					<div class="container-login100-form-btn">-->
+<#--						<a class="login100-form-btn" href="/surveys/simple-survey-creation" role="button"> Proponer palabras</a>-->
+<#--					</div>-->
+
+<#--					<div class="container-login100-form-btn">-->
+<#--						<a class="login100-form-btn" href="/dashboard/" role="button"> Buscar palabras</a>-->
+<#--					</div>-->
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="/register">

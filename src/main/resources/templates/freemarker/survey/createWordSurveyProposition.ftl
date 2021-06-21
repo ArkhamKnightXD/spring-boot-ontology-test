@@ -63,6 +63,13 @@
                         <div>
                             <a class="btn-cancel btn--radius-2 btn--black" href="/" role="button"> Cancelar</a>
                         </div>
+
+                        <div class="text-center p-t-12">
+                            <a class="txt2" href="/surveys/simple/">
+                                Desea votar por palabras ya existentes?
+                            </a>
+                        </div>
+
                     </form>
                 </div>
             </div>
