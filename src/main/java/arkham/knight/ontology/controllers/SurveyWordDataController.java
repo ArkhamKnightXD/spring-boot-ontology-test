@@ -98,9 +98,9 @@ public class SurveyWordDataController {
 
 
     @RequestMapping(value = "/simple-survey-create", method = RequestMethod.POST)
-    public String createSimpleSurvey(@RequestParam String word) {
+    public String createSimpleSurvey(@RequestParam String word, @RequestParam(defaultValue = "N/A") String definition) {
 
-        SimpleWord simpleWordToCreate = new SimpleWord(word);
+        SimpleWord simpleWordToCreate = new SimpleWord(word, definition);
 
         simpleWordService.saveSimpleWord(simpleWordToCreate);
 
@@ -108,8 +108,45 @@ public class SurveyWordDataController {
     }
 
 
+    @RequestMapping(value = "/simple-survey-edition", method = RequestMethod.GET)
+    public String editionSimpleSurveyPage(Model model, @RequestParam long id) {
+
+        SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
+
+        model.addAttribute("word", simpleWordToEdit);
+
+        return "/freemarker/survey/editWordSurveySimpleProposition";
+    }
+
+
+    @RequestMapping(value = "/simple-survey-edit", method = RequestMethod.POST)
+    public String editSimpleSurvey(@RequestParam Long id, @RequestParam(defaultValue = "N/A") String definition) {
+
+        SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
+
+        simpleWordToEdit.setWordDefinition(definition);
+
+        simpleWordService.saveSimpleWord(simpleWordToEdit);
+
+        return "redirect:/surveys/simple/";
+    }
+
+
+    @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
+    public String editSimpleSurvey(@RequestParam Long id) {
+
+        SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
+
+        simpleWordToEdit.setVotesQuantity(simpleWordToEdit.getVotesQuantity() + 1);
+
+        simpleWordService.saveSimpleWord(simpleWordToEdit);
+
+        return "redirect:/surveys/simple/";
+    }
+
+
     @RequestMapping(value = "/simple-survey-complete-creation", method = RequestMethod.GET)
-    public String editionSimpleSurveyPage(Model model) {
+    public String editionSimpleSurveyCompletePage(Model model) {
 
         model.addAttribute("words", simpleWordService.getAllSimpleWord());
 
@@ -118,7 +155,7 @@ public class SurveyWordDataController {
 
 
     @RequestMapping(value = "/simple-survey-complete-create", method = RequestMethod.POST)
-    public String editSimpleSurvey(@RequestParam String word, @RequestParam String wordDefinition) {
+    public String editSimpleSurveyComplete(@RequestParam String word, @RequestParam String wordDefinition) {
 
         SimpleWord simpleWordToCreate = new SimpleWord(word, wordDefinition);
 

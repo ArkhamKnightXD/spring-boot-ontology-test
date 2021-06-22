@@ -123,7 +123,7 @@
                 <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
                 <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>
 <#--                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>-->
-                <li class="active"><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
 
 <#--                <li class="treeview">-->
 <#--                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>-->
@@ -153,8 +153,8 @@
 
                 <strong>Resultados</strong>
             </h1>
-<#--            <a class="btn btn-info" href="/surveys/simple-survey-creation" role="button">Proponer nueva palabra</a>-->
-            <a class="btn btn-primary" href="/surveys/simple-survey-complete-creation" role="button">Votar definición</a>
+            <a class="btn btn-info" href="/surveys/simple-survey-creation" role="button">Proponer nueva palabra</a>
+<#--            <a class="btn btn-primary" href="/surveys/simple-survey-complete-creation" role="button">Votar definición</a>-->
         </section>
 
         <!-- Main content -->
@@ -171,7 +171,8 @@
 
                             <th>Palabra</th>
                             <th>Definicion</th>
-<#--                            <th>Cantidad de votos</th>-->
+                            <th>Cantidad de votos</th>
+                            <th>Opciones</th>
 <#--                            <th>Cantidad de Respuestas</th>-->
 
                             </thead>
@@ -181,11 +182,13 @@
                                 <tr>
                                     <td><b>${word.getWord()}</b></td>
 
-                                    <#if word.getWordDefinition()??>
-                                        <td>${word.getWordDefinition()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
+                                    <td>${word.getWordDefinition()}</td>
+                                    <td>${word.getVotesQuantity()}</td>
+
+                                    <td>
+                                        <a class="btn btn-info" href="/surveys/simple-survey-edition?id=${word.getId()}" role="button">Agregar definición</a>
+                                        <a class="btn btn-primary" href="/surveys/simple-survey-vote?id=${word.getId()}" role="button">Votar</a>
+                                    </td>
 
 <#--                                    <#if word.getVotesQuantity()??>-->
 <#--                                        <td>${word.getVotesQuantity()}</td>-->

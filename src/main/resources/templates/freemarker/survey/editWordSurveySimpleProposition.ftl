@@ -42,34 +42,25 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Sugerir nueva palabra</h2>
+                    <h2 class="title">${word.getWord()}</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/surveys/simple-survey-create">
+                    <form method="post" action="/surveys/simple-survey-edit?id=${word.getId()}">
 
-                        <div class="form-row">
-                            <div class="name">Palabra</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="word" required>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="name">Desea agregar definición?</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="checkbox" name="definitionButton" id="definitionButton" onclick="openDefinitionInput()">
-                                </div>
-                            </div>
-                        </div>
+<#--                        <div class="form-row">-->
+<#--                            <div class="name">Palabra</div>-->
+<#--                            <div class="value">-->
+<#--                                <div class="input-group">-->
+<#--                                    <input class="input--style-5" type="text" name="word" readonly value=${word.getWord()} required>-->
+<#--                                </div>-->
+<#--                            </div>-->
+<#--                        </div>-->
 
                         <div class="form-row">
                             <div class="name">Definición</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="definition" id="definition">
+                                    <input class="input--style-5" type="text" name="definition" value=${word.getWordDefinition()} required>
                                 </div>
                             </div>
                         </div>
@@ -79,15 +70,8 @@
                         </div>
 
                         <div>
-                            <a class="btn-cancel btn--radius-2 btn--black" href="/" role="button"> Cancelar</a>
+                            <a class="btn-cancel btn--radius-2 btn--black" href="/surveys/simple/" role="button"> Cancelar</a>
                         </div>
-
-                        <div class="text-center p-t-12">
-                            <a class="txt2" href="/surveys/simple/">
-                                Desea votar por palabras ya existentes?
-                            </a>
-                        </div>
-
                     </form>
                 </div>
             </div>
@@ -103,21 +87,6 @@
 
     <!-- Main JS-->
     <script src="../../forms/js/global.js"></script>
-
-    <script>
-
-        let definition = document.querySelector("#definition");
-        definition.style.visibility = "collapse";
-
-        function openDefinitionInput() {
-            if (definition.style.visibility === "collapse") {
-                document.querySelector("#definition").style.visibility = "visible";
-            } else {
-                document.querySelector("#definition").style.visibility = "collapse";
-            }
-        }
-
-    </script>
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 

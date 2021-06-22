@@ -22,6 +22,12 @@ public class SimpleWordService {
     }
 
 
+    public SimpleWord getSimpleWordById(long id) {
+
+        return simpleWordRepository.findById(id);
+    }
+
+
     public List<SimpleWord> getAllSimpleWord(){
 
         return simpleWordRepository.findAll();

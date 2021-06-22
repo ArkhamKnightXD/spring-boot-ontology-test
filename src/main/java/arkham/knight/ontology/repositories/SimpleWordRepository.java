@@ -8,6 +8,8 @@ import java.util.List;
 @Repository
 public interface SimpleWordRepository extends JpaRepository<SimpleWord, Long> {
 
+    SimpleWord findById(long id);
+
     List<SimpleWord> findAllByWord(String word);
 
     List<SimpleWord> findAllByWordDefinition(String wordDefinition);
