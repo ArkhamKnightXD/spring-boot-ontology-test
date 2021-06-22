@@ -68,7 +68,7 @@ public class SimpleWordService {
 
         for (SimpleWord wordToEvaluate: simpleList) {
 
-            int actualVotesByWord = simpleWordRepository.findAllByWordDefinition(wordToEvaluate.getWordDefinition()).size();
+            int actualVotesByWord = wordToEvaluate.getVotesQuantity();
 
             if (actualVotesByWord > votesQuantity){
 
@@ -92,7 +92,7 @@ public class SimpleWordService {
         wordToSaveInOntology.setDefinicion(winnerWord.getWordDefinition());
         wordToSaveInOntology.setTotalRespuestasN(String.valueOf(winnerWord.getTotalAnswers()));
         wordToSaveInOntology.setCantidadVotacionesI(String.valueOf(winnerWord.getVotesQuantity()));
-        wordToSaveInOntology.setClasePadre("n/a");
+        wordToSaveInOntology.setClasePadre("Temporal");
         wordToSaveInOntology.setEjemplo("n/a");
         wordToSaveInOntology.setLemaRAE("n/a");
         wordToSaveInOntology.setSinonimos("n/a");

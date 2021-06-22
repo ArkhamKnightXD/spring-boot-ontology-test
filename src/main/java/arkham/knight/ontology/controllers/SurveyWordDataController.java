@@ -141,6 +141,15 @@ public class SurveyWordDataController {
 
         simpleWordService.saveSimpleWord(simpleWordToEdit);
 
+        SimpleWord simpleWordWinner = simpleWordService.determineSimpleWordWinner(simpleWordToEdit.getWord());
+
+        Word wordToSaveInOntology = simpleWordService.convertSimpleWordToWord(simpleWordWinner);
+
+        int totalAnswers = simpleWordWinner.getTotalAnswers();
+
+        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInOntology) > 40)
+            ontologyService.saveIndividual(simpleWordWinner.getWord(), wordToSaveInOntology);
+
         return "redirect:/surveys/simple/";
     }
 
@@ -161,14 +170,14 @@ public class SurveyWordDataController {
 
         simpleWordService.saveSimpleWord(simpleWordToCreate);
 
-        SimpleWord simpleWordWinner = simpleWordService.determineSimpleWordWinner(word);
-
-        Word wordToSaveInOntology = simpleWordService.convertSimpleWordToWord(simpleWordWinner);
-
-        int totalAnswers = simpleWordWinner.getTotalAnswers();
-
-        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInOntology) > 40)
-            ontologyService.saveIndividual(simpleWordWinner.getWord(), wordToSaveInOntology);
+//        SimpleWord simpleWordWinner = simpleWordService.determineSimpleWordWinner(word);
+//
+//        Word wordToSaveInOntology = simpleWordService.convertSimpleWordToWord(simpleWordWinner);
+//
+//        int totalAnswers = simpleWordWinner.getTotalAnswers();
+//
+//        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInOntology) > 40)
+//            ontologyService.saveIndividual(simpleWordWinner.getWord(), wordToSaveInOntology);
 
         return "redirect:/surveys/simple/";
     }
