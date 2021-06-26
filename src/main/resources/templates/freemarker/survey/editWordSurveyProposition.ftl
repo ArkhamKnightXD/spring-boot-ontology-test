@@ -42,31 +42,25 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Votación</h2>
+                    <h2 class="title">${word.getWord()}</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/surveys/simple-survey-complete-create">
+                    <form method="post" action="/surveys/simple-survey-edit?id=${word.getId()}">
 
-                        <div class="form-row">
-                            <div class="name">Palabra a votar</div>
-
-                            <div class="value">
-                                <label for="word">
-                                    <select class="form-select" name="word" required>
-                                        <#list words as word>
-                                            <option class="input--style-5" value="${word.getWord()}">${word.getWord()}</option>
-                                        </#list>
-                                    </select>
-                                </label>
-                            </div>
-
-                        </div>
+<#--                        <div class="form-row">-->
+<#--                            <div class="name">Palabra</div>-->
+<#--                            <div class="value">-->
+<#--                                <div class="input-group">-->
+<#--                                    <input class="input--style-5" type="text" name="word" readonly value=${word.getWord()} required>-->
+<#--                                </div>-->
+<#--                            </div>-->
+<#--                        </div>-->
 
                         <div class="form-row">
                             <div class="name">Definición</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="wordDefinition" required>
+                                    <input class="input--style-5" type="text" name="definition" value=${word.getWordDefinition()} required>
                                 </div>
                             </div>
                         </div>

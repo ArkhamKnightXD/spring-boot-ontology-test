@@ -22,17 +22,17 @@ public class OntologyConnectionService {
 
     public final String ontologyURI = getOntology().getURI().concat("#");
 
-    public Property definitionProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("definicion"));
+    public Property definitionProperty = getPropertyByName("definicion");
 
-    public Property exampleProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("ejemplo"));
+    public Property exampleProperty = getPropertyByName("ejemplo");
 
-    public Property lemmaRAEProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("lema_rae"));
+    public Property lemmaRAEProperty = getPropertyByName("lema_rae");
 
-    public Property synonymsProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("sinonimos"));
+    public Property synonymsProperty = getPropertyByName("sinonimos");
 
-    public Property totalAnswersProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("total_respuestas_N"));
+    public Property totalAnswersProperty = getPropertyByName(("total_respuestas_N"));
 
-    public Property votesQuantityProperty = readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat("cantidad_votaciones_I"));
+    public Property votesQuantityProperty = getPropertyByName(("cantidad_votaciones_I"));
 
     private static OntologyConnectionService instance;
 
@@ -114,6 +114,12 @@ public class OntologyConnectionService {
             model.read(getOntologyURLInputStream(), null);
 
         return model;
+    }
+
+
+    public Property getPropertyByName(String propertyName){
+
+        return readOntologyFileAndReturnTheJenaModel().getProperty(ontologyURI.concat(propertyName));
     }
 
 

@@ -40,23 +40,6 @@ public class SimpleWordService {
     }
 
 
-    public void calculateVotesQuantityByWord(SimpleWord word){
-
-        int totalVotes;
-
-        List<SimpleWord> simpleWords = simpleWordRepository.findAllByWord(word.getWord());
-
-        for (SimpleWord wordToEvaluate : simpleWords) {
-
-             totalVotes = simpleWordRepository.findAllByWordDefinition(wordToEvaluate.getWordDefinition()).size();
-
-             wordToEvaluate.setVotesQuantity(totalVotes);
-
-             simpleWordRepository.save(wordToEvaluate);
-        }
-    }
-
-
     public SimpleWord determineSimpleWordWinner(String word){
 
         SimpleWord winnerWord = new SimpleWord();
