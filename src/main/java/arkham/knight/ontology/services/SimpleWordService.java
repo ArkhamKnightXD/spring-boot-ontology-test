@@ -1,6 +1,7 @@
 package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.SimpleWord;
+import arkham.knight.ontology.models.SurveyWordData;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.repositories.SimpleWordRepository;
 import org.springframework.stereotype.Service;
@@ -67,19 +68,19 @@ public class SimpleWordService {
     }
 
 
-    public Word convertSimpleWordToWord(SimpleWord winnerWord) {
+    public SurveyWordData convertSimpleWordToSurveyWord(SimpleWord winnerWord) {
 
-        Word wordToSaveInOntology = new Word();
+        SurveyWordData surveyWord = new SurveyWordData();
 
-        wordToSaveInOntology.setLema(winnerWord.getWord());
-        wordToSaveInOntology.setDefinicion(winnerWord.getWordDefinition());
-        wordToSaveInOntology.setTotalRespuestasN(String.valueOf(winnerWord.getTotalAnswers()));
-        wordToSaveInOntology.setCantidadVotacionesI(String.valueOf(winnerWord.getVotesQuantity()));
-        wordToSaveInOntology.setClasePadre("Temporal");
-        wordToSaveInOntology.setEjemplo("n/a");
-        wordToSaveInOntology.setLemaRAE("n/a");
-        wordToSaveInOntology.setSinonimos("n/a");
+        surveyWord.setLemma(winnerWord.getWord());
+        surveyWord.setOriginalDefinition(winnerWord.getWordDefinition());
+        surveyWord.setTotalAnswers(winnerWord.getTotalAnswers());
+        surveyWord.setVotesQuantity(winnerWord.getVotesQuantity());
+        surveyWord.setFatherClass("Temporal");
+        surveyWord.setExample("n/a");
+        surveyWord.setLemmaRAE("n/a");
+        surveyWord.setSynonyms("n/a");
 
-        return wordToSaveInOntology;
+        return surveyWord;
     }
 }

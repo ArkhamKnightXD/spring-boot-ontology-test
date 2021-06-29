@@ -108,6 +108,20 @@ public class WordService {
     }
 
 
+    public float calculateSurveyWordPercentageAgreement(SurveyWordData wordToEvaluate){
+
+//        if (wordToEvaluate.getVotesQuantity() > 0){
+
+            int votesQuantity = wordToEvaluate.getVotesQuantity();
+            int totalAnswers = wordToEvaluate.getTotalAnswers();
+
+            return (float) votesQuantity/totalAnswers * 100;
+//        }
+
+//        return 0;
+    }
+
+
     public float calculateWordPercentageAgreementOfPresenceOrAbsents(Word wordToEvaluate, boolean percentageType){
 
         if (wordToEvaluate.getCantidadVotacionesI() != null){

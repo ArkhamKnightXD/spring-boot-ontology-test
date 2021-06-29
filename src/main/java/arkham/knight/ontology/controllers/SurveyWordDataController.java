@@ -143,12 +143,12 @@ public class SurveyWordDataController {
 
         SimpleWord simpleWordWinner = simpleWordService.determineSimpleWordWinner(simpleWordToEdit.getWord());
 
-        Word wordToSaveInOntology = simpleWordService.convertSimpleWordToWord(simpleWordWinner);
+        SurveyWordData surveyWordWinner = simpleWordService.convertSimpleWordToSurveyWord(simpleWordWinner);
 
         int totalAnswers = simpleWordWinner.getTotalAnswers();
 
-        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInOntology) > 40)
-            ontologyService.saveIndividual(simpleWordWinner.getWord(), wordToSaveInOntology);
+        if (totalAnswers > 2 && wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner) > 40)
+            surveyWordDataService.saveSurvey(surveyWordWinner);
 
         return "redirect:/surveys/simple/";
     }
