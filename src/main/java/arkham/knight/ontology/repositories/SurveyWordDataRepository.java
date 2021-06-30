@@ -8,6 +8,8 @@ import java.util.List;
 @Repository
 public interface SurveyWordDataRepository extends JpaRepository<SurveyWordData, Long> {
 
+    SurveyWordData findByLemma(String lemma);
+
     List<SurveyWordData> findAllByLemma(String lemma);
 
     List<SurveyWordData> findAllByLemmaRAE(String lemmaRae);

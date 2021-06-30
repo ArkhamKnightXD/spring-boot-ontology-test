@@ -21,6 +21,17 @@ public class SurveyWordDataService {
     }
 
 
+    public boolean surveyWordAlreadyExist(String lemma){
+
+        SurveyWordData surveyWordData = surveyWordDataRepository.findByLemma(lemma);
+
+        if (surveyWordData != null)
+            return true;
+
+        return false;
+    }
+
+
     public List<SurveyWordData> getAllSurveys(){
 
         return surveyWordDataRepository.findAll();

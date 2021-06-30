@@ -145,9 +145,9 @@ public class SurveyWordDataController {
 
         SurveyWordData surveyWordWinner = simpleWordService.convertSimpleWordToSurveyWord(simpleWordWinner);
 
-        int totalAnswers = simpleWordWinner.getTotalAnswers();
+        boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
 
-        if (totalAnswers > 2 && wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner) > 40)
+        if (!wordExist && wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner) > 40)
             surveyWordDataService.saveSurvey(surveyWordWinner);
 
         return "redirect:/surveys/simple/";
