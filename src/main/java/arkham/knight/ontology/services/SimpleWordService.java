@@ -2,7 +2,6 @@ package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.SimpleWord;
 import arkham.knight.ontology.models.SurveyWordData;
-import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.repositories.SimpleWordRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -79,6 +78,7 @@ public class SimpleWordService {
         surveyWord.setFatherClass("Temporal");
         surveyWord.setExample("n/a");
         surveyWord.setLemmaRAE("n/a");
+        surveyWord.setDefinitionRAE("n/a");
         surveyWord.setSynonyms("n/a");
 
         return surveyWord;

@@ -1,5 +1,7 @@
 package arkham.knight.ontology;
 
+import arkham.knight.ontology.models.SimpleWord;
+import arkham.knight.ontology.services.SimpleWordService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
@@ -31,8 +33,10 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup() {
+    public CommandLineRunner startup(SimpleWordService simpleWordService) {
         return args -> {
+
+            simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Comida"));
 
 //            openIndexPage(true);
 

@@ -90,7 +90,7 @@ public class WordService {
         String totalAnswers = String.valueOf(surveyWordData.getTotalAnswers());
         String votesQuantity = String.valueOf(surveyWordData.getVotesQuantity());
 
-        return new Word(surveyWordData.getLemma(), surveyWordData.getOriginalDefinition(),"",surveyWordData.getFatherClass(), surveyWordData.getSynonyms(),surveyWordData.getLemmaRAE(), totalAnswers, votesQuantity);
+        return new Word(surveyWordData.getLemma(), surveyWordData.getOriginalDefinition(),surveyWordData.getExample(),surveyWordData.getFatherClass(), surveyWordData.getSynonyms(),surveyWordData.getLemmaRAE(), totalAnswers, votesQuantity);
     }
 
 
@@ -101,7 +101,12 @@ public class WordService {
             int votesQuantity = Integer.parseInt(wordToEvaluate.getCantidadVotacionesI());
             int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
             //formula = I/N *100 el cast a float es necesario sino me da 0 siempre
-            return (float) votesQuantity/totalAnswers * 100;
+
+            if (totalAnswers != 1)
+                return (float) votesQuantity/totalAnswers * 100;
+
+            //si las respuesta totales es 1 el resultado me dara mas de 100% en todos los casos
+            return (float) (1) /totalAnswers * 100;
         }
 
         return 0;
@@ -110,15 +115,10 @@ public class WordService {
 
     public float calculateSurveyWordPercentageAgreement(SurveyWordData wordToEvaluate){
 
-//        if (wordToEvaluate.getVotesQuantity() > 0){
+        int votesQuantity = wordToEvaluate.getVotesQuantity();
+        int totalAnswers = wordToEvaluate.getTotalAnswers();
 
-            int votesQuantity = wordToEvaluate.getVotesQuantity();
-            int totalAnswers = wordToEvaluate.getTotalAnswers();
-
-            return (float) votesQuantity/totalAnswers * 100;
-//        }
-
-//        return 0;
+        return (float) votesQuantity/totalAnswers * 100;
     }
 
 

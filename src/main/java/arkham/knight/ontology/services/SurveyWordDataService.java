@@ -15,7 +15,7 @@ public class SurveyWordDataService {
     }
 
 
-    public void saveSurvey(SurveyWordData surveyWordDataToSave){
+    public void saveSurveyWord(SurveyWordData surveyWordDataToSave){
 
         surveyWordDataRepository.save(surveyWordDataToSave);
     }
@@ -32,27 +32,50 @@ public class SurveyWordDataService {
     }
 
 
+    //TODO esta seria lo forma ideal de evaluar las palabras que pasaran a la ontologia, pero falla
+    public boolean surveyWordAlreadyExistComplex(SurveyWordData surveyWordData){
+
+        int counter = 0;
+
+        SurveyWordData surveyWordToEvaluate = surveyWordDataRepository.findSurveyWordDataById(surveyWordData.getId());
+
+        List<SurveyWordData> SurveyWordDataList = surveyWordDataRepository.findAllByLemma(surveyWordData.getLemma());
+
+        for (SurveyWordData surveyWord : SurveyWordDataList) {
+
+            if (surveyWord.getOriginalDefinition().equalsIgnoreCase(surveyWordToEvaluate.getOriginalDefinition()))
+                counter++;
+        }
+
+        if (counter > 0)
+            return true;
+
+        return false;
+    }
+
+
     public List<SurveyWordData> getAllSurveys(){
 
         return surveyWordDataRepository.findAll();
     }
 
 
-    public SurveyWordData determineSurveysDataByLemmaAndReturnSurveyWord(String lemma){
+    public SurveyWordData determineSurveyWordWinner(String lemma){
 
         SurveyWordData winnerSurveyWordData = new SurveyWordData();
 
         int votesQuantity = 0;
 
-        List<SurveyWordData> surveyWordDataList = surveyWordDataRepository.findAllByLemma(lemma);
+        List<SurveyWordData> surveyWordDataList = surveyWordDataRepository.findAll();
 
-        int totalAnswers = surveyWordDataList.size();
+        int totalAnswers = surveyWordDataRepository.findAllByLemma(lemma).size();
 
         for (SurveyWordData wordToEvaluate: surveyWordDataList) {
 
-            int actualVotesByLemmaRAE = surveyWordDataRepository.findAllByLemmaRAE(wordToEvaluate.getLemmaRAE()).size();
+            int actualVotesByLemmaRAE = wordToEvaluate.getVotesQuantity();
 
             if (actualVotesByLemmaRAE > votesQuantity){
+
                 votesQuantity = actualVotesByLemmaRAE;
                 winnerSurveyWordData = wordToEvaluate;
             }
@@ -86,5 +109,10 @@ public class SurveyWordDataService {
     public void deleteAllSurveys(){
 
         surveyWordDataRepository.deleteAll();
+    }
+
+    public SurveyWordData getSurveyWordById(long id) {
+
+        return surveyWordDataRepository.findSurveyWordDataById(id);
     }
 }

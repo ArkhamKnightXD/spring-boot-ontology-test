@@ -46,18 +46,9 @@ public class SurveyWordDataController {
     public String creationSurveyPage(Model model) {
 
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
-        model.addAttribute("words", wordService.getAllWords());
+        model.addAttribute("words", surveyWordDataService.getAllSurveys());
 
         return "/freemarker/survey/createWordSurveyData";
-    }
-
-
-    @RequestMapping(value = "/survey-complete-creation", method = RequestMethod.GET)
-    public String completeCreationSurveyPage(Model model) {
-
-        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
-
-        return "/freemarker/survey/createCompleteWordSurveyData";
     }
 
 
@@ -66,16 +57,61 @@ public class SurveyWordDataController {
 
         SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
 
-        surveyWordDataService.saveSurvey(surveyWordDataToSave);
+        surveyWordDataService.saveSurveyWord(surveyWordDataToSave);
 
-        SurveyWordData completeSurveyWordData = surveyWordDataService.determineSurveysDataByLemmaAndReturnSurveyWord(individualName);
+        return "redirect:/surveys/";
+    }
 
-        Word wordToSaveInTheOntology = wordService.convertWordSurveyDataToWord(completeSurveyWordData);
 
-        int totalAnswers = Integer.parseInt(wordToSaveInTheOntology.getTotalRespuestasN());
+    @RequestMapping(value = "/survey-edition", method = RequestMethod.GET)
+    public String editionSurveyPage(Model model, @RequestParam long id) {
 
-        if (totalAnswers > 2 && wordService.calculateWordPercentageAgreement(wordToSaveInTheOntology) > 40)
-            ontologyService.saveIndividual(wordToSaveInTheOntology.getLema(), wordToSaveInTheOntology);
+        SurveyWordData surveyWordToEdit = surveyWordDataService.getSurveyWordById(id);
+
+        model.addAttribute("word", surveyWordToEdit);
+        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
+
+        return "/freemarker/survey/editWordSurveyData";
+    }
+
+
+    @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
+    public String editSurvey(@RequestParam Long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "n/a") String synonyms) {
+
+        SurveyWordData surveyWordToEdit = surveyWordDataService.getSurveyWordById(id);
+
+        surveyWordToEdit.setLemmaRAE(individualNameRAE);
+        surveyWordToEdit.setDefinitionRAE(definitionRAE);
+        surveyWordToEdit.setFatherClass(fatherClassName);
+        surveyWordToEdit.setSynonyms(synonyms);
+
+        surveyWordDataService.saveSurveyWord(surveyWordToEdit);
+
+        return "redirect:/surveys/";
+    }
+
+
+    @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
+    public String voteSurvey(@RequestParam Long id) {
+
+        SurveyWordData surveyWordToVote = surveyWordDataService.getSurveyWordById(id);
+
+        surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
+
+        surveyWordDataService.saveSurveyWord(surveyWordToVote);
+
+        SurveyWordData surveyWordWinner = surveyWordDataService.determineSurveyWordWinner(surveyWordToVote.getLemma());
+
+        Word wordWinner = wordService.convertWordSurveyDataToWord(surveyWordWinner);
+
+//        boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(wordWinner.getLemma());
+
+        int votesQuantity = Integer.parseInt(wordWinner.getCantidadVotacionesI());
+
+        float percentageAgreement = wordService.calculateWordPercentageAgreement(wordWinner);
+
+        if (percentageAgreement > 40 && votesQuantity > 2)
+            ontologyService.saveIndividual(wordWinner.getLema(), wordWinner);
 
         return "redirect:/surveys/";
     }
@@ -133,7 +169,7 @@ public class SurveyWordDataController {
 
 
     @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
-    public String editSimpleSurvey(@RequestParam Long id) {
+    public String voteSimpleSurvey(@RequestParam Long id) {
 
         SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
 
@@ -147,8 +183,15 @@ public class SurveyWordDataController {
 
         boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
 
-        if (!wordExist && wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner) > 40)
-            surveyWordDataService.saveSurvey(surveyWordWinner);
+        float percentageAgreement = wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner);
+
+        if (!wordExist && percentageAgreement > 40 && surveyWordWinner.getVotesQuantity() > 2){
+
+            surveyWordWinner.setVotesQuantity(0);
+            surveyWordWinner.setTotalAnswers(0);
+
+            surveyWordDataService.saveSurveyWord(surveyWordWinner);
+        }
 
         return "redirect:/surveys/simple/";
     }

@@ -153,7 +153,7 @@
 
                 <strong>Resultados</strong>
             </h1>
-            <a class="btn btn-info" href="/surveys/simple-survey-creation" role="button">Proponer nueva palabra</a>
+            <a class="btn btn-primary" href="/surveys/simple-survey-creation" role="button">Proponer nueva palabra</a>
 <#--            <a class="btn btn-primary" href="/surveys/simple-survey-complete-creation" role="button">Votar definición</a>-->
         </section>
 

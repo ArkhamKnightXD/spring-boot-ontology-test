@@ -10,6 +10,8 @@ public interface SurveyWordDataRepository extends JpaRepository<SurveyWordData, 
 
     SurveyWordData findByLemma(String lemma);
 
+    SurveyWordData findSurveyWordDataById(long id);
+
     List<SurveyWordData> findAllByLemma(String lemma);
 
     List<SurveyWordData> findAllByLemmaRAE(String lemmaRae);

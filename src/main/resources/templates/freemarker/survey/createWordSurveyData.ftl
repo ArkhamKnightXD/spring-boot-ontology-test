@@ -54,7 +54,7 @@
                                 <label for="individualName">
                                     <select class="form-select" name="individualName" id="individualName" required onchange="definitionFilter()">
                                         <#list words as word>
-                                            <option class="" value="${word.getLema()}">${word.getLema()}</option>
+                                            <option class="" value="${word.getLemma()}">${word.getLemma()}</option>
                                         </#list>
                                     </select>
                                 </label>
@@ -162,10 +162,11 @@
 
             <#list words as word>
 
-            var wordLemma = "${word.getLema()}";
+            var wordLemma = "${word.getLemma()}";
 
             if (lemmaSelected === wordLemma) {
-                definitions.push({ id: "${word.getDefinicion()}", definition: "${word.getDefinicion()}" });
+
+                definitions.push({ id: "${word.getOriginalDefinition()}", definition: "${word.getOriginalDefinition()}" });
             }
 
             </#list>

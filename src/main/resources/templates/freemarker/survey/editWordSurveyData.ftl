@@ -42,24 +42,16 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Sugerir nueva palabra</h2>
+                    <h2 class="title">${word.getLemma()}</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" action="/surveys/survey-create">
-                        <div class="form-row">
-                            <div class="name">Lema</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="individualName" required>
-                                </div>
-                            </div>
-                        </div>
+                    <form method="post" action="/surveys/survey-edit?id=${word.getId()}">
 
                         <div class="form-row">
                             <div class="name">Definición</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="definition" required>
+                                    <input class="input--style-5" type="text" value="${word.getOriginalDefinition()}" name="definition" readonly required>
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="#" />
 
     <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Theme style -->
@@ -153,8 +153,8 @@
 
                 <strong>Resultados</strong>
             </h1>
-            <a class="btn btn-primary" href="/surveys/survey-complete-creation" role="button">Agregar nueva palabra</a>
-            <a class="btn btn-success" href="/surveys/survey-creation" role="button">Agregar nueva definición</a>
+<#--            <a class="btn btn-primary" href="/surveys/survey-complete-creation" role="button">Agregar nueva palabra</a>-->
+<#--            <a class="btn btn-primary" href="/surveys/survey-creation" role="button">Complementar palabras</a>-->
         </section>
 
         <!-- Main content -->
@@ -173,8 +173,10 @@
                             <th>Definición</th>
                             <th>Lema RAE</th>
                             <th>Definición RAE</th>
-                            <th>Sinónimos</th>
-                            <th>Clase</th>
+                            <th>Cantidad votos</th>
+<#--                            <th>Sinónimos</th>-->
+<#--                            <th>Clase</th>-->
+                            <th>Opciones</th>
 <#--                            <th>Ejemplo</th>-->
                             </thead>
 
@@ -191,24 +193,30 @@
                                         <td>N/A</td>
                                     </#if>
 
-
                                     <#if survey.getDefinitionRAE()??>
                                         <td>${survey.getDefinitionRAE()}</td>
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
 
-                                    <#if survey.getSynonyms()??>
-                                        <td>${survey.getSynonyms()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
+<#--                                    <#if survey.getSynonyms()??>-->
+<#--                                        <td>${survey.getSynonyms()}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>N/A</td>-->
+<#--                                    </#if>-->
 
-                                    <#if survey.getFatherClass()??>
-                                        <td>${survey.getFatherClass()}</td>
-                                    <#else>
-                                        <td>N/A</td>
-                                    </#if>
+<#--                                    <#if survey.getFatherClass()??>-->
+<#--                                        <td>${survey.getFatherClass()}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>N/A</td>-->
+<#--                                    </#if>-->
+
+                                    <td>${survey.getVotesQuantity()}</td>
+
+                                    <td>
+                                        <a class="btn btn-info" href="/surveys/survey-edition?id=${survey.getId()}" role="button">Complementar palabra</a>
+                                        <a class="btn btn-primary" href="/surveys/survey-vote?id=${survey.getId()}" role="button">Votar</a>
+                                    </td>
 
 <#--                                    <#if survey.getExample()??>-->
 <#--                                        <td>${survey.getExample()}</td>-->
