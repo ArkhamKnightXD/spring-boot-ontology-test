@@ -1,6 +1,6 @@
 package arkham.knight.ontology.services;
 
-import arkham.knight.ontology.models.SurveyWordData;
+import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Service;
@@ -85,12 +85,12 @@ public class WordService {
     }
 
 
-    public Word convertWordSurveyDataToWord (SurveyWordData surveyWordData){
+    public Word convertWordSurveyDataToWord (SurveyWord surveyWord){
 
-        String totalAnswers = String.valueOf(surveyWordData.getTotalAnswers());
-        String votesQuantity = String.valueOf(surveyWordData.getVotesQuantity());
+        String totalAnswers = String.valueOf(surveyWord.getTotalAnswers());
+        String votesQuantity = String.valueOf(surveyWord.getVotesQuantity());
 
-        return new Word(surveyWordData.getLemma(), surveyWordData.getOriginalDefinition(),surveyWordData.getExample(),surveyWordData.getFatherClass(), surveyWordData.getSynonyms(),surveyWordData.getLemmaRAE(), totalAnswers, votesQuantity);
+        return new Word(surveyWord.getLemma(), surveyWord.getDefinition(), surveyWord.getExample(), surveyWord.getFatherClass(), surveyWord.getSynonyms(), surveyWord.getLemmaRAE(), totalAnswers, votesQuantity);
     }
 
 
@@ -113,7 +113,7 @@ public class WordService {
     }
 
 
-    public float calculateSurveyWordPercentageAgreement(SurveyWordData wordToEvaluate){
+    public float calculateSurveyWordPercentageAgreement(SurveyWord wordToEvaluate){
 
         int votesQuantity = wordToEvaluate.getVotesQuantity();
         int totalAnswers = wordToEvaluate.getTotalAnswers();

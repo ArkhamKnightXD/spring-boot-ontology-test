@@ -1,11 +1,11 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.SimpleWord;
-import arkham.knight.ontology.models.SurveyWordData;
+import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.SimpleWordService;
-import arkham.knight.ontology.services.SurveyWordDataService;
+import arkham.knight.ontology.services.SurveyWordService;
 import arkham.knight.ontology.services.WordService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,20 +15,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/surveys")
 @Controller
-public class SurveyWordDataController {
+public class SurveyWordController {
 
     private final OntologyService ontologyService;
 
     private final WordService wordService;
 
-    private final SurveyWordDataService surveyWordDataService;
+    private final SurveyWordService surveyWordService;
 
     private final SimpleWordService simpleWordService;
 
-    public SurveyWordDataController(OntologyService ontologyService, WordService wordService, SurveyWordDataService surveyWordDataService, SimpleWordService simpleWordService) {
+    public SurveyWordController(OntologyService ontologyService, WordService wordService, SurveyWordService surveyWordService, SimpleWordService simpleWordService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
-        this.surveyWordDataService = surveyWordDataService;
+        this.surveyWordService = surveyWordService;
         this.simpleWordService = simpleWordService;
     }
 
@@ -36,7 +36,7 @@ public class SurveyWordDataController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexPage(Model model) {
 
-        model.addAttribute("surveys", surveyWordDataService.getAllSurveys());
+        model.addAttribute("surveys", surveyWordService.getAllSurveys());
 
         return "/freemarker/survey/surveyIndex";
     }
@@ -46,7 +46,7 @@ public class SurveyWordDataController {
     public String creationSurveyPage(Model model) {
 
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
-        model.addAttribute("words", surveyWordDataService.getAllSurveys());
+        model.addAttribute("words", surveyWordService.getAllSurveys());
 
         return "/freemarker/survey/createWordSurveyData";
     }
@@ -55,9 +55,9 @@ public class SurveyWordDataController {
     @RequestMapping(value = "/survey-create", method = RequestMethod.POST)
     public String createSurvey(@RequestParam String individualName, @RequestParam String definition, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
 
-        SurveyWordData surveyWordDataToSave = new SurveyWordData(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
+        SurveyWord surveyWordToSave = new SurveyWord(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
 
-        surveyWordDataService.saveSurveyWord(surveyWordDataToSave);
+        surveyWordService.saveSurveyWord(surveyWordToSave);
 
         return "redirect:/surveys/";
     }
@@ -66,7 +66,7 @@ public class SurveyWordDataController {
     @RequestMapping(value = "/survey-edition", method = RequestMethod.GET)
     public String editionSurveyPage(Model model, @RequestParam long id) {
 
-        SurveyWordData surveyWordToEdit = surveyWordDataService.getSurveyWordById(id);
+        SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
         model.addAttribute("word", surveyWordToEdit);
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
@@ -78,14 +78,14 @@ public class SurveyWordDataController {
     @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
     public String editSurvey(@RequestParam Long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "n/a") String synonyms) {
 
-        SurveyWordData surveyWordToEdit = surveyWordDataService.getSurveyWordById(id);
+        SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
         surveyWordToEdit.setLemmaRAE(individualNameRAE);
         surveyWordToEdit.setDefinitionRAE(definitionRAE);
         surveyWordToEdit.setFatherClass(fatherClassName);
         surveyWordToEdit.setSynonyms(synonyms);
 
-        surveyWordDataService.saveSurveyWord(surveyWordToEdit);
+        surveyWordService.saveSurveyWord(surveyWordToEdit);
 
         return "redirect:/surveys/";
     }
@@ -94,13 +94,13 @@ public class SurveyWordDataController {
     @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
     public String voteSurvey(@RequestParam Long id) {
 
-        SurveyWordData surveyWordToVote = surveyWordDataService.getSurveyWordById(id);
+        SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
         surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
 
-        surveyWordDataService.saveSurveyWord(surveyWordToVote);
+        surveyWordService.saveSurveyWord(surveyWordToVote);
 
-        SurveyWordData surveyWordWinner = surveyWordDataService.determineSurveyWordWinner(surveyWordToVote.getLemma());
+        SurveyWord surveyWordWinner = surveyWordService.determineSurveyWordWinner(surveyWordToVote.getLemma());
 
         Word wordWinner = wordService.convertWordSurveyDataToWord(surveyWordWinner);
 
@@ -179,9 +179,9 @@ public class SurveyWordDataController {
 
         SimpleWord simpleWordWinner = simpleWordService.determineSimpleWordWinner(simpleWordToEdit.getWord());
 
-        SurveyWordData surveyWordWinner = simpleWordService.convertSimpleWordToSurveyWord(simpleWordWinner);
+        SurveyWord surveyWordWinner = simpleWordService.convertSimpleWordToSurveyWord(simpleWordWinner);
 
-        boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
+        boolean wordExist = surveyWordService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
 
         float percentageAgreement = wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner);
 
@@ -190,7 +190,7 @@ public class SurveyWordDataController {
             surveyWordWinner.setVotesQuantity(0);
             surveyWordWinner.setTotalAnswers(0);
 
-            surveyWordDataService.saveSurveyWord(surveyWordWinner);
+            surveyWordService.saveSurveyWord(surveyWordWinner);
         }
 
         return "redirect:/surveys/simple/";

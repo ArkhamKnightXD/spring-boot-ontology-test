@@ -185,7 +185,7 @@
                                 <tr>
                                     <td><b>${survey.getLemma()}</b></td>
 
-                                    <td>${survey.getOriginalDefinition()}</td>
+                                    <td>${survey.getDefinition()}</td>
 
                                     <#if survey.getLemmaRAE()??>
                                         <td>${survey.getLemmaRAE()}</td>
@@ -211,6 +211,12 @@
 <#--                                        <td>N/A</td>-->
 <#--                                    </#if>-->
 
+<#--                                    <#if survey.getExample()??>-->
+<#--                                        <td>${survey.getExample()}</td>-->
+<#--                                    <#else>-->
+<#--                                        <td>N/A</td>-->
+<#--                                    </#if>-->
+
                                     <td>${survey.getVotesQuantity()}</td>
 
                                     <td>
@@ -218,11 +224,7 @@
                                         <a class="btn btn-primary" href="/surveys/survey-vote?id=${survey.getId()}" role="button">Votar</a>
                                     </td>
 
-<#--                                    <#if survey.getExample()??>-->
-<#--                                        <td>${survey.getExample()}</td>-->
-<#--                                    <#else>-->
-<#--                                        <td>N/A</td>-->
-<#--                                    </#if>-->
+
 
                                 </tr>
                             </#list>

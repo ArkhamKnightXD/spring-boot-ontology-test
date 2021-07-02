@@ -50,7 +50,7 @@ public class OntologyRestController {
 
 
     @PostMapping("/classes/{className}")
-    @Operation(summary = "Create Class", description = "Creacion de una clase")
+    @Operation(summary = "Create Father Class", description = "Creacion de una clase padre")
     public ResponseEntity<String> createClass(@PathVariable String className) {
 
         Word defaultTestWord = new Word("prueba","definition","example", className,"individualNameRae", "synonims", "0", "0");
@@ -62,7 +62,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/individuals")
-    @Operation(summary = "Get All Individuals", description = "Retorna una lista con todas las individuales")
+    @Operation(summary = "Get All Individuals", description = "Retorna una lista con todas las individuales contenidas en la ontología")
     public ResponseEntity<List<HashMap<String, String>>> getAllIndividuals() {
 
         List<HashMap<String, String>> individualList = new ArrayList<>();
@@ -123,7 +123,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/classes")
-    @Operation(summary = "Get All Classes", description = "Retorna una lista con todas las clases")
+    @Operation(summary = "Get All Classes", description = "Retorna una lista con todas las clases contenidas en la ontología")
     public ResponseEntity<List<HashMap<String, String>>> getAllClasses() {
 
         List<HashMap<String, String>> classList = new ArrayList<>();
@@ -145,7 +145,7 @@ public class OntologyRestController {
 
 
     @GetMapping("/datatype-properties")
-    @Operation(summary = "Get All Datatype Properties", description = "Retorna una lista con todas las propiedades")
+    @Operation(summary = "Get All Datatype Properties", description = "Retorna una lista con todas las propiedades de datos contenidas en la ontología")
     public ResponseEntity<List<HashMap<String, String>>> getAllDatatypeProperties() {
 
         List<HashMap<String, String>> propertyList = new ArrayList<>();
@@ -168,8 +168,8 @@ public class OntologyRestController {
 
 
     @GetMapping("/ontology")
-    @Operation(summary = "Get Ontology Data", description = "Retorna datos de la ontologia")
-    public ResponseEntity<HashMap<String, String>> getOntology() {
+    @Operation(summary = "Get Ontology Data", description = "Retorna varios datos de la ontología")
+    public ResponseEntity<HashMap<String, String>> getOntologyData() {
 
         HashMap<String, String> ontologyData = new HashMap<>();
 

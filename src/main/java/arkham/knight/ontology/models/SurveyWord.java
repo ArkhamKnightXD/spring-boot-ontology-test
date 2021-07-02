@@ -7,14 +7,14 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity
-public class SurveyWordData implements Serializable {
+public class SurveyWord implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String lemma;
-    private String originalDefinition;
+    private String definition;
     private String example;
     private String fatherClass;
     private String synonyms;
@@ -24,16 +24,12 @@ public class SurveyWordData implements Serializable {
     private int votesQuantity;
 
 
-    public SurveyWordData() {
+    public SurveyWord() {
     }
 
-    public SurveyWordData(String lemma) {
+    public SurveyWord(String lemma, String definition, String example, String fatherClass, String synonyms, String lemmaRAE, String definitionRAE) {
         this.lemma = lemma;
-    }
-
-    public SurveyWordData(String lemma, String originalDefinition, String example, String fatherClass, String synonyms, String lemmaRAE, String definitionRAE) {
-        this.lemma = lemma;
-        this.originalDefinition = originalDefinition;
+        this.definition = definition;
         this.example = example;
         this.fatherClass = fatherClass;
         this.synonyms = synonyms;
@@ -50,9 +46,9 @@ public class SurveyWordData implements Serializable {
 
     public void setLemma(String lemma) { this.lemma = lemma; }
 
-    public String getOriginalDefinition() { return originalDefinition; }
+    public String getDefinition() { return definition; }
 
-    public void setOriginalDefinition(String originalDefinition) { this.originalDefinition = originalDefinition; }
+    public void setDefinition(String definition) { this.definition = definition; }
 
     public String getExample() { return example; }
 

@@ -240,39 +240,30 @@ public class OntologyService {
 
         for (Individual individual: individualList) {
 
+            RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
+            RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
+            RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
+            RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
+            RDFNode totalAnswersPropertyValue = individual.getPropertyValue(ontologyConnectionService.totalAnswersProperty);
+            RDFNode votesQuantityPropertyValue = individual.getPropertyValue(ontologyConnectionService.votesQuantityProperty);
+
             Word wordToSave = new Word();
 
             wordToSave.setLema(individual.getLocalName());
+            wordToSave.setDefinicion(definitionPropertyValue.toString());
+            wordToSave.setClasePadre(individual.getOntClass().getLocalName());
 
-            if (individual.getOntClass() != null)
-                wordToSave.setClasePadre(individual.getOntClass().getLocalName());
-
-            RDFNode definitionPropertyValue = individual.getPropertyValue(ontologyConnectionService.definitionProperty);
-
-            if (definitionPropertyValue!= null)
-                wordToSave.setDefinicion(definitionPropertyValue.toString());
-
-            RDFNode examplePropertyValue = individual.getPropertyValue(ontologyConnectionService.exampleProperty);
-
-            if (examplePropertyValue!= null)
+            if (examplePropertyValue != null)
                 wordToSave.setEjemplo(examplePropertyValue.toString());
 
-            RDFNode lemmaRAEPropertyValue = individual.getPropertyValue(ontologyConnectionService.lemmaRAEProperty);
-
-            if (lemmaRAEPropertyValue!= null)
+            if (lemmaRAEPropertyValue != null)
                 wordToSave.setLemaRAE(lemmaRAEPropertyValue.toString());
-
-            RDFNode synonymsPropertyValue = individual.getPropertyValue(ontologyConnectionService.synonymsProperty);
 
             if (synonymsPropertyValue != null)
                 wordToSave.setSinonimos(synonymsPropertyValue.toString());
 
-            RDFNode totalAnswersPropertyValue = individual.getPropertyValue(ontologyConnectionService.totalAnswersProperty);
-
             if (totalAnswersPropertyValue != null)
                 wordToSave.setTotalRespuestasN(totalAnswersPropertyValue.toString());
-
-            RDFNode votesQuantityPropertyValue = individual.getPropertyValue(ontologyConnectionService.votesQuantityProperty);
 
             if (votesQuantityPropertyValue != null)
                 wordToSave.setCantidadVotacionesI(votesQuantityPropertyValue.toString());

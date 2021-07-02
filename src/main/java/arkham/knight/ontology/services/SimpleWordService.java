@@ -1,7 +1,7 @@
 package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.SimpleWord;
-import arkham.knight.ontology.models.SurveyWordData;
+import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.repositories.SimpleWordRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -67,12 +67,12 @@ public class SimpleWordService {
     }
 
 
-    public SurveyWordData convertSimpleWordToSurveyWord(SimpleWord winnerWord) {
+    public SurveyWord convertSimpleWordToSurveyWord(SimpleWord winnerWord) {
 
-        SurveyWordData surveyWord = new SurveyWordData();
+        SurveyWord surveyWord = new SurveyWord();
 
         surveyWord.setLemma(winnerWord.getWord());
-        surveyWord.setOriginalDefinition(winnerWord.getWordDefinition());
+        surveyWord.setDefinition(winnerWord.getWordDefinition());
         surveyWord.setTotalAnswers(winnerWord.getTotalAnswers());
         surveyWord.setVotesQuantity(winnerWord.getVotesQuantity());
         surveyWord.setFatherClass("Temporal");

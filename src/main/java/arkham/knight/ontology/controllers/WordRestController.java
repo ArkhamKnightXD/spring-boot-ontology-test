@@ -33,13 +33,13 @@ public class WordRestController {
     }
 
 
-    @GetMapping("/search")
-    @Operation(summary = "Get All Individuals Properties By Name", description = "Buscara las distintas palabras dominicanas de cualquier oracion que se digite")
-    public ResponseEntity<List<Word>> getAllIndividualPropertiesByName(@RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
+    @GetMapping("/search/{sentence}")
+    @Operation(summary = "Search For Any Word In The Ontology", description = "Buscara las distintas palabras dominicanas en la ontología de cualquier oración que se digite")
+    public ResponseEntity<List<Word>> getAllIndividualPropertiesByName(@PathVariable String sentence) {
 
         List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
 
-        List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
+        List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, "tweet");
 
         List<Word> wordList = ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
 
@@ -48,7 +48,7 @@ public class WordRestController {
 
 
     @GetMapping("/search-rae/{wordToSearch}")
-    @Operation(summary = "Search For Any Word In The RAE Endpoint", description = "Retorna la definición de una palabra con respecto al diccionario de la RAE")
+    @Operation(summary = "Search For Any Word In The RAE Endpoint", description = "Buscara las distintas definiciones de una palabra con respecto al diccionario de la RAE")
     public ResponseEntity<List<DRAEObject>> getTheWordDataFromDRAE(@PathVariable String wordToSearch) {
 
         List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearch);
@@ -58,7 +58,7 @@ public class WordRestController {
 
 
     @GetMapping("/words")
-    @Operation(summary = "Get All Words", description = "Retorna las distintas palabras almacenadas en la ontologia")
+    @Operation(summary = "Get All Words", description = "Retorna una lista con todas las palabras almacenadas en la ontologia")
     public ResponseEntity<List<Word>> getAllWords() {
 
         return new ResponseEntity<>(wordService.getAllWords(), HttpStatus.OK);
@@ -66,7 +66,7 @@ public class WordRestController {
 
 
     @GetMapping("/words/{lemma}")
-    @Operation(summary = "Get A Word By Lemma", description = "Retornara el individual del lema indicado")
+    @Operation(summary = "Get A Word By Lemma", description = "Retornara la palabra correspondiente al lema indicado")
     public ResponseEntity<Word> getWordByLemma(@PathVariable String lemma) {
 
         return new ResponseEntity<>(wordService.getWordByLemma(lemma), HttpStatus.OK);
@@ -74,7 +74,7 @@ public class WordRestController {
 
 
     @GetMapping("/words/father/{fatherClassName}")
-    @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las individuales de la clase indicada")
+    @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las palabras que pertenezca a la clase indicada")
     public ResponseEntity<List<Word>> getAllWordsByFatherClassName(@PathVariable String fatherClassName) {
 
         return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);

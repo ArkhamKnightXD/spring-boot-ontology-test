@@ -166,7 +166,7 @@
 
             if (lemmaSelected === wordLemma) {
 
-                definitions.push({ id: "${word.getOriginalDefinition()}", definition: "${word.getOriginalDefinition()}" });
+                definitions.push({ id: "${word.getDefinition()}", definition: "${word.getDefinition()}" });
             }
 
             </#list>

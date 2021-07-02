@@ -51,7 +51,7 @@
                             <div class="name">Definición</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" value="${word.getOriginalDefinition()}" name="definition" readonly required>
+                                    <input class="input--style-5" type="text" value="${word.getDefinition()}" name="definition" readonly required>
                                 </div>
                             </div>
                         </div>
