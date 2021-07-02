@@ -42,27 +42,6 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/survey-creation", method = RequestMethod.GET)
-    public String creationSurveyPage(Model model) {
-
-        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
-        model.addAttribute("words", surveyWordService.getAllSurveys());
-
-        return "/freemarker/survey/createWordSurveyData";
-    }
-
-
-    @RequestMapping(value = "/survey-create", method = RequestMethod.POST)
-    public String createSurvey(@RequestParam String individualName, @RequestParam String definition, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
-
-        SurveyWord surveyWordToSave = new SurveyWord(individualName,definition,"",fatherClassName,synonyms,individualNameRAE,definitionRAE);
-
-        surveyWordService.saveSurveyWord(surveyWordToSave);
-
-        return "redirect:/surveys/";
-    }
-
-
     @RequestMapping(value = "/survey-edition", method = RequestMethod.GET)
     public String editionSurveyPage(Model model, @RequestParam long id) {
 

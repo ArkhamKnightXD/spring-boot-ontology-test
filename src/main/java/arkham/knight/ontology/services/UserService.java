@@ -10,9 +10,9 @@ import java.util.List;
 @Service
 public class UserService {
 
-    final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    final RolRepository rolRepository;
+    private final RolRepository rolRepository;
 
     public UserService(UserRepository userRepository, RolRepository rolRepository) {
         this.userRepository = userRepository;

@@ -58,7 +58,7 @@ public class WordRestController {
 
 
     @GetMapping("/words")
-    @Operation(summary = "Get All Words", description = "Retorna una lista con todas las palabras almacenadas en la ontologia")
+    @Operation(summary = "Get All Words", description = "Retorna una lista con los datos de todas las palabras almacenadas en la ontologia")
     public ResponseEntity<List<Word>> getAllWords() {
 
         return new ResponseEntity<>(wordService.getAllWords(), HttpStatus.OK);
@@ -66,7 +66,7 @@ public class WordRestController {
 
 
     @GetMapping("/words/{lemma}")
-    @Operation(summary = "Get A Word By Lemma", description = "Retornara la palabra correspondiente al lema indicado")
+    @Operation(summary = "Get A Word By Lemma", description = "Retornara los datos de la palabra correspondiente al lema indicado")
     public ResponseEntity<Word> getWordByLemma(@PathVariable String lemma) {
 
         return new ResponseEntity<>(wordService.getWordByLemma(lemma), HttpStatus.OK);
@@ -74,7 +74,7 @@ public class WordRestController {
 
 
     @GetMapping("/words/father/{fatherClassName}")
-    @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con todas las palabras que pertenezca a la clase indicada")
+    @Operation(summary = "Get All Words By Father Class Name", description = "Retorna una lista con los datos de todas las palabras que pertenezcan a la clase indicada")
     public ResponseEntity<List<Word>> getAllWordsByFatherClassName(@PathVariable String fatherClassName) {
 
         return new ResponseEntity<>(wordService.getAllWordsByFatherClassName(fatherClassName), HttpStatus.OK);

@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public class SurveyWordService {
 
-    final SurveyWordRepository surveyWordRepository;
+    private final SurveyWordRepository surveyWordRepository;
 
     public SurveyWordService(SurveyWordRepository surveyWordRepository) {
         this.surveyWordRepository = surveyWordRepository;
@@ -39,17 +39,18 @@ public class SurveyWordService {
 
 
     //TODO esta seria lo forma ideal de evaluar las palabras que pasaran a la ontologia, pero falla
-    public boolean surveyWordAlreadyExistComplex(SurveyWord surveyWordData){
+    public boolean surveyWordAlreadyExistComplex(SurveyWord surveyWord){
 
         int counter = 0;
 
-        SurveyWord surveyWordToEvaluate = surveyWordRepository.findSurveyWordById(surveyWordData.getId());
+        //Aqui falla debido a que el surveyWord Que llega no tiene id, el id se asigna cuando se salva la palabra
+        SurveyWord surveyWordToEvaluate = surveyWordRepository.findSurveyWordById(surveyWord.getId());
 
-        List<SurveyWord> surveyWordList = surveyWordRepository.findAllByLemma(surveyWordData.getLemma());
+        List<SurveyWord> surveyWordList = surveyWordRepository.findAllByLemma(surveyWord.getLemma());
 
-        for (SurveyWord surveyWord : surveyWordList) {
+        for (SurveyWord surveyWordToIterate : surveyWordList) {
 
-            if (surveyWord.getDefinition().equalsIgnoreCase(surveyWordToEvaluate.getDefinition()))
+            if (surveyWordToIterate.getDefinition().equalsIgnoreCase(surveyWordToIterate.getDefinition()))
                 counter++;
         }
 

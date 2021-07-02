@@ -25,7 +25,7 @@ public class SurveyWordRestController {
 
 
     @GetMapping("/surveys")
-    @Operation(summary = "Get All Survey Words", description = "Retorna una lista con todas las encuestas avanzadas realizadas")
+    @Operation(summary = "Get All Survey Words", description = "Retorna una lista con los datos de todas las encuestas avanzadas realizadas")
     public ResponseEntity<List<SurveyWord>> getAllSurveys() {
 
         return new ResponseEntity<>(surveyWordService.getAllSurveys(), HttpStatus.OK);
@@ -33,7 +33,7 @@ public class SurveyWordRestController {
 
 
     @GetMapping("/surveys/{lemma}")
-    @Operation(summary = "Get All Survey Words By Lemma", description = "Retorna una lista con todas las encuestas realizadas del lema indicado")
+    @Operation(summary = "Get All Survey Words By Lemma", description = "Retorna una lista con los datos de todas las encuestas realizadas del lema indicado")
     public ResponseEntity<List<SurveyWord>> getAllSurveysByLemma(@PathVariable String lemma) {
 
         return new ResponseEntity<>(surveyWordService.getAllSurveysByLemma(lemma), HttpStatus.OK);
@@ -41,7 +41,7 @@ public class SurveyWordRestController {
 
 
     @GetMapping("/surveys/rae/{lemmaRAE}")
-    @Operation(summary = "Get All Survey Words By Lemma Rae", description = "Retorna una lista con todas las encuestas avanzadas realizadas del lema de la rae indicado")
+    @Operation(summary = "Get All Survey Words By Lemma Rae", description = "Retorna una lista con los datos de todas las encuestas avanzadas realizadas del lema de la rae indicado")
     public ResponseEntity<List<SurveyWord>> getAllSurveysByLemmaRAE(@PathVariable String lemmaRAE) {
 
         return new ResponseEntity<>(surveyWordService.getAllSurveysByLemmaRAE(lemmaRAE), HttpStatus.OK);
@@ -49,7 +49,7 @@ public class SurveyWordRestController {
 
 
     @GetMapping("/simple-words")
-    @Operation(summary = "Get All Simple Survey Word Data", description = "Retorna una lista con los datos de la encuestas iniciales")
+    @Operation(summary = "Get All Simple Survey Word Data", description = "Retorna una lista con los datos de las encuestas iniciales")
     public ResponseEntity<List<SimpleWord>> getAllSimpleWord() {
 
         return new ResponseEntity<>(simpleWordService.getAllSimpleWord(), HttpStatus.OK);
@@ -57,7 +57,7 @@ public class SurveyWordRestController {
 
 
     @GetMapping("/simple-words/{lemma}")
-    @Operation(summary = "Get All Simple Survey Word Data By Word", description = "Retorna una lista con los datos de la encuestas iniciales del lema indicado")
+    @Operation(summary = "Get All Simple Survey Word Data By Word", description = "Retorna una lista con los datos de las encuestas iniciales del lema indicado")
     public ResponseEntity<List<SimpleWord>> getAllSimpleWordByLemma(@PathVariable String lemma) {
 
         return new ResponseEntity<>(simpleWordService.getAllSimpleWordByLemma(lemma), HttpStatus.OK);
