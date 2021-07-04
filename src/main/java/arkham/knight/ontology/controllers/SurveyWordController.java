@@ -2,7 +2,6 @@ package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.SimpleWord;
 import arkham.knight.ontology.models.SurveyWord;
-import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.SimpleWordService;
 import arkham.knight.ontology.services.SurveyWordService;
@@ -12,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RequestMapping("/surveys")
 @Controller
@@ -55,7 +56,7 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
-    public String editSurvey(@RequestParam Long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "n/a") String synonyms) {
+    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "n/a") String synonyms) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
@@ -71,26 +72,25 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
-    public String voteSurvey(@RequestParam Long id) {
+    public String voteSurvey(@RequestParam long id, HttpServletRequest request) {
+
+        String actualIpAddress = request.getLocalAddr();
 
         SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
-        surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
+        List<String> ipAddresses = surveyWordToVote.getIpAddresses();
 
-        surveyWordService.saveSurveyWord(surveyWordToVote);
+        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemma(surveyWordToVote.getLemma());
 
-        SurveyWord surveyWordWinner = surveyWordService.determineSurveyWordWinner(surveyWordToVote.getLemma());
+        if (ipAddresses.contains(actualIpAddress) || alreadyVoteWord) {
 
-        Word wordWinner = wordService.convertWordSurveyDataToWord(surveyWordWinner);
+            System.out.println("You can only vote once!");
+        }
 
-//        boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(wordWinner.getLemma());
+        else {
 
-        int votesQuantity = Integer.parseInt(wordWinner.getCantidadVotacionesI());
-
-        float percentageAgreement = wordService.calculateWordPercentageAgreement(wordWinner);
-
-        if (percentageAgreement > 40 && votesQuantity > 2)
-            ontologyService.saveIndividual(wordWinner.getLema(), wordWinner);
+            surveyWordService.voteSurveyWord(actualIpAddress, surveyWordToVote);
+        }
 
         return "redirect:/surveys/";
     }
@@ -135,7 +135,7 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/simple-survey-edit", method = RequestMethod.POST)
-    public String editSimpleSurvey(@RequestParam Long id, @RequestParam(defaultValue = "N/A") String definition) {
+    public String editSimpleSurvey(@RequestParam long id, @RequestParam String definition) {
 
         SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
 
@@ -148,28 +148,25 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
-    public String voteSimpleSurvey(@RequestParam Long id) {
+    public String voteSimpleSurvey(@RequestParam long id, HttpServletRequest request) {
+
+        String actualIpAddress = request.getLocalAddr();
 
         SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
 
-        simpleWordToEdit.setVotesQuantity(simpleWordToEdit.getVotesQuantity() + 1);
+        List<String> ipAddresses = simpleWordToEdit.getIpAddresses();
 
-        simpleWordService.saveSimpleWord(simpleWordToEdit);
+        //si ya hay una palabra con el mismo lemma votada no se podra votar por esta palabra que tiene el mismo lema
+        boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
 
-        SimpleWord simpleWordWinner = simpleWordService.determineSimpleWordWinner(simpleWordToEdit.getWord());
+        if (ipAddresses.contains(actualIpAddress) || alreadyVoteWord) {
 
-        SurveyWord surveyWordWinner = simpleWordService.convertSimpleWordToSurveyWord(simpleWordWinner);
+            System.out.println("You can only vote once!");
+        }
 
-        boolean wordExist = surveyWordService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
+        else {
 
-        float percentageAgreement = wordService.calculateSurveyWordPercentageAgreement(surveyWordWinner);
-
-        if (!wordExist && percentageAgreement > 40 && surveyWordWinner.getVotesQuantity() > 2){
-
-            surveyWordWinner.setVotesQuantity(0);
-            surveyWordWinner.setTotalAnswers(0);
-
-            surveyWordService.saveSurveyWord(surveyWordWinner);
+           simpleWordService.voteSimpleWord(actualIpAddress, simpleWordToEdit);
         }
 
         return "redirect:/surveys/simple/";

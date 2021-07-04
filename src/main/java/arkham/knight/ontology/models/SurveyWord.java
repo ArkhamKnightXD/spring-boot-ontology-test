@@ -1,10 +1,10 @@
 package arkham.knight.ontology.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class SurveyWord implements Serializable {
@@ -22,6 +22,10 @@ public class SurveyWord implements Serializable {
     private String definitionRAE;
     private int totalAnswers;
     private int votesQuantity;
+
+    @ElementCollection
+    @JsonIgnore
+    private List<String> ipAddresses = Collections.singletonList("192.1.2.164");
 
 
     public SurveyWord() {
@@ -77,4 +81,8 @@ public class SurveyWord implements Serializable {
     public int getVotesQuantity() { return votesQuantity; }
 
     public void setVotesQuantity(int votesQuantity) { this.votesQuantity = votesQuantity; }
+
+    public List<String> getIpAddresses() { return ipAddresses; }
+
+    public void setIpAddresses(String ipAddress) { this.ipAddresses.add(ipAddress); }
 }

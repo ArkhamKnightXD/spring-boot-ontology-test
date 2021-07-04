@@ -1,8 +1,10 @@
 package arkham.knight.ontology.services;
 
 import arkham.knight.ontology.models.SurveyWord;
+import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.repositories.SurveyWordRepository;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -10,8 +12,14 @@ public class SurveyWordService {
 
     private final SurveyWordRepository surveyWordRepository;
 
-    public SurveyWordService(SurveyWordRepository surveyWordRepository) {
+    private final WordService wordService;
+
+    private final OntologyService ontologyService;
+
+    public SurveyWordService(SurveyWordRepository surveyWordRepository, WordService wordService, OntologyService ontologyService) {
         this.surveyWordRepository = surveyWordRepository;
+        this.wordService = wordService;
+        this.ontologyService = ontologyService;
     }
 
 
@@ -24,6 +32,52 @@ public class SurveyWordService {
     public SurveyWord getSurveyWordById(long id) {
 
         return surveyWordRepository.findSurveyWordById(id);
+    }
+
+
+    public List<SurveyWord> getAllSurveys(){
+
+        return surveyWordRepository.findAll();
+    }
+
+
+    public List<SurveyWord> getAllSurveysByLemma(String lemma){
+
+        List<SurveyWord> wordsByLemma = new ArrayList<>();
+
+        List<SurveyWord> words = surveyWordRepository.findAll();
+
+        for (SurveyWord surveyWord : words) {
+
+            if (surveyWord.getLemma().equalsIgnoreCase(lemma))
+                wordsByLemma.add(surveyWord);
+        }
+
+        return wordsByLemma;
+    }
+
+
+    public List<SurveyWord> getAllSurveysByLemmaRAE(String lemmaRAE){
+
+        return surveyWordRepository.findAllByLemmaRAE(lemmaRAE);
+    }
+
+
+    public Word convertSurveyWordToWord(SurveyWord surveyWord){
+
+        String totalAnswers = String.valueOf(surveyWord.getTotalAnswers());
+        String votesQuantity = String.valueOf(surveyWord.getVotesQuantity());
+
+        return new Word(surveyWord.getLemma(), surveyWord.getDefinition(), surveyWord.getExample(), surveyWord.getFatherClass(), surveyWord.getSynonyms(), surveyWord.getLemmaRAE(), totalAnswers, votesQuantity);
+    }
+
+
+    public float calculateSurveyWordPercentageAgreement(SurveyWord wordToEvaluate){
+
+        int votesQuantity = wordToEvaluate.getVotesQuantity();
+        int totalAnswers = wordToEvaluate.getTotalAnswers();
+
+        return (float) votesQuantity/totalAnswers * 100;
     }
 
 
@@ -46,7 +100,7 @@ public class SurveyWordService {
         //Aqui falla debido a que el surveyWord Que llega no tiene id, el id se asigna cuando se salva la palabra
         SurveyWord surveyWordToEvaluate = surveyWordRepository.findSurveyWordById(surveyWord.getId());
 
-        List<SurveyWord> surveyWordList = surveyWordRepository.findAllByLemma(surveyWord.getLemma());
+        List<SurveyWord> surveyWordList = getAllSurveysByLemma(surveyWord.getLemma());
 
         for (SurveyWord surveyWordToIterate : surveyWordList) {
 
@@ -61,12 +115,6 @@ public class SurveyWordService {
     }
 
 
-    public List<SurveyWord> getAllSurveys(){
-
-        return surveyWordRepository.findAll();
-    }
-
-
     public SurveyWord determineSurveyWordWinner(String lemma){
 
         SurveyWord winnerSurveyWord = new SurveyWord();
@@ -75,7 +123,7 @@ public class SurveyWordService {
 
         List<SurveyWord> surveyWordList = surveyWordRepository.findAll();
 
-        int totalAnswers = surveyWordRepository.findAllByLemma(lemma).size();
+        int totalAnswers = getAllSurveysByLemma(lemma).size();
 
         for (SurveyWord wordToEvaluate: surveyWordList) {
 
@@ -94,27 +142,39 @@ public class SurveyWordService {
         return winnerSurveyWord;
     }
 
+    public boolean alreadyVoteSurveyWordWithTheSameLemma(String lemma) {
 
-    public List<SurveyWord> getAllSurveysByLemma(String lemma){
+        List<SurveyWord> wordsByLemma = getAllSurveysByLemma(lemma);
 
-        return surveyWordRepository.findAllByLemma(lemma);
+        for (SurveyWord surveyWord : wordsByLemma) {
+
+            if (surveyWord.getVotesQuantity() > 0)
+                return true;
+        }
+
+        return false;
     }
 
 
-    public List<SurveyWord> getAllSurveysByLemmaRAE(String lemmaRAE){
+    public void voteSurveyWord(String actualIpAddress, SurveyWord surveyWordToVote) {
 
-        return surveyWordRepository.findAllByLemmaRAE(lemmaRAE);
-    }
+        surveyWordToVote.setIpAddresses(actualIpAddress);
 
+        surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
 
-    public void deleteSurveyById(long id){
+        surveyWordRepository.save(surveyWordToVote);
 
-        surveyWordRepository.deleteById(id);
-    }
+        SurveyWord surveyWordWinner = determineSurveyWordWinner(surveyWordToVote.getLemma());
 
+        Word wordWinner = convertSurveyWordToWord(surveyWordWinner);
 
-    public void deleteAllSurveys(){
+//        boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(wordWinner.getLemma());
 
-        surveyWordRepository.deleteAll();
+        int votesQuantity = Integer.parseInt(wordWinner.getCantidadVotacionesI());
+
+        float percentageAgreement = wordService.calculateWordPercentageAgreement(wordWinner);
+
+        if (percentageAgreement > 40 && votesQuantity > 2)
+            ontologyService.saveIndividual(wordWinner.getLema(), wordWinner);
     }
 }

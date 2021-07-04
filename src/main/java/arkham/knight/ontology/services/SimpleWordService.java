@@ -4,6 +4,7 @@ import arkham.knight.ontology.models.SimpleWord;
 import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.repositories.SimpleWordRepository;
 import org.springframework.stereotype.Service;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -11,8 +12,11 @@ public class SimpleWordService {
 
     private final SimpleWordRepository simpleWordRepository;
 
-    public SimpleWordService(SimpleWordRepository simpleWordRepository) {
+    private final SurveyWordService surveyWordService;
+
+    public SimpleWordService(SimpleWordRepository simpleWordRepository, SurveyWordService surveyWordService) {
         this.simpleWordRepository = simpleWordRepository;
+        this.surveyWordService = surveyWordService;
     }
 
 
@@ -34,9 +38,33 @@ public class SimpleWordService {
     }
 
 
-    public List<SimpleWord> getAllSimpleWordByLemma(String word){
+    public List<SimpleWord> getAllSimpleWordByLemma(String lemma){
 
-        return simpleWordRepository.findAllByWord(word);
+        List<SimpleWord> wordsByLemma = new ArrayList<>();
+
+        List<SimpleWord> words = simpleWordRepository.findAll();
+
+        for (SimpleWord simpleWord : words) {
+
+            if (simpleWord.getWord().equalsIgnoreCase(lemma))
+                wordsByLemma.add(simpleWord);
+        }
+
+        return wordsByLemma;
+    }
+
+
+    public boolean alreadyVoteSimpleWordWithTheSameLemma(String lemma){
+
+        List<SimpleWord> wordsByLemma = getAllSimpleWordByLemma(lemma);
+
+        for (SimpleWord simpleWordToEvaluate : wordsByLemma) {
+
+            if (simpleWordToEvaluate.getVotesQuantity() > 0)
+                return true;
+        }
+
+        return false;
     }
 
 
@@ -44,7 +72,7 @@ public class SimpleWordService {
 
         SimpleWord winnerWord = new SimpleWord();
 
-        List<SimpleWord> simpleList = simpleWordRepository.findAllByWord(word);
+        List<SimpleWord> simpleList = getAllSimpleWordByLemma(word);
 
         int votesQuantity = 0;
         int totalAnswers = simpleList.size();
@@ -82,5 +110,31 @@ public class SimpleWordService {
         surveyWord.setSynonyms("n/a");
 
         return surveyWord;
+    }
+
+
+    public void voteSimpleWord(String actualIpAddress, SimpleWord simpleWordToEdit) {
+
+        simpleWordToEdit.setIpAddresses(actualIpAddress);
+
+        simpleWordToEdit.setVotesQuantity(simpleWordToEdit.getVotesQuantity() + 1);
+
+        simpleWordRepository.save(simpleWordToEdit);
+
+        SimpleWord simpleWordWinner = determineSimpleWordWinner(simpleWordToEdit.getWord());
+
+        SurveyWord surveyWordWinner = convertSimpleWordToSurveyWord(simpleWordWinner);
+
+        boolean wordExist = surveyWordService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
+
+        float percentageAgreement = surveyWordService.calculateSurveyWordPercentageAgreement(surveyWordWinner);
+
+        if (!wordExist && percentageAgreement > 40 && surveyWordWinner.getVotesQuantity() > 2){
+
+            surveyWordWinner.setVotesQuantity(0);
+            surveyWordWinner.setTotalAnswers(0);
+
+            surveyWordService.saveSurveyWord(surveyWordWinner);
+        }
     }
 }

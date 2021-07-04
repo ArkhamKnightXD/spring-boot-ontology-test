@@ -37,6 +37,9 @@ public class OntologyApplication {
         return args -> {
 
             simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Comida"));
+            simpleWordService.saveSimpleWord(new SimpleWord("arroz", "Test"));
+            simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe"));
+            simpleWordService.saveSimpleWord(new SimpleWord("Relajo", "N/A"));
 
 //            openIndexPage(true);
 

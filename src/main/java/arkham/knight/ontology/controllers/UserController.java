@@ -62,7 +62,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/edition", method = RequestMethod.GET)
-    public String editionUserPage(Model model, @RequestParam Long id)  {
+    public String editionUserPage(Model model, @RequestParam long id)  {
 
         User userToEdit = userService.getUserById(id);
 
@@ -74,7 +74,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editUser(@RequestParam Long id, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Long idRol) {
+    public String editUser(@RequestParam long id, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Long idRol) {
 
         User userToEdit = userService.getUserById(id);
 
@@ -96,7 +96,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public String deleteUser(@RequestParam Long id) {
+    public String deleteUser(@RequestParam long id) {
 
         userService.deleteUserById(id);
 

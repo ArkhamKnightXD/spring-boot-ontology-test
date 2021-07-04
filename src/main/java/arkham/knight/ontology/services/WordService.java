@@ -1,6 +1,5 @@
 package arkham.knight.ontology.services;
 
-import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.models.Word;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Service;
@@ -85,15 +84,6 @@ public class WordService {
     }
 
 
-    public Word convertWordSurveyDataToWord (SurveyWord surveyWord){
-
-        String totalAnswers = String.valueOf(surveyWord.getTotalAnswers());
-        String votesQuantity = String.valueOf(surveyWord.getVotesQuantity());
-
-        return new Word(surveyWord.getLemma(), surveyWord.getDefinition(), surveyWord.getExample(), surveyWord.getFatherClass(), surveyWord.getSynonyms(), surveyWord.getLemmaRAE(), totalAnswers, votesQuantity);
-    }
-
-
     public float calculateWordPercentageAgreement(Word wordToEvaluate){
 
         if (wordToEvaluate.getCantidadVotacionesI() != null){
@@ -110,15 +100,6 @@ public class WordService {
         }
 
         return 0;
-    }
-
-
-    public float calculateSurveyWordPercentageAgreement(SurveyWord wordToEvaluate){
-
-        int votesQuantity = wordToEvaluate.getVotesQuantity();
-        int totalAnswers = wordToEvaluate.getTotalAnswers();
-
-        return (float) votesQuantity/totalAnswers * 100;
     }
 
 

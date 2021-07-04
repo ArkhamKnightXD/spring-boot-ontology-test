@@ -29,7 +29,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet-search") String searchType) {
+    public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet") String searchType) {
 
         List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
 
@@ -44,14 +44,14 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/individuals", method = RequestMethod.GET)
-    public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence, @RequestParam(defaultValue = "word-search") String searchType) {
+    public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence) {
 
         List<Individual> individualList;
 
         if (sentence.length() != 0){
 
             List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
-            individualList = ontologyService.getAllIndividualByName(sentenceByWords, searchType);
+            individualList = ontologyService.getAllIndividualByName(sentenceByWords, "word-search");
         }
 
         else{
@@ -75,7 +75,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@RequestParam() String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam() String fatherClassName, @RequestParam() String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
+    public String create(@RequestParam String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String fatherClassName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         Word wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
@@ -103,7 +103,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String edit(@RequestParam() String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
+    public String edit(@RequestParam String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
 
         Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
 
