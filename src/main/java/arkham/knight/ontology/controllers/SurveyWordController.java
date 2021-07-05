@@ -80,9 +80,9 @@ public class SurveyWordController {
 
         List<String> ipAddresses = surveyWordToVote.getIpAddresses();
 
-        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemma(surveyWordToVote.getLemma());
+//        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemma(surveyWordToVote.getLemma());
 
-        if (ipAddresses.contains(actualIpAddress) || alreadyVoteWord) {
+        if (ipAddresses.contains(actualIpAddress) /*|| alreadyVoteWord*/) {
 
             System.out.println("You can only vote once!");
         }
@@ -157,9 +157,10 @@ public class SurveyWordController {
         List<String> ipAddresses = simpleWordToEdit.getIpAddresses();
 
         //si ya hay una palabra con el mismo lemma votada no se podra votar por esta palabra que tiene el mismo lema
-        boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
+       // boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
 
-        if (ipAddresses.contains(actualIpAddress) || alreadyVoteWord) {
+        //mejorar el if para la votacion, es posible que este sea el problema desactivando la otra comparacion, pues falla
+        if (ipAddresses.contains(actualIpAddress) /*|| alreadyVoteWord*/) {
 
             System.out.println("You can only vote once!");
         }
