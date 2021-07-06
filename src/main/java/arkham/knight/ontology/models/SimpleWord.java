@@ -3,7 +3,6 @@ package arkham.knight.ontology.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -20,7 +19,7 @@ public class SimpleWord implements Serializable{
 
     @ElementCollection
     @JsonIgnore
-    private List<String> ipAddresses; /*= Collections.singletonList("192.1.2.164");*/
+    private List<String> ipAddresses;
 
 
     public SimpleWord() { }

@@ -5,7 +5,6 @@ import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.SimpleWordService;
 import arkham.knight.ontology.services.SurveyWordService;
-import arkham.knight.ontology.services.WordService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,15 +19,12 @@ public class SurveyWordController {
 
     private final OntologyService ontologyService;
 
-    private final WordService wordService;
-
     private final SurveyWordService surveyWordService;
 
     private final SimpleWordService simpleWordService;
 
-    public SurveyWordController(OntologyService ontologyService, WordService wordService, SurveyWordService surveyWordService, SimpleWordService simpleWordService) {
+    public SurveyWordController(OntologyService ontologyService,SurveyWordService surveyWordService, SimpleWordService simpleWordService) {
         this.ontologyService = ontologyService;
-        this.wordService = wordService;
         this.surveyWordService = surveyWordService;
         this.simpleWordService = simpleWordService;
     }
@@ -150,18 +146,17 @@ public class SurveyWordController {
     @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
     public String voteSimpleSurvey(@RequestParam long id, HttpServletRequest request) {
 
-        String actualIpAddress = request.getLocalAddr();
+//        String actualIpAddress = request.getLocalAddr();
+//        String actualIpAddress = request.getHeader("X-Real-IP");
+        String actualIpAddress = request.getRemoteAddr();
 
         SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
 
         List<String> ipAddresses = simpleWordToEdit.getIpAddresses();
 
-        ipAddresses.forEach(System.out::println);
+        //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
+//        boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
 
-        //si ya hay una palabra con el mismo lemma votada no se podra votar por esta palabra que tiene el mismo lema
-       // boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
-
-        //mejorar el if para la votacion, es posible que este sea el problema desactivando la otra comparacion, pues falla
         if (ipAddresses.contains(actualIpAddress) /*|| alreadyVoteWord*/) {
 
             System.out.println("You can only vote once!");

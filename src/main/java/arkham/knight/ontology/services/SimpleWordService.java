@@ -26,12 +26,6 @@ public class SimpleWordService {
     }
 
 
-    public SimpleWord getSimpleWordById(long id) {
-
-        return simpleWordRepository.findById(id);
-    }
-
-
     public List<SimpleWord> getAllSimpleWord(){
 
         return simpleWordRepository.findAll();
@@ -54,6 +48,12 @@ public class SimpleWordService {
     }
 
 
+    public SimpleWord getSimpleWordById(long id) {
+
+        return simpleWordRepository.findById(id);
+    }
+
+
     public boolean alreadyVoteSimpleWordWithTheSameLemma(String lemma){
 
         List<SimpleWord> wordsByLemma = getAllSimpleWordByLemma(lemma);
@@ -65,33 +65,6 @@ public class SimpleWordService {
         }
 
         return false;
-    }
-
-
-    public SimpleWord determineSimpleWordWinner(String word){
-
-        SimpleWord winnerWord = new SimpleWord();
-
-        List<SimpleWord> simpleList = getAllSimpleWordByLemma(word);
-
-        int votesQuantity = 0;
-        int totalAnswers = simpleList.size();
-
-        for (SimpleWord wordToEvaluate: simpleList) {
-
-            int actualVotesByWord = wordToEvaluate.getVotesQuantity();
-
-            if (actualVotesByWord > votesQuantity){
-
-                votesQuantity = actualVotesByWord;
-                winnerWord = wordToEvaluate;
-            }
-        }
-
-        winnerWord.setTotalAnswers(totalAnswers);
-        winnerWord.setVotesQuantity(votesQuantity);
-
-        return winnerWord;
     }
 
 
@@ -113,26 +86,21 @@ public class SimpleWordService {
     }
 
 
-    public void voteSimpleWord(String actualIpAddress, SimpleWord simpleWordToEdit) {
+    public void voteSimpleWord(String actualIpAddress, SimpleWord simpleWordToVote) {
 
-        simpleWordToEdit.setIpAddresses(actualIpAddress);
+        simpleWordToVote.setIpAddresses(actualIpAddress);
 
-        simpleWordToEdit.setVotesQuantity(simpleWordToEdit.getVotesQuantity() + 1);
+        simpleWordToVote.setVotesQuantity(simpleWordToVote.getVotesQuantity() + 1);
 
-        simpleWordRepository.save(simpleWordToEdit);
+        simpleWordRepository.save(simpleWordToVote);
 
-        SimpleWord simpleWordWinner = determineSimpleWordWinner(simpleWordToEdit.getWord());
+        SurveyWord surveyWordWinner = convertSimpleWordToSurveyWord(simpleWordToVote);
 
-        SurveyWord surveyWordWinner = convertSimpleWordToSurveyWord(simpleWordWinner);
+        boolean wordDefinitionAlreadyExist = surveyWordService.surveyWordDefinitionAlreadyExist(surveyWordWinner);
 
-        boolean wordExist = surveyWordService.surveyWordAlreadyExist(surveyWordWinner.getLemma());
-
-        float percentageAgreement = surveyWordService.calculateSurveyWordPercentageAgreement(surveyWordWinner);
-
-        if (!wordExist && percentageAgreement > 40 && surveyWordWinner.getVotesQuantity() > 2){
+        if (!wordDefinitionAlreadyExist && surveyWordWinner.getVotesQuantity() > 2){
 
             surveyWordWinner.setVotesQuantity(0);
-            surveyWordWinner.setTotalAnswers(0);
 
             surveyWordService.saveSurveyWord(surveyWordWinner);
         }

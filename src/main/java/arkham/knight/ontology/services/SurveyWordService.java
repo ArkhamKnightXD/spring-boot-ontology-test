@@ -29,12 +29,6 @@ public class SurveyWordService {
     }
 
 
-    public SurveyWord getSurveyWordById(long id) {
-
-        return surveyWordRepository.findSurveyWordById(id);
-    }
-
-
     public List<SurveyWord> getAllSurveys(){
 
         return surveyWordRepository.findAll();
@@ -63,6 +57,12 @@ public class SurveyWordService {
     }
 
 
+    public SurveyWord getSurveyWordById(long id) {
+
+        return surveyWordRepository.findSurveyWordById(id);
+    }
+
+
     public Word convertSurveyWordToWord(SurveyWord surveyWord){
 
         String totalAnswers = String.valueOf(surveyWord.getTotalAnswers());
@@ -72,43 +72,13 @@ public class SurveyWordService {
     }
 
 
-    public float calculateSurveyWordPercentageAgreement(SurveyWord wordToEvaluate){
+    public boolean surveyWordDefinitionAlreadyExist(SurveyWord surveyWordToEvaluate){
 
-        int votesQuantity = wordToEvaluate.getVotesQuantity();
-        int totalAnswers = wordToEvaluate.getTotalAnswers();
-
-        return (float) votesQuantity/totalAnswers * 100;
-    }
-
-
-    public boolean surveyWordAlreadyExist(String lemma){
-
-        SurveyWord surveyWord = surveyWordRepository.findByLemma(lemma);
-
-        if (surveyWord != null)
-            return true;
-
-        return false;
-    }
-
-
-    //TODO esta seria lo forma ideal de evaluar las palabras que pasaran a la ontologia, pero falla
-    public boolean surveyWordAlreadyExistComplex(SurveyWord surveyWord){
-
-        int counter = 0;
-        //Aqui falla debido a que el surveyWord Que llega no tiene id, el id se asigna cuando se salva la palabra
-        SurveyWord surveyWordToEvaluate = surveyWordRepository.findSurveyWordById(surveyWord.getId());
-
-        List<SurveyWord> surveyWordList = getAllSurveysByLemma(surveyWord.getLemma());
-
-        for (SurveyWord surveyWordToIterate : surveyWordList) {
-
-            if (surveyWordToIterate.getDefinition().equalsIgnoreCase(surveyWordToIterate.getDefinition()))
-                counter++;
+        for (SurveyWord surveyWord : getAllSurveysByLemma(surveyWordToEvaluate.getLemma())) {
+            //si hay tan solo 1 palabra con el mismo lemma que tenga la misma definicion es suficiente para retornar true
+            if (surveyWordToEvaluate.getDefinition().equalsIgnoreCase(surveyWord.getDefinition()))
+                return true;
         }
-
-        if (counter > 0)
-            return true;
 
         return false;
     }
@@ -166,8 +136,6 @@ public class SurveyWordService {
         SurveyWord surveyWordWinner = determineSurveyWordWinner(surveyWordToVote.getLemma());
 
         Word wordWinner = convertSurveyWordToWord(surveyWordWinner);
-
-//        boolean wordExist = surveyWordDataService.surveyWordAlreadyExist(wordWinner.getLemma());
 
         int votesQuantity = Integer.parseInt(wordWinner.getCantidadVotacionesI());
 
