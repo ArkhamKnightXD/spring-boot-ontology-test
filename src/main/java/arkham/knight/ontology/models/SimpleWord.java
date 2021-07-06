@@ -20,7 +20,7 @@ public class SimpleWord implements Serializable{
 
     @ElementCollection
     @JsonIgnore
-    private List<String> ipAddresses = Collections.singletonList("192.1.2.164");
+    private List<String> ipAddresses; /*= Collections.singletonList("192.1.2.164");*/
 
 
     public SimpleWord() { }

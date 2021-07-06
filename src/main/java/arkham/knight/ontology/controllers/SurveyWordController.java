@@ -156,6 +156,8 @@ public class SurveyWordController {
 
         List<String> ipAddresses = simpleWordToEdit.getIpAddresses();
 
+        ipAddresses.forEach(System.out::println);
+
         //si ya hay una palabra con el mismo lemma votada no se podra votar por esta palabra que tiene el mismo lema
        // boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
 
