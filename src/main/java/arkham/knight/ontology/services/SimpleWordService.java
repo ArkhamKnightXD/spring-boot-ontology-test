@@ -86,13 +86,7 @@ public class SimpleWordService {
     }
 
 
-    public void voteSimpleWord(String actualIpAddress, SimpleWord simpleWordToVote) {
-
-        simpleWordToVote.setIpAddresses(actualIpAddress);
-
-        simpleWordToVote.setVotesQuantity(simpleWordToVote.getVotesQuantity() + 1);
-
-        simpleWordRepository.save(simpleWordToVote);
+    public void evaluateIfTheWordEntersTheSurvey(SimpleWord simpleWordToVote) {
 
         SurveyWord surveyWordWinner = convertSimpleWordToSurveyWord(simpleWordToVote);
 

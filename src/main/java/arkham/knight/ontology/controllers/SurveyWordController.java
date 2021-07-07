@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @RequestMapping("/surveys")
 @Controller
@@ -70,22 +69,25 @@ public class SurveyWordController {
     @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
     public String voteSurvey(@RequestParam long id, HttpServletRequest request) {
 
-        String actualIpAddress = request.getLocalAddr();
+        String actualIpAddress = request.getRemoteAddr();
 
         SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
-        List<String> ipAddresses = surveyWordToVote.getIpAddresses();
-
 //        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemma(surveyWordToVote.getLemma());
 
-        if (ipAddresses.contains(actualIpAddress) /*|| alreadyVoteWord*/) {
+        if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) /*|| alreadyVoteWord*/) {
 
             System.out.println("You can only vote once!");
         }
 
         else {
 
-            surveyWordService.voteSurveyWord(actualIpAddress, surveyWordToVote);
+            surveyWordToVote.setIpAddresses(actualIpAddress);
+            surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
+
+            surveyWordService.saveSurveyWord(surveyWordToVote);
+
+            surveyWordService.evaluateIfTheWordEntersTheOntology(surveyWordToVote);
         }
 
         return "redirect:/surveys/";
@@ -146,25 +148,26 @@ public class SurveyWordController {
     @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
     public String voteSimpleSurvey(@RequestParam long id, HttpServletRequest request) {
 
-//        String actualIpAddress = request.getLocalAddr();
-//        String actualIpAddress = request.getHeader("X-Real-IP");
         String actualIpAddress = request.getRemoteAddr();
 
-        SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
-
-        List<String> ipAddresses = simpleWordToEdit.getIpAddresses();
+        SimpleWord simpleWordToVote = simpleWordService.getSimpleWordById(id);
 
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
 //        boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemma(simpleWordToEdit.getWord());
 
-        if (ipAddresses.contains(actualIpAddress) /*|| alreadyVoteWord*/) {
+        if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) /*|| alreadyVoteWord*/) {
 
             System.out.println("You can only vote once!");
         }
-
+//
         else {
 
-           simpleWordService.voteSimpleWord(actualIpAddress, simpleWordToEdit);
+            simpleWordToVote.setIpAddresses(actualIpAddress);
+            simpleWordToVote.setVotesQuantity(simpleWordToVote.getVotesQuantity() + 1);
+
+            simpleWordService.saveSimpleWord(simpleWordToVote);
+
+            simpleWordService.evaluateIfTheWordEntersTheSurvey(simpleWordToVote);
         }
 
         return "redirect:/surveys/simple/";

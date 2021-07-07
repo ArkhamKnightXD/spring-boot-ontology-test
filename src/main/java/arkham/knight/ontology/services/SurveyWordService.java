@@ -125,13 +125,7 @@ public class SurveyWordService {
     }
 
 
-    public void voteSurveyWord(String actualIpAddress, SurveyWord surveyWordToVote) {
-
-        surveyWordToVote.setIpAddresses(actualIpAddress);
-
-        surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
-
-        surveyWordRepository.save(surveyWordToVote);
+    public void evaluateIfTheWordEntersTheOntology(SurveyWord surveyWordToVote) {
 
         SurveyWord surveyWordWinner = determineSurveyWordWinner(surveyWordToVote.getLemma());
 
