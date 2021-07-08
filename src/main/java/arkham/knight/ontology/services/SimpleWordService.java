@@ -54,13 +54,15 @@ public class SimpleWordService {
     }
 
 
-    public boolean alreadyVoteSimpleWordWithTheSameLemma(String lemma){
+    public boolean alreadyVoteSimpleWordWithTheSameLemmaAndDifferentDefinition(SimpleWord simpleWordToEvaluate, String actualIpAddress){
 
-        List<SimpleWord> wordsByLemma = getAllSimpleWordByLemma(lemma);
+        List<SimpleWord> wordsByLemma = getAllSimpleWordByLemma(simpleWordToEvaluate.getWord());
 
-        for (SimpleWord simpleWordToEvaluate : wordsByLemma) {
+        for (SimpleWord simpleWord : wordsByLemma) {
 
-            if (simpleWordToEvaluate.getVotesQuantity() > 0)
+            boolean hasSameDefinition = simpleWordToEvaluate.getWordDefinition().equalsIgnoreCase(simpleWord.getWordDefinition());
+
+            if (!hasSameDefinition && simpleWord.getIpAddresses().contains(actualIpAddress))
                 return true;
         }
 

@@ -111,13 +111,15 @@ public class SurveyWordService {
         return winnerSurveyWord;
     }
 
-    public boolean alreadyVoteSurveyWordWithTheSameLemma(String lemma) {
+    public boolean alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(SurveyWord surveyWordToEvaluate, String actualIpAddress){
 
-        List<SurveyWord> wordsByLemma = getAllSurveysByLemma(lemma);
+        List<SurveyWord> wordsByLemma = getAllSurveysByLemma(surveyWordToEvaluate.getLemma());
 
         for (SurveyWord surveyWord : wordsByLemma) {
 
-            if (surveyWord.getVotesQuantity() > 0)
+            boolean hasSameDefinition = surveyWordToEvaluate.getDefinition().equalsIgnoreCase(surveyWord.getDefinition());
+
+            if (!hasSameDefinition && surveyWord.getIpAddresses().contains(actualIpAddress))
                 return true;
         }
 
