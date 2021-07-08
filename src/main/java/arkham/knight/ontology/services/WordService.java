@@ -92,11 +92,11 @@ public class WordService {
             int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
             //formula = I/N *100 el cast a float es necesario sino me da 0 siempre
 
-            if (totalAnswers != 1)
+            if (totalAnswers > votesQuantity)
                 return (float) votesQuantity/totalAnswers * 100;
 
-            //si las respuesta totales es 1 el resultado me dara mas de 100% en todos los casos
-            return (float) (1) /totalAnswers * 100;
+            //si las respuesta totales son menores que los votos el resultado me dara mas de 100% en todos los casos
+            return (float) 100;
         }
 
         return 0;

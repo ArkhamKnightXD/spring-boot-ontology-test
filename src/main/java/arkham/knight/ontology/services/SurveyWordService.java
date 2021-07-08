@@ -88,24 +88,22 @@ public class SurveyWordService {
 
         SurveyWord winnerSurveyWord = new SurveyWord();
 
+        List<SurveyWord> surveyWordByLemma = getAllSurveysByLemma(lemma);
+
         int votesQuantity = 0;
 
-        List<SurveyWord> surveyWordList = surveyWordRepository.findAll();
+        for (SurveyWord wordToEvaluate: surveyWordByLemma) {
 
-        int totalAnswers = getAllSurveysByLemma(lemma).size();
+            int actualVotes = wordToEvaluate.getVotesQuantity();
 
-        for (SurveyWord wordToEvaluate: surveyWordList) {
+            if (actualVotes > votesQuantity) {
 
-            int actualVotesByLemmaRAE = wordToEvaluate.getVotesQuantity();
-
-            if (actualVotesByLemmaRAE > votesQuantity){
-
-                votesQuantity = actualVotesByLemmaRAE;
+                votesQuantity = actualVotes;
                 winnerSurveyWord = wordToEvaluate;
             }
         }
 
-        winnerSurveyWord.setTotalAnswers(totalAnswers);
+        winnerSurveyWord.setTotalAnswers(surveyWordByLemma.size());
         winnerSurveyWord.setVotesQuantity(votesQuantity);
 
         return winnerSurveyWord;
