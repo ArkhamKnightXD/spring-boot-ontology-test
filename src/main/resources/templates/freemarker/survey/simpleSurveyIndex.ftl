@@ -54,40 +54,40 @@
                     <!-- Messages: style can be found in dropdown.less-->
 
                     <!-- User Account Menu -->
-<#--                    <li class="dropdown user user-menu">-->
+                    <li class="dropdown user user-menu">
 
-<#--                        <!-- Menu Toggle Button &ndash;&gt;-->
-<#--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-<#--                            <!-- The user image in the navbar&ndash;&gt;-->
-<#--                            <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-<#--                            <!-- hidden-xs hides the username on small devices so only the image appears. &ndash;&gt;-->
-<#--                            <span class="hidden-xs">User</span>-->
-<#--                        </a>-->
-<#--                        <ul class="dropdown-menu">-->
-<#--                            <!-- The user image in the menu &ndash;&gt;-->
-<#--                            <li class="user-header">-->
-<#--                                <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-<#--                                <p>-->
-<#--                                     user<!--Aqui agrego el nombre del usuario logueado &ndash;&gt;-->
-<#--                                </p>-->
-<#--                            </li>-->
-<#--                            <!-- Menu Body &ndash;&gt;-->
-<#--                            <li class="user-body">-->
+                                <p>
+                                     user<!--Aqui agrego el nombre del usuario logueado -->
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
 
-<#--                                <!-- /.row &ndash;&gt;-->
-<#--                            </li>-->
-<#--                            <!-- Menu Footer&ndash;&gt;-->
-<#--                            <li class="user-footer">-->
-<#--                                <div class="pull-left">-->
-<#--                                    <a href="#" class="btn btn-primary">Profile</a>-->
-<#--                                </div>-->
-<#--                                <div class="pull-right">-->
-<#--                                    <a href="/logout" class="btn btn-danger">Sign out</a>-->
-<#--                                </div>-->
-<#--                            </li>-->
-<#--                        </ul>-->
-<#--                    </li>-->
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-primary">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-danger">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- Control Sidebar Toggle Button -->
 
                 </ul>
@@ -101,17 +101,17 @@
         <section class="sidebar">
 
             <!-- Sidebar user panel (optional) -->
-<#--            <div class="user-panel">-->
-<#--                <div class="pull-left image">-->
-<#--                    <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
-<#--                </div>-->
-<#--                <div class="pull-left info">-->
-<#--                    <!--Aqui pongo el nombre del usuario tambien &ndash;&gt;-->
-<#--                    <p>user</p>-->
-<#--                    <!-- Status &ndash;&gt;-->
-<#--                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
-<#--                </div>-->
-<#--            </div>-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <!--Aqui pongo el nombre del usuario tambien -->
+                    <p>user</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
 
             <!-- search form (Optional) -->
 
@@ -121,10 +121,9 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
-                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>
-<#--                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>-->
+<#--                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>-->
                 <li class="active"><a href="#"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
-
+                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
 <#--                <li class="treeview">-->
 <#--                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>-->
 <#--                        <span class="pull-right-container">-->
@@ -151,7 +150,7 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Resultados</strong>
+                <strong>Palabras propuestas a votación</strong>
             </h1>
             <a class="btn btn-primary" href="/surveys/simple-survey-creation" role="button">Proponer nueva palabra</a>
 <#--            <a class="btn btn-primary" href="/surveys/simple-survey-complete-creation" role="button">Votar definición</a>-->
@@ -189,18 +188,6 @@
                                         <a class="btn btn-info" href="/surveys/simple-survey-edition?id=${word.getId()}" role="button">Agregar definición</a>
                                         <a class="btn btn-primary" href="/surveys/simple-survey-vote?id=${word.getId()}" role="button">Votar</a>
                                     </td>
-
-<#--                                    <#if word.getVotesQuantity()??>-->
-<#--                                        <td>${word.getVotesQuantity()}</td>-->
-<#--                                    <#else>-->
-<#--                                        <td>0</td>-->
-<#--                                    </#if>-->
-
-<#--                                    <#if word.getTotalAnswers()??>-->
-<#--                                        <td>${word.getTotalAnswers()}</td>-->
-<#--                                    <#else>-->
-<#--                                        <td>0</td>-->
-<#--                                    </#if>-->
 
                                 </tr>
                             </#list>

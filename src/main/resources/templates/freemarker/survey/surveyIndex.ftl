@@ -121,21 +121,21 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
-                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>
-                <li class="active"><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>
+<#--                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>-->
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
+                <li class="active"><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
 
-                <li class="treeview">
-                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
-                        <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li class=""><a href="/dashboard/individuals">All Individuals</a></li>
-                        <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
-                    </ul>
-                </li>
+<#--                <li class="treeview">-->
+<#--                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>-->
+<#--                        <span class="pull-right-container">-->
+<#--                <i class="fa fa-angle-left pull-right"></i>-->
+<#--              </span>-->
+<#--                    </a>-->
+<#--                    <ul class="treeview-menu">-->
+<#--                        <li class=""><a href="/dashboard/individuals">All Individuals</a></li>-->
+<#--                        <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>-->
+<#--                    </ul>-->
+<#--                </li>-->
             </ul>
             <!-- /.sidebar-menu -->
         </section>

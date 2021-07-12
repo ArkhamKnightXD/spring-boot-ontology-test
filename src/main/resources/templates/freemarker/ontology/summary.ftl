@@ -54,40 +54,40 @@
                     <!-- Messages: style can be found in dropdown.less-->
 
                     <!-- User Account Menu -->
-<#--                    <li class="dropdown user user-menu">-->
+                    <li class="dropdown user user-menu">
 
-<#--                        <!-- Menu Toggle Button &ndash;&gt;-->
-<#--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">-->
-<#--                            <!-- The user image in the navbar&ndash;&gt;-->
-<#--                            <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-<#--                            <!-- hidden-xs hides the username on small devices so only the image appears. &ndash;&gt;-->
-<#--                            <span class="hidden-xs">User</span>-->
-<#--                        </a>-->
-<#--                        <ul class="dropdown-menu">-->
-<#--                            <!-- The user image in the menu &ndash;&gt;-->
-<#--                            <li class="user-header">-->
-<#--                                <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
+                        <!-- Menu Toggle Button -->
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <!-- The user image in the navbar-->
+                            <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span class="hidden-xs">User</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-<#--                                <p>-->
-<#--                                     user<!--Aqui agrego el nombre del usuario logueado &ndash;&gt;-->
-<#--                                </p>-->
-<#--                            </li>-->
-<#--                            <!-- Menu Body &ndash;&gt;-->
-<#--                            <li class="user-body">-->
+                                <p>
+                                     user<!--Aqui agrego el nombre del usuario logueado -->
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
 
-<#--                                <!-- /.row &ndash;&gt;-->
-<#--                            </li>-->
-<#--                            <!-- Menu Footer&ndash;&gt;-->
-<#--                            <li class="user-footer">-->
-<#--                                <div class="pull-left">-->
-<#--                                    <a href="#" class="btn btn-primary">Profile</a>-->
-<#--                                </div>-->
-<#--                                <div class="pull-right">-->
-<#--                                    <a href="/logout" class="btn btn-danger">Sign out</a>-->
-<#--                                </div>-->
-<#--                            </li>-->
-<#--                        </ul>-->
-<#--                    </li>-->
+                                <!-- /.row -->
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-primary">Profile</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="/logout" class="btn btn-danger">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- Control Sidebar Toggle Button -->
 
                 </ul>
@@ -103,17 +103,17 @@
 
 <#--            Mientras resuelvo lo de separar usuario sin log de usuario normal comentare varias cosas-->
             <!-- Sidebar user panel (optional) -->
-<#--            <div class="user-panel">-->
-<#--                <div class="pull-left image">-->
-<#--                    <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">-->
-<#--                </div>-->
-<#--                <div class="pull-left info">-->
-<#--                    <!--Aqui pongo el nombre del usuario tambien &ndash;&gt;-->
-<#--                    <p>user</p>-->
-<#--                    <!-- Status &ndash;&gt;-->
-<#--                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>-->
-<#--                </div>-->
-<#--            </div>-->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <!--Aqui pongo el nombre del usuario tambien -->
+                    <p>user</p>
+                    <!-- Status -->
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div>
 
             <!-- search form (Optional) -->
 
@@ -123,11 +123,12 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li class="active"><a href="#"><i class="fa fa-search"></i> <span>Search</span></a></li>
-                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>
-<#--                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>-->
+<#--                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>-->
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
+                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
 
-<#--                <li class="treeview">-->
+
+                <#--                <li class="treeview">-->
 <#--                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>-->
 <#--                        <span class="pull-right-container">-->
 <#--                <i class="fa fa-angle-left pull-right"></i>-->

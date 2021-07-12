@@ -28,7 +28,7 @@
 					<img src="../../bootstrap-4.3.1/dist/img/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="/" method="post">
+				<form class="login100-form validate-form" action="/login" method="post">
 					<span class="login100-form-title">
 						Login
 					</span>
@@ -55,11 +55,11 @@
 						</button>
 					</div>
 
-					<div class="text-center p-t-12">
-						<a class="txt2" href="/surveys/simple-survey-creation">
-							Desea proponer palabras nuevas?
-						</a>
-					</div>
+<#--					<div class="text-center p-t-12">-->
+<#--						<a class="txt2" href="/surveys/simple-survey-creation">-->
+<#--							Desea proponer palabras nuevas?-->
+<#--						</a>-->
+<#--					</div>-->
 
 					<div class="text-center p-t-12">
 						<a class="txt2" href="/dashboard/">
@@ -67,17 +67,9 @@
 						</a>
 					</div>
 
-<#--					<div class="container-login100-form-btn">-->
-<#--						<a class="login100-form-btn" href="/surveys/simple-survey-creation" role="button"> Proponer palabras</a>-->
-<#--					</div>-->
-
-<#--					<div class="container-login100-form-btn">-->
-<#--						<a class="login100-form-btn" href="/dashboard/" role="button"> Buscar palabras</a>-->
-<#--					</div>-->
-
 					<div class="text-center p-t-136">
 						<a class="txt2" href="/register">
-							Create your Account
+							Crear cuenta
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
 					</div>
