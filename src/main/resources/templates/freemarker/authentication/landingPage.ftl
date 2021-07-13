@@ -61,8 +61,8 @@
     </header>
 
     <main class="px-3">
-        <h1>Coopera con nosotros en nuestra labor.</h1>
-        <p class="lead">De crear un diccionario basado en palabras del español dominicano, mediante la ayuda de colaboradores y del uso del diccionario de la RAE </p>
+        <h1>Coopera con nosotros en nuestra labor de formar un diccionario dominicano online.</h1>
+        <p class="lead">Nuestro objetivo es crear un diccionario basado en palabras del español dominicano, mediante la ayuda de colaboradores y del uso del diccionario de la RAE. ¿Deseas ser uno de nuestros colaboradores?</p>
         <p class="lead">
             <a href="/login" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Empieza ahora</a>
         </p>

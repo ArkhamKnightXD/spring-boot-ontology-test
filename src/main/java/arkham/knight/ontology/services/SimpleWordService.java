@@ -97,7 +97,9 @@ public class SimpleWordService {
         if (!wordDefinitionAlreadyExist && surveyWordWinner.getVotesQuantity() > 2){
 
             surveyWordWinner.setVotesQuantity(0);
+            simpleWordToVote.setPassTheVote(true);
 
+            simpleWordRepository.save(simpleWordToVote);
             surveyWordService.saveSurveyWord(surveyWordWinner);
         }
     }

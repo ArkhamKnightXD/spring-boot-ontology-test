@@ -16,6 +16,7 @@ public class SimpleWord implements Serializable{
     private String wordDefinition;
     private int totalAnswers;
     private int votesQuantity;
+    private boolean passTheVote;
 
     @ElementCollection
     @JsonIgnore
@@ -24,9 +25,10 @@ public class SimpleWord implements Serializable{
 
     public SimpleWord() { }
 
-    public SimpleWord(String word, String wordDefinition) {
+    public SimpleWord(String word, String wordDefinition, boolean passTheVote) {
         this.word = word;
         this.wordDefinition = wordDefinition;
+        this.passTheVote = passTheVote;
     }
 
     public Long getId() { return id; }
@@ -46,6 +48,10 @@ public class SimpleWord implements Serializable{
     public int getVotesQuantity() { return votesQuantity; }
 
     public void setVotesQuantity(int votesQuantity) { this.votesQuantity = votesQuantity; }
+
+    public boolean isPassTheVote() { return passTheVote; }
+
+    public void setPassTheVote(boolean passTheVote) { this.passTheVote = passTheVote; }
 
     public List<String> getIpAddresses() { return ipAddresses; }
 

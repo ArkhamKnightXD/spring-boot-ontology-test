@@ -36,10 +36,10 @@ public class OntologyApplication {
     public CommandLineRunner startup(SimpleWordService simpleWordService) {
         return args -> {
 
-            simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Comida"));
-            simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Test"));
-            simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe"));
-            simpleWordService.saveSimpleWord(new SimpleWord("Relajo", "N/A"));
+            simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Comida", false));
+            simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Test", false));
+            simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe", false));
+            simpleWordService.saveSimpleWord(new SimpleWord("Relajo", "N/A", false));
 
 //            openIndexPage(true);
 //            openIndexPage(false);

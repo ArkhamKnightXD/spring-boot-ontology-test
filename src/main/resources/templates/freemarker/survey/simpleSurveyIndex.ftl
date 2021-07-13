@@ -61,7 +61,7 @@
                             <!-- The user image in the navbar-->
                             <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">User</span>
+                            <span class="hidden-xs">${loggedUsername}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -69,7 +69,7 @@
                                 <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                     user<!--Aqui agrego el nombre del usuario logueado -->
+                                     ${loggedUsername}<!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -107,7 +107,7 @@
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>user</p>
+                    <p>${loggedUsername}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -185,8 +185,24 @@
                                     <td>${word.getVotesQuantity()}</td>
 
                                     <td>
-                                        <a class="btn btn-info" href="/surveys/simple-survey-edition?id=${word.getId()}" role="button">Agregar definición</a>
-                                        <a class="btn btn-primary" href="/surveys/simple-survey-vote?id=${word.getId()}" role="button">Votar</a>
+                                        <#if word.getWordDefinition() != "N/A">
+
+                                        <#--Cambios los botones de esta forma para poder utilizar disabled de forma correcta-->
+                                            <button class="btn btn-info" type="button" onclick="window.location.href='/surveys/simple-survey-edition?id=${word.getId()}'">Agregar definición</button>
+
+                                        <#else>
+                                            <button class="btn btn-info" type="button" onclick="window.location.href='/surveys/simple-survey-edition?id=${word.getId()}'" disabled>Agregar definición</button>
+
+                                        </#if>
+
+                                        <#if word.isPassTheVote()>
+
+                                            <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/simple-survey-vote?id=${word.getId()}'" disabled>Votar</button>
+                                        <#else>
+
+                                            <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/simple-survey-vote?id=${word.getId()}'">Votar</button>
+                                        </#if>
+
                                     </td>
 
                                 </tr>

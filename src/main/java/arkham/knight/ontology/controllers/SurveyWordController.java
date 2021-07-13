@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @RequestMapping("/surveys")
 @Controller
@@ -30,8 +31,9 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String indexPage(Model model) {
+    public String indexPage(Model model, Principal principal) {
 
+        model.addAttribute("loggedUsername", principal.getName());
         model.addAttribute("surveys", surveyWordService.getAllSurveys());
 
         return "/freemarker/survey/surveyIndex";
@@ -95,8 +97,9 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "simple/", method = RequestMethod.GET)
-    public String indexSimplePage(Model model) {
+    public String indexSimplePage(Model model, Principal principal) {
 
+        model.addAttribute("loggedUsername", principal.getName());
         model.addAttribute("words", simpleWordService.getAllSimpleWord());
 
         return "/freemarker/survey/simpleSurveyIndex";
@@ -113,7 +116,7 @@ public class SurveyWordController {
     @RequestMapping(value = "/simple-survey-create", method = RequestMethod.POST)
     public String createSimpleSurvey(@RequestParam String word, @RequestParam(defaultValue = "N/A") String definition) {
 
-        SimpleWord simpleWordToCreate = new SimpleWord(word, definition);
+        SimpleWord simpleWordToCreate = new SimpleWord(word, definition, false);
 
         simpleWordService.saveSimpleWord(simpleWordToCreate);
 
