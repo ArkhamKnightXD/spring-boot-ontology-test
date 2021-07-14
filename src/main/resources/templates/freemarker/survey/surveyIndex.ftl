@@ -22,6 +22,8 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/skins/_all-skins.min.css">
+    <link type="text/css" rel="stylesheet" href="../../bootstrap-4.3.1/style/popup.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 
 </head>
 
@@ -151,7 +153,7 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Resultados</strong>
+                <strong>Votación final</strong>
             </h1>
 <#--            <a class="btn btn-primary" href="/surveys/survey-complete-creation" role="button">Agregar nueva palabra</a>-->
 <#--            <a class="btn btn-primary" href="/surveys/survey-creation" role="button">Complementar palabras</a>-->
@@ -220,11 +222,24 @@
                                     <td>${survey.getVotesQuantity()}</td>
 
                                     <td>
-                                        <a class="btn btn-info" href="/surveys/survey-edition?id=${survey.getId()}" role="button">Complementar palabra</a>
-                                        <a class="btn btn-primary" href="/surveys/survey-vote?id=${survey.getId()}" role="button">Votar</a>
+
+                                        <#if survey.getLemmaRAE() == "N/A">
+
+                                            <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/survey-edition?id=${survey.getId()}'">Complementar palabra</button>
+
+                                        <#else>
+
+                                            <button class="btn btn-info" type="button" onclick="showAlert()">Complementar palabra</button>
+                                        </#if>
+
+                                        <#if survey.isUserAlreadyVote() || survey.getLemmaRAE() == "N/A">
+
+                                            <button class="btn btn-info" type="button" onclick="window.location.href='/surveys/survey-vote?id=${survey.getId()}'" disabled>Votar</button>
+                                        <#else>
+
+                                            <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/survey-vote?id=${survey.getId()}'">Votar</button>
+                                        </#if>
                                     </td>
-
-
 
                                 </tr>
                             </#list>
@@ -232,6 +247,22 @@
 
 
                         </table>
+
+                        <div class="alert hide">
+                            <span class="fas fa-exclamation-circle"></span>
+                            <span class="msg">Esta palabra ya fue complementada con su Lema de la rae</span>
+                            <div class="close-btn">
+                                <span class="fas fa-times"></span>
+                            </div>
+                        </div>
+
+                        <div class="alert-vote hide">
+                            <span class="fas fa-exclamation-circle"></span>
+                            <span class="msg">Esta palabra ya paso a la votación final, click en ver estado para continuar con el proceso</span>
+                            <div class="close-btn">
+                                <span class="fas fa-times"></span>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -266,9 +297,53 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+
+<script>
+
+    function showAlert(){
+
+        $('.alert').addClass("show");
+        $('.alert').removeClass("hide");
+        $('.alert').addClass("showAlert");
+
+        setTimeout(function(){
+
+            $('.alert').removeClass("show");
+            $('.alert').addClass("hide");
+        },5000);
+
+    };
+
+    $('.close-btn').click(function(){
+
+        $('.alert').removeClass("show");
+        $('.alert').addClass("hide");
+    });
+
+
+    function showAlertVote(){
+
+        $('.alert-vote').addClass("show");
+        $('.alert-vote').removeClass("hide");
+        $('.alert-vote').addClass("showAlert");
+
+        setTimeout(function(){
+
+            $('.alert-vote').removeClass("show");
+            $('.alert-vote').addClass("hide");
+        },5000);
+
+    };
+
+    $('.close-btn').click(function(){
+
+        $('.alert-vote').removeClass("show");
+        $('.alert-vote').addClass("hide");
+    });
+
+</script>
+
 </body>
 </html>

@@ -22,6 +22,7 @@ public class SurveyWord implements Serializable {
     private String definitionRAE;
     private int totalAnswers;
     private int votesQuantity;
+    private boolean userAlreadyVote;
 
     @ElementCollection
     @JsonIgnore
@@ -81,6 +82,10 @@ public class SurveyWord implements Serializable {
     public int getVotesQuantity() { return votesQuantity; }
 
     public void setVotesQuantity(int votesQuantity) { this.votesQuantity = votesQuantity; }
+
+    public boolean isUserAlreadyVote() { return userAlreadyVote; }
+
+    public void setUserAlreadyVote(boolean userAlreadyVote) { this.userAlreadyVote = userAlreadyVote; }
 
     public List<String> getIpAddresses() { return ipAddresses; }
 

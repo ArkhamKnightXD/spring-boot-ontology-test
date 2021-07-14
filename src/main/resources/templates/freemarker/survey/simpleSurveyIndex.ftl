@@ -16,6 +16,10 @@
     
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link type="text/css" rel="stylesheet" href="../../bootstrap-4.3.1/style/popup.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+
     <!-- Theme style -->
     <link rel="stylesheet" href="../../bootstrap-4.3.1/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -185,32 +189,62 @@
                                     <td>${word.getVotesQuantity()}</td>
 
                                     <td>
-                                        <#if word.getWordDefinition() != "N/A">
+                                        <#if word.getWordDefinition() == "N/A">
 
-                                        <#--Cambios los botones de esta forma para poder utilizar disabled de forma correcta-->
-                                            <button class="btn btn-info" type="button" onclick="window.location.href='/surveys/simple-survey-edition?id=${word.getId()}'">Agregar definición</button>
-
+                                            <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/simple-survey-edition?id=${word.getId()}'">Agregar definición</button>
                                         <#else>
-                                            <button class="btn btn-info" type="button" onclick="window.location.href='/surveys/simple-survey-edition?id=${word.getId()}'" disabled>Agregar definición</button>
 
+                                            <button class="btn btn-info" type="button" onclick="showAlert()" >Agregar definición</button>
                                         </#if>
 
                                         <#if word.isPassTheVote()>
 
-                                            <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/simple-survey-vote?id=${word.getId()}'" disabled>Votar</button>
-                                        <#else>
+                                            <button class="btn btn-info" type="button" onclick="showAlertVote()">Votar</button>
+                                            <a class="btn btn-primary" href="/surveys/" target="_blank" role="button">Ver estado</a>
+
+                                        </#if>
+
+                                        <#if word.isUserAlreadyVote()>
+
+                                            <button class="btn btn-info" type="button" onclick="showAlertVote()" disabled>Votar</button>
+                                        </#if>
+
+                                        <#if word.getWordDefinition() == "N/A" >
+
+                                            <button class="btn btn-info" type="button" onclick="showAlertVote()" disabled>Votar</button>
+                                        </#if>
+
+                                        <#if word.getWordDefinition() != "N/A" && !word.isUserAlreadyVote() && !word.isPassTheVote()>
 
                                             <button class="btn btn-primary" type="button" onclick="window.location.href='/surveys/simple-survey-vote?id=${word.getId()}'">Votar</button>
+
                                         </#if>
 
                                     </td>
 
                                 </tr>
+
                             </#list>
                             </tbody>
 
 
                         </table>
+<#--                        Esto tambien es parte del popup-->
+                        <div class="alert hide">
+                            <span class="fas fa-exclamation-circle"></span>
+                            <span class="msg">Esta palabra ya cuenta con una definición</span>
+                            <div class="close-btn">
+                                <span class="fas fa-times"></span>
+                            </div>
+                        </div>
+
+                        <div class="alert-vote hide">
+                            <span class="fas fa-exclamation-circle"></span>
+                            <span class="msg">Esta palabra ya paso a la votación final, click en ver estado para continuar con el proceso</span>
+                            <div class="close-btn">
+                                <span class="fas fa-times"></span>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -220,6 +254,7 @@
         </section>
         <!-- /.content -->
     </div>
+
     <!-- /.content-wrapper -->
 
     <!-- Main Footer -->
@@ -245,9 +280,54 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- AdminLTE App -->
 <script src="../../bootstrap-4.3.1/dist/js/adminlte.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+
+<script>
+
+    function showAlert(){
+
+        $('.alert').addClass("show");
+        $('.alert').removeClass("hide");
+        $('.alert').addClass("showAlert");
+
+        setTimeout(function(){
+
+            $('.alert').removeClass("show");
+            $('.alert').addClass("hide");
+        },5000);
+
+    };
+
+    $('.close-btn').click(function(){
+
+        $('.alert').removeClass("show");
+        $('.alert').addClass("hide");
+    });
+
+
+
+function showAlertVote(){
+
+    $('.alert-vote').addClass("show");
+    $('.alert-vote').removeClass("hide");
+    $('.alert-vote').addClass("showAlert");
+
+    setTimeout(function(){
+
+        $('.alert-vote').removeClass("show");
+        $('.alert-vote').addClass("hide");
+    },5000);
+
+};
+
+$('.close-btn').click(function(){
+
+    $('.alert-vote').removeClass("show");
+    $('.alert-vote').addClass("hide");
+});
+
+</script>
+
 </body>
 </html>

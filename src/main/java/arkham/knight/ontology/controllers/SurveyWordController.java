@@ -40,6 +40,13 @@ public class SurveyWordController {
     }
 
 
+    @RequestMapping(value = "/popup", method = RequestMethod.GET)
+    public String popupPage() {
+
+        return "/freemarker/survey/popup";
+    }
+
+
     @RequestMapping(value = "/survey-edition", method = RequestMethod.GET)
     public String editionSurveyPage(Model model, @RequestParam long id) {
 
@@ -53,7 +60,7 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
-    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "n/a") String synonyms) {
+    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
@@ -79,11 +86,14 @@ public class SurveyWordController {
 
         if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
 
-            System.out.println("You can only vote once!");
+            surveyWordToVote.setUserAlreadyVote(true);
+
+            surveyWordService.saveSurveyWord(surveyWordToVote);
         }
 
         else {
 
+            surveyWordToVote.setUserAlreadyVote(false);
             surveyWordToVote.setIpAddresses(actualIpAddress);
             surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
 
@@ -161,10 +171,15 @@ public class SurveyWordController {
         if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
 
             System.out.println("You can only vote once!");
-        }
 
+            simpleWordToVote.setUserAlreadyVote(true);
+
+            simpleWordService.saveSimpleWord(simpleWordToVote);
+        }
+//
         else {
 
+            simpleWordToVote.setUserAlreadyVote(false);
             simpleWordToVote.setIpAddresses(actualIpAddress);
             simpleWordToVote.setVotesQuantity(simpleWordToVote.getVotesQuantity() + 1);
 

@@ -79,10 +79,10 @@ public class SimpleWordService {
         surveyWord.setTotalAnswers(winnerWord.getTotalAnswers());
         surveyWord.setVotesQuantity(winnerWord.getVotesQuantity());
         surveyWord.setFatherClass("Temporal");
-        surveyWord.setExample("n/a");
-        surveyWord.setLemmaRAE("n/a");
-        surveyWord.setDefinitionRAE("n/a");
-        surveyWord.setSynonyms("n/a");
+        surveyWord.setExample("N/A");
+        surveyWord.setLemmaRAE("N/A");
+        surveyWord.setDefinitionRAE("N/A");
+        surveyWord.setSynonyms("N/A");
 
         return surveyWord;
     }

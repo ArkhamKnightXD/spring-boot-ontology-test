@@ -17,6 +17,7 @@ public class SimpleWord implements Serializable{
     private int totalAnswers;
     private int votesQuantity;
     private boolean passTheVote;
+    private boolean userAlreadyVote;
 
     @ElementCollection
     @JsonIgnore
@@ -52,6 +53,10 @@ public class SimpleWord implements Serializable{
     public boolean isPassTheVote() { return passTheVote; }
 
     public void setPassTheVote(boolean passTheVote) { this.passTheVote = passTheVote; }
+
+    public boolean isUserAlreadyVote() { return userAlreadyVote; }
+
+    public void setUserAlreadyVote(boolean userAlreadyVote) { this.userAlreadyVote = userAlreadyVote; }
 
     public List<String> getIpAddresses() { return ipAddresses; }
 
