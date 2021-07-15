@@ -5,32 +5,15 @@ import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.models.DRAEVariation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class DRAEConnectionService {
-
-    //Este restTemplate tendra timeout para evitar que el api DRAE se quede buscando una palabra de forma indefinida
-//    @Bean
-//    public RestTemplate restTemplate() {
-//        return new RestTemplateBuilder()
-//                .setConnectTimeout(Duration.ofMillis(1500))
-//                .setReadTimeout(Duration.ofMillis(1500))
-//                .build();
-//    }
-
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
 
 
     public List<DRAEObject> getTheWordDataFromDRAE(RestTemplate restTemplate, String wordToSearch){

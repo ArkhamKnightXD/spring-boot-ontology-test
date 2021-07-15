@@ -168,16 +168,16 @@ public class SurveyWordController {
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemmaAndDifferentDefinition(simpleWordToVote, actualIpAddress);
 
-        if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
-
-            System.out.println("You can only vote once!");
-
-            simpleWordToVote.setUserAlreadyVote(true);
-
-            simpleWordService.saveSimpleWord(simpleWordToVote);
-        }
+//        if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
 //
-        else {
+//            System.out.println("You can only vote once!");
+//
+//            simpleWordToVote.setUserAlreadyVote(true);
+//
+//            simpleWordService.saveSimpleWord(simpleWordToVote);
+//        }
+
+//        else {
 
             simpleWordToVote.setUserAlreadyVote(false);
             simpleWordToVote.setIpAddresses(actualIpAddress);
@@ -186,7 +186,7 @@ public class SurveyWordController {
             simpleWordService.saveSimpleWord(simpleWordToVote);
 
             simpleWordService.evaluateIfTheWordEntersTheSurvey(simpleWordToVote);
-        }
+//        }
 
         return "redirect:/surveys/simple/";
     }

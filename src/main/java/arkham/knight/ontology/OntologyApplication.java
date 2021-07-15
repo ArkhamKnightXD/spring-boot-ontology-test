@@ -1,6 +1,7 @@
 package arkham.knight.ontology;
 
 import arkham.knight.ontology.models.SimpleWord;
+import arkham.knight.ontology.services.RaeService;
 import arkham.knight.ontology.services.SimpleWordService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -8,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import java.io.*;
 
 @SpringBootApplication
@@ -33,13 +35,17 @@ public class OntologyApplication {
 
 
     @Bean
-    public CommandLineRunner startup(SimpleWordService simpleWordService) {
+    public CommandLineRunner startup(SimpleWordService simpleWordService, RaeService raeService, RestTemplate restTemplate) {
         return args -> {
 
             simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Comida", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Test", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Relajo", "N/A", false));
+
+//            System.out.println(raeService.getTheLemmaListFromTheRaeAPI(restTemplate, "casa"));
+//            System.out.println(raeService.getTheExactLemmaFromTheRaeAPI(restTemplate, "casa"));
+//            System.out.println(raeService.getTheDefinitionListByWordId(restTemplate, "7KQWsGX"));
 
 //            openIndexPage(true);
 //            openIndexPage(false);
