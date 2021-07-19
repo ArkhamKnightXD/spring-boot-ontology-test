@@ -4,8 +4,8 @@ import arkham.knight.ontology.models.BaseResponse;
 import arkham.knight.ontology.models.DRAEDefinition;
 import arkham.knight.ontology.models.DRAEObject;
 import arkham.knight.ontology.services.DRAEConnectionService;
-import arkham.knight.ontology.services.JsoupConnectionService;
-import arkham.knight.ontology.services.RaeService;
+import arkham.knight.ontology.services.JsoupService;
+import arkham.knight.ontology.services.RaeConnectionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,16 +20,16 @@ public class RaeController {
 
     private final DRAEConnectionService draeConnectionService;
 
-    private final RaeService raeService;
+    private final RaeConnectionService raeConnectionService;
 
-    private final JsoupConnectionService jsoupConnectionService;
+    private final JsoupService jsoupService;
 
     private final RestTemplate restTemplate;
 
-    public RaeController(DRAEConnectionService draeConnectionService, RaeService raeService, JsoupConnectionService jsoupConnectionService, RestTemplate restTemplate) {
+    public RaeController(DRAEConnectionService draeConnectionService, RaeConnectionService raeConnectionService, JsoupService jsoupService, RestTemplate restTemplate) {
         this.draeConnectionService = draeConnectionService;
-        this.raeService = raeService;
-        this.jsoupConnectionService = jsoupConnectionService;
+        this.raeConnectionService = raeConnectionService;
+        this.jsoupService = jsoupService;
         this.restTemplate = restTemplate;
     }
 
@@ -60,9 +60,9 @@ public class RaeController {
 
 
     @RequestMapping(value = "/search-rae", method = RequestMethod.GET)
-    public String searchPageRAE(Model model, @RequestParam(defaultValue = "casa") String word) {
+    public String searchPageRAE(Model model, @RequestParam(defaultValue = "casa") String sentence) {
 
-        List<BaseResponse> wordList = raeService.getTheLemmaListFromTheRaeAPI(restTemplate, word);
+        List<BaseResponse> wordList = raeConnectionService.getTheLemmaListFromTheRaeAPI(restTemplate, sentence);
 
         model.addAttribute("words", wordList.get(0).getRes());
 
@@ -73,9 +73,9 @@ public class RaeController {
     @RequestMapping(value = "/show-rae", method = RequestMethod.GET)
     public String showRAEDefinitionWordData(Model model, @RequestParam String wordId, @RequestParam String lemma) {
 
-        String definitionsResponse = raeService.getTheDefinitionListByWordId(restTemplate, wordId);
+        String definitionsResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, wordId);
 
-        List<String> definitions = jsoupConnectionService.getAllDefinitions(definitionsResponse);
+        List<String> definitions = jsoupService.getAllDefinitions(definitionsResponse);
 
         definitions.remove(0);
 

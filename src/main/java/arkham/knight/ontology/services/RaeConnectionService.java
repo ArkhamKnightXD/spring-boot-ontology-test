@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class RaeService {
+public class RaeConnectionService {
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {

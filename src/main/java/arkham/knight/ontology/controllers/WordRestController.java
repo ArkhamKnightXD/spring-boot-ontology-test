@@ -1,9 +1,11 @@
 package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.BaseResponse;
+import arkham.knight.ontology.models.DefinitionResponse;
 import arkham.knight.ontology.models.Word;
+import arkham.knight.ontology.services.JsoupService;
 import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.RaeService;
+import arkham.knight.ontology.services.RaeConnectionService;
 import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.apache.jena.ontology.Individual;
@@ -23,13 +25,16 @@ public class WordRestController {
 
     private final RestTemplate restTemplate;
 
-    private final RaeService raeService;
+    private final RaeConnectionService raeConnectionService;
 
-    public WordRestController(OntologyService ontologyService, WordService wordService, RestTemplate restTemplate, RaeService raeService) {
+    private final JsoupService jsoupService;
+
+    public WordRestController(OntologyService ontologyService, WordService wordService, RestTemplate restTemplate, RaeConnectionService raeConnectionService, JsoupService jsoupService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
         this.restTemplate = restTemplate;
-        this.raeService = raeService;
+        this.raeConnectionService = raeConnectionService;
+        this.jsoupService = jsoupService;
     }
 
 
@@ -75,7 +80,7 @@ public class WordRestController {
     @Operation(summary = "Search For Any Word In The RAE Endpoint", description = " Buscara todos los lema una palabra con respecto al diccionario de la RAE")
     public ResponseEntity<List<BaseResponse>> getTheLemmaListFromTheRaeAPI(@PathVariable String wordToSearch) {
 
-        return new ResponseEntity<>(raeService.getTheLemmaListFromTheRaeAPI(restTemplate, wordToSearch), HttpStatus.OK);
+        return new ResponseEntity<>(raeConnectionService.getTheLemmaListFromTheRaeAPI(restTemplate, wordToSearch), HttpStatus.OK);
     }
 
 
@@ -83,6 +88,20 @@ public class WordRestController {
     @Operation(summary = "Search For The Exact Word In The RAE Endpoint", description = " Buscara todos los lema una palabra con respecto al diccionario de la RAE")
     public ResponseEntity<List<BaseResponse>> getTheExactLemmaFromTheRaeAPI(@PathVariable String wordToSearch) {
 
-        return new ResponseEntity<>(raeService.getTheExactLemmaFromTheRaeAPI(restTemplate, wordToSearch), HttpStatus.OK);
+        return new ResponseEntity<>(raeConnectionService.getTheExactLemmaFromTheRaeAPI(restTemplate, wordToSearch), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/rae/search/definitions/{wordToSearch}")
+    @Operation(summary = "Search For All Definitions Of The Desire Word", description = "Retorna todas las definiciones relacionadas a la palabra deseada")
+    public ResponseEntity<List<DefinitionResponse>> getTheDefinitionsFromTheRaeAPI(@PathVariable String wordToSearch) {
+
+        List<BaseResponse> word = raeConnectionService.getTheExactLemmaFromTheRaeAPI(restTemplate, wordToSearch);
+
+        String definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, word.get(0).getRes().get(0).getId());
+
+        List<String> definitions = jsoupService.getAllDefinitions(definitionResponse);
+
+        return new ResponseEntity<>(jsoupService.getSeparateDefinitionData(definitions), HttpStatus.OK);
     }
 }
