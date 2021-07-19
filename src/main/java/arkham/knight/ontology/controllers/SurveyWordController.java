@@ -1,32 +1,40 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.BaseResponse;
+import arkham.knight.ontology.models.DefinitionResponse;
 import arkham.knight.ontology.models.SimpleWord;
 import arkham.knight.ontology.models.SurveyWord;
-import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.SimpleWordService;
-import arkham.knight.ontology.services.SurveyWordService;
+import arkham.knight.ontology.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.List;
 
 @RequestMapping("/surveys")
 @Controller
 public class SurveyWordController {
 
-    private final OntologyService ontologyService;
-
     private final SurveyWordService surveyWordService;
 
     private final SimpleWordService simpleWordService;
 
-    public SurveyWordController(OntologyService ontologyService,SurveyWordService surveyWordService, SimpleWordService simpleWordService) {
-        this.ontologyService = ontologyService;
+    private final RaeConnectionService raeConnectionService;
+
+    private final JsoupService jsoupService;
+
+    private final RestTemplate restTemplate;
+
+    public SurveyWordController(SurveyWordService surveyWordService, SimpleWordService simpleWordService, RaeConnectionService raeConnectionService, JsoupService jsoupService, RestTemplate restTemplate) {
         this.surveyWordService = surveyWordService;
         this.simpleWordService = simpleWordService;
+        this.raeConnectionService = raeConnectionService;
+        this.jsoupService = jsoupService;
+        this.restTemplate = restTemplate;
     }
 
 
@@ -40,27 +48,30 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/popup", method = RequestMethod.GET)
-    public String popupPage() {
-
-        return "/freemarker/survey/popup";
-    }
-
-
     @RequestMapping(value = "/survey-edition", method = RequestMethod.GET)
-    public String editionSurveyPage(Model model, @RequestParam long id) {
+    public String editionSurveyCompletePage(Model model, @RequestParam long id, @RequestParam(defaultValue = "casa") String sentence) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
-        model.addAttribute("word", surveyWordToEdit);
-        model.addAttribute("classes", ontologyService.getAllClassesLocalName());
+        List<BaseResponse> wordList = raeConnectionService.getTheLemmaListFromTheRaeAPI(restTemplate, sentence);
 
-        return "/freemarker/survey/editWordSurveyData";
+        String definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, wordList.get(0).getRes().get(0).getId());
+
+        List<String> definitions = jsoupService.getAllDefinitions(definitionResponse);
+
+        List<DefinitionResponse> cleanDefinitions = jsoupService.getSeparateDefinitionData(definitions);
+
+        //todo evaluar si seguire enviando varios lemas o lo ideal seria mandar uno, ya que en la pagina solo tomo en cuenta el primer lemma a la hora de buscar las definiciones
+        model.addAttribute("raeWords", wordList.get(0).getRes());
+        model.addAttribute("definitions", cleanDefinitions);
+        model.addAttribute("word", surveyWordToEdit);
+
+        return "/freemarker/survey/completeSurveyCreation";
     }
 
 
     @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
-    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
+    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam(defaultValue = "N/A") String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
@@ -84,14 +95,14 @@ public class SurveyWordController {
 
         boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualIpAddress);
 
-        if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
-
-            surveyWordToVote.setUserAlreadyVote(true);
-
-            surveyWordService.saveSurveyWord(surveyWordToVote);
-        }
-
-        else {
+//        if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
+//
+//            surveyWordToVote.setUserAlreadyVote(true);
+//
+//            surveyWordService.saveSurveyWord(surveyWordToVote);
+//        }
+//
+//        else {
 
             surveyWordToVote.setUserAlreadyVote(false);
             surveyWordToVote.setIpAddresses(actualIpAddress);
@@ -100,7 +111,7 @@ public class SurveyWordController {
             surveyWordService.saveSurveyWord(surveyWordToVote);
 
             surveyWordService.evaluateIfTheWordEntersTheOntology(surveyWordToVote);
-        }
+//        }
 
         return "redirect:/surveys/";
     }

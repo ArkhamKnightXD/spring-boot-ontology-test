@@ -3,21 +3,12 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.DefinitionResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class JsoupService {
-
-
-    public List<Element> getAllTagsByName(String definitionResponse, String tagName) {
-
-        Document document = Jsoup.parse(definitionResponse);
-
-        return new ArrayList<>(document.getElementsByTag(tagName));
-    }
 
 
     public List<String> getAllDefinitions(String definitionResponse) {
@@ -56,7 +47,7 @@ public class JsoupService {
                 //el try/catch es para esta linea de codigo
                 int actualDefinitionNumber = Integer.parseInt(definitionResponse.getDefinitionNumber());
 
-                if (actualDefinitionNumber > comparator && actualDefinitionNumber < 10){
+                if (actualDefinitionNumber > comparator && actualDefinitionNumber < 7){
 
                     comparator = actualDefinitionNumber;
 
@@ -74,29 +65,25 @@ public class JsoupService {
 
     private void evaluateTokenData(DefinitionResponse definitionResponse, String[] tokens) {
 
-        //Esto podria transformarse en un switch case
+        if (tokens[2].length() < 7) {
 
-        if (tokens[2].length() < 5) {
+            if (tokens[3].length() < 10) {
 
-            definitionResponse.setWordClassType(tokens[1] + "." + tokens[2] + ".");
+                definitionResponse.setWordClassType(tokens[1] + "." + tokens[2] + "." + tokens[3] + ".");
+                definitionResponse.setDefinition(tokens[4] + ".");
+            }
 
-            //desactivada mientas tanto
-//                if (tokens[4] != null)
-//                    definitionResponse.setDefinition(tokens[3]+"."+ tokens[4]+".");
-//
-//                else
-            definitionResponse.setDefinition(tokens[3] + ".");
+            else {
+
+                definitionResponse.setWordClassType(tokens[1] + "." + tokens[2] + ".");
+                definitionResponse.setDefinition(tokens[3] + ".");
+            }
         }
 
         else {
 
             definitionResponse.setWordClassType(tokens[1] + ".");
-
-            if (!tokens[3].isEmpty())
-                definitionResponse.setDefinition(tokens[2] + "." + tokens[3] + ".");
-
-            else
-                definitionResponse.setDefinition(tokens[2] + ".");
+            definitionResponse.setDefinition(tokens[2] + ".");
         }
     }
 }

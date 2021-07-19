@@ -19,6 +19,8 @@ public class SurveyWord implements Serializable {
     private String fatherClass;
     private String synonyms;
     private String lemmaRAE;
+    //para evitar error a la hora de agregar definiciones tan largas
+    @Column(length = 500)
     private String definitionRAE;
     private int totalAnswers;
     private int votesQuantity;
