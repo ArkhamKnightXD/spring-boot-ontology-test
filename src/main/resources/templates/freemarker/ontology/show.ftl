@@ -144,7 +144,7 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Lema original: ${word.getLema()}</strong>
+                <strong>Palabra original: ${word.getLema()}</strong>
             </h1>
         </section>
 
@@ -160,7 +160,7 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema RAE</th>
+                            <th>Palabra en la RAE</th>
                             <th>Definición</th>
                             <th>Ejemplo</th>
                             <th>Sinónimos</th>

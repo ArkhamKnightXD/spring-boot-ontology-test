@@ -42,7 +42,7 @@
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Agregar Nueva clase</h2>
+                    <h2 class="title">Agregar nueva clase</h2>
                 </div>
                 <div class="card-body">
                     <form method="post" action="/dashboard/class-create">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Tiene clase hija?</div>
+                            <div class="name">¿Tiene clase hija?</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="checkbox" name="subClassButton" id="subClassButton" onclick="cambiar()">
@@ -77,7 +77,7 @@
                         </div>
 
                         <div>
-                            <a class="btn-cancel btn--radius-2 btn--black" href="/dashboard/individuals" role="button"> Cancelar</a>
+                            <a class="btn-cancel btn--radius-2 btn--black" href="/dashboard/individuals" role="button">Cancelar</a>
                         </div>
                     </form>
                 </div>

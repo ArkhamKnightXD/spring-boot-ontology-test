@@ -29,7 +29,7 @@
     <div class="row">
 
         <div class="col-md-8 order-md-1">
-            <h5 class="mb-3 head-text">Digite la informacion del usuario</h5>
+            <h5 class="mb-3 head-text">Digite la información del usuario</h5>
 
             <form method="post" action="/users/create" class="needs-validation"  novalidate>
                 <div class="row">
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="col-md-12 mb-3">
-                        <label for="password">Password</label>
+                        <label for="password">Contraseña</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Password...">
 
                     </div>

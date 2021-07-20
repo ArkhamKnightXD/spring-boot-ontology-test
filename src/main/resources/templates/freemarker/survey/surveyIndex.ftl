@@ -122,8 +122,8 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
-                <li><a href="/rae/search-rae"><i class="fa fa-search"></i> <span>RAE-Search</span></a></li>
+                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Buscar</span></a></li>
+                <li><a href="/rae/search-rae"><i class="fa fa-search"></i> <span>Buscar en la RAE</span></a></li>
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
                 <li class="active"><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
 
@@ -171,10 +171,10 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema dominicano</th>
+                            <th>Palabra dominicana</th>
                             <th>Definición</th>
-                            <th>Lema RAE</th>
-                            <th>Definición RAE</th>
+                            <th>Palabra en la RAE</th>
+                            <th>Definición de la RAE</th>
                             <th>Cantidad votos</th>
 <#--                            <th>Sinónimos</th>-->
 <#--                            <th>Clase</th>-->
@@ -250,7 +250,7 @@
 
                         <div class="alert hide">
                             <span class="fas fa-exclamation-circle"></span>
-                            <span class="msg">Esta palabra ya fue complementada con su Lema de la rae</span>
+                            <span class="msg">Esta palabra ya fue complementada con su palabra de la RAE</span>
                             <div class="close-btn">
                                 <span class="fas fa-times"></span>
                             </div>
@@ -258,7 +258,7 @@
 
                         <div class="alert-vote hide">
                             <span class="fas fa-exclamation-circle"></span>
-                            <span class="msg">Esta palabra ya paso a la votación final, click en ver estado para continuar con el proceso</span>
+                            <span class="msg">Esta palabra ya paso a la votación final, click en "Ver estado" para continuar con el proceso</span>
                             <div class="close-btn">
                                 <span class="fas fa-times"></span>
                             </div>

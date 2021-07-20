@@ -47,7 +47,7 @@
                 <div class="card-body">
                     <form method="post" action="/dashboard/create">
                         <div class="form-row">
-                            <div class="name">Lema</div>
+                            <div class="name">Palabra a agregar</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="individualName" required>
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Lema de la rae</div>
+                            <div class="name">Palabra en la RAE</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="individualNameRAE" required>
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="name">Sinonimos</div>
+                            <div class="name">Sinónimos</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="synonyms" >

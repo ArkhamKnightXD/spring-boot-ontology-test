@@ -74,7 +74,7 @@
 
                     <div class="form-row">
 
-                        <div class="name">Lema de la RAE</div>
+                        <div class="name">Palabra de la RAE</div>
 
                         <div class="value">
                             <label for="individualNameRAE">

@@ -118,8 +118,8 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
-                <li class="active"><a href="#"><i class="fa fa-search"></i> <span>RAE-Search</span></a></li>
+                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Buscar</span></a></li>
+                <li class="active"><a href="#"><i class="fa fa-search"></i> <span>Buscar en la RAE</span></a></li>
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
                 <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
 
@@ -163,7 +163,7 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema</th>
+                            <th>Palabra</th>
                             </thead>
 
                             <tbody>

@@ -124,8 +124,8 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
-                <li ><a href="/rae/search-rae"><i class="fa fa-search"></i> <span>RAE-Search</span></a></li>
+                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Buscar</span></a></li>
+                <li ><a href="/rae/search-rae"><i class="fa fa-search"></i> <span>Buscar en la RAE</span></a></li>
                 <li class="active"><a href="#"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
                 <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
 <#--                <li class="treeview">-->
@@ -173,7 +173,7 @@
                             <thead class="thead-dark">
 
                             <th>Palabra</th>
-                            <th>Definicion</th>
+                            <th>Definición</th>
                             <th>Cantidad de votos</th>
                             <th>Opciones</th>
 <#--                            <th>Cantidad de Respuestas</th>-->
@@ -240,7 +240,7 @@
 
                         <div class="alert-vote hide">
                             <span class="fas fa-exclamation-circle"></span>
-                            <span class="msg">Esta palabra ya paso a la votación final, click en ver estado para continuar con el proceso</span>
+                            <span class="msg">Esta palabra ya pasó a la votación final, click en "Ver estado" para continuar con el proceso</span>
                             <div class="close-btn">
                                 <span class="fas fa-times"></span>
                             </div>

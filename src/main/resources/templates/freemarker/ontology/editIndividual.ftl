@@ -51,7 +51,7 @@
                         <input type="hidden" class="form-control" value="${lema}" id="name" name="originalIndividualName" >
 
                         <div class="form-row">
-                            <div class="name">Lema</div>
+                            <div class="name">Palabra</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="individualName" value="${lema}" required>
@@ -62,7 +62,7 @@
                         <#if lemmaRAE??>
 
                             <div class="form-row">
-                                <div class="name">Lema de la rae</div>
+                                <div class="name">Palabra en la RAE</div>
                                 <div class="value">
                                     <div class="input-group">
                                         <input class="input--style-5" type="text" value="${lemmaRAE}" name="individualNameRAE" required>
@@ -97,7 +97,7 @@
                         <#if sinonimos?? >
 
                             <div class="form-row">
-                                <div class="name">Sinonimos</div>
+                                <div class="name">Sinónimos</div>
                                 <div class="value">
                                     <div class="input-group">
                                         <input class="input--style-5" type="text" value="${sinonimos}" name="synonyms" >

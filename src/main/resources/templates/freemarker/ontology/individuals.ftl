@@ -142,9 +142,9 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Listado de Lemas</strong>
+                <strong>Listado de Palabras</strong>
             </h1>
-            <a class="btn btn-primary" href="/dashboard/creation" role="button">Agregar un nuevo lema</a>
+            <a class="btn btn-primary" href="/dashboard/creation" role="button">Agregar una nueva palabra</a>
             <a class="btn btn-success" href="/dashboard/class-creation" role="button">Agregar clases</a>
         </section>
 
@@ -158,7 +158,7 @@
                             <thead>
 
                             <th>Clase</th>
-                            <th>Lema</th>
+                            <th>Palabra</th>
                             <th>Opciones</th>
                             </thead>
 

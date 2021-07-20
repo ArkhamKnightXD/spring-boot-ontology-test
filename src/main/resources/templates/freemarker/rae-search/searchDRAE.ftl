@@ -162,8 +162,8 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Lema</th>
-                            <th>Etimologia</th>
+                            <th>Palabra</th>
+                            <th>Etimología</th>
                             </thead>
 
                             <tbody>

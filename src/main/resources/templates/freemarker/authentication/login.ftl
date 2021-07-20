@@ -51,7 +51,7 @@
 					
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">
-							Login
+							Log in
 						</button>
 					</div>
 
@@ -63,7 +63,7 @@
 
 					<div class="text-center p-t-12">
 						<a class="txt2" href="/dashboard/">
-							Desea solo buscar palabras?
+							¿Desea solo buscar palabras?
 						</a>
 					</div>
 

@@ -57,7 +57,7 @@
                         </div>
 
                         <div class="form-row">
-                            <div class="name">Desea agregar definición?</div>
+                            <div class="name">¿Desea agregar definición?</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="checkbox" name="definitionButton" id="definitionButton" onclick="openDefinitionInput()">
