@@ -471,6 +471,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20Ant.%20y%20Méx. -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20Ant.%20y%20Méx."/>
+    
+
+
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20y%20f. -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20y%20f."/>

@@ -115,6 +115,8 @@
                 <li><a href="/rae/search-rae"><i class="fa fa-search"></i> <span>RAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
+                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
+
 
                 <li class="treeview">
                     <a href="#"><i class="fa fa-user"></i> <span>Admin</span>

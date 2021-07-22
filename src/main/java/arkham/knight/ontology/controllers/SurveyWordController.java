@@ -55,7 +55,15 @@ public class SurveyWordController {
 
         List<BaseResponse> wordList = raeConnectionService.getTheLemmaListFromTheRaeAPI(restTemplate, sentence);
 
-        String definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, wordList.get(0).getRes().get(0).getId());
+        String definitionResponse = "";
+
+        try {
+
+            definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, wordList.get(0).getRes().get(0).getId());
+        }catch (Exception exception){
+
+            System.out.println("Palabra no encontrada");
+        }
 
         List<String> definitions = jsoupService.getAllDefinitions(definitionResponse);
 
@@ -95,14 +103,14 @@ public class SurveyWordController {
 
         boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualIpAddress);
 
-//        if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
-//
-//            surveyWordToVote.setUserAlreadyVote(true);
-//
-//            surveyWordService.saveSurveyWord(surveyWordToVote);
-//        }
-//
-//        else {
+        if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
+
+            surveyWordToVote.setUserAlreadyVote(true);
+
+            surveyWordService.saveSurveyWord(surveyWordToVote);
+        }
+
+        else {
 
             surveyWordToVote.setUserAlreadyVote(false);
             surveyWordToVote.setIpAddresses(actualIpAddress);
@@ -111,7 +119,7 @@ public class SurveyWordController {
             surveyWordService.saveSurveyWord(surveyWordToVote);
 
             surveyWordService.evaluateIfTheWordEntersTheOntology(surveyWordToVote);
-//        }
+        }
 
         return "redirect:/surveys/";
     }
@@ -179,16 +187,16 @@ public class SurveyWordController {
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemmaAndDifferentDefinition(simpleWordToVote, actualIpAddress);
 
-//        if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
-//
-//            System.out.println("You can only vote once!");
-//
-//            simpleWordToVote.setUserAlreadyVote(true);
-//
-//            simpleWordService.saveSimpleWord(simpleWordToVote);
-//        }
+        if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
 
-//        else {
+            System.out.println("You can only vote once!");
+
+            simpleWordToVote.setUserAlreadyVote(true);
+
+            simpleWordService.saveSimpleWord(simpleWordToVote);
+        }
+
+        else {
 
             simpleWordToVote.setUserAlreadyVote(false);
             simpleWordToVote.setIpAddresses(actualIpAddress);
@@ -197,7 +205,7 @@ public class SurveyWordController {
             simpleWordService.saveSimpleWord(simpleWordToVote);
 
             simpleWordService.evaluateIfTheWordEntersTheSurvey(simpleWordToVote);
-//        }
+        }
 
         return "redirect:/surveys/simple/";
     }
