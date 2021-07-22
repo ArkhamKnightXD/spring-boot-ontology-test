@@ -127,6 +127,7 @@
                     <ul class="treeview-menu">
                         <li class="active"><a href="#">All Individuals</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
+                        <li><a href="/dashboard/statistics"><i class=""></i> <span>Statistics</span></a></li>
                     </ul>
                 </li>
             </ul>

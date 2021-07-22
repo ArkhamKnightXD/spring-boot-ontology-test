@@ -148,6 +148,13 @@ public class OntologyController {
     }
 
 
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    public String statisticsPage() {
+
+        return "/freemarker/ontology/empty";
+    }
+
+
     @RequestMapping(value = "/class-create", method = RequestMethod.POST)
     public String createClass(@RequestParam String fatherClassName, @RequestParam(defaultValue = "") String subClass) {
 
