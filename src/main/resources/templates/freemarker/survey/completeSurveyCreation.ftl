@@ -55,7 +55,7 @@
                 <form action="/surveys/survey-edition">
 
                     <div class="form-row">
-                        <div class="name">Busqueda RAE</div>
+                        <div class="name">Digite la palabra a buscar </div>
                         <div class="value">
                             <div class="input-group">
                                 <input class="input--style-5" type="text" name="sentence" placeholder="Buscar..." required>
@@ -80,10 +80,10 @@
                             <label for="individualNameRAE">
                                 <select class="form-select" name="individualNameRAE" id="individualNameRAE" required onchange="definitionFilter()">
 
-                                    <option class="" value="0">Seleccione</option>
+                                    <option value="0">Seleccione</option>
 
                                     <#list raeWords as raeWord>
-                                        <option class="" value="${raeWord.getHeader()}">${raeWord.getHeader()}</option>
+                                        <option value="${raeWord.getHeader()}">${raeWord.getHeader()}</option>
                                     </#list>
                                 </select>
                             </label>
@@ -163,7 +163,7 @@
 <script src="../../forms/js/global.js"></script>
 
 <script>
-
+//
     function definitionFilter() {
 
         let definitions = [];

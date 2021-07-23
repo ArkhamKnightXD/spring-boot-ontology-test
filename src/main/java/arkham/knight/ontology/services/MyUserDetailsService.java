@@ -61,6 +61,8 @@ public class MyUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>(rolList);
 
-        return new org.springframework.security.core.userdetails.User(userAdminToFind.getUsername(),userAdminToFind.getPassword(), userAdminToFind.isAdmin(), true, true, true, grantedAuthorities);
+        return new org.springframework.security.core.userdetails.User(userAdminToFind.getUsername(),
+                userAdminToFind.getPassword(), userAdminToFind.isAdmin(), true,
+                true, true, grantedAuthorities);
     }
 }

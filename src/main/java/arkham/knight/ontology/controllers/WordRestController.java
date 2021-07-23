@@ -94,14 +94,25 @@ public class WordRestController {
 
     @GetMapping("/rae/search/definitions/{wordToSearch}")
     @Operation(summary = "Search For All Definitions Of The Desire Word", description = "Retorna todas las definiciones relacionadas a la palabra deseada")
-    public ResponseEntity<List<DefinitionResponse>> getTheDefinitionsFromTheRaeAPI(@PathVariable String wordToSearch) {
+    public ResponseEntity<List<DefinitionResponse>> getTheDefinitionsFromTheRaeAPIv2(@PathVariable String wordToSearch) {
 
-        List<BaseResponse> word = raeConnectionService.getTheExactLemmaFromTheRaeAPI(restTemplate, wordToSearch);
+        String definitionResponse = "";
 
-        String definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, word.get(0).getRes().get(0).getId());
+        List<BaseResponse> word = raeConnectionService.getTheExactLemmaFromTheRaeAPI(restTemplate, wordToSearch.toLowerCase());
 
+        try {
+
+            definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, word.get(0).getRes().get(0).getId());
+        }catch (Exception exception){
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+
+        List<String> initialList = jsoupService.getAllInitialData(definitionResponse);
+        List<String> definitionClasses = jsoupService.getAllClasses(definitionResponse);
         List<String> definitions = jsoupService.getAllDefinitions(definitionResponse);
 
-        return new ResponseEntity<>(jsoupService.getSeparateDefinitionData(definitions), HttpStatus.OK);
+        return new ResponseEntity<>(jsoupService.getCompleteDefinitionData(initialList, definitionClasses, definitions), HttpStatus.OK);
     }
 }

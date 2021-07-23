@@ -41,6 +41,8 @@ public class OntologyApplication {
             simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Relajo", "N/A", false));
 
+//            definitions.forEach(System.out::println);
+
 //            openIndexPage(true);
 //            openIndexPage(false);
         };

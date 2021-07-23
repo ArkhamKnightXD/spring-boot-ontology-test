@@ -3,51 +3,104 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.DefinitionResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class JsoupService {
 
 
-    public List<String> getAllDefinitions(String definitionResponse) {
+    public Elements getAllElementsByTag(String definitionResponse, String tag) {
 
         Document document = Jsoup.parse(definitionResponse);
 
-        List<String> attributes = new ArrayList<>();
-
-        document.getElementsByTag("p").forEach(element -> {
-
-            attributes.add(element.text());
-        });
-
-        return attributes;
+        return document.getElementsByTag(tag);
     }
 
 
-    public List<DefinitionResponse> getSeparateDefinitionData(List<String> definitionList) {
+    public List<String> getAllInitialData(String definitionResponse) {
+
+        List<String> initialList = new ArrayList<>();
+
+        getAllElementsByTag(definitionResponse, "p").forEach(element -> {
+
+            initialList.add(element.text());
+        });
+
+        return initialList;
+    }
+
+
+    public List<String> getAllClasses(String definitionResponse) {
+
+        AtomicInteger counter = new AtomicInteger();
+
+        List<String> classes = new ArrayList<>();
+
+        getAllElementsByTag(definitionResponse, "p").forEach(element -> {
+
+            try {
+
+                if (counter.get() < 10){
+
+                    counter.getAndIncrement();
+                    classes.add(element.child(1).text());
+                }
+            } catch (Exception ignored){
+
+            }
+        });
+
+        return classes;
+    }
+
+
+    public List<String> getAllDefinitions(String definitionResponse) {
+
+        AtomicInteger counter = new AtomicInteger();
+
+        List<String> definitions = new ArrayList<>();
+
+        getAllElementsByTag(definitionResponse, "p").forEach(element -> {
+
+            if (counter.get() < 10) {
+
+                counter.getAndIncrement();
+
+                definitions.add(element.getElementsByTag("mark").text());
+            }
+
+        });
+
+        return definitions;
+    }
+
+
+    public List<DefinitionResponse> getCompleteDefinitionData(List<String> initialList, List<String> classes, List<String> definitions) {
 
         int comparator = 0;
 
         List<DefinitionResponse> cleanDefinitionList = new ArrayList<>();
 
-        for (String definition : definitionList) {
+        for (int i = 0; i < initialList.size(); i++) {
 
             DefinitionResponse definitionResponse = new DefinitionResponse();
 
-            String [] tokens = definition.split("[.]");
+            String [] tokens = initialList.get(i).split("[.]");
 
             try {
 
                 definitionResponse.setDefinitionNumber(tokens[0]);
-
-                evaluateTokenData(definitionResponse, tokens);
+                definitionResponse.setWordClassType(classes.get(i));
+                definitionResponse.setDefinition(definitions.get(i));
 
                 //el try/catch es para esta linea de codigo
                 int actualDefinitionNumber = Integer.parseInt(definitionResponse.getDefinitionNumber());
 
-                if (actualDefinitionNumber > comparator && actualDefinitionNumber < 7){
+                if (actualDefinitionNumber > comparator && actualDefinitionNumber < 10){
 
                     comparator = actualDefinitionNumber;
 
@@ -60,30 +113,5 @@ public class JsoupService {
         }
 
         return cleanDefinitionList;
-    }
-
-
-    private void evaluateTokenData(DefinitionResponse definitionResponse, String[] tokens) {
-
-        if (tokens[2].length() < 7) {
-
-            if (tokens[3].length() < 10) {
-
-                definitionResponse.setWordClassType(tokens[1] + "." + tokens[2] + "." + tokens[3] + ".");
-                definitionResponse.setDefinition(tokens[4] + ".");
-            }
-
-            else {
-
-                definitionResponse.setWordClassType(tokens[1] + "." + tokens[2] + ".");
-                definitionResponse.setDefinition(tokens[3] + ".");
-            }
-        }
-
-        else {
-
-            definitionResponse.setWordClassType(tokens[1] + ".");
-            definitionResponse.setDefinition(tokens[2] + ".");
-        }
     }
 }

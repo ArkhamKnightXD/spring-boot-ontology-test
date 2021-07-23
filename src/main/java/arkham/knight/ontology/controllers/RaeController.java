@@ -75,7 +75,7 @@ public class RaeController {
 
         String definitionsResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, wordId);
 
-        List<String> definitions = jsoupService.getAllDefinitions(definitionsResponse);
+        List<String> definitions = jsoupService.getAllInitialData(definitionsResponse);
 
         definitions.remove(0);
 
