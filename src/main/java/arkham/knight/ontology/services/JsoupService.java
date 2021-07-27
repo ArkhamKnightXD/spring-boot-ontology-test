@@ -13,7 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class JsoupService {
 
 
-    public Elements getAllElementsByTag(String definitionResponse, String tag) {
+    private Elements getAllElementsByTag(String definitionResponse, String tag) {
 
         Document document = Jsoup.parse(definitionResponse);
 
@@ -79,32 +79,35 @@ public class JsoupService {
     }
 
 
-    public List<DefinitionResponse> getCompleteDefinitionData(List<String> initialList, List<String> classes, List<String> definitions) {
+    public List<DefinitionResponse> getCompleteDefinitionData(String definitionResponse) {
 
         int comparator = 0;
 
         List<DefinitionResponse> cleanDefinitionList = new ArrayList<>();
 
+        List<String> initialList = getAllInitialData(definitionResponse);
+        List<String> classes = getAllClasses(definitionResponse);
+        List<String> definitions = getAllDefinitions(definitionResponse);
+
         for (int i = 0; i < initialList.size(); i++) {
 
-            DefinitionResponse definitionResponse = new DefinitionResponse();
+            DefinitionResponse definitionData = new DefinitionResponse();
 
             String [] tokens = initialList.get(i).split("[.]");
 
             try {
 
-                definitionResponse.setDefinitionNumber(tokens[0]);
-                definitionResponse.setWordClassType(classes.get(i));
-                definitionResponse.setDefinition(definitions.get(i));
+                definitionData.setDefinitionNumber(tokens[0]);
+                definitionData.setWordClassType(classes.get(i));
+                definitionData.setDefinition(definitions.get(i));
 
-                //el try/catch es para esta linea de codigo
-                int actualDefinitionNumber = Integer.parseInt(definitionResponse.getDefinitionNumber());
+                int actualDefinitionNumber = Integer.parseInt(definitionData.getDefinitionNumber());
 
                 if (actualDefinitionNumber > comparator && actualDefinitionNumber < 10){
 
                     comparator = actualDefinitionNumber;
 
-                    cleanDefinitionList.add(definitionResponse);
+                    cleanDefinitionList.add(definitionData);
                 }
 
             } catch (Exception ignored){

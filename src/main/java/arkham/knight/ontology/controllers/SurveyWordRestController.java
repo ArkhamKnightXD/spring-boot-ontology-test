@@ -40,19 +40,23 @@ public class SurveyWordRestController {
     }
 
 
-    @GetMapping("/surveys/rae/{lemmaRAE}")
-    @Operation(summary = "Get All Survey Words By Lemma Rae", description = "Retorna una lista con los datos de todas las encuestas avanzadas realizadas del lema de la rae indicado")
-    public ResponseEntity<List<SurveyWord>> getAllSurveysByLemmaRAE(@PathVariable String lemmaRAE) {
-
-        return new ResponseEntity<>(surveyWordService.getAllSurveysByLemmaRAE(lemmaRAE), HttpStatus.OK);
-    }
-
-
     @GetMapping("/simple-words")
     @Operation(summary = "Get All Simple Survey Word Data", description = "Retorna una lista con los datos de las encuestas iniciales")
     public ResponseEntity<List<SimpleWord>> getAllSimpleWord() {
 
         return new ResponseEntity<>(simpleWordService.getAllSimpleWord(), HttpStatus.OK);
+    }
+
+
+    @PostMapping("/simple-words/{lemma}")
+    @Operation(summary = "Submit Simple Survey Word To Vote", description = "Envia una palabra a votación")
+    public ResponseEntity<String> saveSimpleWord(@PathVariable String lemma, @RequestParam(defaultValue = "N/A") String definition) {
+
+        SimpleWord simpleWordToSave = new SimpleWord(lemma, definition, false);
+
+        simpleWordService.saveSimpleWord(simpleWordToSave);
+
+        return new ResponseEntity<>("Palabra puesta a votación", HttpStatus.OK);
     }
 
 

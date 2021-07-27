@@ -51,12 +51,6 @@ public class SurveyWordService {
     }
 
 
-    public List<SurveyWord> getAllSurveysByLemmaRAE(String lemmaRAE){
-
-        return surveyWordRepository.findAllByLemmaRAE(lemmaRAE);
-    }
-
-
     public SurveyWord getSurveyWordById(long id) {
 
         return surveyWordRepository.findSurveyWordById(id);

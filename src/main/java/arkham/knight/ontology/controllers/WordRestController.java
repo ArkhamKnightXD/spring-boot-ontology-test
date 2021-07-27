@@ -4,11 +4,9 @@ import arkham.knight.ontology.models.BaseResponse;
 import arkham.knight.ontology.models.DefinitionResponse;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.JsoupService;
-import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.RaeConnectionService;
 import arkham.knight.ontology.services.WordService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.apache.jena.ontology.Individual;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +17,6 @@ import java.util.List;
 @RestController
 public class WordRestController {
 
-    private final OntologyService ontologyService;
-
     private final WordService wordService;
 
     private final RestTemplate restTemplate;
@@ -29,26 +25,11 @@ public class WordRestController {
 
     private final JsoupService jsoupService;
 
-    public WordRestController(OntologyService ontologyService, WordService wordService, RestTemplate restTemplate, RaeConnectionService raeConnectionService, JsoupService jsoupService) {
-        this.ontologyService = ontologyService;
+    public WordRestController(WordService wordService, RestTemplate restTemplate, RaeConnectionService raeConnectionService, JsoupService jsoupService) {
         this.wordService = wordService;
         this.restTemplate = restTemplate;
         this.raeConnectionService = raeConnectionService;
         this.jsoupService = jsoupService;
-    }
-
-
-    @GetMapping("/search/{sentence}")
-    @Operation(summary = "Search For Any Word In The Ontology", description = "Buscara las distintas palabras dominicanas en la ontología de cualquier oración que se digite")
-    public ResponseEntity<List<Word>> getAllIndividualPropertiesByName(@PathVariable String sentence) {
-
-        List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
-
-        List<Individual> individualList = ontologyService.getAllIndividualByName(sentenceByWords, "tweet");
-
-        List<Word> wordList = ontologyService.saveAllIndividualPropertiesValueInAWordList(individualList);
-
-        return new ResponseEntity<>(wordService.evaluateWordsAndReturnCleanWordList(wordList), HttpStatus.OK);
     }
 
 
@@ -94,9 +75,9 @@ public class WordRestController {
 
     @GetMapping("/rae/search/definitions/{wordToSearch}")
     @Operation(summary = "Search For All Definitions Of The Desire Word", description = "Retorna todas las definiciones relacionadas a la palabra deseada")
-    public ResponseEntity<List<DefinitionResponse>> getTheDefinitionsFromTheRaeAPIv2(@PathVariable String wordToSearch) {
+    public ResponseEntity<List<DefinitionResponse>> getTheDefinitionsFromTheRaeAPI(@PathVariable String wordToSearch) {
 
-        String definitionResponse = "";
+        String definitionResponse;
 
         List<BaseResponse> word = raeConnectionService.getTheExactLemmaFromTheRaeAPI(restTemplate, wordToSearch.toLowerCase());
 
@@ -108,11 +89,6 @@ public class WordRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-
-        List<String> initialList = jsoupService.getAllInitialData(definitionResponse);
-        List<String> definitionClasses = jsoupService.getAllClasses(definitionResponse);
-        List<String> definitions = jsoupService.getAllDefinitions(definitionResponse);
-
-        return new ResponseEntity<>(jsoupService.getCompleteDefinitionData(initialList, definitionClasses, definitions), HttpStatus.OK);
+        return new ResponseEntity<>(jsoupService.getCompleteDefinitionData(definitionResponse), HttpStatus.OK);
     }
 }

@@ -15,9 +15,8 @@ import java.util.List;
 @Service
 public class RaeConnectionService {
 
-    private final String localURL = "http://localhost:8080/";
+    private final String URLConnection = "http://localhost:8080/";
 
-    private final String herokuURL = "http://localhost:8080/";
 
     @Bean
     public RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -27,7 +26,7 @@ public class RaeConnectionService {
 
     public List<BaseResponse> getTheLemmaListFromTheRaeAPI(RestTemplate restTemplate, String wordToSearch){
 
-        String searchLink =  localURL + "search?word="+wordToSearch;
+        String searchLink =  URLConnection + "search?word="+wordToSearch;
 
         return getBaseResponses(restTemplate, searchLink);
     }
@@ -35,7 +34,7 @@ public class RaeConnectionService {
 
     public List<BaseResponse> getTheExactLemmaFromTheRaeAPI(RestTemplate restTemplate, String wordToSearch){
 
-        String searchLink = localURL + "exact?word="+wordToSearch;
+        String searchLink = URLConnection + "exact?word="+wordToSearch;
 
         return getBaseResponses(restTemplate, searchLink);
     }
@@ -55,7 +54,7 @@ public class RaeConnectionService {
 
     public String getTheDefinitionListByWordId(RestTemplate restTemplate, String wordToSearch){
 
-        String searchLink = localURL + "definition?id="+wordToSearch;
+        String searchLink = URLConnection + "definition?id="+wordToSearch;
 
         ResponseEntity<String> responseEntityDRAE = restTemplate.getForEntity(searchLink, String.class);
 
