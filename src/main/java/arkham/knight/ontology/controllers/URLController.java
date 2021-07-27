@@ -33,7 +33,7 @@ public class URLController implements ErrorController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    //es necesario implementar este metodo para que funcione el error controller
+    //es necesario implementar este metodo para que funcione el error controller, aunque esto esta deprecated
     @Override
     public String getErrorPath() {
 
@@ -51,7 +51,7 @@ public class URLController implements ErrorController {
     @RequestMapping("/login")
     public String login(){
 
-        User adminUser = userService.getUserByUsername("admin");
+        User adminUser = userService.getUserByUsername("admin@hotmail.com");
 
         if (adminUser == null)
             myUserDetailsService.createAdminUser();

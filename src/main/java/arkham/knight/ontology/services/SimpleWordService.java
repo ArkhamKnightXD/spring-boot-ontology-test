@@ -26,7 +26,7 @@ public class SimpleWordService {
     }
 
 
-    public List<SimpleWord> getAllSimpleWord(){
+    public List<SimpleWord> getAllSimpleWords(){
 
         return simpleWordRepository.findAll();
     }
@@ -54,15 +54,15 @@ public class SimpleWordService {
     }
 
 
-    public boolean alreadyVoteSimpleWordWithTheSameLemmaAndDifferentDefinition(SimpleWord simpleWordToEvaluate, String actualIpAddress){
+    public boolean alreadyVoteWordWithTheSameLemmaExist(SimpleWord wordToEvaluate, String actualUserName){
 
-        List<SimpleWord> wordsByLemma = getAllSimpleWordByLemma(simpleWordToEvaluate.getWord());
+        List<SimpleWord> wordsByLemma = getAllSimpleWordByLemma(wordToEvaluate.getWord());
 
         for (SimpleWord simpleWord : wordsByLemma) {
 
-            boolean hasSameDefinition = simpleWordToEvaluate.getWordDefinition().equalsIgnoreCase(simpleWord.getWordDefinition());
+            boolean hasSameDefinition = wordToEvaluate.getWordDefinition().equalsIgnoreCase(simpleWord.getWordDefinition());
 
-            if (!hasSameDefinition && simpleWord.getIpAddresses().contains(actualIpAddress))
+            if (!hasSameDefinition && simpleWord.getAlreadyVoteUsernames().contains(actualUserName))
                 return true;
         }
 
@@ -70,7 +70,7 @@ public class SimpleWordService {
     }
 
 
-    public SurveyWord convertSimpleWordToSurveyWord(SimpleWord winnerWord) {
+    private SurveyWord convertSimpleWordToSurveyWord(SimpleWord winnerWord) {
 
         SurveyWord surveyWord = new SurveyWord();
 
@@ -88,18 +88,18 @@ public class SimpleWordService {
     }
 
 
-    public void evaluateIfTheWordEntersTheSurvey(SimpleWord simpleWordToVote) {
+    public void evaluateIfTheWordEntersTheSurvey(SimpleWord wordToVote) {
 
-        SurveyWord surveyWordWinner = convertSimpleWordToSurveyWord(simpleWordToVote);
+        SurveyWord surveyWordWinner = convertSimpleWordToSurveyWord(wordToVote);
 
         boolean wordDefinitionAlreadyExist = surveyWordService.surveyWordDefinitionAlreadyExist(surveyWordWinner);
 
         if (!wordDefinitionAlreadyExist && surveyWordWinner.getVotesQuantity() > 2){
 
             surveyWordWinner.setVotesQuantity(0);
-            simpleWordToVote.setPassTheVote(true);
+            wordToVote.setPassTheVote(true);
 
-            simpleWordRepository.save(simpleWordToVote);
+            simpleWordRepository.save(wordToVote);
             surveyWordService.saveSurveyWord(surveyWordWinner);
         }
     }

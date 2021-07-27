@@ -3,7 +3,6 @@ package arkham.knight.ontology.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -28,7 +27,7 @@ public class SurveyWord implements Serializable {
 
     @ElementCollection
     @JsonIgnore
-    private List<String> ipAddresses = Collections.singletonList("192.1.2.164");
+    private List<String> alreadyVoteUsernames;
 
 
     public SurveyWord() {
@@ -89,7 +88,7 @@ public class SurveyWord implements Serializable {
 
     public void setUserAlreadyVote(boolean userAlreadyVote) { this.userAlreadyVote = userAlreadyVote; }
 
-    public List<String> getIpAddresses() { return ipAddresses; }
+    public List<String> getAlreadyVoteUsernames() { return alreadyVoteUsernames; }
 
-    public void setIpAddresses(String ipAddress) { this.ipAddresses.add(ipAddress); }
+    public void setAlreadyVoteUsernames(String alreadyVoteUser) { this.alreadyVoteUsernames.add(alreadyVoteUser); }
 }

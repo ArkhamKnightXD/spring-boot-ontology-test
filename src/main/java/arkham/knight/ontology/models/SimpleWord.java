@@ -21,7 +21,7 @@ public class SimpleWord implements Serializable{
 
     @ElementCollection
     @JsonIgnore
-    private List<String> ipAddresses;
+    private List<String> alreadyVoteUsernames;
 
 
     public SimpleWord() { }
@@ -58,7 +58,7 @@ public class SimpleWord implements Serializable{
 
     public void setUserAlreadyVote(boolean userAlreadyVote) { this.userAlreadyVote = userAlreadyVote; }
 
-    public List<String> getIpAddresses() { return ipAddresses; }
+    public List<String> getAlreadyVoteUsernames() { return alreadyVoteUsernames; }
 
-    public void setIpAddresses(String ipAddress) { this.ipAddresses.add(ipAddress); }
+    public void setAlreadyVoteUsernames(String alreadyVoteUser) { this.alreadyVoteUsernames.add(alreadyVoteUser); }
 }

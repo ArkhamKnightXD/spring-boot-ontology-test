@@ -57,12 +57,13 @@ public class SurveyWordService {
     }
 
 
-    public Word convertSurveyWordToWord(SurveyWord surveyWord){
+    public Word convertSurveyWordToWord(SurveyWord word){
 
-        String totalAnswers = String.valueOf(surveyWord.getTotalAnswers());
-        String votesQuantity = String.valueOf(surveyWord.getVotesQuantity());
+        String totalAnswers = String.valueOf(word.getTotalAnswers());
+        String votesQuantity = String.valueOf(word.getVotesQuantity());
 
-        return new Word(surveyWord.getLemma(), surveyWord.getDefinition(), surveyWord.getExample(), surveyWord.getFatherClass(), surveyWord.getSynonyms(), surveyWord.getLemmaRAE(), totalAnswers, votesQuantity);
+        return new Word(word.getLemma(), word.getDefinition(), word.getExample(), word.getFatherClass(),
+                word.getSynonyms(), word.getLemmaRAE(), totalAnswers, votesQuantity);
     }
 
 
@@ -103,15 +104,15 @@ public class SurveyWordService {
         return winnerSurveyWord;
     }
 
-    public boolean alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(SurveyWord surveyWordToEvaluate, String actualIpAddress){
+    public boolean alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(SurveyWord wordToEvaluate, String actualUsername){
 
-        List<SurveyWord> wordsByLemma = getAllSurveysByLemma(surveyWordToEvaluate.getLemma());
+        List<SurveyWord> wordsByLemma = getAllSurveysByLemma(wordToEvaluate.getLemma());
 
         for (SurveyWord surveyWord : wordsByLemma) {
 
-            boolean hasSameDefinition = surveyWordToEvaluate.getDefinition().equalsIgnoreCase(surveyWord.getDefinition());
+            boolean hasSameDefinition = wordToEvaluate.getDefinition().equalsIgnoreCase(surveyWord.getDefinition());
 
-            if (!hasSameDefinition && surveyWord.getIpAddresses().contains(actualIpAddress))
+            if (!hasSameDefinition && surveyWord.getAlreadyVoteUsernames().contains(actualUsername))
                 return true;
         }
 

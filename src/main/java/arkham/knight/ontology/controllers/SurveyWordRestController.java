@@ -44,7 +44,7 @@ public class SurveyWordRestController {
     @Operation(summary = "Get All Simple Survey Word Data", description = "Retorna una lista con los datos de las encuestas iniciales")
     public ResponseEntity<List<SimpleWord>> getAllSimpleWord() {
 
-        return new ResponseEntity<>(simpleWordService.getAllSimpleWord(), HttpStatus.OK);
+        return new ResponseEntity<>(simpleWordService.getAllSimpleWords(), HttpStatus.OK);
     }
 
 

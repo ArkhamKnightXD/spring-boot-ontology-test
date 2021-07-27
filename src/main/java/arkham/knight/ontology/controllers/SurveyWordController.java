@@ -1,9 +1,6 @@
 package arkham.knight.ontology.controllers;
 
-import arkham.knight.ontology.models.BaseResponse;
-import arkham.knight.ontology.models.DefinitionResponse;
-import arkham.knight.ontology.models.SimpleWord;
-import arkham.knight.ontology.models.SurveyWord;
+import arkham.knight.ontology.models.*;
 import arkham.knight.ontology.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +19,7 @@ public class SurveyWordController {
     private final SurveyWordService surveyWordService;
 
     private final SimpleWordService simpleWordService;
-
+    
     private final RaeConnectionService raeConnectionService;
 
     private final JsoupService jsoupService;
@@ -95,23 +92,23 @@ public class SurveyWordController {
     @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
     public String voteSurvey(@RequestParam long id, HttpServletRequest request) {
 
-        String actualIpAddress = request.getRemoteAddr();
+        String loggedUserName = request.getUserPrincipal().getName();
 
         SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
-        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualIpAddress);
+        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, loggedUserName);
 
-        if (surveyWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
+        if (surveyWordToVote.getAlreadyVoteUsernames().contains(loggedUserName) || alreadyVoteWord) {
 
-            surveyWordToVote.setUserAlreadyVote(true);
-
-            surveyWordService.saveSurveyWord(surveyWordToVote);
+//            surveyWordToVote.setUserAlreadyVote(true);
+//
+//            surveyWordService.saveSurveyWord(surveyWordToVote);
         }
 
         else {
 
             surveyWordToVote.setUserAlreadyVote(false);
-            surveyWordToVote.setIpAddresses(actualIpAddress);
+            surveyWordToVote.setAlreadyVoteUsernames(loggedUserName);
             surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
 
             surveyWordService.saveSurveyWord(surveyWordToVote);
@@ -127,7 +124,7 @@ public class SurveyWordController {
     public String indexSimplePage(Model model, Principal principal) {
 
         model.addAttribute("loggedUsername", principal.getName());
-        model.addAttribute("words", simpleWordService.getAllSimpleWord());
+        model.addAttribute("words", simpleWordService.getAllSimpleWords());
 
         return "/freemarker/survey/simpleSurveyIndex";
     }
@@ -178,30 +175,25 @@ public class SurveyWordController {
     @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
     public String voteSimpleSurvey(@RequestParam long id, HttpServletRequest request) {
 
-        String actualIpAddress = request.getRemoteAddr();
-
         SimpleWord simpleWordToVote = simpleWordService.getSimpleWordById(id);
 
-        Principal principal = request.getUserPrincipal();
-
-        principal.getName();
+        String loggedUserName = request.getUserPrincipal().getName();
 
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
-        boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemmaAndDifferentDefinition(simpleWordToVote, actualIpAddress);
+        boolean alreadyVoteWord = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, loggedUserName);
 
-        if (simpleWordToVote.getIpAddresses().contains(actualIpAddress) || alreadyVoteWord) {
+        if (simpleWordToVote.getAlreadyVoteUsernames().contains(loggedUserName) || alreadyVoteWord) {
 
-            System.out.println("You can only vote once!");
-
-            simpleWordToVote.setUserAlreadyVote(true);
-
-            simpleWordService.saveSimpleWord(simpleWordToVote);
+            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
+//            simpleWordToVote.setUserAlreadyVote(true);
+//
+//            simpleWordService.saveSimpleWord(simpleWordToVote);
         }
 
         else {
 
             simpleWordToVote.setUserAlreadyVote(false);
-            simpleWordToVote.setIpAddresses(actualIpAddress);
+            simpleWordToVote.setAlreadyVoteUsernames(loggedUserName);
             simpleWordToVote.setVotesQuantity(simpleWordToVote.getVotesQuantity() + 1);
 
             simpleWordService.saveSimpleWord(simpleWordToVote);
