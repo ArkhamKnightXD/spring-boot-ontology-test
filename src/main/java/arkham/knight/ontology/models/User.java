@@ -14,7 +14,6 @@ public class User implements Serializable {
     private String username;
     private String password;
     private boolean admin;
-    private String email;
 
     @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Rol> rolList;
@@ -22,11 +21,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password, boolean admin, String email, List<Rol> rolList) {
+    public User(String username, String password, boolean admin, List<Rol> rolList) {
         this.username = username;
         this.password = password;
         this.admin = admin;
-        this.email = email;
         this.rolList = rolList;
     }
 
@@ -45,10 +43,6 @@ public class User implements Serializable {
     public boolean isAdmin() { return admin; }
 
     public void setAdmin(boolean admin) { this.admin = admin; }
-
-    public String getEmail() { return email; }
-
-    public void setEmail(String email) { this.email = email; }
 
     public List<Rol> getRolList() {
         return rolList;

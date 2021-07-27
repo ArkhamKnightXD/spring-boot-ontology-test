@@ -45,11 +45,6 @@
 
                     </div>
 
-                    <div class="col-md-12 mb-3">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" value="${user.getEmail()}" id="email" name="email" placeholder="Email..."  required>
-
-                    </div>
 
                     <div class="col-md-12 mb-3">
                         <label for="idRol">Rol del usuario</label>

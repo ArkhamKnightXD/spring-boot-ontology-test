@@ -55,11 +55,6 @@
 						</button>
 					</div>
 
-<#--					<div class="text-center p-t-12">-->
-<#--						<a class="txt2" href="/surveys/simple-survey-creation">-->
-<#--							Desea proponer palabras nuevas?-->
-<#--						</a>-->
-<#--					</div>-->
 
 					<div class="text-center p-t-12">
 						<a class="txt2" href="/dashboard/">

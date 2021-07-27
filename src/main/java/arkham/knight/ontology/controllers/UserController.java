@@ -45,7 +45,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createUser(@RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Long idRol) {
+    public String createUser(@RequestParam String username, @RequestParam String password, @RequestParam Long idRol) {
 
         Rol userRol = userService.getRolById(idRol);
 
@@ -53,7 +53,7 @@ public class UserController {
 
         usersRoles.add(userRol);
 
-        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, email, usersRoles);
+        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, usersRoles);
 
         userService.saveUser(userToCreate);
 
@@ -74,7 +74,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String editUser(@RequestParam long id, @RequestParam String username, @RequestParam String password, @RequestParam String email, @RequestParam Long idRol) {
+    public String editUser(@RequestParam long id, @RequestParam String username, @RequestParam String password, @RequestParam Long idRol) {
 
         User userToEdit = userService.getUserById(id);
 
@@ -86,7 +86,6 @@ public class UserController {
 
         userToEdit.setUsername(username);
         userToEdit.setPassword(bCryptPasswordEncoder.encode(password));
-        userToEdit.setEmail(email);
         userToEdit.setRolList(usersRoles);
 
         userService.saveUser(userToEdit);

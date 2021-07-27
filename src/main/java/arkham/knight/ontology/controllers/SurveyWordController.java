@@ -184,7 +184,7 @@ public class SurveyWordController {
 
         Principal principal = request.getUserPrincipal();
 
-        System.out.println("User: " + principal);
+        principal.getName();
 
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean alreadyVoteWord = simpleWordService.alreadyVoteSimpleWordWithTheSameLemmaAndDifferentDefinition(simpleWordToVote, actualIpAddress);

@@ -112,7 +112,7 @@
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Search</span></a></li>
-<#--                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>DRAE-Search</span></a></li>-->
+                <li><a href="/rae/search"><i class="fa fa-search"></i> <span>RAE-Search</span></a></li>
                 <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Surveys</span></a></li>
                 <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
 
@@ -157,7 +157,6 @@
                             <thead>
 
                             <th>Nombre de usuario</th>
-                            <th>Email</th>
                             <th>Options</th>
                             </thead>
 
@@ -165,8 +164,6 @@
 
                             <tr>
                                 <td>${user.getUsername()}</td>
-
-                                <td> ${user.getEmail()}</td>
 
                                 <td>
                                     <a href="/users/edition?id=${user.getId()}">  <i class="fa fa-edit" style="font-size:25px"></i></a>
