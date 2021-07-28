@@ -92,13 +92,13 @@ public class SurveyWordController {
     @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
     public String voteSurvey(@RequestParam long id, HttpServletRequest request) {
 
-        String loggedUserName = request.getUserPrincipal().getName();
+        String actualUserName = request.getUserPrincipal().getName();
 
         SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
-        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, loggedUserName);
+        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualUserName);
 
-        if (surveyWordToVote.getAlreadyVoteUsernames().contains(loggedUserName) || alreadyVoteWord) {
+        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || alreadyVoteWord) {
 
 //            surveyWordToVote.setUserAlreadyVote(true);
 //
@@ -108,7 +108,7 @@ public class SurveyWordController {
         else {
 
             surveyWordToVote.setUserAlreadyVote(false);
-            surveyWordToVote.setAlreadyVoteUsernames(loggedUserName);
+            surveyWordToVote.setAlreadyVoteUsernames(actualUserName);
             surveyWordToVote.setVotesQuantity(surveyWordToVote.getVotesQuantity() + 1);
 
             surveyWordService.saveSurveyWord(surveyWordToVote);
@@ -177,12 +177,12 @@ public class SurveyWordController {
 
         SimpleWord simpleWordToVote = simpleWordService.getSimpleWordById(id);
 
-        String loggedUserName = request.getUserPrincipal().getName();
+        String actualUserName = request.getUserPrincipal().getName();
 
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
-        boolean alreadyVoteWord = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, loggedUserName);
+        boolean isWordAlreadyVote = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, actualUserName);
 
-        if (simpleWordToVote.getAlreadyVoteUsernames().contains(loggedUserName) || alreadyVoteWord) {
+        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 
             //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
 //            simpleWordToVote.setUserAlreadyVote(true);
@@ -193,7 +193,7 @@ public class SurveyWordController {
         else {
 
             simpleWordToVote.setUserAlreadyVote(false);
-            simpleWordToVote.setAlreadyVoteUsernames(loggedUserName);
+            simpleWordToVote.setAlreadyVoteUsernames(actualUserName);
             simpleWordToVote.setVotesQuantity(simpleWordToVote.getVotesQuantity() + 1);
 
             simpleWordService.saveSimpleWord(simpleWordToVote);
