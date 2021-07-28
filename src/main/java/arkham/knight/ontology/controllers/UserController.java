@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +29,11 @@ public class UserController {
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String indexPage(Model model) {
+    public String indexPage(Model model, Principal principal) {
 
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("users", userService.getAllUsers());
 
         return "/freemarker/user/users";
@@ -53,7 +58,7 @@ public class UserController {
 
         usersRoles.add(userRol);
 
-        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), true, usersRoles);
+        User userToCreate = new User(username, bCryptPasswordEncoder.encode(password), "user", true, usersRoles);
 
         userService.saveUser(userToCreate);
 

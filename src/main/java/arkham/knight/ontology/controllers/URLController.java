@@ -68,13 +68,13 @@ public class URLController implements ErrorController {
 
 
     @RequestMapping(value = "/sing-up", method = RequestMethod.POST)
-    public String registerUser(@RequestParam String email, @RequestParam String password) {
+    public String registerUser(@RequestParam String email, @RequestParam String username, @RequestParam String password) {
 
         List<Rol> userRol = new ArrayList<>();
 
         userRol.add(new Rol("ROLE_USER"));
 
-        User userToCreate = new User(email, bCryptPasswordEncoder.encode(password), true, userRol);
+        User userToCreate = new User(email, bCryptPasswordEncoder.encode(password), username,true, userRol);
 
         userService.saveUser(userToCreate);
 

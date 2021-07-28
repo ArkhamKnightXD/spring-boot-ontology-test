@@ -34,8 +34,8 @@
             <form method="post" action="/users/edit?id=${user.getId()}" class="needs-validation"  novalidate>
                 <div class="row">
                     <div class="col-md-12 mb-3">
-                        <label for="username">Nombre de usuario</label>
-                        <input type="text" class="form-control" value="${user.getUsername()}" id="username" name="username" placeholder="Nombre de usuario..."  required>
+                        <label for="username">Email</label>
+                        <input type="text" class="form-control" value="${user.getUsername()}" id="username" name="username" placeholder="Email..."  required>
 
                     </div>
 

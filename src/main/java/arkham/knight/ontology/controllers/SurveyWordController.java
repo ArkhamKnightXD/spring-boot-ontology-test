@@ -19,16 +19,19 @@ public class SurveyWordController {
     private final SurveyWordService surveyWordService;
 
     private final SimpleWordService simpleWordService;
-    
+
+    private final UserService userService;
+
     private final RaeConnectionService raeConnectionService;
 
     private final JsoupService jsoupService;
 
     private final RestTemplate restTemplate;
 
-    public SurveyWordController(SurveyWordService surveyWordService, SimpleWordService simpleWordService, RaeConnectionService raeConnectionService, JsoupService jsoupService, RestTemplate restTemplate) {
+    public SurveyWordController(SurveyWordService surveyWordService, SimpleWordService simpleWordService, UserService userService, RaeConnectionService raeConnectionService, JsoupService jsoupService, RestTemplate restTemplate) {
         this.surveyWordService = surveyWordService;
         this.simpleWordService = simpleWordService;
+        this.userService = userService;
         this.raeConnectionService = raeConnectionService;
         this.jsoupService = jsoupService;
         this.restTemplate = restTemplate;
@@ -38,7 +41,9 @@ public class SurveyWordController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String indexPage(Model model, Principal principal) {
 
-        model.addAttribute("loggedUsername", principal.getName());
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("surveys", surveyWordService.getAllSurveys());
 
         return "/freemarker/survey/surveyIndex";
@@ -123,7 +128,10 @@ public class SurveyWordController {
     @RequestMapping(value = "simple/", method = RequestMethod.GET)
     public String indexSimplePage(Model model, Principal principal) {
 
-        model.addAttribute("loggedUsername", principal.getName());
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("words", simpleWordService.getAllSimpleWords());
 
         return "/freemarker/survey/simpleSurveyIndex";

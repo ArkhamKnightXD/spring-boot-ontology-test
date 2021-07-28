@@ -12,6 +12,7 @@ public class User implements Serializable {
     private Long id;
 
     private String username;
+    private String nameToShow;
     private String password;
     private boolean admin;
 
@@ -21,9 +22,10 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String username, String password, boolean admin, List<Rol> rolList) {
+    public User(String username, String password, String nameToShow, boolean admin, List<Rol> rolList) {
         this.username = username;
         this.password = password;
+        this.nameToShow = nameToShow;
         this.admin = admin;
         this.rolList = rolList;
     }
@@ -39,6 +41,10 @@ public class User implements Serializable {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
+
+    public String getNameToShow() { return nameToShow; }
+
+    public void setNameToShow(String nameToShow) { this.nameToShow = nameToShow; }
 
     public boolean isAdmin() { return admin; }
 

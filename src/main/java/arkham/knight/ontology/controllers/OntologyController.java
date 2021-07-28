@@ -1,8 +1,10 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.User;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
+import arkham.knight.ontology.services.UserService;
 import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 import java.util.List;
 
 @RequestMapping("/dashboard")
@@ -22,9 +26,12 @@ public class OntologyController {
 
     private final WordService wordService;
 
-    public OntologyController(OntologyService ontologyService, WordService wordService) {
+    private final UserService userService;
+
+    public OntologyController(OntologyService ontologyService, WordService wordService, UserService userService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
+        this.userService = userService;
     }
 
 
@@ -44,7 +51,7 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/individuals", method = RequestMethod.GET)
-    public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence) {
+    public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence, Principal principal) {
 
         List<Individual> individualList;
 
@@ -59,6 +66,9 @@ public class OntologyController {
             individualList = ontologyConnectionService.getAllIndividuals();
         }
 
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("individuals", individualList);
 
         return "/freemarker/ontology/individuals";

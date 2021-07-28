@@ -24,7 +24,7 @@ jobs:
 
       #para hacer deployment de docker debo desactivar los test con: -x test
     - name: Build And Test With Gradle
-      run: ./gradlew build -x test
+      run: ./gradlew build
 
 #Si no deseo subir imagen de docker comentare los sigtes jobs
 #    - name: Build Jar With Gradle
