@@ -103,14 +103,14 @@ public class SurveyWordController {
 
         boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualUserName);
 
-        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || alreadyVoteWord) {
-
-//            surveyWordToVote.setUserAlreadyVote(true);
+//        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || alreadyVoteWord) {
 //
-//            surveyWordService.saveSurveyWord(surveyWordToVote);
-        }
-
-        else {
+////            surveyWordToVote.setUserAlreadyVote(true);
+////
+////            surveyWordService.saveSurveyWord(surveyWordToVote);
+//        }
+//
+//        else {
 
             surveyWordToVote.setUserAlreadyVote(false);
             surveyWordToVote.setAlreadyVoteUsernames(actualUserName);
@@ -119,7 +119,7 @@ public class SurveyWordController {
             surveyWordService.saveSurveyWord(surveyWordToVote);
 
             surveyWordService.evaluateIfTheWordEntersTheOntology(surveyWordToVote);
-        }
+//        }
 
         return "redirect:/surveys/";
     }
@@ -190,15 +190,15 @@ public class SurveyWordController {
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean isWordAlreadyVote = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, actualUserName);
 
-        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
-
-            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
-//            simpleWordToVote.setUserAlreadyVote(true);
+//        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 //
-//            simpleWordService.saveSimpleWord(simpleWordToVote);
-        }
+//            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
+////            simpleWordToVote.setUserAlreadyVote(true);
+////
+////            simpleWordService.saveSimpleWord(simpleWordToVote);
+//        }
 
-        else {
+//        else {
 
             simpleWordToVote.setUserAlreadyVote(false);
             simpleWordToVote.setAlreadyVoteUsernames(actualUserName);
@@ -207,7 +207,7 @@ public class SurveyWordController {
             simpleWordService.saveSimpleWord(simpleWordToVote);
 
             simpleWordService.evaluateIfTheWordEntersTheSurvey(simpleWordToVote);
-        }
+//        }
 
         return "redirect:/surveys/simple/";
     }
