@@ -15,10 +15,10 @@ import java.util.List;
 @Service
 public class RaeConnectionService {
 
-//    private final String URLConnection = "http://localhost:8080/";
+    private final String URLConnection = "http://localhost:8080/";
 
     //ngrok connection
-    private final String URLConnection = "https://8e66e5ba927d.ngrok.io/";
+//    private final String URLConnection = "https://8e66e5ba927d.ngrok.io/";
 
 
     @Bean

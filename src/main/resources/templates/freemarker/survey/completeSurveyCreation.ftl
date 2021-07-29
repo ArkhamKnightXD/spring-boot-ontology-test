@@ -82,9 +82,9 @@
 
                                     <option value="0">Seleccione</option>
 
-                                    <#list raeWords as raeWord>
-                                        <option value="${raeWord.getHeader()}">${raeWord.getHeader()}</option>
-                                    </#list>
+<#--                                    <#list raeWords as raeWord>-->
+                                    <option value="${raeWord.getHeader()}">${raeWord.getHeader()}</option>
+<#--                                    </#list>-->
                                 </select>
                             </label>
                         </div>

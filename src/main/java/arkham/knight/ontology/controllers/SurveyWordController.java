@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.List;
 
@@ -69,8 +68,7 @@ public class SurveyWordController {
 
         List<DefinitionResponse> cleanDefinitions = jsoupService.getCompleteDefinitionData(definitionResponse);
 
-        //todo evaluar si seguire enviando varios lemas o lo ideal seria mandar uno, ya que en la pagina solo tomo en cuenta el primer lemma a la hora de buscar las definiciones
-        model.addAttribute("raeWords", wordList.get(0).getRes());
+        model.addAttribute("raeWord", wordList.get(0).getRes().get(0));
         model.addAttribute("definitions", cleanDefinitions);
         model.addAttribute("word", surveyWordToEdit);
 
@@ -95,22 +93,22 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
-    public String voteSurvey(@RequestParam long id, HttpServletRequest request) {
+    public String voteSurvey(@RequestParam long id, Principal principal) {
 
-        String actualUserName = request.getUserPrincipal().getName();
+        String actualUserName = principal.getName();
 
         SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
         boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualUserName);
 
-//        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || alreadyVoteWord) {
+        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || alreadyVoteWord) {
+
+//            surveyWordToVote.setUserAlreadyVote(true);
 //
-////            surveyWordToVote.setUserAlreadyVote(true);
-////
-////            surveyWordService.saveSurveyWord(surveyWordToVote);
-//        }
-//
-//        else {
+//            surveyWordService.saveSurveyWord(surveyWordToVote);
+        }
+
+        else {
 
             surveyWordToVote.setUserAlreadyVote(false);
             surveyWordToVote.setAlreadyVoteUsernames(actualUserName);
@@ -119,7 +117,7 @@ public class SurveyWordController {
             surveyWordService.saveSurveyWord(surveyWordToVote);
 
             surveyWordService.evaluateIfTheWordEntersTheOntology(surveyWordToVote);
-//        }
+        }
 
         return "redirect:/surveys/";
     }
@@ -129,7 +127,6 @@ public class SurveyWordController {
     public String indexSimplePage(Model model, Principal principal) {
 
         User actualUser = userService.getUserByUsername(principal.getName());
-
 
         model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("words", simpleWordService.getAllSimpleWords());
@@ -181,24 +178,24 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
-    public String voteSimpleSurvey(@RequestParam long id, HttpServletRequest request) {
+    public String voteSimpleSurvey(@RequestParam long id, Principal principal) {
 
         SimpleWord simpleWordToVote = simpleWordService.getSimpleWordById(id);
 
-        String actualUserName = request.getUserPrincipal().getName();
+        String actualUserName = principal.getName();
 
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean isWordAlreadyVote = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, actualUserName);
 
-//        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
-//
-//            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
-////            simpleWordToVote.setUserAlreadyVote(true);
-////
-////            simpleWordService.saveSimpleWord(simpleWordToVote);
-//        }
+        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 
-//        else {
+            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
+//            simpleWordToVote.setUserAlreadyVote(true);
+//
+//            simpleWordService.saveSimpleWord(simpleWordToVote);
+        }
+
+        else {
 
             simpleWordToVote.setUserAlreadyVote(false);
             simpleWordToVote.setAlreadyVoteUsernames(actualUserName);
@@ -207,7 +204,7 @@ public class SurveyWordController {
             simpleWordService.saveSimpleWord(simpleWordToVote);
 
             simpleWordService.evaluateIfTheWordEntersTheSurvey(simpleWordToVote);
-//        }
+        }
 
         return "redirect:/surveys/simple/";
     }
