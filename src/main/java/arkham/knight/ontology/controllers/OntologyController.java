@@ -5,6 +5,8 @@ import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.UserService;
+import arkham.knight.ontology.models.SimpleWord;
+import arkham.knight.ontology.services.SimpleWordService;
 import arkham.knight.ontology.services.WordService;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Controller;
@@ -27,10 +29,13 @@ public class OntologyController {
 
     private final UserService userService;
 
-    public OntologyController(OntologyService ontologyService, WordService wordService, UserService userService) {
+    private final SimpleWordService simpleWordService;
+
+    public OntologyController(OntologyService ontologyService, WordService wordService, UserService userService, SimpleWordService simpleWordService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
         this.userService = userService;
+        this.simpleWordService = simpleWordService;
     }
 
 
@@ -158,7 +163,31 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public String statisticsPage() {
+    public String statisticsPage(Model model, @RequestParam(defaultValue = "") String sentence){
+
+        List<Individual> acceptedWords;
+        int totalAcceptedWords;
+        int totalSimpleWords;
+        int totalWords;
+
+        if (sentence.length() != 0){
+
+            List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
+            acceptedWords = ontologyService.getAllIndividualByName(sentenceByWords, "word-search");
+        }
+
+        else{
+
+            acceptedWords = ontologyConnectionService.getAllIndividuals();
+        }
+        totalAcceptedWords = acceptedWords.size();
+        model.addAttribute("totalAcceptedWords", totalAcceptedWords);
+
+        List<SimpleWord> simpleWords = simpleWordService.getAllSimpleWords();
+        totalSimpleWords = simpleWords.size();
+        model.addAttribute("totalSimpleWords", totalSimpleWords);
+        totalWords = totalAcceptedWords + totalSimpleWords;
+        model.addAttribute("totalWords", totalWords);
 
         return "/freemarker/ontology/empty";
     }
