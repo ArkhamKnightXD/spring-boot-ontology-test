@@ -1,10 +1,6 @@
 package arkham.knight.ontology;
 
-import arkham.knight.ontology.models.DRAEDefinition;
-import arkham.knight.ontology.models.DRAEObject;
-import arkham.knight.ontology.models.DRAEVariation;
 import arkham.knight.ontology.models.Word;
-import arkham.knight.ontology.services.DRAEConnectionService;
 import arkham.knight.ontology.services.OntologyConnectionService;
 import arkham.knight.ontology.services.OntologyService;
 import arkham.knight.ontology.services.WordService;
@@ -14,7 +10,6 @@ import org.apache.jena.ontology.OntClass;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.client.RestTemplate;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,21 +24,13 @@ class OntologyApplicationTests {
     @Autowired
     private WordService wordService;
 
-    @Autowired
-    private DRAEConnectionService draeConnectionService;
-
-    @Autowired
-    private RestTemplate restTemplate;
-
     private final String testLemma = "prueba";
-
-    private final String wordToSearchDRAE = "diccionario";
 
 
     @Test
     void testHermitReasoner() {
 
-        List<String> individualNames = ontologyService.getAllIndividualNameByClassNameWithReasoner("Verbos");
+        List<String> individualNames = ontologyService.getAllIndividualNameByClassNameWithReasoner("Verbo");
 
         assertFalse(individualNames.contains("fuñir"));
     }
@@ -193,13 +180,13 @@ class OntologyApplicationTests {
     }
 
 
-    @Test
-    void testGetWordByLemma() {
-
-        Word response = wordService.getWordByLemma(testLemma);
-
-        assertEquals(testLemma, response.getLema());
-    }
+//    @Test
+//    void testGetWordByLemma() {
+//
+//        Word response = wordService.getWordByLemma(testLemma);
+//
+//        assertEquals(testLemma, response.getLema());
+//    }
 
 
     @Test
@@ -214,7 +201,7 @@ class OntologyApplicationTests {
     @Test
     void testGetAllWordByFatherClassName() {
 
-        List<Word> response = wordService.getAllWordsByFatherClassName("Adjetivos");
+        List<Word> response = wordService.getAllWordsByFatherClassName("Adjetivo");
 
         assertFalse(response.isEmpty());
     }
@@ -227,42 +214,4 @@ class OntologyApplicationTests {
 
         assertTrue(response);
     }
-
-
-//    @Test
-//    void testDRAEObjectSearch() {
-//
-//        String wordFound = "";
-//
-//        List<DRAEObject> wordsResponse = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
-//
-//        for (DRAEObject word: wordsResponse) {
-//
-//            wordFound =  word.getWord();
-//        }
-//
-//        assertEquals(wordToSearchDRAE ,wordFound);
-//    }
-//
-//
-//    @Test
-//    void testDRAEDefinitionsSearch() {
-//
-//        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
-//
-//        List<DRAEDefinition> definitions = draeConnectionService.getAllDefinitionsFromDRAEWordList(wordList);
-//
-//        assertFalse(definitions.isEmpty());
-//    }
-//
-//
-//    @Test
-//    void testDRAEVariationsSearch() {
-//
-//        List<DRAEObject> wordList = draeConnectionService.getTheWordDataFromDRAE(restTemplate, wordToSearchDRAE);
-//
-//        List<DRAEVariation> variations = draeConnectionService.getAllVariationsFromDRAEWordList(wordList);
-//
-//        assertFalse(variations.isEmpty());
-//    }
 }
