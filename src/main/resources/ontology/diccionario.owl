@@ -141,9 +141,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
     
 
 
@@ -155,16 +155,16 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Advervios -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Advervio -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Advervios"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Advervio"/>
     
 
 
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Ambiguos -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Ambiguos">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     </owl:Class>
     
 
@@ -188,7 +188,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Comunes -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Comunes">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     </owl:Class>
     
 
@@ -196,7 +196,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Distincion_masculino_femenino -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Distincion_masculino_femenino">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     </owl:Class>
     
 
@@ -209,23 +209,23 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femenino -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femenino">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     </owl:Class>
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formula -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formulas"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Formula"/>
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frase -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frases"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Frase"/>
     
 
 
@@ -235,9 +235,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjecciones -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjección -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjecciones"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Interjección"/>
     
 
 
@@ -252,7 +252,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivo_impersonal">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     </owl:Class>
     
 
@@ -260,7 +260,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_no_pronominales -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_no_pronominales">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     </owl:Class>
     
 
@@ -268,7 +268,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_pronominales -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Intransitivos_pronominales">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     </owl:Class>
     
 
@@ -285,10 +285,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculino -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculino">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     </owl:Class>
     
 
@@ -299,9 +299,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Preposiciones -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Preposición -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Preposiciones"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Preposición"/>
     
 
 
@@ -313,15 +313,15 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sufijos -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sufijo -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sufijos"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sufijo"/>
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     
 
 
@@ -345,16 +345,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Thing -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Thing"/>
-    
-
-
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_no_pronominales">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     </owl:Class>
     
 
@@ -362,7 +356,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_pronominales -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Transitivos_pronominales">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     </owl:Class>
     
 
@@ -370,7 +364,7 @@
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Utilizados_en_plural -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Utilizados_en_plural">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvos"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Sustantitvo"/>
     </owl:Class>
     
 
@@ -383,115 +377,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos -->
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbos"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName23 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName23"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName3 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName3"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName33 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName33"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba7 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba7">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba8"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba8 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba8"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#string -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#string"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test1 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test1">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test2"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test2 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test2"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test3 -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test3"/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20f. -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20f."/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m. -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m."/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20Ant.%20y%20Méx. -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20Ant.%20y%20Méx."/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20y%20f. -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20y%20f."/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20y%20f.%20coloq. -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#%20m.%20y%20f.%20coloq."/>
-    
-
-
-    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#N/A -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#N/A"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Verbo"/>
     
 
 
@@ -521,7 +409,7 @@ adecuar</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#abombao -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#abombao">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Saciado de comida o de bebida.</untitled-ontology-2:definicion>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">repleto
 abarrotado
@@ -559,7 +447,7 @@ adecuar</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bacano -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bacano">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Placentero, que causa deleite o alegría.</untitled-ontology-2:definicion>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">extraordinario
 magnífico
@@ -571,7 +459,7 @@ fantástico</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bobolongo -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bobolongo">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Dicho de una persona: Falta o escasa de entendimiento o de razón</untitled-ontology-2:definicion>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">tonto</untitled-ontology-2:lema_rae>
@@ -584,7 +472,7 @@ fantástico</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bonche -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#bonche">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femenino"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reunión de gente para celebrar algo o divertirse.</untitled-ontology-2:definicion>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">alboroto
 bullicio
@@ -596,7 +484,7 @@ juerga</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#brigandina -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#brigandina">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Que falta al cuidado que debe poner en las cosas.</untitled-ontology-2:definicion>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sin cuidado</untitled-ontology-2:sinonimos>
     </owl:NamedIndividual>
@@ -606,7 +494,7 @@ juerga</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#caballá -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#caballá">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculino"/>
         <untitled-ontology-2:definicion>Barbaridad (|| cantidad grande).</untitled-ontology-2:definicion>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">incoherencia, tontería</untitled-ontology-2:sinonimos>
     </owl:NamedIndividual>
@@ -628,7 +516,7 @@ divertirse</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#chiripa -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#chiripa">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculino"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Estrchez, miseria y pobreza o necesidad con que se pasa la vida.</untitled-ontology-2:definicion>
         <untitled-ontology-2:sinonimos rdf:datatype="http://www.w3.org/2001/XMLSchema#string">faena
 brega
@@ -640,7 +528,7 @@ fatiga</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#chueco -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#chueco">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Imperfecto, falto.</untitled-ontology-2:definicion>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">defectuoso</untitled-ontology-2:lema_rae>
@@ -655,7 +543,7 @@ dañado</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#deguabinao -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#deguabinao">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Adjetivo"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Que implica o denota agotamiento.</untitled-ontology-2:definicion>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">agotado</untitled-ontology-2:lema_rae>
@@ -670,7 +558,7 @@ fatigado</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#detutane -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#detutane">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculino"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decisión del empresario por la que pone término a la relación laboral que lo unía a un empleado.</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">N/A</untitled-ontology-2:ejemplo>
@@ -704,7 +592,7 @@ fastidiar</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#guiñapo -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#guiñapo">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femeninos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Femenino"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion>Acción sucia o indecente.</untitled-ontology-2:definicion>
         <untitled-ontology-2:lema_rae rdf:datatype="http://www.w3.org/2001/XMLSchema#string">porquería</untitled-ontology-2:lema_rae>
@@ -728,7 +616,7 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pabita -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#pabita">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculinos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#Masculino"/>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Quietud, reposo o pausa en el trabajo o fatiga.</untitled-ontology-2:definicion>
     </owl:NamedIndividual>
     
@@ -737,7 +625,6 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example</untitled-ontology-2:ejemplo>
@@ -751,7 +638,6 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1">
-        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition331</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example331</untitled-ontology-2:ejemplo>

@@ -13,11 +13,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class JsoupService {
 
 
-    private Elements getAllElementsByTag(String definitionResponse, String tag) {
+    private Elements getAllElementsByTag(String definitionResponse) {
 
         Document document = Jsoup.parse(definitionResponse);
 
-        return document.getElementsByTag(tag);
+        return document.getElementsByTag("p");
     }
 
 
@@ -25,7 +25,7 @@ public class JsoupService {
 
         List<String> initialList = new ArrayList<>();
 
-        getAllElementsByTag(definitionResponse, "p").forEach(element -> {
+        getAllElementsByTag(definitionResponse).forEach(element -> {
 
             initialList.add(element.text());
         });
@@ -34,13 +34,13 @@ public class JsoupService {
     }
 
 
-    public List<String> getAllClasses(String definitionResponse) {
+    public List<String> getAllClassesSimpleName(String definitionResponse) {
 
         AtomicInteger counter = new AtomicInteger();
 
         List<String> classes = new ArrayList<>();
 
-        getAllElementsByTag(definitionResponse, "p").forEach(element -> {
+        getAllElementsByTag(definitionResponse).forEach(element -> {
 
             try {
 
@@ -58,13 +58,37 @@ public class JsoupService {
     }
 
 
+    public List<String> getAllClassesFullName(String definitionResponse) {
+
+        AtomicInteger counter = new AtomicInteger();
+
+        List<String> classes = new ArrayList<>();
+
+        getAllElementsByTag(definitionResponse).forEach(element -> {
+
+            try {
+
+                if (counter.get() < 10){
+
+                    counter.getAndIncrement();
+                    classes.add(element.child(1).attr("title"));
+                }
+            } catch (Exception ignored){
+
+            }
+        });
+
+        return classes;
+    }
+
+
     public List<String> getAllDefinitions(String definitionResponse) {
 
         AtomicInteger counter = new AtomicInteger();
 
         List<String> definitions = new ArrayList<>();
 
-        getAllElementsByTag(definitionResponse, "p").forEach(element -> {
+        getAllElementsByTag(definitionResponse).forEach(element -> {
 
             if (counter.get() < 10) {
 
@@ -86,7 +110,7 @@ public class JsoupService {
         List<DefinitionResponse> cleanDefinitionList = new ArrayList<>();
 
         List<String> initialList = getAllInitialData(definitionResponse);
-        List<String> classes = getAllClasses(definitionResponse);
+        List<String> classes = getAllClassesFullName(definitionResponse);
         List<String> definitions = getAllDefinitions(definitionResponse);
 
         for (int i = 0; i < initialList.size(); i++) {

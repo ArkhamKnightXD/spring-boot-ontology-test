@@ -57,6 +57,25 @@ public class SurveyWordService {
     }
 
 
+    public String getEquivalentClassOfTheRaeClass(String raeClass){
+
+        List<String> raeList = ontologyService.tokenizeTheSentence(raeClass);
+
+        List<String> ontClassesName = ontologyService.getAllClassesLocalName();
+
+        for (String ontClassName : ontClassesName) {
+
+            for (String raeWord : raeList) {
+
+                if (ontClassName.toLowerCase().matches(".*"+raeWord.toLowerCase()+".*"))
+                    return ontClassName;
+            }
+        }
+
+        return "Temporal";
+    }
+
+
     public Word convertSurveyWordToWord(SurveyWord word){
 
         String totalAnswers = String.valueOf(word.getTotalAnswers());
@@ -104,7 +123,7 @@ public class SurveyWordService {
         return winnerSurveyWord;
     }
 
-    public boolean alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(SurveyWord wordToEvaluate, String actualUsername){
+    public boolean alreadyVoteWordWithTheSameLemmaExist(SurveyWord wordToEvaluate, String actualUsername){
 
         List<SurveyWord> wordsByLemma = getAllSurveysByLemma(wordToEvaluate.getLemma());
 

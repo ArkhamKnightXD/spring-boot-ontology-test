@@ -68,7 +68,14 @@ public class SurveyWordController {
 
         List<DefinitionResponse> cleanDefinitions = jsoupService.getCompleteDefinitionData(definitionResponse);
 
-        model.addAttribute("raeWord", wordList.get(0).getRes().get(0));
+        try {
+
+            model.addAttribute("raeWord", wordList.get(0).getRes().get(0).getHeader());
+        }catch (Exception exception){
+
+            model.addAttribute("raeWord", "Palabra no encontrada");
+        }
+
         model.addAttribute("definitions", cleanDefinitions);
         model.addAttribute("word", surveyWordToEdit);
 
@@ -77,14 +84,16 @@ public class SurveyWordController {
 
 
     @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
-    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam(defaultValue = "N/A") String fatherClassName, @RequestParam(defaultValue = "N/A") String synonyms) {
+    public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
 
         surveyWordToEdit.setLemmaRAE(individualNameRAE);
         surveyWordToEdit.setDefinitionRAE(definitionRAE);
-        surveyWordToEdit.setFatherClass(fatherClassName);
-        surveyWordToEdit.setSynonyms(synonyms);
+
+        String ontClass = surveyWordService.getEquivalentClassOfTheRaeClass(fatherClassName);
+
+        surveyWordToEdit.setFatherClass(ontClass);
 
         surveyWordService.saveSurveyWord(surveyWordToEdit);
 
@@ -99,16 +108,16 @@ public class SurveyWordController {
 
         SurveyWord surveyWordToVote = surveyWordService.getSurveyWordById(id);
 
-        boolean alreadyVoteWord = surveyWordService.alreadyVoteSurveyWordWithTheSameLemmaAndDifferentDefinition(surveyWordToVote, actualUserName);
+        boolean isWordAlreadyVote = surveyWordService.alreadyVoteWordWithTheSameLemmaExist(surveyWordToVote, actualUserName);
 
-        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || alreadyVoteWord) {
-
-//            surveyWordToVote.setUserAlreadyVote(true);
+//        if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 //
-//            surveyWordService.saveSurveyWord(surveyWordToVote);
-        }
-
-        else {
+////            surveyWordToVote.setUserAlreadyVote(true);
+////
+////            surveyWordService.saveSurveyWord(surveyWordToVote);
+//        }
+//
+//        else {
 
             surveyWordToVote.setUserAlreadyVote(false);
             surveyWordToVote.setAlreadyVoteUsernames(actualUserName);
@@ -117,7 +126,7 @@ public class SurveyWordController {
             surveyWordService.saveSurveyWord(surveyWordToVote);
 
             surveyWordService.evaluateIfTheWordEntersTheOntology(surveyWordToVote);
-        }
+//        }
 
         return "redirect:/surveys/";
     }
@@ -187,15 +196,15 @@ public class SurveyWordController {
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean isWordAlreadyVote = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, actualUserName);
 
-        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
-
-            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
-//            simpleWordToVote.setUserAlreadyVote(true);
+//        if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 //
-//            simpleWordService.saveSimpleWord(simpleWordToVote);
-        }
+//            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
+////            simpleWordToVote.setUserAlreadyVote(true);
+////
+////            simpleWordService.saveSimpleWord(simpleWordToVote);
+//        }
 
-        else {
+//        else {
 
             simpleWordToVote.setUserAlreadyVote(false);
             simpleWordToVote.setAlreadyVoteUsernames(actualUserName);
@@ -204,7 +213,7 @@ public class SurveyWordController {
             simpleWordService.saveSimpleWord(simpleWordToVote);
 
             simpleWordService.evaluateIfTheWordEntersTheSurvey(simpleWordToVote);
-        }
+//        }
 
         return "redirect:/surveys/simple/";
     }
