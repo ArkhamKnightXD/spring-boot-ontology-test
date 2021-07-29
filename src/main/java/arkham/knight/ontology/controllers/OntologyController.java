@@ -163,31 +163,24 @@ public class OntologyController {
 
 
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public String statisticsPage(Model model, @RequestParam(defaultValue = "") String sentence){
+    public String statisticsPage(Model model){
 
         List<Individual> acceptedWords;
         int totalAcceptedWords;
         int totalSimpleWords;
         int totalWords;
+        List<Individual> individualList;
 
-        if (sentence.length() != 0){
-
-            List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
-            acceptedWords = ontologyService.getAllIndividualByName(sentenceByWords, "word-search");
-        }
-
-        else{
-
-            acceptedWords = ontologyConnectionService.getAllIndividuals();
-        }
+        acceptedWords = ontologyConnectionService.getAllIndividuals();
         totalAcceptedWords = acceptedWords.size();
         model.addAttribute("totalAcceptedWords", totalAcceptedWords);
-
         List<SimpleWord> simpleWords = simpleWordService.getAllSimpleWords();
         totalSimpleWords = simpleWords.size();
         model.addAttribute("totalSimpleWords", totalSimpleWords);
         totalWords = totalAcceptedWords + totalSimpleWords;
         model.addAttribute("totalWords", totalWords);
+        individualList = ontologyConnectionService.getAllIndividuals();
+        model.addAttribute("individuals", individualList);
 
         return "/freemarker/ontology/empty";
     }

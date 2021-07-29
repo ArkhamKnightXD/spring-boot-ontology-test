@@ -148,8 +148,14 @@
         <section>
             <table class="table table-striped table-condensed table-hover">
                 <thead class="thead-dark">
-
+                <th>Clases</th>
+                <th>Total de palabras</th>
                 </thead>
+                <#list individuals as individual>
+                    <tr>
+                        <td>${individual.getOntClass().getLocalName()}</td>
+                    </tr>
+                </#list>
             </table>
         </section>
     </div>
