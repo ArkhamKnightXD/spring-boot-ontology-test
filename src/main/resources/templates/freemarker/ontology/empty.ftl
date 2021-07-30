@@ -144,6 +144,23 @@
                 <p>Palabras aceptadas: ${totalAcceptedWords}</p>
                 <p>Total de palabras: ${totalWords}</p>
             </h1>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"/>
+            <script type="text/javascript">
+                google.charts.load('current', {'packages' :['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart(){
+                    var data = google.visualization.arrayToDataTable({
+                        ['Palabras en votacion' , 11],
+                        ['Palabras aceptadas' , 10]
+                    });
+                    var options = {
+                        title : 'Total de palabras'
+                    };
+                    var chart = new google.visualization.PieChart(document.getElementById('Piehart'));
+                    chart.draw(data.options);
+                }
+            </script>
+            <div id="Piechart" style="width: 900px; height: 500px;"></div>
         </section>
         <section>
             <table class="table table-striped table-condensed table-hover">
