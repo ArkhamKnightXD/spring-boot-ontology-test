@@ -7,7 +7,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 import java.io.*;
 
 @SpringBootApplication
@@ -15,6 +17,12 @@ import java.io.*;
 public class OntologyApplication {
 
     public static void main(String[] args) { SpringApplication.run(OntologyApplication.class, args); }
+
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
+    }
 
 
     private void openIndexPage(boolean identifier) {
@@ -40,8 +48,6 @@ public class OntologyApplication {
             simpleWordService.saveSimpleWord(new SimpleWord("Arroz", "Test", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Relajo", "N/A", false));
-
-//            definitions.forEach(System.out::println);
 
 //            openIndexPage(true);
 //            openIndexPage(false);

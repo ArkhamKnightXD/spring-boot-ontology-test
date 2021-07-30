@@ -54,6 +54,24 @@ public class OntologyController {
     }
 
 
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    public String statisticsPage(Model model){
+
+        List<Individual> acceptedWords = ontologyConnectionService.getAllIndividuals();
+        List<Individual> individualList = ontologyConnectionService.getAllIndividuals();
+        List<SimpleWord> simpleWords = simpleWordService.getAllSimpleWords();
+
+        int totalWords = acceptedWords.size() + simpleWords.size();
+
+        model.addAttribute("totalAcceptedWords", acceptedWords.size());
+        model.addAttribute("totalSimpleWords", simpleWords.size());
+        model.addAttribute("totalWords", totalWords);
+        model.addAttribute("individuals", individualList);
+
+        return "/freemarker/ontology/statistics";
+    }
+
+
     @RequestMapping(value = "/individuals", method = RequestMethod.GET)
     public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence, Principal principal) {
 
@@ -159,24 +177,6 @@ public class OntologyController {
     public String creationClassPage() {
 
         return "/freemarker/ontology/createClass";
-    }
-
-
-    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public String statisticsPage(Model model){
-
-        List<Individual> acceptedWords = ontologyConnectionService.getAllIndividuals();
-        List<Individual> individualList = ontologyConnectionService.getAllIndividuals();
-        List<SimpleWord> simpleWords = simpleWordService.getAllSimpleWords();
-
-        int totalWords = acceptedWords.size() + simpleWords.size();
-
-        model.addAttribute("totalAcceptedWords", acceptedWords.size());
-        model.addAttribute("totalSimpleWords", simpleWords.size());
-        model.addAttribute("totalWords", totalWords);
-        model.addAttribute("individuals", individualList);
-
-        return "/freemarker/ontology/statistics";
     }
 
 

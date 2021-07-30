@@ -3,8 +3,6 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.BaseResponse;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,12 +17,6 @@ public class RaeConnectionService {
 
     //ngrok connection
 //    private final String URLConnection = "https://8e66e5ba927d.ngrok.io/";
-
-
-    @Bean
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        return builder.build();
-    }
 
 
     public List<BaseResponse> getTheLemmaListFromTheRaeAPI(RestTemplate restTemplate, String wordToSearch){
@@ -45,13 +37,13 @@ public class RaeConnectionService {
 
     private List<BaseResponse> getBaseResponses(RestTemplate restTemplate, String searchLink) {
 
-        ResponseEntity<String> RaeResponse = restTemplate.getForEntity(searchLink, String.class);
+        ResponseEntity<String> raeResponse = restTemplate.getForEntity(searchLink, String.class);
 
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        return new ArrayList<>(Collections.singletonList(gson.fromJson(RaeResponse.getBody(), BaseResponse.class)));
+        return new ArrayList<>(Collections.singletonList(gson.fromJson(raeResponse.getBody(), BaseResponse.class)));
     }
 
 

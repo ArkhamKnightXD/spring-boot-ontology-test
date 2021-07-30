@@ -25,10 +25,7 @@ public class JsoupService {
 
         List<String> initialList = new ArrayList<>();
 
-        getAllElementsByTag(definitionResponse).forEach(element -> {
-
-            initialList.add(element.text());
-        });
+        getAllElementsByTag(definitionResponse).forEach(element -> initialList.add(element.text()));
 
         return initialList;
     }
