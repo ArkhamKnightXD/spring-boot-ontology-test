@@ -16,20 +16,7 @@ services:
 
     depends_on:
       - mysqldb
-      - drae
 
-
-  drae:
-
-    image: squat/drae:latest
-
-    container_name: docker-squat-drae
-
-    ports:
-      - "4000:4000"
-
-    networks:
-      - ontology-network
 
 
   mysqldb:
