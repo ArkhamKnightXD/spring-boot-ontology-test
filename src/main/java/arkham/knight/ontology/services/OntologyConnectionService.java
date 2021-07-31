@@ -46,7 +46,7 @@ public class OntologyConnectionService {
     }
 
 
-    public InputStream getOntologyURLInputStream() {
+    private InputStream getOntologyURLInputStream() {
 
         try {
 
@@ -59,7 +59,7 @@ public class OntologyConnectionService {
     }
 
 
-    public OutputStream getOntologyURLOutputStream() {
+    private OutputStream getOntologyURLOutputStream() {
 
         URLConnection urlConnection;
 

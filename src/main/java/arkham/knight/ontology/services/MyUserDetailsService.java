@@ -17,15 +17,17 @@ import java.util.List;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
     private final UserRepository userRepository;
 
     private final RolRepository rolRepository;
 
-    public MyUserDetailsService(UserRepository userRepository, RolRepository rolRepository) {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
+    public MyUserDetailsService(UserRepository userRepository, RolRepository rolRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.rolRepository = rolRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
 

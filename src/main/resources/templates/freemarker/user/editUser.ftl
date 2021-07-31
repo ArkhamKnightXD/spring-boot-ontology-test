@@ -51,6 +51,7 @@
 
                         <div class="input-group">
                             <select class="form-control" name="idRol" required>
+
                                 <#list roles as rol>
                                     <option value="${rol.getId()}">${rol.getRol()}</option>
                                 </#list>

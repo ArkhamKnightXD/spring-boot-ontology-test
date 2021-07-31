@@ -1,9 +1,7 @@
 package arkham.knight.ontology.config;
 
 import arkham.knight.ontology.services.MyUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,15 +14,12 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final MyUserDetailsService myUserDetailsService;
 
-    public SpringSecurityConfig(MyUserDetailsService myUserDetailsService) {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public SpringSecurityConfig(MyUserDetailsService myUserDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.myUserDetailsService = myUserDetailsService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){ return new BCryptPasswordEncoder(); }
 
 
     @Override

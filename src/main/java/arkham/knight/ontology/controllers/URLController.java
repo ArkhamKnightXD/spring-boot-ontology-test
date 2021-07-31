@@ -16,7 +16,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-
 //Este controlador maneja todos los posibles errores de url y tambien maneja el login
 @Controller
 public class URLController implements ErrorController {

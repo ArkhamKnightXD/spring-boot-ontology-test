@@ -31,31 +31,7 @@ public class JsoupService {
     }
 
 
-    public List<String> getAllClassesSimpleName(String definitionResponse) {
-
-        AtomicInteger counter = new AtomicInteger();
-
-        List<String> classes = new ArrayList<>();
-
-        getAllElementsByTag(definitionResponse).forEach(element -> {
-
-            try {
-
-                if (counter.get() < 10){
-
-                    counter.getAndIncrement();
-                    classes.add(element.child(1).text());
-                }
-            } catch (Exception ignored){
-
-            }
-        });
-
-        return classes;
-    }
-
-
-    public List<String> getAllClassesFullName(String definitionResponse) {
+    private List<String> getAllClassesFullName(String definitionResponse) {
 
         AtomicInteger counter = new AtomicInteger();
 
@@ -79,7 +55,7 @@ public class JsoupService {
     }
 
 
-    public List<String> getAllDefinitions(String definitionResponse) {
+    private List<String> getAllDefinitions(String definitionResponse) {
 
         AtomicInteger counter = new AtomicInteger();
 

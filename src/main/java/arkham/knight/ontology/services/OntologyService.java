@@ -22,7 +22,7 @@ public class OntologyService {
     private final DefaultPrefixManager prefixManager = new DefaultPrefixManager(null, null, ontologyConnectionService.ontologyURI);
 
 
-    public IRI createIRIByPropertyName (String propertyName){
+    private IRI createIRIByPropertyName (String propertyName){
 
         return IRI.create(ontologyConnectionService.ontologyURI.concat(propertyName));
     }
@@ -38,7 +38,7 @@ public class OntologyService {
     }
 
 
-    public List<String> convertFromSetToStringList(Set<OWLNamedIndividual> dataSet){
+    private List<String> convertFromSetToStringList(Set<OWLNamedIndividual> dataSet){
 
         List<String> individualNameList = new ArrayList<>();
 
@@ -138,7 +138,7 @@ public class OntologyService {
     }
 
 
-    public void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, Word wordToSave) {
+    private void saveIndividualProperties(OWLOntology ontology, OWLIndividual individual, Word wordToSave) {
 
         OWLDataProperty dataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("definicion"));
         OWLDataProperty exampleDataProperty = dataFactory.getOWLDataProperty(createIRIByPropertyName("ejemplo"));
@@ -216,7 +216,7 @@ public class OntologyService {
     }
 
 
-    public void compareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
+    private void compareAllWordsInTheWordListAndSaveInTheIndividualList(String searchType, List<String> sentenceByWords, List<Individual> individualList, int avoidRepeatIndividualCount, Individual individual){
         //Con StringUtils.stripAccents a cada palabra que tenga una letra con acento se le quitara el acento
         String cleanIndividual = StringUtils.stripAccents(individual.getLocalName());
 

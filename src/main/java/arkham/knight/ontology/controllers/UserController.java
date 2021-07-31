@@ -17,9 +17,9 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
     private final UserService userService;
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public UserController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;

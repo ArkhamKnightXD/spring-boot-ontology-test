@@ -2,12 +2,8 @@ package arkham.knight.ontology.controllers;
 
 import arkham.knight.ontology.models.User;
 import arkham.knight.ontology.models.Word;
-import arkham.knight.ontology.services.OntologyConnectionService;
-import arkham.knight.ontology.services.OntologyService;
-import arkham.knight.ontology.services.UserService;
 import arkham.knight.ontology.models.SimpleWord;
-import arkham.knight.ontology.services.SimpleWordService;
-import arkham.knight.ontology.services.WordService;
+import arkham.knight.ontology.services.*;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
