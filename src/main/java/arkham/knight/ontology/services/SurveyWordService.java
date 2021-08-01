@@ -3,6 +3,7 @@ package arkham.knight.ontology.services;
 import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.models.Word;
 import arkham.knight.ontology.repositories.SurveyWordRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,25 @@ public class SurveyWordService {
     public List<SurveyWord> getAllSurveys(){
 
         return surveyWordRepository.findAll();
+    }
+
+
+    public List<SurveyWord> getTopFiveMostVotedSurveys(){
+
+        int counter = 0;
+
+        List<SurveyWord> topFive = new ArrayList<>();
+
+        for (SurveyWord surveyWord : surveyWordRepository.findAll(Sort.by("votesQuantity").descending())) {
+
+            if (counter < 5){
+
+                topFive.add(surveyWord);
+                counter++;
+            }
+        }
+
+        return topFive;
     }
 
 

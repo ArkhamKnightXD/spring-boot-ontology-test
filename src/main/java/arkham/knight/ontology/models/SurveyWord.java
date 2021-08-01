@@ -33,12 +33,10 @@ public class SurveyWord implements Serializable {
     public SurveyWord() {
     }
 
-    public SurveyWord(String lemma, String definition, String example, String fatherClass, String synonyms, String lemmaRAE, String definitionRAE) {
+    public SurveyWord(String lemma, String definition, String fatherClass, String lemmaRAE, String definitionRAE) {
         this.lemma = lemma;
         this.definition = definition;
-        this.example = example;
         this.fatherClass = fatherClass;
-        this.synonyms = synonyms;
         this.lemmaRAE = lemmaRAE;
         this.definitionRAE = definitionRAE;
     }

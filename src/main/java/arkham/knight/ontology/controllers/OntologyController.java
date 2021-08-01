@@ -1,8 +1,8 @@
 package arkham.knight.ontology.controllers;
 
+import arkham.knight.ontology.models.SurveyWord;
 import arkham.knight.ontology.models.User;
 import arkham.knight.ontology.models.Word;
-import arkham.knight.ontology.models.SimpleWord;
 import arkham.knight.ontology.services.*;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Controller;
@@ -27,11 +27,14 @@ public class OntologyController {
 
     private final SimpleWordService simpleWordService;
 
-    public OntologyController(OntologyService ontologyService, WordService wordService, UserService userService, SimpleWordService simpleWordService) {
+    private final SurveyWordService surveyWordService;
+
+    public OntologyController(OntologyService ontologyService, WordService wordService, UserService userService, SimpleWordService simpleWordService, SurveyWordService surveyWordService) {
         this.ontologyService = ontologyService;
         this.wordService = wordService;
         this.userService = userService;
         this.simpleWordService = simpleWordService;
+        this.surveyWordService = surveyWordService;
     }
 
 
@@ -47,24 +50,6 @@ public class OntologyController {
         model.addAttribute("words", wordService.evaluateWordsAndReturnCleanWordList(wordList));
 
         return "/freemarker/ontology/summary";
-    }
-
-
-    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
-    public String statisticsPage(Model model){
-
-        List<Individual> acceptedWords = ontologyConnectionService.getAllIndividuals();
-        List<Individual> individualList = ontologyConnectionService.getAllIndividuals();
-        List<SimpleWord> simpleWords = simpleWordService.getAllSimpleWords();
-
-        int totalWords = acceptedWords.size() + simpleWords.size();
-
-        model.addAttribute("totalAcceptedWords", acceptedWords.size());
-        model.addAttribute("totalSimpleWords", simpleWords.size());
-        model.addAttribute("totalWords", totalWords);
-        model.addAttribute("individuals", individualList);
-
-        return "/freemarker/ontology/statistics";
     }
 
 
@@ -90,6 +75,43 @@ public class OntologyController {
         model.addAttribute("individuals", individualList);
 
         return "/freemarker/ontology/individuals";
+    }
+
+
+    @RequestMapping(value = "individuals/statistics-top", method = RequestMethod.GET)
+    public String statisticsPage(Model model, Principal principal){
+
+        List<SurveyWord> topFiveMostVotedSurveys = surveyWordService.getTopFiveMostVotedSurveys();
+
+//        User actualUser = userService.getUserByUsername(principal.getName());
+
+//        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("words", topFiveMostVotedSurveys);
+        model.addAttribute("firstWord", "20");
+        model.addAttribute("secondWord", "10");
+        model.addAttribute("thirdWord", "8");
+        model.addAttribute("fourthWord", "5");
+        model.addAttribute("fifthWord", "15");
+
+        return "/freemarker/statistics/stats";
+    }
+
+
+    @RequestMapping(value = "individuals/statistics-total", method = RequestMethod.GET)
+    public String statisticsTotalPage(Model model, Principal principal){
+
+        int acceptedWordsTotal = ontologyConnectionService.getAllIndividuals().size();
+        int surveyWordsQuantity = surveyWordService.getAllSurveys().size();
+        int simpleWordsQuantity = simpleWordService.getAllSimpleWords().size();
+
+//        User actualUser = userService.getUserByUsername(principal.getName());
+
+//        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("initialVotesQuantity", simpleWordsQuantity);
+        model.addAttribute("finalVotesQuantity", surveyWordsQuantity);
+        model.addAttribute("acceptedWordsQuantity", acceptedWordsTotal);
+
+        return "/freemarker/statistics/total";
     }
 
 
