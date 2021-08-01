@@ -61,7 +61,7 @@
                             <!-- The user image in the navbar-->
                             <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                            <span class="hidden-xs">User</span>
+                            <span class="hidden-xs">${loggedUsername}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
@@ -69,7 +69,7 @@
                                 <img src="../../bootstrap-4.3.1/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                     user<!--Aqui agrego el nombre del usuario logueado -->
+                                    ${loggedUsername}<!--Aqui agrego el nombre del usuario logueado -->
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -109,7 +109,7 @@
                 </div>
                 <div class="pull-left info">
                     <!--Aqui pongo el nombre del usuario tambien -->
-                    <p>user</p>
+                    <p>${loggedUsername}</p>
                     <!-- Status -->
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -137,8 +137,8 @@
                     <ul class="treeview-menu">
                         <li class=""><a href="/dashboard/individuals">All Individuals</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
-                        <li><a href="/dashboard/individuals/statistics/top"><i class=""></i> <span>Top votadas</span></a></li>
-                        <li class="active"><a href="/dashboard/individuals/statistics/total"><i class=""></i> <span>Total palabras</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-top"><i class=""></i> <span>Top votadas</span></a></li>
+                        <li class="active"><a href="/dashboard/individuals/statistics-total"><i class=""></i> <span>Total palabras</span></a></li>
 
                     </ul>
                 </li>

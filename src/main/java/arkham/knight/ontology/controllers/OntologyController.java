@@ -83,15 +83,11 @@ public class OntologyController {
 
         List<SurveyWord> topFiveMostVotedSurveys = surveyWordService.getTopFiveMostVotedSurveys();
 
-//        User actualUser = userService.getUserByUsername(principal.getName());
+        User actualUser = userService.getUserByUsername(principal.getName());
 
-//        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("words", topFiveMostVotedSurveys);
-        model.addAttribute("firstWord", "20");
-        model.addAttribute("secondWord", "10");
-        model.addAttribute("thirdWord", "8");
-        model.addAttribute("fourthWord", "5");
-        model.addAttribute("fifthWord", "15");
+        model.addAttribute("votes", surveyWordService.getTopFiveVotesQuantity());
 
         return "/freemarker/statistics/stats";
     }
@@ -104,9 +100,9 @@ public class OntologyController {
         int surveyWordsQuantity = surveyWordService.getAllSurveys().size();
         int simpleWordsQuantity = simpleWordService.getAllSimpleWords().size();
 
-//        User actualUser = userService.getUserByUsername(principal.getName());
+        User actualUser = userService.getUserByUsername(principal.getName());
 
-//        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
         model.addAttribute("initialVotesQuantity", simpleWordsQuantity);
         model.addAttribute("finalVotesQuantity", surveyWordsQuantity);
         model.addAttribute("acceptedWordsQuantity", acceptedWordsTotal);

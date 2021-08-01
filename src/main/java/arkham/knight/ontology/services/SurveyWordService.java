@@ -49,7 +49,24 @@ public class SurveyWordService {
                 topFive.add(surveyWord);
                 counter++;
             }
+
         }
+
+        return topFive;
+    }
+
+
+    public List<String> getTopFiveVotesQuantity(){
+
+        List<String> topFive = new ArrayList<>();
+
+        for (SurveyWord surveyWord : getTopFiveMostVotedSurveys()) {
+
+            topFive.add(Integer.toString(surveyWord.getVotesQuantity()));
+        }
+
+        //Agrego un 0 al final debido a que en chart js esta es la unica forma de que el origen se mantenga en 0
+        topFive.add("0");
 
         return topFive;
     }

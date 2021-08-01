@@ -63,13 +63,12 @@ public class OntologyApplication {
             simpleWordService.saveSimpleWord(new SimpleWord("Popi", "Una persona de clase media o alta, caracterizada por ser  atractiva con gustos refinados.", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Bobo", "Es un  problema o algo que te molesta.", false));
 
-            surveyWordService.saveSurveyWord(new SurveyWord("Jevi", "Referido a persona, simpática, divertida.","Temporal", "Genial", "TEST"));
-            surveyWordService.saveSurveyWord(new SurveyWord("Fundazo", "Golpe fuerte.","Temporal", "Genial", "TEST"));
-            surveyWordService.saveSurveyWord(new SurveyWord("Cocotazo", "Golpe en la cabeza con el puño cerrado","Temporal", "Genial", "TEST"));
-            surveyWordService.saveSurveyWord(new SurveyWord("Bacano", "persona o cosa muy de moda. ¡Que pantalone' ma' vacano!","Temporal", "Genial", "TEST"));
-            surveyWordService.saveSurveyWord(new SurveyWord("Tumbe", "robo, arrebato de algo, estafa. me dieron un tumbe (me robaron)","Temporal", "Genial", "TEST"));
-            surveyWordService.saveSurveyWord(new SurveyWord("Trompón", "Trompada. No me sigas molestando, te vua' da' un trompón!","Temporal", "Genial", "TEST"));
-            surveyWordService.saveSurveyWord(new SurveyWord("Wawawa", "Aquellas personas que les gustan las costumbres del barrio y emitan sus actividades.","Temporal", "Genial", "TEST"));
+//            surveyWordService.saveSurveyWord(new SurveyWord("Jevi", "Referido a persona, simpática, divertida.","Temporal", "Genial", "TEST"));
+//            surveyWordService.saveSurveyWord(new SurveyWord("Fundazo", "Golpe fuerte.","Temporal", "Genial", "TEST"));
+//            surveyWordService.saveSurveyWord(new SurveyWord("Cocotazo", "Golpe en la cabeza con el puño cerrado","Temporal", "Genial", "TEST"));
+//            surveyWordService.saveSurveyWord(new SurveyWord("Bacano", "persona o cosa muy de moda. ¡Que pantalone' ma' vacano!","Temporal", "Genial", "TEST"));
+//            surveyWordService.saveSurveyWord(new SurveyWord("Tumbe", "robo, arrebato de algo, estafa. me dieron un tumbe (me robaron)","Temporal", "Genial", "TEST"));
+//            surveyWordService.saveSurveyWord(new SurveyWord("Trompón", "Trompada. No me sigas molestando, te vua' da' un trompón!","Temporal", "Genial", "TEST"));
 
 //            openIndexPage(true);
 //            openIndexPage(false);
