@@ -60,4 +60,10 @@ public class UserService {
 
         return rolRepository.findRolById(idRol);
     }
+
+
+    public int getUsersQuantityByRole(String role) {
+
+       return userRepository.findAllByRolList_Rol(role).size();
+    }
 }

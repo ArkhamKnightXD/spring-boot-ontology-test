@@ -44,8 +44,6 @@ public class SurveyWord implements Serializable {
 
     public Long getId() { return id; }
 
-    public void setId(Long id) { this.id = id; }
-
     public String getLemma() { return lemma; }
 
     public void setLemma(String lemma) { this.lemma = lemma; }

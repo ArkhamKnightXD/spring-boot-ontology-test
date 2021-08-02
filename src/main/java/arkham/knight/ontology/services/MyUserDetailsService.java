@@ -21,31 +21,46 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private final RolRepository rolRepository;
 
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
 
     public MyUserDetailsService(UserRepository userRepository, RolRepository rolRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.rolRepository = rolRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.passwordEncoder = bCryptPasswordEncoder;
     }
 
 
-    public void createAdminUser(){
+    public void createDefaultAdminUsers(){
 
-        List<Rol> rolList = new ArrayList<>();
+        List<Rol> rolListUser = new ArrayList<>();
+        List<Rol> rolListAdmin = new ArrayList<>();
 
         Rol rolUser = new Rol("ROLE_USER");
         Rol rolAdmin = new Rol("ROLE_ADMIN");
 
-        rolList.add(rolUser);
-        rolList.add(rolAdmin);
+        rolListUser.add(rolUser);
+        rolListAdmin.add(rolAdmin);
 
-        rolRepository.saveAll(rolList);
+        rolRepository.saveAll(rolListUser);
+        rolRepository.saveAll(rolListAdmin);
 
-        User adminUser = new User("admin@hotmail.com", bCryptPasswordEncoder.encode("1234"), "admin",true, rolList);
+        User karUser = new User("karvinjimenez@gmail.com", passwordEncoder.encode("1234"),
+                "Karvin",true, rolListAdmin);
+
+        User luisUser = new User("luis@gmail.com", passwordEncoder.encode("1234"),
+                "Luis",true, rolListAdmin);
+
+        User testUser = new User("test@gmail.com", passwordEncoder.encode("1234"),
+                "test",true, rolListUser);
+
+        User adminUser = new User("admin@hotmail.com", passwordEncoder.encode("1234"),
+                "admin",true, rolListAdmin);
 
         userRepository.save(adminUser);
+        userRepository.save(karUser);
+        userRepository.save(luisUser);
+        userRepository.save(testUser);
     }
 
 

@@ -111,6 +111,39 @@ public class OntologyController {
     }
 
 
+    @RequestMapping(value = "individuals/statistics-total-users", method = RequestMethod.GET)
+    public String statisticsTotalUsersPage(Model model, Principal principal){
+
+        int normalUsersQuantity = userService.getUsersQuantityByRole("ROLE_USER");
+        int adminUsersQuantity = userService.getUsersQuantityByRole("ROLE_ADMIN");
+        int totalUsersQuantity = userService.getAllUsers().size();
+
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("normalUsers",  normalUsersQuantity);
+        model.addAttribute("adminUsers", adminUsersQuantity);
+        model.addAttribute("totalUsers", totalUsersQuantity);
+
+        return "/freemarker/statistics/totalUsers";
+    }
+
+
+    @RequestMapping(value = "individuals/statistics-extra", method = RequestMethod.GET)
+    public String statisticsExtraPage(Model model, Principal principal){
+
+        List<SurveyWord> topFiveMostVotedSurveys = surveyWordService.getTopFiveMostVotedSurveys();
+
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("words", topFiveMostVotedSurveys);
+        model.addAttribute("votes", surveyWordService.getTopFiveVotesQuantity());
+
+        return "/freemarker/statistics/extra";
+    }
+
+
     @RequestMapping(value = "/creation", method = RequestMethod.GET)
     public String creationPage(Model model) {
 

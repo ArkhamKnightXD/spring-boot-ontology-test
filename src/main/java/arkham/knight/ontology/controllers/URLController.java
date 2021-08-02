@@ -53,7 +53,7 @@ public class URLController implements ErrorController {
         User adminUser = userService.getUserByUsername("admin@hotmail.com");
 
         if (adminUser == null)
-            myUserDetailsService.createAdminUser();
+            myUserDetailsService.createDefaultAdminUsers();
 
         return "/freemarker/authentication/login";
     }
