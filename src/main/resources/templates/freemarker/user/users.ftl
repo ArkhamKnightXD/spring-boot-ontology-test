@@ -125,6 +125,10 @@
                     <ul class="treeview-menu">
                         <li class=""><a href="/dashboard/individuals">All Individuals</a></li>
                         <li class="active"><a href="#"> <span>Users</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-top"><i class=""></i> <span>Top votadas</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-percentage"><i class=""></i> <span>Top porcentajes</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-total"><i class=""></i> <span>Total palabras</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-total-users"><i class=""></i> <span>Total usuarios</span></a></li>
                     </ul>
                 </li>
             </ul>

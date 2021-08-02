@@ -26,6 +26,47 @@ public class WordService {
     }
 
 
+    public List<Word> getTopFivePercentageAgreementWords(){
+
+        int counter = 0;
+
+        float comparatorPercentage = 40;
+
+        List<Word> topFive = new ArrayList<>();
+
+        for (Word word : getAllWords()) {
+
+            float actualPercentage = calculateWordPercentageAgreement(word);
+
+            if (actualPercentage >= comparatorPercentage && counter < 5){
+
+                comparatorPercentage = actualPercentage;
+
+                counter++;
+
+                topFive.add(word);
+            }
+        }
+
+        return topFive;
+    }
+
+
+    public List<Float> getTopFivePercentageAgreement(){
+
+        List<Float> topFive = new ArrayList<>();
+
+        for (Word word : getTopFivePercentageAgreementWords()) {
+
+            topFive.add(calculateWordPercentageAgreement(word));
+        }
+
+        topFive.add(0.f);
+
+        return topFive;
+    }
+
+
     public List<Word> getAllWordsByFatherClassName(String fatherClassName){
 
         List<Individual> individualList = ontologyService.getAllIndividualsByFatherClassName(fatherClassName);

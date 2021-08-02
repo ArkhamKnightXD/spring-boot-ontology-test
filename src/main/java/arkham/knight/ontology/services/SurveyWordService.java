@@ -160,6 +160,7 @@ public class SurveyWordService {
         return winnerSurveyWord;
     }
 
+
     public boolean alreadyVoteWordWithTheSameLemmaExist(SurveyWord wordToEvaluate, String actualUsername){
 
         List<SurveyWord> wordsByLemma = getAllSurveysByLemma(wordToEvaluate.getLemma());
@@ -186,7 +187,7 @@ public class SurveyWordService {
 
         float percentageAgreement = wordService.calculateWordPercentageAgreement(wordWinner);
 
-        if (percentageAgreement > 40 && votesQuantity > 2)
+        if (percentageAgreement > 40 && votesQuantity > 1)
             ontologyService.saveIndividual(wordWinner.getLema(), wordWinner);
     }
 }

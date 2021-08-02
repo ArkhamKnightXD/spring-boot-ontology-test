@@ -137,8 +137,10 @@
                     <ul class="treeview-menu">
                         <li class=""><a href="/dashboard/individuals">All Individuals</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
-                        <li class="active"><a href="/dashboard/individuals/statistics-top"><i class=""></i> <span>Top votadas</span></a></li>
+                        <li ><a href="/dashboard/individuals/statistics-top"><i class=""></i> <span>Top votadas</span></a></li>
+                        <li class="active"><a href="/dashboard/individuals/statistics-percentage"><i class=""></i> <span>Top porcentajes</span></a></li>
                         <li><a href="/dashboard/individuals/statistics-total"><i class=""></i> <span>Total palabras</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-total-users"><i class=""></i> <span>Total usuarios</span></a></li>
                     </ul>
                 </li>
             </ul>
@@ -186,8 +188,8 @@
                             <#list words as word>
                                 <tbody>
                                 <tr>
-                                    <td>${word.lemma}</td>
-                                    <td>${word.definition}</td>
+                                    <td>${word.lema}</td>
+                                    <td>${word.definicion}</td>
                                     <#--                        <td>${data.totalConfirmed}</td>-->
                                 </tr>
 
@@ -235,19 +237,19 @@
 
 <script>
 
-    let topVotesWords = [];
-    let topVotes = [];
+    let topPercentagesWords = [];
+    let topPercentages = [];
 
     <#list words as word>
 
     //las comillas son necesarias aqui a pesar de que estoy enviando un string t
-        topVotesWords.push("${word.lemma}");
+        topPercentagesWords.push("${word.getLema()}");
 
     </#list>
 
-    <#list votes as vote>
+    <#list percentages as percentage>
 
-        topVotes.push(${vote});
+        topPercentages.push(${percentage});
 
     </#list>
 
@@ -257,12 +259,12 @@
 
         type: 'horizontalBar',
         data: {
-            labels: topVotesWords,
+            labels: topPercentagesWords,
             datasets: [
                 {
-                    label: "Votos",
+                    label: "Porcentaje",
                     backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8b9c2"],
-                    data: topVotes
+                    data: topPercentages
                 }
             ]
         },

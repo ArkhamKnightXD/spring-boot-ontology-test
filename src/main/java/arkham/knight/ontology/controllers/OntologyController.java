@@ -129,16 +129,16 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "individuals/statistics-extra", method = RequestMethod.GET)
+    @RequestMapping(value = "individuals/statistics-percentage", method = RequestMethod.GET)
     public String statisticsExtraPage(Model model, Principal principal){
 
-        List<SurveyWord> topFiveMostVotedSurveys = surveyWordService.getTopFiveMostVotedSurveys();
+        List<Word> topFivePercentageAgreementWords = wordService.getTopFivePercentageAgreementWords();
 
         User actualUser = userService.getUserByUsername(principal.getName());
 
         model.addAttribute("loggedUsername", actualUser.getNameToShow());
-        model.addAttribute("words", topFiveMostVotedSurveys);
-        model.addAttribute("votes", surveyWordService.getTopFiveVotesQuantity());
+        model.addAttribute("words", topFivePercentageAgreementWords);
+        model.addAttribute("percentages", wordService.getTopFivePercentageAgreement());
 
         return "/freemarker/statistics/extra";
     }
