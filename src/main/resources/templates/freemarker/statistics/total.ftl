@@ -122,10 +122,34 @@
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="#"><i class="fa fa-search"></i> <span>Buscar</span></a></li>
+                <li><a href="/dashboard/"><i class="fa fa-search"></i> <span>Buscar</span></a></li>
                 <li><a href="/rae/search-rae"><i class="fa fa-search"></i> <span>Buscar en la RAE</span></a></li>
-                <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
-                <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-clipboard"></i> <span>Votación</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/surveys/simple/"><i class="fa fa-clipboard"></i><span>Palabras propuestas</span></a></li>
+                        <li><a href="/surveys/"><i class="fa fa-align-left"></i> <span>Votación final</span></a></li>
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#"><i class="fa fa-align-left"></i> <span>Estadística</span>
+                        <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="/dashboard/individuals/statistics-top"><i class="fa fa-align-left"></i> <span>Top votadas</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-percentage"><i class="fa fa-align-left"></i> <span>Top porcentajes</span></a></li>
+                        <li class="active"><a href="/dashboard/individuals/statistics-total"><i class="fa fa-align-left"></i> <span>Total palabras</span></a></li>
+                        <li><a href="/dashboard/individuals/statistics-total-users"><i class="fa fa-align-left"></i> <span>Total usuarios</span></a></li>
+                    </ul>
+                </li>
 
 
                 <li class="treeview">
@@ -135,12 +159,8 @@
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class=""><a href="/dashboard/individuals">All Individuals</a></li>
-                        <li><a href="/users/"><i class=""></i> <span>Users</span></a></li>
-                        <li><a href="/dashboard/individuals/statistics-top"><i class=""></i> <span>Top votadas</span></a></li>
-                        <li><a href="/dashboard/individuals/statistics-percentage"><i class=""></i> <span>Top porcentajes</span></a></li>
-                        <li class="active"><a href="/dashboard/individuals/statistics-total"><i class=""></i> <span>Total palabras</span></a></li>
-                        <li><a href="/dashboard/individuals/statistics-total-users"><i class=""></i> <span>Total usuarios</span></a></li>
+                        <li class=""><a href="/dashboard/individuals">Administración</a></li>
+                        <li><a href="/users/"><i class=""></i> <span>Usuarios</span></a></li>
 
                     </ul>
                 </li>
