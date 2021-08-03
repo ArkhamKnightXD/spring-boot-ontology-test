@@ -160,11 +160,10 @@
                         <table class="table table-striped table-condensed table-hover">
                             <thead class="thead-dark">
 
-                            <th>Palabra en la RAE</th>
                             <th>Definición</th>
+                            <th>Palabra en la RAE</th>
                             <th>Ejemplo</th>
                             <th>Sinónimos</th>
-                            <th>Porcentaje de acuerdo</th>
 
 <#--                            <#if percentageAgreementOfPresences??>-->
 <#--                                <th>Porcentaje de acuerdo de presencia</th>-->
@@ -185,13 +184,14 @@
                             <tbody>
                                 <tr>
 
+                                    <td>${word.getDefinicion()}</td>
+
                                     <#if word.getLemaRAE()??>
                                         <td>${word.getLemaRAE()}</td>
                                     <#else>
                                         <td>N/A</td>
                                     </#if>
 
-                                    <td>${word.getDefinicion()}</td>
 
                                     <#if word.getEjemplo()??>
                                         <td>${word.getEjemplo()}</td>
@@ -205,25 +205,6 @@
                                         <td>N/A</td>
                                     </#if>
 
-                                    <#if percentageAgreement??>
-                                        <td>${percentageAgreement}%</td>
-
-                                    </#if>
-
-<#--                                    <#if percentageAgreementOfPresences??>-->
-<#--                                        <td>${percentageAgreementOfPresences}%</td>-->
-
-<#--                                    </#if>-->
-
-<#--                                    <#if percentageAgreementOfAbsents??>-->
-<#--                                        <td>${percentageAgreementOfAbsents}%</td>-->
-
-<#--                                    </#if>-->
-
-<#--                                    <#if meanPercentageAgreement??>-->
-<#--                                        <td>${meanPercentageAgreement}%</td>-->
-
-<#--                                    </#if>-->
 
                                 </tr>
                             </tbody>

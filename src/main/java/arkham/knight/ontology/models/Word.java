@@ -13,6 +13,7 @@ public class Word implements Serializable {
     private String definicionRAE;
     private String totalRespuestasN;
     private String cantidadVotacionesI;
+    private float porcentajeDeAcuerdo;
 
 
     public Word() {
@@ -75,4 +76,8 @@ public class Word implements Serializable {
     public String getCantidadVotacionesI() { return cantidadVotacionesI; }
 
     public void setCantidadVotacionesI(String  cantidadVotacionesI) { this.cantidadVotacionesI = cantidadVotacionesI; }
+
+    public float getPorcentajeDeAcuerdo() { return porcentajeDeAcuerdo; }
+
+    public void setPorcentajeDeAcuerdo(float porcentajeDeAcuerdo) { this.porcentajeDeAcuerdo = porcentajeDeAcuerdo; }
 }

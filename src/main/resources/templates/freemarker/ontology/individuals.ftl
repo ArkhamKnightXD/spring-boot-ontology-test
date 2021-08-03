@@ -142,13 +142,14 @@
 
 
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
+                    <a href="#"><i class="fa fa-user"></i> <span>Administrador</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="#">Administración</a></li>
+                        <li class="active"><a href="#">Administración de ontología</a></li>
+                        <li class=""><a href="/dashboard/individuals/vote">Información de palabras votadas</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Usuarios</span></a></li>
                     </ul>
                 </li>
@@ -167,7 +168,7 @@
         <section class="content-header">
             <h1 class="text-center">
 
-                <strong>Listado de Palabras</strong>
+                <strong>Listado de palabras de la ontología</strong>
             </h1>
             <a class="btn btn-primary" href="/dashboard/creation" role="button">Agregar una nueva palabra</a>
             <a class="btn btn-success" href="/dashboard/class-creation" role="button">Agregar clases</a>

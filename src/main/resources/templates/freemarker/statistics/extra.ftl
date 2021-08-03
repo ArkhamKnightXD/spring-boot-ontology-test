@@ -153,13 +153,14 @@
 
 
                 <li class="treeview">
-                    <a href="#"><i class="fa fa-user"></i> <span>Admin</span>
+                    <a href="#"><i class="fa fa-user"></i> <span>Administrador</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/dashboard/individuals">Administración</a></li>
+                        <li><a href="/dashboard/individuals">Administración de ontología</a></li>
+                        <li class=""><a href="/dashboard/individuals/vote">Información de palabras votadas</a></li>
                         <li><a href="/users/"><i class=""></i> <span>Usuarios</span></a></li>
                     </ul>
                 </li>

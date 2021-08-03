@@ -26,6 +26,31 @@ public class WordService {
     }
 
 
+    public List<Word> getAllVotedWords(){
+
+        List<Word> votedWords = new ArrayList<>();
+
+        for (Word word : getAllWords()) {
+
+            try {
+
+                if (!word.getLemaRAE().isEmpty()){
+
+                    word.setPorcentajeDeAcuerdo(calculateWordPercentageAgreement(word));
+
+                    votedWords.add(word);
+                }
+
+            }catch (Exception ignored){
+
+
+            }
+        }
+
+        return votedWords;
+    }
+
+
     public List<Word> getTopFivePercentageAgreementWords(){
 
         int counter = 0;

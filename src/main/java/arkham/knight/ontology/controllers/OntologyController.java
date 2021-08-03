@@ -78,6 +78,18 @@ public class OntologyController {
     }
 
 
+    @RequestMapping(value = "/individuals/vote", method = RequestMethod.GET)
+    public String showAllVotedIndividuals(Model model, Principal principal) {
+
+        User actualUser = userService.getUserByUsername(principal.getName());
+
+        model.addAttribute("loggedUsername", actualUser.getNameToShow());
+        model.addAttribute("words", wordService.getAllVotedWords());
+
+        return "/freemarker/ontology/votesIndividuals";
+    }
+
+
     @RequestMapping(value = "individuals/statistics-top", method = RequestMethod.GET)
     public String statisticsPage(Model model, Principal principal){
 
@@ -202,10 +214,6 @@ public class OntologyController {
         Word wordToShow = wordService.getWordByLemma(lemma);
 
         model.addAttribute("word", wordToShow);
-        model.addAttribute("percentageAgreement", String.format("%.2f", wordService.calculateWordPercentageAgreement(wordToShow)));
-        model.addAttribute("percentageAgreementOfAbsents", String.format("%.2f", wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(wordToShow, false)));
-        model.addAttribute("percentageAgreementOfPresences", String.format("%.2f", wordService.calculateWordPercentageAgreementOfPresenceOrAbsents(wordToShow, true)));
-        model.addAttribute("meanPercentageAgreement", String.format("%.2f", wordService.calculateWordMeanPercentageAgreement(wordToShow)));
 
         return "/freemarker/ontology/show";
     }
