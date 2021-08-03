@@ -142,8 +142,15 @@ public class WordService {
 
         for (Word wordToEvaluate : originalWordList) {
 
-            if (calculateWordPercentageAgreement(wordToEvaluate) >= 40)
+            float percentage = calculateWordPercentageAgreement(wordToEvaluate);
+
+            if (percentage >= 40){
+
+                wordToEvaluate.setPorcentajeDeAcuerdo(percentage);
+
                 cleanWordList.add(wordToEvaluate);
+            }
+
         }
 
         return cleanWordList;

@@ -61,6 +61,9 @@
     </header>
 
     <main class="px-3">
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/M-ClXCmo3vY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
         <h1>Coopera con nosotros en nuestra labor de formar un diccionario dominicano online.</h1>
         <p class="lead">Nuestro objetivo es crear un diccionario basado en palabras del español dominicano, mediante la ayuda de colaboradores y del uso del diccionario de la RAE. ¿Deseas ser uno de nuestros colaboradores?</p>
         <p class="lead">
