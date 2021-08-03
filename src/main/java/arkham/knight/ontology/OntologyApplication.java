@@ -52,8 +52,7 @@ public class OntologyApplication {
         return args -> {
 
             simpleWordService.saveSimpleWord(new SimpleWord("Jevi", "Referido a persona, simpática, divertida.", false));
-            simpleWordService.saveSimpleWord(new SimpleWord("Jevi", "Test", false));
-            simpleWordService.saveSimpleWord(new SimpleWord("Jevi", "Test1", false));
+            simpleWordService.saveSimpleWord(new SimpleWord("Jevi", "Algo genial", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Fundazo", "Golpe fuerte.", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Cocotazo", "Golpe en la cabeza con el puño cerrado", false));
             simpleWordService.saveSimpleWord(new SimpleWord("Bacano", "persona o cosa muy de moda. ¡Que pantalone' ma' vacano!", false));
