@@ -29,14 +29,14 @@ public class OntologyRestController {
     }
 
 
-//    @GetMapping("/ontology/individuals/reasoner/{fatherClassName}")
-//    @Operation(summary = "Get All Individuals Name By Class Name Reasoner Way", description = "Retorna una lista con los lemas pertenecientes a la clase indicada, haciendo uso del reasoner")
-//    public ResponseEntity<List<String>> getAllIndividualNameByClassNameWithReasoner(@PathVariable String fatherClassName) {
-//
-//        List<String> individualSet = ontologyService.getAllIndividualNameByClassNameWithReasoner(fatherClassName);
-//
-//        return new ResponseEntity<>(individualSet, HttpStatus.OK);
-//    }
+    @GetMapping("/ontology/individuals/reasoner/{fatherClassName}")
+    @Operation(summary = "Get All Individuals Name By Class Name Reasoner Way", description = "Retorna una lista con los lemas pertenecientes a la clase indicada, haciendo uso del reasoner")
+    public ResponseEntity<List<String>> getAllIndividualNameByClassNameWithReasoner(@PathVariable String fatherClassName) {
+
+        List<String> individualSet = ontologyService.getAllIndividualNameByClassNameWithReasoner(fatherClassName);
+
+        return new ResponseEntity<>(individualSet, HttpStatus.OK);
+    }
 
 
     @PostMapping("/ontology/classes/{fatherClassName}/{subClassName}")

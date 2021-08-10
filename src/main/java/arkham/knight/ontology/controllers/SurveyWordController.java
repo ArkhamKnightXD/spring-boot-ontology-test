@@ -58,24 +58,22 @@ public class SurveyWordController {
 
         String definitionResponse = "";
 
+        String raeWord;
+
         try {
 
             definitionResponse = raeConnectionService.getTheDefinitionListByWordId(restTemplate, wordList.get(0).getRes().get(0).getId());
+
+            raeWord = wordList.get(0).getRes().get(0).getHeader();
         }catch (Exception exception){
 
-            System.out.println("Palabra no encontrada");
+            raeWord = "Palabra no encontrada";
         }
 
         List<DefinitionResponse> cleanDefinitions = jsoupService.getCompleteDefinitionData(definitionResponse);
 
-        try {
 
-            model.addAttribute("raeWord", wordList.get(0).getRes().get(0).getHeader());
-        }catch (Exception exception){
-
-            model.addAttribute("raeWord", "Palabra no encontrada");
-        }
-
+        model.addAttribute("raeWord", raeWord);
         model.addAttribute("definitions", cleanDefinitions);
         model.addAttribute("word", surveyWordToEdit);
 
@@ -112,9 +110,7 @@ public class SurveyWordController {
 
         if (surveyWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 
-//            surveyWordToVote.setUserAlreadyVote(true);
-//
-//            surveyWordService.saveSurveyWord(surveyWordToVote);
+            System.out.println("no puede votar mas de 2 veces");
         }
 
         else {
@@ -192,16 +188,12 @@ public class SurveyWordController {
         SimpleWord simpleWordToVote = simpleWordService.getSimpleWordById(id);
 
         String actualUserName = principal.getName();
-
         //Si el usuario ya voto por una palabra con el mismo lema, este mismo usuario no podra votar por las otras palabras que tengan el mismo lema
         boolean isWordAlreadyVote = simpleWordService.alreadyVoteWordWithTheSameLemmaExist(simpleWordToVote, actualUserName);
 
         if (simpleWordToVote.getAlreadyVoteUsernames().contains(actualUserName) || isWordAlreadyVote) {
 
-            //desactivado mientras encuentro como hacer funcionar esto sin que me bloquee la votacion
-//            simpleWordToVote.setUserAlreadyVote(true);
-//
-//            simpleWordService.saveSimpleWord(simpleWordToVote);
+            System.out.println("no puede votar mas de 2 veces");
         }
 
         else {
