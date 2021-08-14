@@ -180,13 +180,13 @@ class OntologyApplicationTests {
     }
 
 
-//    @Test
-//    void testGetWordByLemma() {
-//
-//        Word response = wordService.getWordByLemma(testLemma);
-//
-//        assertEquals(testLemma, response.getLema());
-//    }
+    @Test
+    void testGetWordByLemma() {
+
+        Word response = wordService.getWordByLemma(testLemma);
+
+        assertEquals(testLemma, response.getLema());
+    }
 
 
     @Test

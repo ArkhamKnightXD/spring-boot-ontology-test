@@ -383,6 +383,32 @@
     
 
 
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331"/>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test1 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test1">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test2"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test2 -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#test2"/>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -625,6 +651,7 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example</untitled-ontology-2:ejemplo>
@@ -638,6 +665,7 @@ chatarra</untitled-ontology-2:sinonimos>
     <!-- http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1 -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#prueba1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/luis_/ontologies/2020/6/untitled-ontology-2#fatherClassName331"/>
         <untitled-ontology-2:cantidad_votaciones_I rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</untitled-ontology-2:cantidad_votaciones_I>
         <untitled-ontology-2:definicion rdf:datatype="http://www.w3.org/2001/XMLSchema#string">definition331</untitled-ontology-2:definicion>
         <untitled-ontology-2:ejemplo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">example331</untitled-ontology-2:ejemplo>
