@@ -4,9 +4,7 @@ import arkham.knight.ontology.models.*;
 import arkham.knight.ontology.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import java.security.Principal;
 import java.util.List;
@@ -37,7 +35,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String indexPage(Model model, Principal principal) {
 
         User actualUser = userService.getUserByUsername(principal.getName());
@@ -49,7 +47,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/survey-edition", method = RequestMethod.GET)
+    @GetMapping("/survey-edition")
     public String editionSurveyCompletePage(Model model, @RequestParam long id, @RequestParam(defaultValue = "prueba") String sentence) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
@@ -81,7 +79,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/survey-edit", method = RequestMethod.POST)
+    @PostMapping("/survey-edit")
     public String editSurvey(@RequestParam long id, @RequestParam String individualNameRAE, @RequestParam String definitionRAE, @RequestParam String fatherClassName) {
 
         SurveyWord surveyWordToEdit = surveyWordService.getSurveyWordById(id);
@@ -99,7 +97,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/survey-vote", method = RequestMethod.GET)
+    @GetMapping("/survey-vote")
     public String voteSurvey(@RequestParam long id, Principal principal) {
 
         String actualUserName = principal.getName();
@@ -128,7 +126,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "simple/", method = RequestMethod.GET)
+    @GetMapping("simple/")
     public String indexSimplePage(Model model, Principal principal) {
 
         User actualUser = userService.getUserByUsername(principal.getName());
@@ -140,14 +138,14 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/simple-survey-creation", method = RequestMethod.GET)
+    @GetMapping("/simple-survey-creation")
     public String creationSimpleSurveyPage() {
 
         return "/freemarker/survey/createWordSurveyProposition";
     }
 
 
-    @RequestMapping(value = "/simple-survey-create", method = RequestMethod.POST)
+    @PostMapping("/simple-survey-create")
     public String createSimpleSurvey(@RequestParam String word, @RequestParam(defaultValue = "N/A") String definition) {
 
         SimpleWord simpleWordToCreate = new SimpleWord(word, definition, false);
@@ -158,7 +156,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/simple-survey-edition", method = RequestMethod.GET)
+    @GetMapping("/simple-survey-edition")
     public String editionSimpleSurveyPage(Model model, @RequestParam long id) {
 
         SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
@@ -169,7 +167,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/simple-survey-edit", method = RequestMethod.POST)
+    @PostMapping("/simple-survey-edit")
     public String editSimpleSurvey(@RequestParam long id, @RequestParam String definition) {
 
         SimpleWord simpleWordToEdit = simpleWordService.getSimpleWordById(id);
@@ -182,7 +180,7 @@ public class SurveyWordController {
     }
 
 
-    @RequestMapping(value = "/simple-survey-vote", method = RequestMethod.GET)
+    @GetMapping("/simple-survey-vote")
     public String voteSimpleSurvey(@RequestParam long id, Principal principal) {
 
         SimpleWord simpleWordToVote = simpleWordService.getSimpleWordById(id);

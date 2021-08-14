@@ -7,9 +7,7 @@ import arkham.knight.ontology.services.*;
 import org.apache.jena.ontology.Individual;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.List;
 
@@ -38,7 +36,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
     public String getIndividualPropertiesAndValues(Model model, @RequestParam(defaultValue = "apota") String sentence, @RequestParam(defaultValue = "tweet") String searchType) {
 
         List<String> sentenceByWords = ontologyService.tokenizeTheSentence(sentence);
@@ -53,7 +51,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/individuals", method = RequestMethod.GET)
+    @GetMapping("/individuals")
     public String showAllIndividuals(Model model, @RequestParam(defaultValue = "") String sentence, Principal principal) {
 
         List<Individual> individualList;
@@ -78,7 +76,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/individuals/vote", method = RequestMethod.GET)
+    @GetMapping("/individuals/vote")
     public String showAllVotedIndividuals(Model model, Principal principal) {
 
         User actualUser = userService.getUserByUsername(principal.getName());
@@ -90,7 +88,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "individuals/statistics-top", method = RequestMethod.GET)
+    @GetMapping("individuals/statistics-top")
     public String statisticsPage(Model model, Principal principal){
 
         List<SurveyWord> topFiveMostVotedSurveys = surveyWordService.getTopFiveMostVotedSurveys();
@@ -105,7 +103,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "individuals/statistics-total", method = RequestMethod.GET)
+    @GetMapping("individuals/statistics-total")
     public String statisticsTotalPage(Model model, Principal principal){
 
         int acceptedWordsTotal = ontologyConnectionService.getAllIndividuals().size();
@@ -123,7 +121,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "individuals/statistics-total-users", method = RequestMethod.GET)
+    @GetMapping("individuals/statistics-total-users")
     public String statisticsTotalUsersPage(Model model, Principal principal){
 
         int normalUsersQuantity = userService.getUsersQuantityByRole("ROLE_USER");
@@ -141,7 +139,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "individuals/statistics-percentage", method = RequestMethod.GET)
+    @GetMapping("individuals/statistics-percentage")
     public String statisticsExtraPage(Model model, Principal principal){
 
         List<Word> topFivePercentageAgreementWords = wordService.getTopFivePercentageAgreementWords();
@@ -156,7 +154,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/creation", method = RequestMethod.GET)
+    @GetMapping("/creation")
     public String creationPage(Model model) {
 
         model.addAttribute("classes", ontologyService.getAllClassesLocalName());
@@ -165,7 +163,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping("/create")
     public String create(@RequestParam String individualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String fatherClassName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam(defaultValue = "N/A") String synonyms) {
 
         Word wordToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
@@ -176,7 +174,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/edition", method = RequestMethod.GET)
+    @GetMapping("/edition")
     public String getIndividualByName(Model model, @RequestParam String individualName)  {
 
         Word actualWord = wordService.getWordByLemma(individualName);
@@ -193,7 +191,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @PostMapping("/edit")
     public String edit(@RequestParam String originalIndividualName, @RequestParam(defaultValue = "N/A") String individualNameRAE, @RequestParam String individualName, @RequestParam String definition, @RequestParam(defaultValue = "N/A") String example, @RequestParam String fatherClassName, @RequestParam(defaultValue = "") String synonyms) {
 
         Word wordDataToSave = new Word(individualName, definition, example, fatherClassName, synonyms, individualNameRAE, "0", "0");
@@ -208,7 +206,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/show", method = RequestMethod.GET)
+    @GetMapping("/show")
     public String showIndividual(Model model, @RequestParam String lemma) {
 
         Word wordToShow = wordService.getWordByLemma(lemma);
@@ -219,7 +217,7 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @GetMapping("/delete")
     public String deleteIndividual(@RequestParam String individualName) {
 
         ontologyService.deleteIndividual(individualName);
@@ -228,14 +226,14 @@ public class OntologyController {
     }
 
 
-    @RequestMapping(value = "/class-creation", method = RequestMethod.GET)
+    @GetMapping("/class-creation")
     public String creationClassPage() {
 
         return "/freemarker/ontology/createClass";
     }
 
 
-    @RequestMapping(value = "/class-create", method = RequestMethod.POST)
+    @PostMapping("/class-create")
     public String createClass(@RequestParam String fatherClassName, @RequestParam(defaultValue = "") String subClass) {
 
         if (subClass.length() == 0) {

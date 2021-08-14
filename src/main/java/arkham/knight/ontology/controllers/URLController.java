@@ -9,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -40,14 +38,14 @@ public class URLController implements ErrorController {
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping( "/")
     public String landingPage() {
 
         return "/freemarker/authentication/landingPage";
     }
 
 
-    @RequestMapping("/login")
+    @GetMapping("/login")
     public String login(){
 
         User adminUser = userService.getUserByUsername("admin@hotmail.com");
@@ -59,14 +57,14 @@ public class URLController implements ErrorController {
     }
 
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    @GetMapping( "/register")
     public String registerUserPage() {
 
         return "/freemarker/authentication/register";
     }
 
 
-    @RequestMapping(value = "/sing-up", method = RequestMethod.POST)
+    @PostMapping("/sing-up")
     public String registerUser(@RequestParam String email, @RequestParam String username, @RequestParam String password) {
 
         List<Rol> userRol = new ArrayList<>();
@@ -81,7 +79,7 @@ public class URLController implements ErrorController {
     }
 
 
-    @RequestMapping("/login-error")
+    @GetMapping("/login-error")
     public String loginError(Model model){
 
         model.addAttribute("title", "Login Failed");
@@ -91,7 +89,7 @@ public class URLController implements ErrorController {
     }
 
 
-    @RequestMapping("/error")
+    @GetMapping("/error")
     public String handleError(HttpServletRequest request, Model model) {
         // get error status
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);

@@ -6,9 +6,7 @@ import arkham.knight.ontology.services.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +25,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping(value = "/")
     public String indexPage(Model model, Principal principal) {
 
         User actualUser = userService.getUserByUsername(principal.getName());
@@ -39,7 +37,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/creation", method = RequestMethod.GET)
+    @GetMapping("/creation")
     public String creationUserPage(Model model) {
 
         model.addAttribute("roles", userService.getAllRoles());
@@ -48,7 +46,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @PostMapping("/create")
     public String createUser(@RequestParam String username, @RequestParam String password, @RequestParam Long idRol) {
 
         Rol userRol = userService.getRolById(idRol);
@@ -65,7 +63,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/edition", method = RequestMethod.GET)
+    @GetMapping("/edition")
     public String editionUserPage(Model model, @RequestParam long id)  {
 
         User userToEdit = userService.getUserById(id);
@@ -77,7 +75,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @PostMapping("/edit")
     public String editUser(@RequestParam long id, @RequestParam String username, @RequestParam String password, @RequestParam Long idRol) {
 
         User userToEdit = userService.getUserById(id);
@@ -98,7 +96,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @GetMapping("/delete")
     public String deleteUser(@RequestParam long id) {
 
         userService.deleteUserById(id);
