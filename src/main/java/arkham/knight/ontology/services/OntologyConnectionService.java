@@ -11,6 +11,7 @@ import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
+import java.util.Objects;
 
 public class OntologyConnectionService {
 
@@ -152,7 +153,7 @@ public class OntologyConnectionService {
 
             //URL Connection
             else
-                ontologyManager.saveOntology(ontology, getOntologyURLOutputStream());
+                ontologyManager.saveOntology(ontology, Objects.requireNonNull(getOntologyURLOutputStream()));
         } catch (OWLOntologyStorageException exception) {
             exception.printStackTrace();
         }
@@ -169,7 +170,7 @@ public class OntologyConnectionService {
             if (ontologyFile.exists())
                 return ontologyManager.loadOntologyFromOntologyDocument(ontologyFile);
             //URL Connection
-            return ontologyManager.loadOntologyFromOntologyDocument(getOntologyURLInputStream());
+            return ontologyManager.loadOntologyFromOntologyDocument(Objects.requireNonNull(getOntologyURLInputStream()));
         } catch (OWLOntologyCreationException exception) {
             exception.printStackTrace();
         }

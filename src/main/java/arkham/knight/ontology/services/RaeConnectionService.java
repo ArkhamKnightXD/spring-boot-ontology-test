@@ -15,9 +15,6 @@ public class RaeConnectionService {
 
     private final String URLConnection = "http://localhost:8080/";
 
-    //ngrok connection
-//    private final String URLConnection = "https://ad760c68f0cd.ngrok.io/";
-
 
     public List<BaseResponse> getTheLemmaListFromTheRaeAPI(RestTemplate restTemplate, String wordToSearch){
 

@@ -34,6 +34,8 @@ public class SimpleWord implements Serializable{
 
     public Long getId() { return id; }
 
+    public void setId(Long id) { this.id = id; }
+
     public String getWord() { return word; }
 
     public void setWord(String word) { this.word = word; }
@@ -43,8 +45,6 @@ public class SimpleWord implements Serializable{
     public void setWordDefinition(String wordDefinition) { this.wordDefinition = wordDefinition; }
 
     public int getTotalAnswers() { return totalAnswers; }
-
-    public void setTotalAnswers(int totalAnswers) { this.totalAnswers = totalAnswers; }
 
     public int getVotesQuantity() { return votesQuantity; }
 

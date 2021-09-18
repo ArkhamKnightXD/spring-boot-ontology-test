@@ -150,7 +150,6 @@ public class WordService {
 
                 cleanWordList.add(wordToEvaluate);
             }
-
         }
 
         return cleanWordList;
@@ -173,33 +172,5 @@ public class WordService {
         }
 
         return 0;
-    }
-
-
-    public float calculateWordPercentageAgreementOfPresenceOrAbsents(Word wordToEvaluate, boolean percentageType){
-
-        if (wordToEvaluate.getCantidadVotacionesI() != null){
-
-            float numberOfAbsencesD = 2;
-            float numberOfPresencesA = 2;
-
-            int totalAnswers = Integer.parseInt(wordToEvaluate.getTotalRespuestasN());
-            //Porcentaje de acuerdo de ‘presencia’ formula = A/N-D * 100
-            if (percentageType)
-                return (numberOfPresencesA /(totalAnswers - numberOfAbsencesD)) * 100;
-            //Porcentaje de acuerdo de ausencias formula = D/N-A * 100
-            return (numberOfAbsencesD /(totalAnswers - numberOfPresencesA)) * 100;
-        }
-
-        return 0;
-    }
-
-
-    public float calculateWordMeanPercentageAgreement(Word wordToEvaluate){
-
-        float percentageOfAbsences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, false)/100;
-        float percentageOfPresences = calculateWordPercentageAgreementOfPresenceOrAbsents(wordToEvaluate, true)/100;
-        //formula = porcentaje de ausencias + porcentaje de asistencias *100
-        return  ((percentageOfPresences+percentageOfAbsences)/2) * 100;
     }
 }

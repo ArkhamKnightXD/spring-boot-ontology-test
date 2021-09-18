@@ -15,7 +15,7 @@ public class BaseResponse implements Serializable {
      */
     private ArrayList<Res> res;
 
-    public class Res {
+    public static class Res {
         /**
          * Cabecera que se muestra en la definición de la palabra
          */

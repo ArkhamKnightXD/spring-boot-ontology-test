@@ -65,10 +65,6 @@ public class Word implements Serializable {
 
     public void setLemaRAE(String lemaRAE) { this.lemaRAE = lemaRAE; }
 
-    public String getDefinicionRAE() { return definicionRAE; }
-
-    public void setDefinicionRAE(String definicionRAE) { this.definicionRAE = definicionRAE; }
-
     public String getTotalRespuestasN() { return totalRespuestasN; }
 
     public void setTotalRespuestasN(String totalRespuestasN) { this.totalRespuestasN = totalRespuestasN; }

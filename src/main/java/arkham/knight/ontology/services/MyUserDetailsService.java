@@ -46,7 +46,7 @@ public class MyUserDetailsService implements UserDetailsService {
         rolRepository.saveAll(rolListAdmin);
 
         User karUser = new User("karvinjimenez@gmail.com", passwordEncoder.encode("1234"),
-                "Karvin",true, rolListAdmin);
+                "Red",true, rolListAdmin);
 
         User luisUser = new User("luis@gmail.com", passwordEncoder.encode("1234"),
                 "Luis",true, rolListAdmin);
